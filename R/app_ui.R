@@ -8,10 +8,34 @@ app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    # List the first level UI elements here 
-    fluidPage(
-      h1("mmrefpoints")
-    )
+ ### BEGIN COPY PASTE FROM APP
+ shinyUI(fluidPage(
+   shiny.i18n::usei18n(i18n),
+   theme = shinythemes::shinytheme("flatly"),
+   tags$head(tags$style(".shiny-output-error{color: darkblue;}")), # dblue error messages
+   fluidRow(
+     column(
+       8,
+       titlePanel(
+         title = i18n$t("Marine Mammal Bycatch Impacts Exploration Tool"),
+         windowTitle = "MMBIET"
+       )
+     ),
+     column(
+       4,
+       radioButtons(
+         inputId = "selected_language",
+         label = "Language",
+         choiceNames = c("English", "Español", "Français"),
+         choiceValues = i18n$get_languages(), # c("en","es","fr"),
+         selected = i18n$get_key_translation(),
+         inline = FALSE
+       )
+     ) # /column
+   ), # /fluidRow
+   uiOutput("page_content")
+ ))
+ ###
   )
 }
 
