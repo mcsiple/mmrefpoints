@@ -1,0 +1,13 @@
+Package: mmrefpoints
+Title: Project Marine Mammal Populations and Calculate Reference Points
+Version: 0.0.0.9000
+Authors@R: person('Margaret', 'Siple', email = 'margaret.siple@noaa.gov', role = c('cre', 'aut'))
+Description: Tools for projecting marine mammal populations into the future under different bycatch scenarios. It uses an age-structured population model to project numbers at age, based on life history parameters and some reference points entered by the user. Its primary purpose is to allow users to explore the long term impacts of different bycatch rates, based on some basic life history information. It is also built to help users understand and estimate reference points for bycatch such as Potential Biological Removal (PBR).
+License: MIT + file LICENSE
+Imports: 
+    config,
+    golem,
+    shiny
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
