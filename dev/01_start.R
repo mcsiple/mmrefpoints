@@ -35,7 +35,8 @@ usethis::use_lifecycle_badge( "Experimental" )
 usethis::use_news_md( open = FALSE )
 
 ## Use git ----
-usethis::use_git_config(user.name = "mcsiple", user.email = "mcsiple@gmail.com")
+# I ended up doing this manually thru terminal
+#usethis::use_git_config(user.name = "mcsiple", user.email = "mcsiple@gmail.com")
 #usethis::use_git() # doesn't point to the right directory!
 
 ## Init Testing Infrastructure ----
@@ -44,6 +45,35 @@ golem::use_recommended_tests()
 
 ## Use Recommended Packages ----
 golem::use_recommended_deps()
+
+## MCS: All the packages I use in the shiny app - so many.
+usethis::use_package("plotly")
+#usethis::use_package(shiny)
+usethis::use_package("gapminder")
+usethis::use_package("gganimate")
+usethis::use_package("scales")
+usethis::use_package("xtable")
+usethis::use_package("tidyverse", type = "depends")
+usethis::use_package("reshape2")
+usethis::use_package("DT")
+usethis::use_package("RColorBrewer")
+usethis::use_package("popbio") # betaval
+usethis::use_package("shinydashboard")
+usethis::use_package("tableHTML")
+usethis::use_package("formattable")
+usethis::use_package("kableExtra")
+usethis::use_package("shinythemes")
+usethis::use_package("shinyBS")
+usethis::use_package("shinyLP")
+usethis::use_package("extrafont")
+usethis::use_package("gifski")
+#usethis::use_package("magick")
+usethis::use_package("gridExtra")
+usethis::use_package("here")
+usethis::use_package("xts")
+usethis::use_package("tseries")
+usethis::use_package("shiny.i18n")
+
 
 ## Favicon ----
 # If you want to change the favicon (default is golem's one)
