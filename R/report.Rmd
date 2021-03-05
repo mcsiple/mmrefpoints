@@ -1,0 +1,68 @@
+---
+title: "Bycatch impacts exploration tool: report"
+output: html_document
+params:
+  lh.params: NA
+  performance: NA
+  pbr: NA
+---
+
+This report was generated using the [marine mammal bycatch impacts exploration tool](https://msiple.shinyapps.io/mammaltool/). The output reflects parameters that the user has entered for their marine mammal population of interest. These values are entered in the  **Advanced** and **PBR & PBR calculator** tabs. 
+
+### Life history parameters used
+
+```{r echo=FALSE,  warning=FALSE, message=FALSE}
+# The `params` object is available in the document.
+options(knitr.table.format = "html") 
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+
+lhdf <- as.data.frame(params$lh.params)
+
+lhdf <- lhdf %>% 
+  select(S0,S1plus,AgeMat,lambdaMax,z) %>%
+  rename("$S_0$" = S0,
+         "$S_{1+}$" = S1plus,
+         "Age at maturity" = AgeMat,
+         "$\\lambda_{max}$" = lambdaMax)
+
+knitr::kable(format="html", # make table showing all the parameters
+             lhdf) %>% 
+            kable_styling()
+```
+
+### Performance measures
+These are the median outcomes for each of the bycatch and depletion levels. 
+
+```{r echo=FALSE,  warning=FALSE, message=FALSE}
+# The `params` object is available in the document.
+pm <-  params$performance 
+
+knitr::kable(format="html",pm)%>%
+  kable_styling(full_width = F,position="center")
+
+```
+
+### Estimated reference points
+
+The following table is based on values that the user has entered in the **PBR** tab of the app. 
+
+If $N_{MIN}$ and $N_{BEST}$ are the same, the user has not specified a survey CV of abundance. If several values are missing, the user may have run some projections without entering anything in the **PBR** tab. 
+
+**Note:** For this table to give the correct values, the user has to specify a current population size and an annual bycatch rate in the **Advanced** tab. Otherwise, the numbers below will not be based on a real population size. 
+
+
+```{r echo=FALSE,  warning=FALSE, message=FALSE}
+# The `params` object is available in the document.
+PBR <- params$pbr %>%
+  mutate(Parameter = recode(Parameter, 
+                            Nbest = "$N_{BEST}$",
+                            Nmin = "$N_{MIN}$",
+                            Rmax = "$R_{MAX}$",
+                            Fr = "$F_R$"))
+
+knitr::kable(format="html",PBR)%>%
+  kable_styling(full_width = F,position="center")
+
+```
