@@ -1062,7 +1062,7 @@ app_server <- function( input, output, session ) {
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
       tempReport <- file.path(tempdir(), "report.Rmd")
-      file.copy("report.Rmd", tempReport, overwrite = TRUE)
+      file.copy(from = here::here("R","report.Rmd"), tempReport, overwrite = TRUE)
       
       
       # NOTE: Need to fix this and clean it up a little
@@ -1123,7 +1123,7 @@ app_server <- function( input, output, session ) {
                         envir = new.env(parent = globalenv())
       )
     }
-  )
+  ) #/ downloadHandler
   
   
   # DOCUMENTATION -----------------------------------------------------------
