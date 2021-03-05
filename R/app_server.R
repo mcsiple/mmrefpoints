@@ -114,7 +114,7 @@ app_server <- function( input, output, session ) {
   ))
   
   # Constant catch (simple scenario)
-  high.simple <- reactive(Projections(
+  high.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
       Catch = input$constantcatch_simple[2],
@@ -124,7 +124,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  med.simple <- reactive(Projections(
+  med.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
       Catch = median(input$constantcatch_simple),
@@ -134,7 +134,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  low.simple <- reactive(Projections(
+  low.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
       Catch = median(input$constantcatch_simple[1]),
@@ -144,7 +144,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  zero.simple <- reactive(Projections(
+  zero.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
       Catch = 0,
@@ -155,7 +155,7 @@ app_server <- function( input, output, session ) {
     nyears = nyears.simple
   ))
   # Constant catch rate (simple tab)
-  high.simple.rate <- reactive(Projections(
+  high.simple.rate <- reactive(projections(
     NOut = 50,
     ConstantRateBycatch = list(
       Rate = input$bycatchrate_simple[2],
@@ -165,7 +165,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  med.simple.rate <- reactive(Projections(
+  med.simple.rate <- reactive(projections(
     NOut = 50,
     ConstantRateBycatch = list(
       Rate = median(input$bycatchrate_simple),
@@ -175,7 +175,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  low.simple.rate <- reactive(Projections(
+  low.simple.rate <- reactive(projections(
     NOut = 50,
     ConstantRateBycatch = list(
       Rate = input$bycatchrate_simple[1],
@@ -185,7 +185,7 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  zero.simple.rate <- reactive(Projections(
+  zero.simple.rate <- reactive(projections(
     NOut = 50,
     ConstantRateBycatch = list(
       Rate = 0,
@@ -245,7 +245,7 @@ app_server <- function( input, output, session ) {
       ylims = c(0, lh.params$K1plus),
       InitDepl = initdepl_simple(),
       K1plus = lh.params$K1plus,
-      years.to.plot = plotyears,
+      years.plot = plotyears,
       color.palette = colorscheme,
       lang = input$selected_language
     )
@@ -342,7 +342,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantBycatch = list(Catch = input$constantcatch[2], CV = input$cvcatch),
           InitDepl = x,
@@ -357,7 +357,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantBycatch = list(Catch = median(input$constantcatch), CV = input$cvcatch),
           InitDepl = x,
@@ -372,7 +372,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantBycatch = list(Catch = input$constantcatch[1], CV = input$cvcatch),
           InitDepl = x,
@@ -387,7 +387,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantBycatch = list(Catch = 0, CV = 0),
           InitDepl = x,
@@ -402,7 +402,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantRateBycatch = list(Rate = input$bycatchrate[2], CV = input$cvcatchrate),
           InitDepl = x,
@@ -417,7 +417,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantRateBycatch = list(Rate = median(input$bycatchrate), CV = input$cvcatchrate),
           InitDepl = x,
@@ -432,7 +432,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantRateBycatch = list(Rate = input$bycatchrate[1], CV = input$cvcatchrate),
           InitDepl = x,
@@ -447,7 +447,7 @@ app_server <- function( input, output, session ) {
     lapply(
       X = InitDepl.vec(),
       function(x) {
-        Projections(
+        projections(
           NOut = as.numeric(input$nproj),
           ConstantRateBycatch = list(Rate = 0, CV = 0),
           InitDepl = x,
@@ -460,7 +460,7 @@ app_server <- function( input, output, session ) {
   })
   
   performance.table <- eventReactive(input$go, {
-    make.ptable(
+    make_ptable(
       traj.list = switch(input$crad,
                          "n_yr" = {
                            list(
@@ -559,7 +559,7 @@ app_server <- function( input, output, session ) {
         ylims = c(0, lh.params$K1plus),
         years.plot = plotyears,
         spaghetti = spaghetti,
-        years.to.plot = plotyears,
+        years.plot = plotyears,
         K1plus = lh.params$K1plus,
         InitDepls = InitDepl.vec(),
         color.palette = colorscheme,
@@ -567,7 +567,7 @@ app_server <- function( input, output, session ) {
       )
     } else {
       i <- 2 # Plots only the depletion level the user entered
-      plot.proj(
+      plot_proj(
         high = high.list[[i]],
         med = med.list[[i]],
         low = low.list[[i]],
@@ -575,7 +575,7 @@ app_server <- function( input, output, session ) {
         ylims = c(0, lh.params$K1plus),
         InitDepl = initdepl_adv(),
         K1plus = lh.params$K1plus,
-        years.to.plot = plotyears,
+        years.plot = plotyears,
         color.palette = colorscheme,
         lang = input$selected_language
       )
@@ -588,7 +588,7 @@ app_server <- function( input, output, session ) {
   })
   
   output$yieldPlot <- renderPlot({
-    plot.yield.curve(
+    plot_yield_curve(
       lh.params = lh.params2(),
       z = z.usr(),
       MNPL_in = input$MNPL.usr,
@@ -616,7 +616,7 @@ app_server <- function( input, output, session ) {
                            kableExtra::column_spec(4, width = "3cm"))
   
   output$pinnipedplot <- plotly::renderPlotly({
-    plot.pinnipeds(dat = dat, central = central, set_size = 10)
+    plot_pinnipeds(dat = dat, central = central, set_size = 10)
   })
   
   output$Later <- renderText({
