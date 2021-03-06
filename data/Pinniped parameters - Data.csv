@@ -1,158 +1,0 @@
-Species,Parameter,Value,Range,Citation,doi,Location,Time period,Sex-specific?,Notes
-Antarctic fur seal (Arctocephalus gazella),AgeMat,3,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Australian fur seal (Arctocephalus pusillus doriferus),AgeMat,4,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Brown/ cape fur seal (Arctocephalus pusillus pusillus),AgeMat,4,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-California sea lion (Zalophus californianus),AgeMat,4,,"Melin et al. 2012, cited in DeLong et al. 2017",10.1111/mms.12427,"San Miguel, CA",,Females,Age at first birth
-Crabeater seal (Lobodon carcinophaga),AgeMat,,2.5,Boveng (1993),none; PhD thesis,,,Female,from Boyd Table 1
-Galapagos fur seal (Arctocephalus galapagoensis),AgeMat,5,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Gray seal (Halichoerus grypus),AgeMat,,5-7,"Harwood and Prime (1978) ;Boyd (1985) ; Pomeroy et al.(1999)",multiple,multiple,,Female,from Boyd Table 1
-Gray seal (Halichoerus grypus),AgeMat,5.5,5.38-5.62,Hammill & Gosselin 1995,https://doi.org/10.1139/f95-864,Northwest Atlantic,1968-1992,Females,Age at first pregnancy; based on number of pregnancies and presence of corpus luteum (5.5 +/- 0.12 yr)
-Gray seal (Halichoerus grypus),AgeMat,,5-6 yr,Hammill & Gosselin 1995,https://doi.org/10.1139/f95-864,Northwest Atlantic,1968-1992,Males,
-Guadalupe fur seal (Arctocephalus townsendi),AgeMat,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Harbor seal (Phoca vitulina),AgeMat,4,,Hastings et al. 2012,10.1644/11-MAMM-A-291.1,Tugidak Island; GoA,2000-2007,Females,
-Harbor seal (Phoca vitulina),AgeMat,,3-7 years,NOAA species fact sheet,,West Coast US,unknown,NA,
-Harp seal (Pagophilus groenlandicus),AgeMat,8,,Hammill et al. 2015,10.1016/j.biocon.2015.09.016,Northwest Atlantic,,,
-Harp seal (Pagophilus groenlandicus),AgeMat,,4.8,"Bowen et al. (1981) ; Kjellgwistet al. (1995)",multiple,multiple,,Female,from Boyd Table 1
-Juan Fernández fur seal (Arctocephalus philippii),AgeMat,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-New Zealand fur seal (Arctocephalus forsteri),AgeMat,5,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Northern elephant seal (Mirounga angustirostris),AgeMat,,3-4,"Huber et al. (1991) ;Reiter and Le Boeuf (1991);Le Boeuf et al. (1994)",multiple,multiple,,Female,from Boyd Table 1
-Northern fur seal (Callorhinus ursinus),AgeMat,,3-7 years,COSEWIC report,https://www.sararegistry.gc.ca/virtual_sara/files/cosewic/sr_northern_fur_seal_2011_eng.pdf,Canada,,Males,Can't hold territory until 8-9 years old (Gentry 1998)
-Northern fur seal (Callorhinus ursinus),AgeMat,,3-7 years,COSEWIC report,https://www.sararegistry.gc.ca/virtual_sara/files/cosewic/sr_northern_fur_seal_2011_eng.pdf,,,Females,Fecundity decreases after 13 years
-Northern fur seal (Callorhinus ursinus),AgeMat,,3-4,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Ringed seal (Pusa hispida),AgeMat,,6-8,Smith (1987),book,,,Female,from Boyd Table 1
-South American fur seals (Arctocephalus australis),AgeMat,3,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-South American sea lion (Otaria flavescens),AgeMat,4,,"Sepulveda, pers. comm.",NA,,,Female,
-South American sea lion (Otaria flavescens),AgeMat,7,,"Sepulveda, pers. comm.",NA,,,Male,"""social maturity"""
-Southern elephant seal (Mirounga leonina),AgeMat,,4-5,"McCann (1985) ; Hindell (1991) ;Galimberti and Boitani (1999)",multiple,multiple,,Female,from Boyd Table 1
-Steller sea lion (Eumetopias jubatus),AgeMat,,4-5,York (1994),10.1111/j.1748-7692.1994.tb00388.x,1992-1993,,Female,from Boyd Table 1
-Subantarctic fur seal (Arctocephalus tropicalis),AgeMat,5,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Weddell seal (Leptonychotes weddellii),AgeMat,,6-8,"Testa (1987) ; Testa and Siniff(1987) ; Testa et al. (1990) ;Hastings and Testa (1998)",multiple,multiple,,Female,from Boyd Table 1
-California sea lion (Zalophus californianus),birth rate,,0.5-0.6,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,2014,NA,"Time series. This is the most recent fitted value. Fitted assuming B_y normal with mean Mu_y and variance [see paper], where B_y is predicted birth rate and gamma inflates binomial variance for overdispersion. Paper also contains covariates for determining how contaminants and environmental fluctuations will affect birth rate. HOWEVER birth rate model has a lot of overdispersion for the variance so there are likely other factors affecting birth rates."
-Bearded seal (Erignathus barbatus),Fr,0.5,,"Wade & Angliss 1997, cited in NOAA SAR",NA,Alaska (all areas),,NA,for pinniped stocks with unknown population status
-General pinniped,Fr,0.5,,Wade 1998,10.1111/j.1748-7692.1998.tb00688.x,NA,,,Different theta values for linear and non-linear models of density dependence (Theta linear = 1.0)
-Gray seal (Halichoerus grypus),Fr,1,,,NA,Alaska (all areas),,NA,Value for stocks of unknown status
-Harbor seal (Phoca vitulina),Fr,0.7,,NOAA SAR,NA,"Bristol Bay, North Kodiak, Sitka/Chatham Strait, Dixon/Cape Decision, Clarence Strait",,NA,Default Fr value = 0.5
-Harbor seal (Phoca vitulina),Fr,0.5,,NOAA SAR,NA,"Aleutian Islands, Pribilof Islands, Prince William Sound, Cook Inlet/Shelikof Islands, Glacier Bay/Icy Strait",,NA,Default Fr value = 0.5
-Harbor seal (Phoca vitulina),Fr,0.3,,NOAA SAR,NA,"South Kodiak, Lynn Canal/Stephens Passage",,NA,"Default Fr value = 0.5. SARs also have mortality rates, survey CV, etc"
-Steller sea lion (Eumetopias jubatus),Fr,0.1,,NOAA SAR,NA,Alaska (all areas),,NA,Default value for stocks listed as endangered under the ESA. Mortalities from salmon drift gillnet fishery available in SAR also
-Gray seal (Halichoerus grypus),IBI,1 yr,,Hammill & Gosselin 1995,https://doi.org/10.1139/f95-864,Northwest Atlantic,1968-1992,NA,Pregnancy rates were 0.875 and 1 (based on different ways of determining pregnancy)
-California sea lion (Zalophus californianus),K,275298,,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,,,"""population carrying capacity"""
-Harp seal (Pagophilus groenlandicus),K1plus,,0.022-0.380 medians,Hammill et al. 2015,10.1016/j.biocon.2015.09.016,Northwest Atlantic,,NA,range of medians across multiple models
-South American sea lion (Otaria flavescens),MaxAge,16,,"Sepulveda, pers. comm.",NA,,,Male,
-South American sea lion (Otaria flavescens),MaxAge,18,,"Sepulveda, pers. comm.",NA,,,Female,
-General pinniped,MNPL,,0.6-0.7,Wade 2018,NA,NA,,NA,Includes harbor seals (Brown et al. 2005) and CA sea lions
-Gray seal (Halichoerus grypus),MNPL,0.12,,,NA,Alaska (all areas),,NA,Default value for pinnipeds - this is for the Western North Atlantic stock
-Harbor seal (Phoca vitulina),MNPL,0.12,,"Wade and Angliss 1997, cited in Alaskan harbor seal SAR",NA,Alaska (all areas),,NA,
-Harp seal (Pagophilus groenlandicus),MNPL,0.12,,NOAA SAR,NA,Alaska (all areas),,NA,Default value for pinnipeds - this is for the Western North Atlantic stock
-California sea lion (Zalophus californianus),MNPL/K,0.66,,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,,,OSP. MNPL also in paper
-California sea lion (Zalophus californianus),nages,24,,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,,,
-Harbor seal (Phoca vitulina),nages,,25-35 years,NOAA species fact sheet,,West Coast US,unknown,NA,
-Hooded seal,nages,,25-35 years,NOAA species fact sheet,,,,NA,
-Antarctic fur seal (Arctocephalus gazella),PregnancyRate,,0.68-0.77,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Australian fur seal (Arctocephalus pusillus doriferus),PregnancyRate,0.73,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Brown/ cape fur seal (Arctocephalus pusillus pusillus),PregnancyRate,0.71,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Crabeater seal (Lobodon carcinophaga),PregnancyRate,,0.95-0.98,Boveng (1993),none; PhD thesis,,,Female,from Boyd Table 1
-Galapagos fur seal (Arctocephalus galapagoensis),PregnancyRate,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Gray seal (Halichoerus grypus),PregnancyRate,,0.80-0.98,"Harwood and Prime (1978) ;Boyd (1985) ; Pomeroy et al.(1999)",multiple,multiple,,Female,from Boyd Table 1
-Guadalupe fur seal (Arctocephalus townsendi),PregnancyRate,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Harp seal (Pagophilus groenlandicus),PregnancyRate,,0.82-0.97,"Bowen et al. (1981) ; Kjellgwistet al. (1995)",multiple,multiple,,Female,from Boyd Table 1
-Juan Fernández fur seal (Arctocephalus philippii),PregnancyRate,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-New Zealand fur seal (Arctocephalus forsteri),PregnancyRate,0.67,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Northern elephant seal (Mirounga angustirostris),PregnancyRate,0.8,,"Huber et al. (1991) ;Reiter and Le Boeuf (1991);Le Boeuf et al. (1994)",multiple,multiple,,Female,from Boyd Table 1
-Northern fur seal (Callorhinus ursinus),PregnancyRate,,0.69-0.72,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Ringed seal (Pusa hispida),PregnancyRate,0.88,,Smith (1987),book,,,Female,from Boyd Table 1
-South American fur seals (Arctocephalus australis),PregnancyRate,,0.80-0.82,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Southern elephant seal (Mirounga leonina),PregnancyRate,0.88,,"McCann (1985) ; Hindell (1991) ;Galimberti and Boitani (1999)",multiple,multiple,,Female,from Boyd Table 1
-Steller sea lion (Eumetopias jubatus),PregnancyRate,0.63,,York (1994),10.1111/j.1748-7692.1994.tb00388.x,1992-1993,,Female,from Boyd Table 1
-Subantarctic fur seal (Arctocephalus tropicalis),PregnancyRate,,0.79-0.84,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Weddell seal (Leptonychotes weddellii),PregnancyRate,,0.46-0.79,"Testa (1987) ; Testa and Siniff(1987) ; Testa et al. (1990) ;Hastings and Testa (1998)",multiple,multiple,,Female,from Boyd Table 1
-California sea lion (Zalophus californianus),R,0.0695,,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,,,maximum growth rate
-Harbor seal (Phoca vitulina),reproductive rate,0.89,0.75-0.95,Cordes & Thompson 2014,10.1111/mms.12070,Northeast Scotland,2006-2011,Females,"""multiparous"""
-Harbor seal (Phoca vitulina),reproductive rate,0.69,0.64-0.74,Cordes & Thompson 2014,10.1111/mms.12070,Northeast Scotland,2006-2011,Females,>=3 years old
-Bearded seal (Erignathus barbatus),Rmax,0.12,,"Wade & Angliss 1997, cited in NOAA SAR",NA,Alaska (all areas),,NA,Theoretical value for pinnipeds
-California sea lion (Zalophus californianus),Rmax,0.07,0.06-0.09,Laake et al. 2018,https://onlinelibrary.wiley.com/doi/pdf/10.1002/jwmg.21405,West Coast US,,NA,From paper: Should not be treated as potential max rate because they could only include a fraction of the human-caused mortality
-General pinniped,Rmax,0.12,,Wade 1998,10.1111/j.1748-7692.1998.tb00688.x,NA,,,Different theta values for linear and non-linear models of density dependence (Theta linear = 1.0)
-Harbor seal (Phoca vitulina),Rmax,0.12,,NOAA SAR,NA,Alaska (all areas),,NA,0.18 for coastal stocks in WA
-Steller sea lion (Eumetopias jubatus),Rmax,0.12,,"Wade & Angliss 1997, cited in NOAA SAR",NA,Alaska (all areas),,NA,Theoretical value for pinnipeds
-Antarctic fur seal (Arctocephalus gazella),S0,,0.69-0.96,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Australian fur seal (Arctocephalus pusillus doriferus),S0,0.85,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Brown/ cape fur seal (Arctocephalus pusillus pusillus),S0,,0.65-0.80,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-California sea lion (Zalophus californianus),S0,0.6,,DeLong et al. 2017,10.1111/mms.12427,"San Miguel, CA",1990-2015,Females,"This paper also has ""yearling"" survival separate from age 0 and adults"
-California sea lion (Zalophus californianus),S0,0.574,,DeLong et al. 2017,10.1111/mms.12427,"San Miguel, CA",1990-2015,Males,"This paper also has ""yearling"" survival separate from age 0 and adults"
-Crabeater seal (Lobodon carcinophaga),S0,0.21 (survival rate in first year),,Boveng (1993),none; PhD thesis,,,,from Boyd Table 1
-Galapagos fur seal (Arctocephalus galapagoensis),S0,,0.85-0.91,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Gray seal (Halichoerus grypus),S0,0.66 (survival rate in first year),,"Harwood and Prime (1978) ;Boyd (1985) ; Pomeroy et al.(1999)",multiple,multiple,,,from Boyd Table 1
-Guadalupe fur seal (Arctocephalus townsendi),S0,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Harbor seal (Phoca vitulina),S0,0.82,,Hastings et al. 2012,10.1644/11-MAMM-A-291.1,Tugidak Island; GoA,2000-2007,Females,Age 0-1 Apparent survival (1-(mortality+emigration)). Data are from photo ID study and tagging.
-Harbor seal (Phoca vitulina),S0,0.717,,Hastings et al. 2012,10.1644/11-MAMM-A-291.1,Tugidak Island; GoA,2000-2007,Males,Age 0. Apparent survival (1-(mortality+emigration)). Data are from photo ID study and tagging.
-Harp seal (Pagophilus groenlandicus),S0,NA,,"Bowen et al. (1981) ; Kjellgwistet al. (1995)",multiple,multiple,,,from Boyd Table 1
-Juan Fernández fur seal (Arctocephalus philippii),S0,,0.92-0.95,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-New Zealand fur seal (Arctocephalus forsteri),S0,,0.40-0.92,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Northern elephant seal (Mirounga angustirostris),S0,0.88,,"Huber et al. (1991) ;Reiter and Le Boeuf (1991);Le Boeuf et al. (1994)",multiple,multiple,,,from Boyd Table 1
-Northern fur seal (Callorhinus ursinus),S0,,0.80-0.96,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Ringed seal (Pusa hispida),S0,0.84 (survival rate in first year),,Smith (1987),book,,,,from Boyd Table 1
-South American fur seals (Arctocephalus australis),S0,,0.53-0.90,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-South American sea lion (Otaria flavescens),S0,,0.15-0.78,"Sepulveda, pers. comm.",NA,,,,dependent on the colony; they usually use 0.7 in Chile
-Southern elephant seal (Mirounga leonina),S0,0.98,,"McCann (1985) ; Hindell (1991) ;Galimberti and Boitani (1999)",multiple,multiple,,,from Boyd Table 1
-Steller sea lion (Eumetopias jubatus),S0,1,,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1976-1983.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S0,0.42,0.38-0.50,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1983.5-1988.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys. Range is confidence interval."
-Steller sea lion (Eumetopias jubatus),S0,0.73,0.68-0.8,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1988.5-1992.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S0,0.57,0.53-0.61,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1992.5-1997.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S0,0.94,0.89-1.04,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1997.5-2004,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S0,0.78 (survival rate in first year),,York (1994),10.1111/j.1748-7692.1994.tb00388.x,,,,from Boyd Table 1
-Subantarctic fur seal (Arctocephalus tropicalis),S0,,0.85-0.96,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,,,,from Boyd Table 1
-Weddell seal (Leptonychotes weddellii),S0,,0.8-0.92,"Testa (1987) ; Testa and Siniff(1987) ; Testa et al. (1990) ;Hastings and Testa (1998)",multiple,multiple,,,from Boyd Table 1
-Antarctic fur seal (Arctocephalus gazella),S1plus,,0.83-0.92,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Antarctic fur seal (Arctocephalus gazella),S1plus,0.5,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Australian fur seal (Arctocephalus pusillus doriferus),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Australian fur seal (Arctocephalus pusillus doriferus),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Brown/ cape fur seal (Arctocephalus pusillus pusillus),S1plus,0.88,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Brown/ cape fur seal (Arctocephalus pusillus pusillus),S1plus,0.7,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-California sea lion (Zalophus californianus),S1plus,0.952,,DeLong et al. 2017,10.1111/mms.12427,"San Miguel, CA",1990-2015,Females,Age 5; data came from resighting. More ages available in Table 3 of the paper
-California sea lion (Zalophus californianus),S1plus,0.931,,DeLong et al. 2017,10.1111/mms.12427,"San Miguel, CA",1990-2015,Males,Age 5; data came from resighting. More ages available in Table 3 of the paper
-Crabeater seal (Lobodon carcinophaga),S1plus,,0.90-0.97,Boveng (1993),none; PhD thesis,,,Female,from Boyd Table 1
-Crabeater seal (Lobodon carcinophaga),S1plus,NA,,Boveng (1993),none; PhD thesis,,,Male,from Boyd Table 1
-Galapagos fur seal (Arctocephalus galapagoensis),S1plus,0.85,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Galapagos fur seal (Arctocephalus galapagoensis),S1plus,0.68,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Gray seal (Halichoerus grypus),S1plus,0.93,,"Harwood and Prime (1978) ;Boyd (1985) ; Pomeroy et al.(1999)",multiple,multiple,,Female,from Boyd Table 1
-Gray seal (Halichoerus grypus),S1plus,NA,,"Harwood and Prime (1978) ;Boyd (1985) ; Pomeroy et al.(1999)",multiple,multiple,,Male,from Boyd Table 1
-Gray seal (Halichoerus grypus),S1plus,,0.89-0.97,Hammill et al. 2015,10.1016/j.biocon.2015.09.016,Northwest Atlantic,,,Based on mark-resighting
-Guadalupe fur seal (Arctocephalus townsendi),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Guadalupe fur seal (Arctocephalus townsendi),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Harbor seal (Phoca vitulina),S1plus,0.93,,Hastings et al. 2012,10.1644/11-MAMM-A-291.1,Tugidak Island; GoA,2000-2007,Females,Apparent survival (1-(mortality+emigration)). Data are from photo ID study and tagging.
-Harbor seal (Phoca vitulina),S1plus,0.85,,Bigg 1969,,,,Females,
-Harbor seal (Phoca vitulina),S1plus,0.85,,Härkönen and Heide-Jørgensen 1990,10.1080/00785236.1990.10422032,,,Females,
-Harbor seal (Phoca vitulina),S1plus,0.88,,Hastings et al. 2012,10.1644/11-MAMM-A-291.1,Tugidak Island; GoA,2000-2007,Males,Apparent survival (1-(mortality+emigration)). Data are from photo ID study and tagging.
-Harbor seal (Phoca vitulina),S1plus,0.91,,Härkönen and Heide-Jørgensen 1990,10.1080/00785236.1990.10422032,,,Males,
-Harbor seal (Phoca vitulina),S1plus,0.87,,Pitcher and Calkins 1979,,,,Males,
-Harbor seal (Phoca vitulina),S1plus,0.92,0.83-0.96,Cordes & Thompson 2014,10.1111/mms.12070,Northeast Scotland,2006-2011,Males,
-Harbor seal (Phoca vitulina),S1plus,0.95,0.91-0.97,Cordes & Thompson 2014,10.1111/mms.12070,Northeast Scotland,2006-2011,Females,
-Harp seal (Pagophilus groenlandicus),S1plus,NA,,"Bowen et al. (1981) ; Kjellgwistet al. (1995)",multiple,multiple,,Female,from Boyd Table 1
-Harp seal (Pagophilus groenlandicus),S1plus,NA,,"Bowen et al. (1981) ; Kjellgwistet al. (1995)",multiple,multiple,,Male,from Boyd Table 1
-Juan Fernández fur seal (Arctocephalus philippii),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Juan Fernández fur seal (Arctocephalus philippii),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-New Zealand fur seal (Arctocephalus forsteri),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-New Zealand fur seal (Arctocephalus forsteri),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Northern elephant seal (Mirounga angustirostris),S1plus,,0.69-0.77,"Huber et al. (1991) ;Reiter and Le Boeuf (1991);Le Boeuf et al. (1994)",multiple,multiple,,Female,from Boyd Table 1
-Northern elephant seal (Mirounga angustirostris),S1plus,NA,,"Huber et al. (1991) ;Reiter and Le Boeuf (1991);Le Boeuf et al. (1994)",multiple,multiple,,Male,from Boyd Table 1
-Northern fur seal (Callorhinus ursinus),S1plus,,0.86-0.89,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Northern fur seal (Callorhinus ursinus),S1plus,0.7,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1. Values for juvenile males aged 4 months – 2 years are 0.20 – 0.50; those for males aged 2 – 5 years are 0.75 – 0.90.
-Ringed seal (Pusa hispida),S1plus,0.86,,Smith (1987),book,,,Female,from Boyd Table 1
-Ringed seal (Pusa hispida),S1plus,NA,,Smith (1987),book,,,Male,from Boyd Table 1
-South American fur seals (Arctocephalus australis),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-South American fur seals (Arctocephalus australis),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Southern elephant seal (Mirounga leonina),S1plus,,0.67-0.88,"McCann (1985) ; Hindell (1991) ;Galimberti and Boitani (1999)",multiple,multiple,,Female,from Boyd Table 1
-Southern elephant seal (Mirounga leonina),S1plus,,0.50-0.83,"McCann (1985) ; Hindell (1991) ;Galimberti and Boitani (1999)",multiple,multiple,,Male,from Boyd Table 1
-Steller sea lion (Eumetopias jubatus),S1plus,,0.77-0.91,Pitcher et al 1998,10.1139/z98-149,Alaska,,,
-Steller sea lion (Eumetopias jubatus),S1plus,1,,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1976-1983.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S1plus,0.9,0.88-0.92,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1983.5-1988.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S1plus,0.93,0.91-0.95,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1988.5-1992.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S1plus,1,0.98-1.02,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1992.5-1997.5,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S1plus,1.07,1.05-1.08,Holmes et al. 2007,10.1890/07-0508.1,Gulf of Alaska,1997.5-2004,,"MLEs ""relative to pre-decline levels"". Data from aerial surveys"
-Steller sea lion (Eumetopias jubatus),S1plus,,0.84-0.93,York (1994),10.1111/j.1748-7692.1994.tb00388.x,1992-1993,,Female,from Boyd Table 1
-Steller sea lion (Eumetopias jubatus),S1plus,NA,,York (1994),10.1111/j.1748-7692.1994.tb00388.x,1992-1993,,Male,from Boyd Table 1
-Subantarctic fur seal (Arctocephalus tropicalis),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Female,from Boyd Table 1
-Subantarctic fur seal (Arctocephalus tropicalis),S1plus,NA,,Wickens and York (1997),10.1111/j.1748-7692.1997.tb00631.x,1992-1993,,Male,from Boyd Table 1
-Weddell seal (Leptonychotes weddellii),S1plus,,0.76-0.85,"Testa (1987) ; Testa and Siniff(1987) ; Testa et al. (1990) ;Hastings and Testa (1998)",multiple,multiple,,Female,from Boyd Table 1; Juvenile survival  1 year old ~0.70.
-Weddell seal (Leptonychotes weddellii),S1plus,NA,,"Testa (1987) ; Testa and Siniff(1987) ; Testa et al. (1990) ;Hastings and Testa (1998)",multiple,multiple,,Male,from Boyd Table 1
-General pinniped,Z,1,,Wade 1998,10.1111/j.1748-7692.1998.tb00688.x,NA,,,Different theta values for linear and non-linear models of density dependence (Theta linear = 1.0)
