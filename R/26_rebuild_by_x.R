@@ -13,6 +13,7 @@
 #' @export
 #'
 #' @examples
+#' rebuild_by_x(needf.start = 0.05, init.depl.w = 0.5, goal.w = 4500, desired.prob.w=0.8, when.w = 100, lh.params.w = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), fixed.cv.catch.w = 0)
 rebuild_by_x <- function(needf.start, init.depl.w, goal.w, desired.prob.w, when.w, lh.params.w, fixed.cv.catch.w) {
   # Step 1: function to minimize
   mat <- matrix(0, 100, 2) # For storing outputs while uniroot is searching
