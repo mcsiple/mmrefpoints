@@ -110,15 +110,15 @@ multiplot_proj <- function(high.d1 = testing.list[[1]][3][[1]]$trajectories, # d
                            med = as.vector(t(med.d3[1:spaghetti,1:(ts.length+1)]))/K1plus,
                            low = as.vector(t(low.d3[1:spaghetti,1:(ts.length+1)]))/K1plus)
 
-    sdf1 <- melt(spag.df1,id.vars=c('year','sim'))
+    sdf1 <- reshape2::melt(spag.df1,id.vars=c('year','sim'))
     sdf1$sim <- as.factor(sdf1$sim)
     sdf1$depl.level <- InitDepls[1]
 
-    sdf2 <- melt(spag.df2,id.vars=c('year','sim'))
+    sdf2 <- reshape2::melt(spag.df2,id.vars=c('year','sim'))
     sdf2$sim <- as.factor(sdf2$sim)
     sdf2$depl.level <- InitDepls[2]
 
-    sdf3 <- melt(spag.df3,id.vars=c('year','sim'))
+    sdf3 <- reshape2::melt(spag.df3,id.vars=c('year','sim'))
     sdf3$sim <- as.factor(sdf3$sim)
     sdf3$depl.level <- InitDepls[3]
 

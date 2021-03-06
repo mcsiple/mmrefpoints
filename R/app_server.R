@@ -237,7 +237,7 @@ app_server <- function( input, output, session ) {
     spaghetti <- ifelse(stf, nspag, FALSE)
     lh.params <- lh.params2_simple()
     # Only one depletion level in the simple case
-    plot.proj(
+    plot_proj(
       high = high.list,
       med = med.list,
       low = low.list,
@@ -544,7 +544,7 @@ app_server <- function( input, output, session ) {
     lh.params <- lh.params2()
     
     if (input$multipledepl) {
-      multiplot.proj(
+      multiplot_proj(
         high.d1 = high.list[[1]]$trajectories, # d1 is the lowest depletion
         med.d1 = med.list[[1]]$trajectories,
         low.d1 = low.list[[1]]$trajectories,
@@ -816,7 +816,7 @@ app_server <- function( input, output, session ) {
   
   output$PMtable <- function() {
     textvalues <- colorscheme
-    values <- addTrans(textvalues, trans = 100)
+    values <- add_trans(textvalues, trans = 100)
     
     pmkey <- switch(input$selected_language,
                     "en" = pmkey_en,
@@ -969,7 +969,7 @@ app_server <- function( input, output, session ) {
         value = 0,
         {
           lh.params <- lh.params2()
-          rg <- rebuild.by.x(
+          rg <- rebuild_by_x(
             needf.start = 0.5,
             init.depl.w = initdepl_adv(),
             goal.w = input$recover.abund * lh.params$K1plus, # abund, as proportion of K1+

@@ -82,7 +82,7 @@ plot_proj <- function(high,
                           low = as.vector(t(low$trajectories[1:spaghetti,1:(ts.length+1)]))/K1plus
     )
 
-    sdf <- melt(spag.df,id.vars=c('year','sim'))
+    sdf <- reshape2::melt(spag.df,id.vars=c('year','sim'))
     sdf$sim <- as.factor(sdf$sim)
     dlab1 <- paste("N[0] == ",round(InitDepl,digits=2),"*K")
 
