@@ -11,8 +11,10 @@
 #' @return A list of numbers per recruit (\code{npr}), 1+ numbers per recruit (\code{P1r}), and numbers at age per recruit (\code{nvec})
 #'
 #' @examples
-#' (unpr <- npr(S0 = 0.9, S1plus = 0.9, AgeMat = 11, nages = 13, E = 0)) # unfished nums per recruit
-#' (nprf <- npr(S0 = 0.9, S1plus = 0.9, AgeMat = 11, nages = 13, E = 0.8)) # nums per recruit at bycatch rate E
+#' (unpr <- npr(S0 = 0.9, S1plus = 0.9, 
+#' AgeMat = 11, nages = 13, E = 0)) # unfished nums per recruit
+#' (nprf <- npr(S0 = 0.9, S1plus = 0.9, 
+#' AgeMat = 11, nages = 13, E = 0.8)) # nums per recruit at bycatch rate E
 #' @export
 npr <- function(S0, S1plus, nages, AgeMat, E = 0) {
   AgePart <- AgeMat + 1 # Age at first parturition

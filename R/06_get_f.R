@@ -23,7 +23,10 @@
 #' # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 #' P0 <- NPROut$P1r # 1+ nums per recruit
 #'
-#' get_f(f.start = 0.5, S0.w = 0.5, S1plus.w = 0.944, nages.w = 25, K1plus.w = 9000, AgeMat.w = 18, InitDepl.w = 0.9, z.w = 2.39, lambdaMax.w = 1.04, N0.w = N0, P0.w = P0)
+#' get_f(f.start = 0.5, 
+#' S0.w = 0.5, S1plus.w = 0.944, nages.w = 25, K1plus.w = 9000, AgeMat.w = 18, 
+#' InitDepl.w = 0.9, z.w = 2.39, lambdaMax.w = 1.04, 
+#' N0.w = N0, P0.w = P0)
 #' @export
 get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, K1plus.w = NA, AgeMat.w = NA, InitDepl.w = NA, z.w = NA, lambdaMax.w = NA, N0.w = NA, P0.w = NA) {
   # fecundity at unfished equilibrium

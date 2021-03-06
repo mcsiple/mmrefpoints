@@ -23,7 +23,9 @@
 #'
 #' @examples
 #' # Generate a time series of abundance for a bowhead whale
-#' Dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17, InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+#' Dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
+#'  InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), 
+#'  z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
 #' print(test)
 #' @export
 dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl, ConstantCatch = NA, ConstantF = NA, z, nyears, nages, lambdaMax) {
