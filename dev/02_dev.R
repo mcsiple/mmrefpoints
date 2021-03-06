@@ -17,6 +17,13 @@
 ## Add one line by package you want to add as dependency
 usethis::use_package( "thinkr" )
 
+
+
+## DATA! ----------
+dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
+lh <- read.csv(here::here("data","LHTable.csv"))
+usethis::use_data(dat)
+usethis::use_data(lh)
 ## Add modules ----
 ## Create a module infrastructure in R/
 golem::add_module( name = "name_of_module1" ) # Name of the module
