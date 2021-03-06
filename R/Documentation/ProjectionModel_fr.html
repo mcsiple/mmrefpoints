@@ -1,0 +1,591 @@
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Sur le Modèle</h1>
+<h4 class="author">Siple MC and Punt AE</h4>
+<h4 class="date">Dernière mise à jour: October 6, 2020</h4>
+
+</div>
+
+
+<!-- NOTE: in order to include this html in the shiny app, delete everything in the knitted html before <body> and after </body> -->
+<div id="modèle-de-population" class="section level3">
+<h3>Modèle de population</h3>
+<p>Les projections de la population sont générées à l’aide d’un modèle unisexe structuré en âge. Dans ce modèle de projection, le nombre de baleineaux ou de nouveau-nés chaque année dépend de la densité, l’intensité de la densité dépendance étant fonction du nombre d’adultes matures <span class="math inline">\(\tilde N\)</span>, de la fécondité (taux de gestation) à l’équilibre de pré-exploitation <span class="math inline">\(f_0\)</span>, du taux maximum de fécondité théorique <span class="math inline">\(f_{max}\)</span>, du degré de compensation <span class="math inline">\(z\)</span>, et de l’abondance des individus d’âges 1+ (<span class="math inline">\(N_{y+1}^{1+}\)</span>) par rapport à la capacité de charge <span class="math inline">\(K^{1+}\)</span>.</p>
+<p>Le nombre d’individus d’âge 1 est fonction de la survie des baleineaux/nouveaux nés <span class="math inline">\(S_0\)</span>, et du taux de survie des adultes, <span class="math inline">\(S_{1+}\)</span> et des prélèvements dus à la mortalité des prises accessoires <span class="math inline">\(C_y\)</span> (tous les symboles sont définis dans le Tableau 1).</p>
+<p><span class="math display">\[
+\tag{Eq 1}
+N_{y+1,a} = 
+\begin{cases}
+\tilde N_{y+1}\bigg(f_0 + (f_{max}-f_0)\bigg[1-\bigg(\frac{N_{y+1}^{1+}}{K^{1+}}\bigg)^z\bigg]\bigg) &amp;   a=0\\ 
+N_{y,0}S_0 &amp;    a=1 \\
+(N_{y,a-1}-C_{y,a-1})S_{1+}  &amp; 2\leq a&lt;x \\
+(N_{y,x-1}-C_{y,x-1})S_{1+} + (N_{y,x}-C_{y,x})S_{1+} &amp; a=x \\
+\end{cases}
+\]</span></p>
+<p>où <span class="math inline">\(N_{y,a}\)</span> est le nombre d’animaux d’âge <span class="math inline">\(a\)</span> au début de l’année <span class="math inline">\(y\)</span>. Le nombre d’animaux d’âge <span class="math inline">\(a\)</span> mourant en raison de la mortalité due aux prises accessoires au cours de l’année <span class="math inline">\(y\)</span>, <span class="math inline">\(C_{y,a}\)</span>, est retiré uniformément de la catégorie d’âge 1+ de la population (les veaux et les petits sont supposés ne pas mourir en raison des prises accessoires), c’est-à-dire:</p>
+<p><span class="math display">\[
+\tag{Eq 2}
+C_{y,a}=
+\begin{cases}
+0 &amp;   a=0 \\ 
+\frac{C_y N_{y,a}}{N_y^{1+}} &amp; a&gt;0 \\
+\end{cases}
+\]</span></p>
+<p>Compte tenu de cette hypothèse, notre modèle ne caractérisera pas correctement les scénarios où la mortalité due aux prises accessoires se produit principalement chez les baleineaux/nouveaux-nés.</p>
+<p>Si l’utilisateur spécifie un taux constant de mortalité par prise accessoire, les individus sont retirés de la population en fonction d’un taux de mortalité par prise accessoire <span class="math inline">\(E_y\)</span> et de la vulnérabilité (qui est supposée constante dans le temps, et uniforme sur les individus d’âge 1+) :</p>
+<p><span class="math display">\[
+\tag{Eq 3}
+C_{y,a}=
+\begin{cases}
+0 &amp;   a=0 \\ 
+N_{y,a} E_{y} &amp; a&gt;0 \\
+\end{cases}
+\]</span></p>
+<p><strong>Tableau 1.</strong> Symboles inclus dans le modèle de projection.</p>
+<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Symbole
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="6">
+<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<strong>Paramètres spécifiés par l’utilisateur</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(S_0\)</span>
+</td>
+<td style="text-align:left;">
+Survie du nouveau-né ou du baleineau
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(S_{1+}\)</span>
+</td>
+<td style="text-align:left;">
+Survie des individus âgés de 1 an et plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(x\)</span>
+</td>
+<td style="text-align:left;">
+Âge du groupe-plus
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(\lambda_{max}\)</span>
+</td>
+<td style="text-align:left;">
+Taux maximum d’accroissement constant (taux de croissance de la population)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(a_p\)</span>
+</td>
+<td style="text-align:left;">
+L’âge à la première mise bas
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(E_y\)</span>
+</td>
+<td style="text-align:left;">
+Taux de mortalité par prises accessoires durant l’année <span class="math inline">\(y\)</span> (spécifié par l’utilisateur ou calculé à partir de la mortalité totale des prises accessoires spécifiée par l’utilisateur)
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<strong>Paramètres dérivés des paramètres spécifiés par l’utilisateur</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(f_0\)</span>
+</td>
+<td style="text-align:left;">
+Fécondité (taux de grossesse) à l’équilibre pré-exploitation
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(f_{max}\)</span>
+</td>
+<td style="text-align:left;">
+Fécondité maximale théorique (taux de grossesse)
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(K^{1+}\)</span>
+</td>
+<td style="text-align:left;">
+Capacité de charge exprimée en termes de composante 1+ de la population
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(z\)</span>
+</td>
+<td style="text-align:left;">
+Degré de compensation
+</td>
+</tr>
+<tr grouplength="4">
+<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<strong>Variables dérivées</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(\tilde N_{y,a}\)</span>
+</td>
+<td style="text-align:left;">
+Nombre d’animaux matures d’âge <span class="math inline">\(a\)</span> au début de l’année <span class="math inline">\(y\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(N_{y,a}\)</span>
+</td>
+<td style="text-align:left;">
+Nombre d’animaux d’âge <span class="math inline">\(a\)</span> au début de l’année <span class="math inline">\(y\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(N_y^{1+}\)</span>
+</td>
+<td style="text-align:left;">
+Nombre d’animaux d’âge 1 et plus au début de l’année <span class="math inline">\(y\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<span class="math inline">\(C_{y,a}\)</span>
+</td>
+<td style="text-align:left;">
+Mortalité due aux prises accessoires d’animaux d’âges <span class="math inline">\(a\)</span> durant l’année <span class="math inline">\(y\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mesures-de-performance" class="section level3">
+<h3>Mesures de performance</h3>
+<p>Trois principales mesures de performance sont incluses dans les résultats :</p>
+<ul>
+<li>la probabilité que l’abondance des animaux d’âge 1+ dépasse le Niveau de Productivité Net Maximal (NPNM) après 50 et 100 ans ;</li>
+<li>l’abondance des animaux d’âge 1+ par rapport à la capacité de charge des animaux d’âge 1+ après 10, 20 et 50 ans; et</li>
+<li>l’abondance des animaux d’âge 1+ par rapport à l’abondance des animaux d’âge 1+ dans un scénario de non prise accidentelle après 10, 20 et 50 ans.</li>
+</ul>
+<p>Ces mesures de performance sont toutes associées à la reconstitution de la population. Wade (1998) a établi une “norme” de performance d’une probabilité de 95 % de rétablissement de la NPNM après 100 ans pour une population se trouvant initialement à 30 % de sa capacité de charge, avec une NPNM de 0,5 K. La NPNM est la limite inférieure de la population optimale durable (POD), qui est définie comme le “nombre d’animaux qui permettra d’obtenir la productivité maximale de la population ou de l’espèce, en tenant compte de la capacité de charge de l’habitat et de la santé de l’écosystème dont ils sont un élément constitutif” (16 USCS § 1362 (9)). Dans le système de gestion américain, les stocks de mammifères marins sont considérés comme épuisés lorsqu’ils sont inférieurs à la POD (16 USCS § 1362 (1B)).</p>
+<p>Les valeurs uniques indiquées dans les tableaux sont les médianes du nombre de projections.</p>
+</div>
+<div id="résoudre-le-problème-du-taux-de-prises-accessoires" class="section level3">
+<h3>Résoudre le problème du taux de prises accessoires</h3>
+<p>Nous avons résolu le problème du niveau de prises accessoires qui aboutirait à la reconstitution d’une proportion donnée de K dans un intervalle de temps donné. La probabilité de reconstitution est calculée comme étant la proportion de simulations dans lesquelles la population a atteint l’objectif de reconstitution au cours de l’année de reconstitution. L’onglet “Résoudre le problème des prises accessoires” utilise l’algorithme de recherche d’un zéro d’une fonction (la fonction <code>uniroot()</code> dans notre code) pour trouver le taux de mortalité des prises accessoires qui minimise la différence entre la probabilité de reconstitution souhaitée et la probabilité de reconstitution avec un taux de mortalité des prises accessoires de <span class="math inline">\(E\)</span>.</p>
+</div>
+<div id="fécondité-théorique-maximale" class="section level3">
+<h3>Fécondité théorique maximale</h3>
+<p>Le taux de fécondité théorique maximal est calculé sur la base de la taille de la population à son taux maximal de croissance démographique <span class="math inline">\(\lambda_{max}\)</span>. Des parties de cette dérivation mathematique se trouvent dans Butterworth et Punt (1992) et Breiwick et al. (1984). Commençons par le modèle de population pour la composante féminine de la population : <span class="math display">\[
+\tag{Eq 4}
+N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
+\]</span></p>
+<p>où <span class="math inline">\(a_p\)</span> est l’âge à la première mise bas (supposée être un an après l’âge à maturité), <span class="math inline">\(f\)</span> est la fécondité (parfois exprimée comme le produit du taux de grossesse et de la survie des nouveau-nés), <span class="math inline">\(q_f\)</span> est la proportion de baleineaux/nouveaux-nés qui sont des femelles et <span class="math inline">\(a_r\)</span> est l’âge auquel les mammifères subissent pour la première fois une mortalité due à des prises accessoires (dans notre cas, cela est égal à 1 an). Lorsque la population croît à son rythme le plus rapide, la pêche est nulle et <span class="math inline">\(N_{t+1}=N_t \lambda_{max}\)</span>. Dans notre cas, <span class="math inline">\(q_f = 1\)</span> parce que nous modélisons tous les adultes, et non uniquement femelles matures. Ainsi, l’équation ci-dessus devient : <span class="math display">\[
+\tag{Eq 5}
+\lambda_{max}N_t=N_t S_{1+}+f_{max} N_{t-a_p-1} \lambda _{max}^{a_p-1} S_0 S_{1+}^{(a_p-2)}
+\]</span> Le calcul de <span class="math inline">\(f_{max}\)</span> permet d’obtenir la fécondité maximale théorique comme une fonction de <span class="math inline">\(\lambda_{max}\)</span>, de la survie et de l’âge à la première mise bas :</p>
+<p><span class="math display">\[
+\tag{Eq. 6}
+f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}}^{a_p -2}}
+\]</span> Ceci est désigné sous le nom de <span class="math inline">\(p\)</span> dans Butterworth et Punt (1992).</p>
+</div>
+<div id="niveau-de-productivité-net-maximal" class="section level3">
+<h3>Niveau de productivité net maximal</h3>
+<p>Pour calculer le niveau de productivité net maximale (<span class="math inline">\(NPNM\)</span>) sachany <span class="math inline">\(z\)</span>, nous calculons d’abord le rendement durable par recrue <span class="math inline">\(\tilde C\)</span> en fonction du taux de mortalité des prises accessoires <span class="math inline">\(E\)</span>.</p>
+<p><span class="math display">\[
+\tag{Eq. 7}
+\tilde C = E \tilde B(E)\tilde P(E)
+\]</span> où <span class="math inline">\(\tilde B (E)\)</span> est le recrutement standardisé lorsque le taux de prises accessoires est fixé à <span class="math inline">\(E\)</span> et <span class="math inline">\(\tilde P (E)\)</span> est le nombre d’animaux “recrutés” (âge 1+) par baleineaux/nouveaux nés lorsque le taux de mortalité des prises accessoires est fixé à <span class="math inline">\(E\)</span>. Le recrutement standardisé <span class="math inline">\(\tilde B(E)\)</span> est calculé de la manière suivante :</p>
+<p><span class="math display">\[
+\tag{Eq. 8}
+\tilde B(E) = \bigg(1 - \frac{1-f_0 \tilde N(E)} {Af_0\tilde N (E)}\bigg)^{1/z}  \bigg(\frac{\tilde B(0)\tilde P(0)}{\tilde P(E)}\bigg)
+\]</span> où <span class="math inline">\(f_0 = \frac{1}{\tilde N(0)}\)</span>, <span class="math inline">\(\tilde N(E)\)</span> est le nombre d’animaux à l’âge de la première mise bas et plus âgés (c’est-à-dire les animaux reproducteurs) par recrue à l’équilibre de la mortalité sans prise accessoire, et <span class="math inline">\(A\)</span> est le paramètre de résilience de Pella-Tomlinson (<span class="math inline">\(A=\frac{f_{max}-f_0}{f_0}\)</span> ; Punt 1999). <span class="math inline">\(\tilde B(0)\)</span> est considéré comme égal à 1, car tous les calculs sont effectués par recrue.</p>
+<p>Le nombre d’animaux reproducteurs par recrue, pour un taux d’exploitation E, est égal à la somme des animaux adultes par recrue <span class="math inline">\(\tilde N_a\)</span> de l’âge à la première mise bas <span class="math inline">\(a_p\)</span> jusqu’ à l’âge du groupe plus <span class="math inline">\(x\)</span> :</p>
+<p><span class="math display">\[
+\tag{Eq. 9}
+\tilde N(E) = \sum_{a=a_p}^{x} E \tilde N_{0,a}(E)
+\]</span></p>
+<p>Nous déterminons le taux de mortalité des prises accessoires auquel <span class="math inline">\(\tilde C\)</span> est maximal (c’est-à-dire où <span class="math inline">\(\frac{dC}{dE}\)</span> est égal à zéro). C’est le RMDT, qui est analogue à <span class="math inline">\(F_{MSY}\)</span> dans les pêcheries.</p>
+<p>Le nombre d’animaux 1+ par recrue, pour un taux de mortalité des prises accessoires <span class="math inline">\(E\)</span>, <span class="math inline">\(\tilde P(E)\)</span> est défini de la façon suivante: <span class="math display">\[
+\tag{Eq. 10}
+\tilde P(E)=\sum_{a=1}^{x} \tilde N_{0,a}(E)
+\]</span></p>
+<p>où <span class="math inline">\(\tilde N_{0,a}(E)\)</span> est le nombre par recrue à chaque âge <span class="math inline">\(a\)</span> pour une structure d’âge stable donnée:</p>
+<p><span class="math display">\[
+\tag{Eq. 11}
+\tilde N_{0,a}(E) = 
+\begin{cases}
+1 &amp;   a=0 \\
+S_0[S_{1+}(1-E)]^{a-1} &amp;    1\leq a&lt;x \\
+\frac{S_0[S_{1+}(1-E)]^{x-1}}{1-[S_{1+}(1-E)]} &amp;    a=x \\
+\end{cases}
+\]</span></p>
+<p><span class="math inline">\(MSYR\)</span> est la valeur de <span class="math inline">\(E\)</span> pour laquelle la dérivée de <span class="math inline">\(\tilde C\)</span> par rapport à <span class="math inline">\(E\)</span> est égale à zéro, déterminée par différenciation numérique :</p>
+<p><span class="math display">\[
+\tag{Eq. 12}
+\frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
+\]</span></p>
+<p>Ensuite, l’abondance relative qui correspond au <span class="math inline">\(MSYR\)</span>, <span class="math inline">\(MNPL\)</span>, est déterminée en calculant la taille totale de la population 1+ au RMDT par rapport à la taille de la population 1+ à l’équilibre, sans mortalité due aux prises accessoires:</p>
+<p><span class="math display">\[
+\tag{Eq. 13}
+MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)} 
+\]</span></p>
+</div>
+<div id="paramétrisation" class="section level3">
+<h3>Paramétrisation</h3>
+<p>Nous considérons que la population commence avec une structure d’âge stable la première année de la période de projection (équation 11). Les valeurs à l’âge au début des projections correspondent à un taux de mortalité par prise accessoire constant <span class="math inline">\(E\)</span>, qui est calculé en résolvant l’équation suivante pour <span class="math inline">\(E\)</span> :</p>
+<p><span class="math display">\[
+\tag{Eq. 14}
+\frac{\tilde B(E)\tilde P(E)}{\tilde P(0)}= \frac{N_0^{1+}}{K^{1+}}
+\]</span></p>
+<p>L’épuisement initial <span class="math inline">\(\frac{N_0^{1+}}{K^{1+}}\)</span> est basé sur l’historique de la mortalité causée par l’homme au sein de la population, qui est fourni par l’utilisateur.</p>
+<p>Dans les cas où l’erreur d’observation est donnée pour la population, l’abondance de départ est déterminée à partir d’une distribution lognormale avec un écart-type proportionnel au CV d’observation.</p>
+<div id="types-dhistoire-de-vie" class="section level4">
+<h4>Types d’histoire de vie</h4>
+<p>Chaque type d’histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né <span class="math inline">\(S_0\)</span>, de la survie de l’adulte <span class="math inline">\(S_{1+}\)</span>, de l’âge à la première mise bas (<span class="math inline">\(a_p\)</span>) et du taux intrinsèque de croissance de la population <span class="math inline">\(\lambda_{max}\)</span>. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l’âge du groupe plus <span class="math inline">\(x\)</span> est supérieur de deux ans à l’âge à la maturité (<span class="math inline">\(x=a_p+3\)</span>).</p>
+</div>
+<div id="compensation" class="section level4">
+<h4>Compensation</h4>
+<p>Nous déterminons la valeur du degré de compensation <span class="math inline">\(z\)</span> qui correspond à la valeur du NPNM fourni par l’utilisateur. Cela implique de résoudre l’équation <span class="math inline">\(\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)\)</span> pour <span class="math inline">\(z\)</span> où <span class="math inline">\(E^*\)</span> dépend de <span class="math inline">\(z\)</span> comme indiqué ci-dessus.</p>
+<strong>Tableau 2.</strong>
+<table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Representant
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(S_0\)</span>
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(S_{1+}\)</span>
+</th>
+<th style="text-align:right;">
+Âge à maturité
+</th>
+<th style="text-align:left;">
+Référence
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Baleine boréale
+</td>
+<td style="text-align:left;font-style: italic;">
+Balaena mysticetus
+</td>
+<td style="text-align:right;">
+0.94400
+</td>
+<td style="text-align:right;">
+0.990
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:left;">
+Punt et al. (2018) and references therein
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Grand dauphin
+</td>
+<td style="text-align:left;font-style: italic;">
+Tursiops truncatus
+</td>
+<td style="text-align:right;">
+0.86500
+</td>
+<td style="text-align:right;">
+0.951
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Punt et al. (2018) and references therein, except juvenile survival which is set to 0.88(<span class="math inline">\(S_{1+}\)</span>)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Baleine à bosse
+</td>
+<td style="text-align:left;font-style: italic;">
+Megaptera novaeangliae
+</td>
+<td style="text-align:right;">
+0.90000
+</td>
+<td style="text-align:right;">
+0.950
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+Punt et al. (2018), Arso Civil et al. (2019), Speakman et al. (2010)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Phoque commun
+</td>
+<td style="text-align:left;font-style: italic;">
+Phoca vitulina
+</td>
+<td style="text-align:right;">
+0.80200
+</td>
+<td style="text-align:right;">
+0.920
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+Punt et al. unpublished; Hastings et al. (2012)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Otarie à fourrure
+</td>
+<td style="text-align:left;font-style: italic;">
+Arctocephalus pusillus pusillus
+</td>
+<td style="text-align:right;">
+0.77000
+</td>
+<td style="text-align:right;">
+0.880
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Punt et al. unpublished; Butterworth et al. (1995)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lion de mer
+</td>
+<td style="text-align:left;font-style: italic;">
+Zalophus californianus
+</td>
+<td style="text-align:right;">
+0.83000
+</td>
+<td style="text-align:right;">
+0.950
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Punt et al. unpublished; De Long et al. (2017)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Marsouin
+</td>
+<td style="text-align:left;font-style: italic;">
+Phocoena phocoena
+</td>
+<td style="text-align:right;">
+0.80960
+</td>
+<td style="text-align:right;">
+0.920
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Petit rorqual
+</td>
+<td style="text-align:left;font-style: italic;">
+Balaenoptera bonaeresis
+</td>
+<td style="text-align:right;">
+0.84216
+</td>
+<td style="text-align:right;">
+0.957
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:left;">
+Moore unpublished (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fausse orque/orque
+</td>
+<td style="text-align:left;font-style: italic;">
+Orcinus orca
+</td>
+<td style="text-align:right;">
+0.84744
+</td>
+<td style="text-align:right;">
+0.963
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Moore unpublished (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Globicéphales
+</td>
+<td style="text-align:left;font-style: italic;">
+Globicephala macrorynchus
+</td>
+<td style="text-align:right;">
+0.85008
+</td>
+<td style="text-align:right;">
+0.966
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+Moore unpublished (2019)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Baleine franche
+</td>
+<td style="text-align:left;font-style: italic;">
+Eubalaena glacialis
+</td>
+<td style="text-align:right;">
+0.85536
+</td>
+<td style="text-align:right;">
+0.972
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:left;">
+Moore unpublished (2019)
+</td>
+</tr>
+</tbody>
+</table>
+<!-- ### Citations -->
+<!-- Arso Civil, M., Cheney, B., Quick, N.J., Islas-Villanueva, V., Graves, J.A., Janik, V.M., et al. (2019). Variations in age- and sex-specific survival rates help explain population trend in a discrete marine mammal population. Ecology and Evolution, 9, 533–544. -->
+<!-- Breiwick, J.M., Eberhardt, L.L. & Braham, H.W. (1984). Population Dynamics of Western Arctic Bowhead Whales ( Balaena mysticetus ). Canadian Journal of Fisheries and Aquatic Sciences, 41, 484–496. -->
+<!-- Butterworth, D.S. & Punt, A.E. (1992). The Scientific Committee “...Agreed That The MSY Rate Would Most Likely Lie Between 1 and 4%” - But Which MSY Rate? Reports of the International Whaling Commission, 42, 583–591. -->
+<!-- Butterworth, D.S., Punt, A.E., Oosthuizen, W.H., Wickens, P.A. (1995) The effects of future consumption by the Cape fur seal on catches and catch rates of the Cape hakes. 3. Modelling the dynamics of the Cape fur seal Arctocephalus pusillus pusillus. South African Journal of Marine Science, 16, 161–183. -->
+<!-- DeLong, R.L., Melin, S.R., Laake, J.L., Morris, P., Orr, A.J. & Harris, J.D. (2017). Age- and sex-specific survival of California sea lions (Zalophus californianus) at San Miguel Island, California. Marine Mammal Science, 33, 1097–1125. -->
+<!-- Dillingham, P.W., Moore, J.E., Fletcher, D., Cortés, E., Curtis, K.A., James, K.C., et al. (2016). Improved estimation of intrinsic growth rmax for long-lived species: integrating matrix models and allometry. Ecological Applications, 26, 322–333. -->
+<!-- Moore 2019. Unpublished estimate following the methods of Dillingham et al. 2016. -->
+<!-- Ólafsdóttir, D., Víkingsson, G. A., Halldórsson, S. D., & Sigurjónsson, J. (2003). Growth and reproduction in harbour porpoises (Phocoena phocoena) in Icelandic waters. NAMMCO Scientific Publications, 5, 195–210. -->
+<!-- Punt, A. E. (1999). Annex R: A full description of the standard Baleen II model and some variants thereof. Division of Marine Research, CSIRO Marine Laboratories, Hobart, Australia. -->
+<!-- Punt, A.E., Moreno, P., Brandon, J.R. & Mathews, M.A. (2018). Conserving and recovering vulnerable marine species: a comprehensive evaluation of the US approach for marine mammals. ICES Journal of Marine Science, 75, 1813–1831. -->
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>

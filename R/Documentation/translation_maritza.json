@@ -1,0 +1,592 @@
+{
+  "cultural_date_format": "%d-%m-%Y",
+  "languages": ["en", "es", "fr"],
+  "translation": [
+      {
+      	"en": "Marine Mammal Bycatch Impacts Exploration Tool",
+      	"es": "Herramienta de exploración de los impactos de la captura incidental de mamíferos marinos",
+            "fr": "Outil d'exploration des impacts des prises accessoires de mammifères marins"
+      },
+      {
+      	"en": "Home",
+      	"es": "Inicio",
+            "fr": "Accueil"
+      },
+      {
+            "en": "Simple",
+            "es": "Simple",
+            "fr": "Simple"
+      },
+      {
+        "en": "Welcome to the Marine Mammal Bycatch Impacts Exploration Tool. This tool shows population projections under different bycatch mortality levels, based on information you provide. You can also use it to calculate the parameters for Potential Biological Removal (PBR).",
+        "es": "Bienvenido a la herramienta de exploración de impactos de la captura incidental de mamíferos marinos. Esta herramienta muestra las proyecciones poblacionales bajo distintos niveles de mortalidad por captura incidental, según la información proporcionada por el usuario. También se puede utilizar en el cálculo de los parámetros de la remoción biológica potencial (PBR en inglés).",
+        "fr": "Bienvenue dans l'outil d'exploration des impacts des prises accessoires de mammifères marins. Ce logiciel permet de visualiser les projections démographiques selon différents niveaux de mortalité par prises accessoires, en fonction des informations que vous fournissez. Vous pouvez également l'utiliser pour calculer les paramètres définissant le Potential Biological Removal (PBR)"
+      },
+      {
+        "en": "Simple Projections",
+        "es": "Proyecciones simples",
+        "fr": "Projections simples"
+      },
+      {
+        "en": "If you have minimal information about abundance and bycatch, go here.",
+        "es": "Si tiene información mínima sobre abundancia y captura incidental, ingrese aquí.",
+        "fr": "Si vous ne possédez que peu d'informations sur les abondances et les prises accessoires, cliquez ici."
+      },
+      {
+            "en": "If you have information about abundance and bycatch, and want to evaluate performance or calculate PBR, go here.",
+            "es": "Si tiene información sobre la abundancia y la captura incidental, y desea evaluar el rendimiento o calcular el PBR, vaya aquí.",
+            "fr": "Si vous possédez des informations à la fois sur les abondances et les prises accessoires et que vous souhaitez évaluer les performances de reconstitution du stock ou calculer le PBR, cliquez ici."
+      },
+      {
+        "en": "This tab shows model projections of abundance, given very limited data. To change the projections to fit your case:",
+        "es": "Esta pestaña muestra las proyecciones de abundancia del modelo, cuando los datos son limitados. Para cambiar las proyecciones que se ajusten a su caso:",
+        "fr": "Cet onglet présente les projections d’abondance du modèle, à partir de données très limitées. Pour obtenir les projections associées à votre cas d’étude:"
+      },
+      {
+        "en": "Choose the life history type that most closely resembles your marine mammal of interest.",
+        "es": "Seleccione el tipo de historia de vida que más se acerque al mamífero marino de interés.",
+        "fr": "Choisissez le type d'histoire de vie ressemblant le plus à votre mammifère marin d'étude."
+      },
+      {
+            "en": "Bowhead whale",
+            "es": "Ballena boreal",
+            "fr": "Baleine boréale"
+      },
+      {
+            "en": "Bottlenose dolphin",
+            "es": "Delfín nariz de botella",
+            "fr": "Grand dauphin"
+      },
+      {
+            "en": "Humpback",
+            "es": "Ballena jorobada",
+            "fr": "Baleine à bosse"
+      },
+      {
+            "en": "Phocid seal",
+            "es": "Foca",
+            "fr": "Phoque commun"
+      },
+      {
+            "en": "Fur seal",
+            "es": "Lobo fino o de dos pelos",
+            "fr": "Otarie à fourrure"
+      },
+      {
+            "en": "Sea lion",
+            "es": "Lobo común o de un pelo",
+            "fr": "Lion de mer"
+      },
+      {
+            "en": "Porpoise",
+            "es": "Marsopa",
+            "fr": "Marsouin"
+      },
+      {
+            "en": "Minke whale",
+            "es": "Ballena minke",
+            "fr": "Petit rorqual"
+      },
+      {
+            "en": "False killer whale/killer whale",
+            "es": "Orca",
+            "fr": "Fausse orque/orque"
+      },{
+            "en": "Pilot whale",
+            "es": "Calderón",
+            "fr": "Globicéphales"
+      },{
+            "en": "Right whale",
+            "es": "Ballena franca",
+            "fr": "Baleine franche"
+      },
+      {
+        "en": "Enter the current population size.",
+        "es": "Ingrese el tamaño poblacional actual.",
+        "fr": "Entrez la taille actuelle de la population."
+      },
+      {
+        "es": "Configure la proyección para usar una de las siguientes opciones:",
+        "en": "Configure the projection to use one of the following:",
+        "fr": "Configurez la projection en utilisant l’un des éléments suivants:"
+      },
+      {
+        "en": "Mortality rate - mammals killed each year as a proportion of the population",
+        "es": "Tasa de mortalidad - número de mamíferos muertos por año como proporción de la población",
+        "fr": "Nombre par an - le nombre de mammifères morts chaque année"
+      },
+      {
+      	"en": "Mammal life history type (choose one):",
+      	"es": "Tipo de historia de vida del mamífero (seleccione una):",
+            "fr": "Type d'histoire de vie du mammifère (un seul choix possible):"
+      },
+      {
+      	"en": "History of human-caused mortality:",
+      	"es": "Historia de la mortalidad causada por humanos:",
+            "fr": "Historique de la mortalité d'origine humaine :"
+      },
+      {
+      	"en": "The population has been reduced by 75%",
+      	"es": "La población se ha reducido en un 75%",
+            "fr": "La population a été réduite de 75%"
+      },
+      {
+      	"en": "The population has been reduced by 50%",
+      	"es": "La población se ha reducido en un 50%",
+            "fr": "La population a été réduite de 50%"
+      },
+      {
+      	"en": "The population has been reduced by 25%",
+      	"es": "La población se ha reducido en un 25%",
+            "fr": "La population a été réduite de 25%"
+      },
+      {
+      	"en": "Project using:",
+      	"es": "Proyectar utilizando:",
+            "fr": "Projection utilisant :"
+      },
+      {
+      	"en": "Numbers per year",
+      	"es": "Números por año",
+            "fr": "Nombres par année"
+      },
+      {
+            "en": "Mortality rate",
+            "es": "Tasa de mortalidad",
+            "fr": "Taux de mortalité"
+      },
+      {
+      	"en": "Current population size",
+      	"es": "Tamaño poblacional actual",
+            "fr": "Taille actuelle de la population :"
+      },
+      {
+      	"en": "Bycatch mortality range to explore",
+      	"es": "Rango de mortalidad por captura incidental a explorar:",
+            "fr": "Gamme de la mortalité des prises accessoires à explorer :"
+      },
+      {
+      	"en": "Bycatch coefficient of variation (CV):",
+      	"es": "Coeficiente de variación de la captura incidental (CV):",
+            "fr": "Coefficient de variation (CV) des prises accessoires :"
+      },
+      {
+      	"en": "Show individual projections",
+      	"es": "Mostrar proyecciones individuales",
+            "fr": "Afficher les projections individuelles"
+      },
+      {
+      	"en": "Advanced",
+      	"es": "Avanzado",
+            "fr": "Avancées"
+      },
+      {
+      	"en": "Advanced Projections",
+      	"es": "Proyecciones avanzadas",
+            "fr": "Projections avancées"
+      },
+      {
+      	"en": "The graphs below are model projections of abundance, based on options you select. To change the projections to fit your case:",
+      	"es": "Los gráficos a continuación son proyecciones de abundancia según el modelo, de acuerdo a las opciones seleccionadas. Para cambiar las proyecciones que se ajusten a su caso,",
+            "fr": "Les graphiques ci-dessous sont des modèles de projections d'abondance, basés sur les options que vous sélectionnez. Pour modifier les projections en fonction de votre cas d’étude :"
+      },
+      {
+      	"en": "Choose the life history type that most closely resembles your marine mammal of interest or type in parameter values in the boxes provided.",
+      	"es": "Seleccione el tipo de historia de vida que más se acerque al mamífero marino de interés, o escriba los valores de los parámetros en los recuadros proporcionados.",
+            "fr": "Choisissez le type d’histoire de vie qui ressemble le plus à votre mammifère marin d'étude ou saisissez les valeurs des paramètres dans les cases proposées."
+      },
+      {
+      	"en": "Enter an estimate of current abundance and the uncertainty around that estimate.",
+      	"es": "Ingrese una estimación de la abundancia actual y de la incertidumbre en torno a dicha estimación.",
+            "fr": "Entrez une estimation de l'abondance actuelle et l'incertitude autour de cette estimation"
+      },
+      {
+      	"en": "Select the history of human-caused mortality that best fits the population.",
+      	"es": "Seleccione la historia de mortalidad causada por humanos que mejor se ajuste a su población.",
+            "fr": "Sélectionnez l'historique de mortalité d'origine humaine correspondant au mieux à la population."
+
+      },
+      {
+      	"en": "Numbers per year - the number of mammals killed each year",
+      	"es": "Números por año - número de mamíferos muertos por año",
+            "fr": "Nombre par année - le nombre de mammifères morts chaque année"
+      },
+      {
+      	"en": "Mortality rate - mammals killed each year as a proportion of the size of the population",
+      	"es": "Tasa de mortalidad - mamíferos muertos por año como proporción del tamaño poblacional",
+            "fr": "Taux de mortalité – proportion de mammifères morts chaque année par rapport à la population totale"
+      },
+      {
+      	"en": "Enter a value for the Maximum Net Productivity Level (MNPL) as a proportion of carrying capacity (K).",
+      	"es": "Ingrese un valor para el Nivel de Productividad Neta Máxima (NPNM) como una proporción de la capacidad de carga (K).",
+            "fr": "Entrez une valeur pour le Niveau de Productivité Nette Maximale (NPNM), défini comme une proportion de la capacité de charge (K)."
+      },
+      {
+      	"en": "Once you have selected your options, click",
+      	"es": "Una vez que haya seleccionado sus opciones, haga clic en",
+            "fr": "Une fois vos options sélectionnées, cliquez sur « Exécuter les projections »"
+      },
+      {
+      	"en": "Run Projections",
+      	"es": "Ejecutar Proyecciones",
+            "fr": "Exécuter le modèle de projections"
+      },
+      {
+      	"en": "Performance measures below will be based on what you enter here.",
+      	"es": "Las medidas de desempeño a continuación se basarán en lo que ingrese aquí.",
+            "fr": "Les mesures de performance ci-dessous seront basées sur ce que vous entrez ci-dessous"
+      },
+      {
+      	"en": "Specify life history and abundance",
+      	"es": "Especifique la historia de vida y abundancia",
+            "fr": "Précisez l'histoire de vie et l'abondance"
+      },
+      {
+      	"en": "Life history type (choose one):",
+      	"es": "Tipo de historia de vida (seleccione uno)",
+            "fr": "Type d'histoire de vie du mammifère (un seul choix possible) :"
+      },
+      {
+      	"en": "Maximum steady rate of population growth (\\( \\lambda_{max} \\))",
+      	"es": "Tasa constante máxima de crecimiento poblacional (\\( \\lambda_{max} \\))",
+            "fr": "Taux maximum constant de croissance de la population (\\( \\lambda_{max} \\))"
+      },
+      {
+      	"en": "This is the maximum steady rate of population increase. The default values are 1.04 for cetaceans and 1.12 for pinnipeds",
+      	"es": "Esta es la tasa constante máxima de aumento de la población. Los valores predeterminados son 1,04 para cetáceos y 1,12 para pinnípedos.",
+            "fr": "Il s'agit du taux maximum constant d'augmentation de la population. Les valeurs par défaut sont de 1,04 pour les cétacés et de 1,12 pour les Pinnipèdes."
+      },
+      {
+      	"en": "Current population size:",
+      	"es": "Tamaño poblacional actual",
+            "fr": "Taille actuelle de la population :"
+      },
+      {
+      	"en": "Coefficient of variation (CV) of abundance:",
+      	"es": "Coeficiente de variación (CV) de la abundancia:",
+            "fr": "Coefficient de variation (CV) d'abondance :"
+      },
+      {
+      	"en": "This is the survey CV of abundance",
+      	"es": "Este es el estudio del coeficiente de variación (CV) de la abundancia",
+            "fr": "Il s’agit du coefficient de variation (CV) d’échantillonnage"
+      },
+      {
+      	"en": "Specify bycatch",
+      	"es": "Especificar captura incidental",
+            "fr": "Préciser les prises accessoires"
+      },
+      {
+            "en": "Bycatch or bycatch rate",
+            "es": "Mortalidad de captura incidental \n o tasa de mortalidad por captura incidental",
+            "fr": "Mortalité par prise accessoire ou taux de prises accessoires"
+      },
+      {
+      	"en": "This is the CV of the number of animals caught per year",
+      	"es": "Este es el CV del número de animales capturados incidentalmente por año",
+            "fr": "Il s’agit du CV du nombre d’animaux capturés par année"
+      },
+      {
+      	"en": "Bycatch mortality range to explore:",
+      	"es": "Rango de mortalidad por captura incidental a explorar:",
+            "fr": "Gamme des prises accessoires à explorer"
+      },
+      {
+      	"en": "CV of bycatch mortality rate:",
+      	"es": "CV de la tasa de mortalidad por captura incidental:",
+            "fr": "CV du taux de mortalité des prises accessoires:"
+      },
+      {
+      	"en": "CV of bycatch mortality:",
+      	"es": "CV de la mortalidad por captura incidental:",
+            "fr": "CV du mortalité des prises accessoires:"
+      },
+      {
+      	"en": "This is the CV of bycatch mortality from year to year",
+      	"es": "Este es el CV de la mortalidad por captura incidental desde el año x al año y",
+            "fr": "Il s’agit du CV de la mortalité des prises accessoires d’une année à l’autre"
+      },
+      {
+      	"en": "Number of projections:",
+      	"es": "Número de proyecciones:",
+            "fr": "Nombre de projections"
+      },
+      {
+      	"en": "Show multiple depletion levels",
+      	"es": "Mostrar múltiples niveles de agotamiento",
+            "fr": "Afficher plusieurs niveaux d'épuisement de la population"
+      },
+      {
+      	"en": "Max net productivity level (MNPL)",
+      	"es": "Nivel de productividad neta máxima (MNPL)",
+            "fr": "Niveau de productivité net maximum (NPNM)"
+      },
+      {
+      	"en": "Run projections",
+      	"es": "Ejecutar proyecciones",
+            "fr": "Exécuter le modèle de projections"
+      },
+      {
+      	"en": "Scroll down to see more outputs",
+      	"es": "Desplácese hacia abajo para ver más resultados",
+            "fr": "Faites défiler vers le bas pour voir plus de résultats"
+      },
+      {
+      	"en": "Performance",
+      	"es": "Desempeño",
+            "fr": "Performance"
+      },
+      {
+      	"en": "This table shows median performance from all projections. If you entered multiple depletion levels in the Advanced Projections tab, this table is showing just the intermediate depletion level (the one you entered manually).",
+      	"es": "Esta tabla muestra el rendimiento medio de todas las proyecciones. Si ingresó múltiples niveles de agotamiento en la pestaña de Proyecciones Avanzadas, esta tabla le mostrará sólo el nivel de agotamiento intermedio (el que ingresó manualmente).",
+            "fr": "Ce tableau montre la performance médiane de toutes les projections. Si vous avez entré plusieurs niveaux d'épuisement dans l'onglet « Projections avancées », ce tableau n'affiche que le niveau d'épuisement intermédiaire (celui que vous avez entré manuellement)."
+      },
+      {
+      	"en": "Graphics",
+      	"es": "Gráficos",
+            "fr": "Graphique"
+      },
+      {
+      	"en": "This is a kite plot showing the same performance measures above.",
+      	"es": "Este es un gráfico de volantín ('kite plot') que muestra las mismas medidas de desempeño anteriores.",
+            "fr": "Il s’agit d’un graphique en cerf-volant présentant les mesures de performance identiques aux précédentes."
+      },
+      {
+      	"en": "Outer edge = best performance. All performance measures are on a 0-1 scale.",
+      	"es": "Borde exterior = mejor desempeño. Todas las medidas de desempeño están en una escala de 0-1.",
+            "fr": "Bord extérieur = meilleure performance. Toutes les mesures de performance sont évaluées sur une échelle de 0 à 1."
+      },
+      {
+      	"en": "These plots show projected marine mammal population abundance relative to their carrying capacity K and an 'unfished' (no bycatch) state. The x axis represents the number of years after the start of the projections, and the violin plots show probability distributions.",
+      	"es": "Estos gráficos muestran la abundancia proyectada de la población de mamíferos marinos en relación a su capacidad de carga K y un estado 'no capturado' (sin captura incidental). El eje x representa el número de años después del inicio de las proyecciones, y los gráficos de violín muestran la distribución de probabilidades.",
+            "fr": "Ces graphiques montrent les projection d’abondances de la population de mammifères marins par rapport à leur capacité de charge K, à un état «non pêché» (pas de prises accessoires). L'axe des x représente le nombre d'années après le début des projections et les graphiques en violon représentent les distributions de probabilité."
+      },
+      {
+      	"en": "This is the distribution of the abundance relative to K, based on bycatch variation and observation error",
+      	"es": "Esta es la distribución de la abundancia relativa a K, basada en la variación de la captura incidental y en el error de observación",
+            "fr": "Il s’agit de la distribution de de l'abondance relative à K, basée sur la variation des prises accessoires et l'erreur d'observation"
+      },
+      {
+      	"en": "Values needed to calculate PBR",
+      	"es": "Valores necesarios para calcular PBR",
+            "fr": "Valeurs nécessaires pour calculer le PBR"
+      },
+      {
+      	"en": "If you selected 'Show multiple depletion levels', these results are still based on the starting abundance you entered above and not the lower and upper values.",
+      	"es": "Si seleccionó 'Mostrar múltiples niveles de agotamiento', estos resultados aún se basan en la abundancia inicial que ingresó anteriormente y no en los valores inferior y superior.",
+            "fr": "Si vous avez sélectionné «Afficher plusieurs niveaux d'épuisement», ces résultats restent basés sur l'abondance de départ que vous avez entrée ci-dessus et non sur les valeurs inférieures et supérieures."
+      },
+      {
+      	"en": "<li>If N<sub>MIN</sub> and N<sub>BEST</sub> are the same, you must enter a survey CV of abundance.</li>",
+      	"es": "<li>Si N<sub>MIN</sub> y N<sub>BEST</sub> son iguales, debe ingresar un CV del muestreo de abundancia.</li>",
+            "fr": "<li>Si N<sub>MIN</sub> et N<sub>BEST</sub> sont identiques, vous devez entrer un CV d’échantillonnage de l'abondance.</li>"
+      },
+      {
+      	"en": "Notes",
+      	"es": "Notas",
+            "fr": "Remarques"
+      },
+      {
+      	"en": "For this table to give the correct values, the user has to provide an estimate of the population size. Otherwise, the numbers below will not be based on a real population size.",
+      	"es": "Para que esta tabla de los valores correctos, el usuario debe proporcionar una estimación del tamaño poblacional. De lo contrario, los números a continuación no se basarán en un tamaño real de la población.",
+            "fr": "Pour que ce tableau produise les valeurs adéquates, l'utilisateur doit fournir une estimation de la taille de la population. Sinon, les valeurs ci-dessous ne seront pas basées sur une taille réelle de la population."
+      },
+      {
+      	"en": "You will need to enter these values in the PBR calculator tab in order to get a value for PBR.",
+      	"es": "Necesitará ingresar estos valores en la pestaña del cálculo del PBR para poder obtener un valor de PBR",
+            "fr": "Vous devrez entrer ces valeurs dans l'onglet calculateur PBR afin d'obtenir une valeur pour le PBR."
+      },
+      {
+      	"en": "PBR & \n PBR calculator",
+      	"es": "PBR y \n cálculo de PBR",
+            "fr": "PBR et \n calculateur du PBR"
+      },
+      {
+      	"en": "Calculate PBR",
+      	"es": "Calcular PBR",
+            "fr": "Calculer le PBR"
+      },
+      {
+      	"en": "The PBR approach",
+      	"es": "El enfoque PBR",
+            "fr": "L’approche du PBR"
+      },
+      {
+      	"en": "Potential Biological Removal (PBR) is the maximum number of animals, excluding natural mortalities, that may be removed from a marine mammal stock while allowing that stock to be at its optimum sustainable population (MMPA, sec. 3(20)).",
+      	"es": "La remoción biológica potencial (PBR en inglés) corresponde al número máximo de animales, excluyendo las mortalidades naturales, que se pueden eliminar de una población o stock de mamíferos marinos mientras se permite que dicha población se encuentre en su población óptima sostenible (MMPA, sec. 3 (20)).",
+            "fr": "Le prélèvement biologique potentiel (PBR) est le nombre maximal d'animaux, hors mortalités naturelles, qui peuvent être prélevés d'un stock de mammifères marins tout en permettant à ce stock d'atteindre sa population optimale durable (MMPA, sec. 3(20))."
+      },
+      {
+      	"en": "PBR is the product of the minimum population estimate, half of the maximum theoretical or estimated productivity rate of the stock, and a recovery factor between 0.1 and 1.0:",
+      	"es": "PBR es el producto de la estimación mínima de la población, la mitad de la tasa de productividad máxima teórica o estimada del stock, y de un factor de recuperación entre 0.1 y 1.0:",
+            "fr": "Le PBR est le produit de l'estimation minimale de la population, de la moitié du taux de productivité maximum théorique ou estimé du stock, et d'un facteur de reconstitution compris entre 0,1 et 1,0 :"
+      },
+      {
+            "en": "<span class='help-block'>Note: To use this feature you need to have run projections in the Advanced tab. The values you need in order to calculate PBR are available in that tab. While the Advanced tab automatically calculates N<sub>MIN</sub> from the numbers you entered, you can use your own abundance estimates here if you want. Knowing carrying capacity and depletion is not required, only the abundance estimate and the CV of that estimate.</span>",
+            "es": "<span class='help-block'>Note: para usar esta función necesita haber ejecutado proyecciones en la pestaña Avanzado. Los valores que necesita para calcular el PBR están disponibles en esa pestaña. Mientras que la pestaña Avanzado calcula automáticamente N<sub>MIN</sub> de los números que ingresaste, puede utilizar sus propias estimaciones de abundancia aquí si lo desea. No se requiere conocer la capacidad de carga y el agotamiento, solo la estimación de abundancia y el CV de esa estimación.</span>",
+            "fr": "<span class='help-block'>Remarque: Pour utiliser cette fonction, vous devez avoir exécuté des projections dans l'onglet Avancé. Les valeurs dont vous avez besoin pour calculer le PBR sont disponibles dans cet onglet. Bien que l'onglet Avancé calcule automatiquement N<sub>MIN</sub> à partir des chiffres que vous avez saisis, vous pouvez utiliser vos propres estimations d'abondance ici si vous le souhaitez. Il n'est pas nécessaire de connaître la capacité de charge et le taux d’épuisement, mais seulement l'estimation de l'abondance et le CV de cette estimation.</span>"
+      },
+      {
+      	"en": "Enter the best available estimate of abundance",
+      	"es": "Ingrese la mejor estimación de abundancia disponible",
+            "fr": "Entrez la meilleure estimation disponible de l'abondance"
+      },
+      {
+      	"en": "RMAX is equivalent to lambdamax - 1",
+      	"es": "RMAX es equivalente a lambdamax - 1",
+            "fr": "Rmax est équivalent à lambdamax - 1"
+      },
+      {
+      	"en": "What recovery factor should you use?",
+      	"es": "¿Qué factor de recuperación debería usar?",
+            "fr": "Quel facteur de reconstitution du stock devez-vous utiliser?"
+      },
+      {
+      	"en": "The recovery factor is set in the U.S. based on the status of the stock. See the",
+      	"es": "El factor de recuperación se establece en los EE. UU. en función del estado del stock. Vea el ",
+            "fr": "Le facteur de reconstitution est défini aux États-Unis en fonction de l'état du stock. Voir le "
+      },
+      {
+            "en": "or the most recent",
+            "es": "o el más reciente",
+            "fr": "ou le"
+      },
+      {
+      	"en": "for more detail.",
+      	"es": "para más detalles.",
+            "fr": "le plus récent pour plus de détails."
+      },
+      {
+      	"en": " for endangered species or stocks known to be declining",
+      	"es": " para especies o poblaciones en peligro de extinción que se sabe están disminuyendo",
+            "fr": " pour les espèces en danger d’extinction ou pour les stocks connus pour être en déclin"
+      },
+      {
+      	"en": " for threatened or depleted species, and for stocks of unknown status",
+      	"es": " para especies amenazadas o diezmadas, y para poblaciones de estado desconocido",
+            "fr": " pour les espèces menacées ou épuisées, et pour les stocks dont l'état est inconnu"
+      },
+      {
+      	"en": " for stocks known to be at their optimum sustainable population (OSP) level, or of unknown status but known to be increasing",
+      	"es": " para las poblaciones que se sabe se encuentran en su nivel óptimo de población sostenible (OSP), o de estado desconocido pero que se sabe que están aumentando",
+            "fr": "pour les stcoks connus comme étant à leur niveau optimal durable de la population (OSP), ou dont l'état est inconnu mais connu comme étant en augmentation"
+      },
+      {
+      	"en": "What if I don't have a good abundance or bycatch estimate?",
+      	"es": "¿Qué pasa si no tengo un buena estimación de abundancia o the captura incidental?",
+            "fr": "Que faire si je n'ai pas une bonne estimation de l'abondance ou des prises accessoires ?"
+      },
+      {
+      	"en": "The Ocean Modeling Forum's Marine Mammal Bycatch Working Group is in the process of synthesizing estimation tools to help with the abundance estimates that are needed for estimating PBR. These tools have not yet been published but they will be available",
+      	"es": "El Grupo de trabajo sobre captura incidental de mamíferos marinos del Ocean Modeling Forum se encuentra en proceso de sintetizar herramientas que ayuden en las estimaciones de abundancia que se necesitan para estimar PBR. Estas herramientas no se han publicado aún, pero estarán disponibles aquí.",
+            "fr": "Le groupe de travail sur les prises accessoires de mammifères marins de l'Ocean Modeling Forum est en train de de procéder à la synthèse des outils quantitatifs pour aider à estimer l'abondance nécessaire à l'estimation du PBR. Ces outils n'ont pas encore été publiés, mais seront disponibles ici."
+      },
+      {
+            "en":"here.",
+            "es":"aquí.",
+            "fr":"ici."
+      },
+      {
+      	"en": "Create a report",
+      	"es": "Crear un reporte",
+            "fr": "Créer un rapport"
+      },
+      {
+      	"en": "Would you like to download a report of your inputs and outputs? The button below will write an html file that you can save and share.",
+      	"es": "¿Desea descargar un informe que incluya sus datos ingresados y los resultados? El botón a continuación confeccionará un archivo html que puede guardar y compartir.",
+            "fr": "Souhaitez-vous télécharger un rapport de vos entrées saisies et de vos résultats ? Le bouton ci-dessous écrira un fichier html que vous pourrez enregistrer et partager."
+      },
+      {
+      	"en": "Make sure you have clicked",
+      	"es": "Asegúrese de haber hecho clic en",
+            "fr": "Assurez-vous que vous avez cliqué sur"
+      },
+      {
+      	"en": "Run Projections.",
+      	"es": "Ejecutar Proyecciones.",
+            "fr": "Exécuter les projections."
+
+      },
+      {
+      	"en": "Generate report",
+      	"es": "Generar reporte",
+            "fr": "Générer un rapport"
+      },
+      {
+      	"en": "Solve for Bycatch",
+      	"es": "Resolver para captura incidental",
+            "fr": "Résoudre le problème des prises accessoires"
+      },
+      {
+      	"en": "Calculate the bycatch rate necessary to achieve a recovery goal",
+      	"es": "Calcular la tasa de captura incidental necesaria para lograr un objetivo de recuperación",
+            "fr": "Calculer le taux de prises accessoires nécessaires pour atteindre un objectif de reconstitution du stock"
+      },
+      {
+      	"en": "If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the max bycatch rate that will allow you to achieve your goal.",
+      	"es": "Si tiene un objetivo de manejo específico para su población de mamíferos marinos de interés, ingrese el objetivo de recuperación deseado y el cronograma a continuación. Esta parte de la aplicación calculará una tasa aproximada de captura incidental que permitirá a la población alcanzar dicha meta. Esta página utiliza información de la pestaña 'Proyecciones avanzadas' para realizar este cálculo. Una vez que aparezca el gráfico, la animación le mostrará las tasas de captura incidental que se han probado en la búsqueda de la tasa de captura incidental máxima que le permitirá alcanzar su objetivo.",
+            "fr": "Si vous avez un objectif de gestion spécifique pour votre population de mammifères marins d'étude, indiquez ci-dessous l'objectif et le calendrier de reconstitution du stock souhaités. Cette partie de l'application calculera un taux approximatif de prises accessoires qui permettra à la population d'atteindre cet objectif. Cette page utilise les informations de l'onglet 'Avancées' pour effectuer ce calcul. Une fois que le graphique apparaît, l'animation montrera les taux de prises accessoires que le solveur a exploré dans sa recherche du taux de prises accessoires maximum afin d'atteindre votre objectif."
+      },
+      {
+      	"en": "NOTE:",
+      	"es": "NOTA:",
+            "fr": "REMARQUE:"
+      },
+      {
+      	"en": "This will take a while! Make sure you are sure of your goals before clicking",
+      	"es": "¡Esto llevará un tiempo! Cerciórese de sus objetivos antes de hacer clic en Obtener la tasa de captura incidental máxima",
+            "fr": "Cela prendra un moment ! Assurez-vous d'être sûr de *vos choix  d’objectifs avant de cliquer sur 'Obtenir le taux de prises accessoires maximum'."
+      },
+      {
+      	"en": "Get max bycatch rate",
+      	"es": "Obtener la tasa de captura incidental máxima",
+            "fr": "Obtenir un taux maximal de prises accessoires"
+      },
+      {
+      	"en": "Recovery goal as a proportion of K:",
+      	"es": "Objetivo de recuperación como proporción de K:",
+            "fr": "Objectif de reconstitution du stock exprimé proportionnellement à K :"
+      },
+      {
+      	"en": "Year by which you want to reach the recovery goal:",
+      	"es": "Año en el que desea alcanzar el objetivo de recuperación:",
+            "fr": "Année à laquelle vous souhaitez atteindre l'objectif de reconstitution du stock :"
+      },
+      {
+      	"en": "Desired probability of rebuilding:",
+      	"es": "Probabilidad deseada de reconstrucción:",
+            "fr": "Probabilité souhaitée de reconstruction :"
+      },
+      {
+      	"en": "About the Model",
+      	"es": "Sobre el modelo",
+            "fr": "À propos du modèle"
+      },
+      {
+      	"en": "Life history parameters for pinnipeds",
+      	"es": "Parámetros de historia de vida para pinnípedos",
+            "fr": "Paramètres d’histoire de vie des pinnipèdes"
+      },
+      {
+      	"en": "Pinniped life histories are diverse and to our knowledge, the 'best' values for simulation have not been published. These are published life history parameters for pinniped species.",
+      	"es": "Las historias de vida de pinnípedos son diversas y, a nuestro conocimiento, no se han publicado los 'mejores' valores para la simulación. Estos son parámetros de historia de vida publicados para distintas especies de pinnípedos.",
+            "fr": "Les histoires de vie des pinnipèdes sont diverses et, à notre connaissance, les 'meilleures' valeurs pour la simulation n'ont pas été publiées. Il s'agit ici de paramètres de cycle de vie publiés pour les espèces de pinnipèdes."
+
+      },
+      {
+      	"en": "Where do these values come from?",
+      	"es": "¿De dónde vienen estos valores?",
+            "fr": "D'où viennent ces valeurs?"
+      },
+      {
+      	"en": "The values used for generic life history types shown here are a combination of literature values and estimates from a hierarchical analysis. Each life history type is represented by one species, which has survival rates and an age at maturity close to the type-level mean. Humpback whale, bottlenose dolphin, phocid seal, fur seal, and sea lion values are the same as in Punt et al. (2018).  For cetaceans not in Punt et al. (2018), the default survival rates and age at maturity are based on a hierarchical analysis following the methods in Dillingham et al. (2016). All references are listed at the bottom of this tab.",
+      	"es": "Los valores utilizados para las historias de vida genéricas que se muestran aquí son una combinación de valores de literatura y estimaciones de un análisis jerárquico. Cada tipo de historia de vida está representado por una especie, que tiene tasas de sobrevivencia y una edad de madurez sexual cercana al nivel medio del tipo. Los valores de ballena jorobada, delfín nariz de botella, foca, lobo fino y lobo común son los mismos que en Punt et al. (2018). Para los cetáceos que no están en Punt et al. (2018), las tasas de sobrevivencia predeterminadas y la edad de madurez sexual se basan en un análisis jerárquico siguiendo los métodos de Dillingham et al. (2016). Todas las referencias se listan al final de esta pestaña.",
+            "fr": "Les valeurs utilisées pour les types génériques d'histoire de vie présentés ici sont une combinaison de valeurs de la littérature et d'estimations issues d'une analyse hiérarchique. Chaque type d'histoire de vie est représenté par une espèce, qui a des taux de survie et un âge à maturité proche de la moyenne au sein de son type. Les valeurs pour la baleine à bosse, le grand dauphin, le phoque commun, l'otarie à fourrure et le lion de mer sont les mêmes que dans Punt et al. (2018).  Pour les cétacés ne figurant pas dans Punt et al. (2018), les taux de survie par défaut et l'âge à maturité sont basés sur une analyse hiérarchique suivant les méthodes de Dillingham et al. (2016). Toutes les références sont énumérées au bas de cet onglet."
+      },
+      {
+            "en": "Citations",
+            "es": "Citas",
+            "fr": "Références"
+      }
+    ]
+}
