@@ -4,6 +4,10 @@
 #' @param lh.params a list of life history parameters
 #'
 #' @export
+#' 
+#' @examples 
+#' get_mnpl(E.start = 0.001, lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,PlusGroupAge = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000))
+#' 
 get_mnpl <- function(E.start = 0.001, lh.params) {
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
@@ -24,8 +28,8 @@ get_mnpl <- function(E.start = 0.001, lh.params) {
   fmsy <- find_msyr(E.start = E.start, lh.params = lh.params, fmax = fmax, N0 = N0)
 
 
-  Rf0 <- get_rf(E = 0, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # This is == 1
-  Rfmsy <- get_rf(E = fmsy, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
+  Rf0 <- get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # This is == 1
+  Rfmsy <- get_rf(E_in = fmsy, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
 
   u1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)$P1r * Rf0
   n1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = fmsy)$P1r * Rfmsy

@@ -25,7 +25,7 @@ ce <- function(S0, S1plus, nages, K1plus, AgeMat, z, lambdaMax, E, A, P0, N0) {
     E = E
   )$P1r # 1+ nums per recruit @ E, written as P[tilde](E)
   recatF <- get_rf(
-    E = E,
+    E_in = E,
     S0 = S0,
     S1plus = S1plus,
     nages = nages,

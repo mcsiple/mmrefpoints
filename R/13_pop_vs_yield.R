@@ -62,14 +62,14 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
 
       # unfished nums per recruit
       u1p <- npr(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,E = 0)$P1r *
-        get_rf(E = 0,S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0) # == 1
+        get_rf(E_in = 0,S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0) # == 1
 
       for(i in 1:length(E.vec)){
         # yield at exploitation E
         yield.vec[i] <- ce(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,z=z,K1plus = K1plus,lambdaMax = lambdaMax,E = E.vec[i],A = A,P0 = P0,N0 = N0)
         # nums per recruit at exploitation E
         n1p <- npr(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,E = E.vec[i])$P1r *
-          get_rf(E = E.vec[i],S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
+          get_rf(E_in = E.vec[i],S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
         #print( getRF(E = E.vec[i],S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,unpr = unpr))
         # relative 1+ pop size at E
         rel1plus[i] <-  n1p/u1p
@@ -103,14 +103,14 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
 
         # unfished nums per recruit
         u1p <- npr(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,E = 0)$P1r *
-          get_rf(E = 0,S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0) # == 1
+          get_rf(E_in = 0,S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0) # == 1
 
         for(i in 1:length(E.vec)){
           # yield at exploitation E
           yield.vec[i] <- ce(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,z=z,K1plus = K1plus,lambdaMax = lambdaMax,E = E.vec[i],A = A, P0 = P0,N0 = N0)
           # nums per recruit at exploitation E
           n1p <- npr(S0 = S0,S1plus = S1plus,nages = nages,AgeMat = AgeMat,E = E.vec[i])$P1r *
-            get_rf(E = E.vec[i],S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
+            get_rf(E_in = E.vec[i],S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
           # relative 1+ pop size at E
           rel1plus[i] <-  n1p/u1p
         }
