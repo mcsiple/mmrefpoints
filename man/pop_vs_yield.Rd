@@ -23,6 +23,8 @@ pop_vs_yield(
 \item{ggp}{logical; whether to plot in ggplot (default is base R)}
 
 \item{linecolor}{color of yield curve line}
+
+\item{lang}{language selected by the user (character)}
 }
 \value{
 a plot of population size vs. 'yield'

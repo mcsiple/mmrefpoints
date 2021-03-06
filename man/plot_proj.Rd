@@ -35,6 +35,8 @@ plot_proj(
 \item{InitDepl}{initial depletion level (set by the user)}
 
 \item{color.palette}{a vector of three colors to use for low, medium and high bycatch rates}
+
+\item{lang}{language selected by the user (character)}
 }
 \value{
 A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{spaghetti ==TRUE}),  from \code{Projections()}.

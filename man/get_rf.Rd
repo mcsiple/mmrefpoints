@@ -7,6 +7,8 @@
 get_rf(E_in, S0, S1plus, nages, K1plus, AgeMat, z, A, P0, N0)
 }
 \arguments{
+\item{E_in}{Bycatch mortality rate}
+
 \item{S0}{calf or pup survival (numeric value)}
 
 \item{S1plus}{adult survival  (numeric value)}
@@ -25,8 +27,6 @@ A = (FecMax - Fec0) / Fec0 (num)}
 \item{P0}{unfished 1+ numbers per recruit, \eqn{tildeP(0)}}
 
 \item{N0}{unfished mature numbers per recruit, \eqn{tildeN(0)}}
-
-\item{E}{initial bycatch mortality rate (numeric value)}
 }
 \value{
 recruitment given exploitation rate \emph{E} - this value is multiplied by the initial abundance \eqn{N_{init}} to get initial nums at age ( a vector)

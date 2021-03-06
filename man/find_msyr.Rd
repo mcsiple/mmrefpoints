@@ -13,7 +13,7 @@ find_msyr(E.start, lh.params, fmax, N0)
 
 \item{fmax}{Max theoretical fecundity (num)}
 
-\item{unpr}{unfished numbers per recruit (num)}
+\item{N0}{unfished nums per recruit - mature adults}
 }
 \description{
 one of the functions needed for getting MNPL. MSYR is the same as FMSY.

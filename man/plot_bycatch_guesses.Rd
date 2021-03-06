@@ -32,6 +32,8 @@ plot_bycatch_guesses(
 \item{color.palette}{A vector of colors to represent bycatch levels, from low to high end of range}
 
 \item{outputdir}{If \code{print.tiff = TRUE}, the directory to place tiff file of plot}
+
+\item{lang}{Language selected by the user (character, 2 letters)}
 }
 \value{
 A \code{ggplot2} grob showing the distributions of bycatch values based on what the user entered.
