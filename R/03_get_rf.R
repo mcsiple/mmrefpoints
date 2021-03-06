@@ -2,7 +2,6 @@
 #'
 #' @description calculates recruitment at bycatch mortality rate \emph{E}
 #'
-#' @param E initial bycatch mortality rate (numeric value)
 #' @param S0 calf or pup survival (numeric value)
 #' @param S1plus adult survival  (numeric value)
 #' @param nages number of age classes-- including plus group age-- in years
@@ -13,6 +12,7 @@
 #' A = (FecMax - Fec0) / Fec0 (num)
 #' @param P0 unfished 1+ numbers per recruit, \eqn{tildeP(0)}
 #' @param N0 unfished mature numbers per recruit, \eqn{tildeN(0)}
+#' @param E_in Bycatch mortality rate
 #'
 #' @return recruitment given exploitation rate \emph{E} - this value is multiplied by the initial abundance \eqn{N_{init}} to get initial nums at age ( a vector)
 #'

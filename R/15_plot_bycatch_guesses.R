@@ -1,5 +1,6 @@
 #' Plot distribution of bycatch values
 #' @description Plot user-defined bycatch values (uses \code{geom_linerange()} from \code{ggplot2})
+#'
 #' @param highval The high end of the user-defined range of bycatch values
 #' @param medval The middle of the user-defined bycatch range
 #' @param lowval The low end of the user-defined range
@@ -7,7 +8,9 @@
 #' @param set_size base size to pass to \code{ggplot}
 #' @param print.tiff \code{logical} whether or not to write a tiff file to \code{outputdir}
 #' @param color.palette A vector of colors to represent bycatch levels, from low to high end of range
+#' @param lang Language selected by the user (character, 2 letters)
 #' @param outputdir If \code{print.tiff = TRUE}, the directory to place tiff file of plot
+#'
 #' @return A \code{ggplot2} grob showing the distributions of bycatch values based on what the user entered.
 #'
 #' @export

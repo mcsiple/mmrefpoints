@@ -1,10 +1,12 @@
 #' Yield or productivity curve
 #' @description relative population size (x) vs. Sustainable yield (y)
+#'
 #' @param z.vec a vector of z values
 #' @param lh.params a list of life history parameters
 #' @param add.legend logical; whether or not to add a legend
 #' @param ggp logical; whether to plot in ggplot (default is base R)
 #' @param linecolor color of yield curve line
+#' @param lang language selected by the user (character)
 #'
 #' @return a plot of population size vs. 'yield'
 #' @export

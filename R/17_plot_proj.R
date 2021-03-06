@@ -10,6 +10,7 @@
 #' @param K1plus carrying capacity in terms of age 1+ individuals
 #' @param InitDepl initial depletion level (set by the user)
 #' @param color.palette a vector of three colors to use for low, medium and high bycatch rates
+#' @param lang language selected by the user (character)
 #'
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{spaghetti ==TRUE}),  from \code{Projections()}.
 #'

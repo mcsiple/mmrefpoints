@@ -4,8 +4,8 @@
 #'
 #' @param E.start a starting guess for bycatch mortality rate that will result in FMSY (numeric value)
 #' @param lh.params a list of life history parameters (S0, S1plus, nages, AgeMat, lmabdaMax, K1plus, and z)
-#' @param unpr unfished numbers per recruit (num)
 #' @param fmax Max theoretical fecundity (num)
+#' @param N0 unfished nums per recruit - mature adults
 #'
 #' @export
 find_msyr <- function(E.start, lh.params, fmax, N0) {

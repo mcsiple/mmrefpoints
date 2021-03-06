@@ -1,6 +1,7 @@
 #' Calculate the bycatch rate needed to reach a performance goal
 #'
 #' @description takes a performance goal (what level you want to rebuild to) and a time window (how long you want that to take) and calculates what the bycatch rate needs to be
+#'
 #' @param needf.start starting guess for the bycatch mortality rate needed to recover the population
 #' @param init.depl.w initial depletion (fraction of K)
 #' @param goal.w what goal to rebuild to (MNPL is the simplest one)

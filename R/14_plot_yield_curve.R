@@ -4,6 +4,7 @@
 #' @param lh.params a list of life history parameters
 #' @param z a vector of degrees of compensation that you want to plot. Default is the user-defined z, calculated from \code{MNPL_in}
 #' @param MNPL_in the value of Maximum Net Productivity Level (MNPL) that results in
+#' @param lang language selected by the user (character)
 #'
 #' @return
 #' @export
