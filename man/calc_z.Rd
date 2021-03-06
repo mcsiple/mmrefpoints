@@ -21,5 +21,6 @@ Calculate the parameter z, the degree of compensation
 Helper function for calculating z when user specifies MNPL
 }
 \examples{
+lh.params1 <- list(S0 = .5, S1plus = .944, nages = 25, AgeMat = 18)
 test.z <- calc_z(MNPL_in = 0.4, lh.params_in = lh.params1)
 }

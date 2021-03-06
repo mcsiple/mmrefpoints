@@ -19,6 +19,18 @@ get_dc(
 \item{logit.E}{logit transform of bycatch mortality}
 
 \item{S0}{calf/pup survival}
+
+\item{S1plus}{}
+
+\item{nages}{}
+
+\item{AgeMat}{}
+
+\item{lambdaMax}{}
+
+\item{K1plus}{}
+
+\item{z}{}
 }
 \description{
 this is the function to minimize, but needs to be restricted to that yield > 0
