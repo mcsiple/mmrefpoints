@@ -49,7 +49,7 @@ rebuild_by_x <- function(needf.start, init.depl.w, goal.w, desired.prob.w, when.
   # Step 2: Find the value of F that minimizes getprob.diff()
   search.limit <- (1 - (1 / lh.params.w$lambdaMax)) * 2.5 # This prevents uniroot() from searching too far in one direction
   logit.rate.start <- logit(needf.start)
-  zero.cross <- tryCatch(uniroot(f = getprob.diff, interval = logit(c(0.00001, search.limit)), tol = 1e-7), error = function(c) "error")
+  zero.cross <- tryCatch(stats::uniroot(f = getprob.diff, interval = logit(c(0.00001, search.limit)), tol = 1e-7), error = function(c) "error")
   if (zero.cross[1] == "error") {
     return("Sorry, recovery is not possible at these starting conditions. Try a longer recovery horizon or lower recovery goal")
   } else {

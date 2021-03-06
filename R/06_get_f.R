@@ -66,7 +66,7 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, K1plus.w
     return(diff)
   }
 
-  zero.cross <- uniroot(
+  zero.cross <- stats::uniroot(
     f = to.minimize,
     interval = logit(c(0.00001, search.limit)),
     tol = 1e-7
