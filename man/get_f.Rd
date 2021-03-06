@@ -54,5 +54,8 @@ N0 <- NPROut$npr # mature numbers per recruit
 # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 P0 <- NPROut$P1r # 1+ nums per recruit
 
-get_f(f.start = 0.5, S0.w = 0.5, S1plus.w = 0.944, nages.w = 25, K1plus.w = 9000, AgeMat.w = 18, InitDepl.w = 0.9, z.w = 2.39, lambdaMax.w = 1.04, N0.w = N0, P0.w = P0)
+get_f(f.start = 0.5, 
+S0.w = 0.5, S1plus.w = 0.944, nages.w = 25, K1plus.w = 9000, AgeMat.w = 18, 
+InitDepl.w = 0.9, z.w = 2.39, lambdaMax.w = 1.04, 
+N0.w = N0, P0.w = P0)
 }
