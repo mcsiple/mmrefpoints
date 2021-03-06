@@ -59,8 +59,7 @@ R than FORTRAN and wants to use some components of the BALEEN II model
 
 This package can be downloaded directly from GitHub:
 
-    library(devtools)
-    install_github("mcsiple/mmrefpoints")
+    devtools::install_github("mcsiple/mmrefpoints")
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 

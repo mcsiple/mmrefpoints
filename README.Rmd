@@ -52,9 +52,9 @@ Our target audience is stakeholders interested in projecting marine mammal popul
 
 ## Install
 This package can be downloaded directly from GitHub:
+
 ```
-library(devtools)
-install_github("mcsiple/mmrefpoints")
+devtools::install_github("mcsiple/mmrefpoints")
 ```
 
 
