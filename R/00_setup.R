@@ -266,8 +266,12 @@ documentationpath <- here::here("R","Documentation")
 
 
 # Life history parameters -------------------------------------------------
-dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
-lh <- read.csv(here::here("data","LHTable.csv"))
+
+# dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
+# lh <- read.csv(here::here("data","LHTable.csv"))
+
+#dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
+#lh <- read.csv(here::here("data","LHTable.csv"))
 
 central <- FALSE
 colorscheme <- c("#7bbcb0", "#3a7c89", "#123f5a")
