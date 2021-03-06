@@ -1,7 +1,7 @@
 ---
-title: 'About the projection model'
+title: 'Sur le Modèle'
 author: 'Siple MC and Punt AE'
-date: 'Last updated: June 12, 2020'
+date: 'Dernière mise à jour: October 6, 2020'
 output:
   html_document:
     highlight: tango
@@ -14,16 +14,15 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 # devtools::install_github("haozhu233/kableExtra")
- library(kableExtra)
+library(kableExtra)
 ```
 
 
-### Population model
+### Modèle de population
 
-Population projéctions are generated using a single-sex age-structured model. In this projection model, the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults $\tilde N$, the fecundity (pregnancy rate) at pre-exploitation equilibrium $f_0$, the maximum theoretical fecundity rate $f_{max}$, the degree of compensation $z$, and the abundance of individuals aged 1+ ($N_{y+1}^{1+}$) relative to carrying capacity $K^{1+}$.
+Les projections de la population sont générées à l'aide d'un modèle unisexe structuré en âge. Dans ce modèle de projection, le nombre de baleineaux ou de nouveau-nés chaque année dépend de la densité, l'intensité de la densité dépendance étant fonction du nombre d'adultes matures $\tilde N$, de la fécondité (taux de gestation) à l'équilibre de pré-exploitation $f_0$, du taux maximum de fécondité théorique  $f_{max}$, du degré de compensation $z$, et de l'abondance des individus d'âges 1+ ($N_{y+1}^{1+}$) par rapport à la capacité de charge $K^{1+}$.
 
-The number of age 1 individuals is a function of calf/pup survival $S_0$, and the survival rate of adults, $S_{1+}$ and removals due to bycatch mortality $C_y$ (all symbols are defined in Table 1).
-
+Le nombre d'individus d'âge 1 est fonction de la survie des baleineaux/nouveaux nés $S_0$, et du taux de survie des adultes, $S_{1+}$ et des prélèvements dus à la mortalité des prises accessoires $C_y$ (tous les symboles sont définis dans le Tableau 1).
 
 $$
 \tag{Eq 1}
@@ -36,7 +35,7 @@ N_{y,0}S_0 &    a=1 \\
 \end{cases}
 $$
 
-where $N_{y,a}$ is the number of animals of age $a$ at the start of year $y$. The number of animals of age $a$ dying due to bycatch mortality during year $y$, $C_{y,a}$, is removed uniformly from the 1+ component of the population (calves and pups are assumed not to die due to bycatch), i.e.:
+où $N_{y,a}$ est le nombre d'animaux  d'âge $a$ au début de l'année $y$. Le nombre d'animaux d'âge $a$ mourant en raison de la mortalité due aux prises accessoires au cours de l'année $y$, $C_{y,a}$, est retiré uniformément de la catégorie d'âge 1+ de la population (les veaux et les petits sont supposés ne pas mourir en raison des prises accessoires), c'est-à-dire:
 
 $$
 \tag{Eq 2}
@@ -47,9 +46,9 @@ C_{y,a}=
 \end{cases}
 $$
 
-Given this assumption, our model will not adequately characterize scenarios where bycatch mortality occurs predominantly among calves/pups. 
+Compte tenu de cette hypothèse, notre modèle ne caractérisera pas correctement les scénarios où la mortalité due aux prises accessoires se produit principalement chez les baleineaux/nouveaux-nés.
 
-If the user specifies a constant rate of bycatch mortality, individuals are removed from the population according to a bycatch mortality rate $E_y$ and vulnerability (which is assumed constant through time, and uniform on age 1+ individuals):
+Si l'utilisateur spécifie un taux constant de mortalité par prise accessoire, les individus sont retirés de la population en fonction d'un taux de mortalité par prise accessoire $E_y$ et de la vulnérabilité (qui est supposée constante dans le temps, et uniforme sur les individus d'âge 1+) :
 
 $$
 \tag{Eq 3}
@@ -60,128 +59,123 @@ N_{y,a} E_{y} & a>0 \\
 \end{cases}
 $$
 
-**Table 1.** Symbols included in the projection model.
- 
+**Tableau 1.** Symboles inclus dans le modèle de projection.
+
 ```{r echo = F}
-Symbol=c(#User-specified parameters
-         "$S_0$",
-         "$S_{1+}$",
-         "$x$",
-         "$\\lambda_{max}$",
-          "$a_p$",
-         "$E_y$",
-         # Parameters derived from user-specified parameters
-         "$f_0$",
-         "$f_{max}$",
-         "$K^{1+}$",
-         "$z$",
-         # Derived variables
-         "$\\tilde N_{y,a}$", # need double dash for using in kableExtra
-         "$N_{y,a}$",
-         "$N_y^{1+}$",
-         "$C_{y,a}$")
-
+Symbole=c(#User-specified parameters
+  "$S_0$",
+  "$S_{1+}$",
+  "$x$",
+  "$\\lambda_{max}$",
+  "$a_p$",
+  "$E_y$",
+  # Parameters derived from user-specified parameters
+  "$f_0$",
+  "$f_{max}$",
+  "$K^{1+}$",
+  "$z$",
+  # Derived variables
+  "$\\tilde N_{y,a}$", # need double dash for using in kableExtra
+  "$N_{y,a}$",
+  "$N_y^{1+}$",
+  "$C_{y,a}$")
 Description=c(#User-specified parameters
-           
-              "Pup or calf survival",
-              "Survival of individuals aged 1+",
-              "Plus-group age",
-              "Maximum steady rate of increase (population growth rate)",
-              "Age at first parturition",
-              "Bycatch mortality rate in year $y$ (specified by the user or computed from the user-specified total bycatch mortality)", 
-              # Parameters derived from user-specified parameters
-              "Fecundity (pregnancy rate) at pre-exploitation equilibrium",
-              "Maximum theoretical fecundity (pregnancy rate)",
-              "Carrying capacity in terms of 1+ component of the population",
-              "Degree of compensation",
-              # Derived variables
-              "Number of mature animals of age $a$ at the start of year $y$",
-              "Number of animals of age $a$ at the start of year $y$",
-              "Number of animals aged 1 and older at the start of year $y$",
-              "Mortality due to bycatch of animals of age $a$ in year $y$")
-
-Symbol_definitions <- data.frame(cbind(Symbol,
-                                      Description))
+  
+  "Survie du nouveau-né ou du baleineau",
+  "Survie des individus âgés de 1 an et plus",
+  "Âge du groupe-plus",
+  "Taux maximum d'accroissement constant (taux de croissance de la population)",
+  "L'âge à la première mise bas",
+  "Taux de mortalité par prises accessoires durant l'année $y$ (spécifié par l'utilisateur ou calculé à partir de la mortalité totale des prises accessoires spécifiée par l'utilisateur)", 
+  # Parameters derived from user-specified parameters
+  "Fécondité (taux de grossesse) à l'équilibre pré-exploitation",
+  "Fécondité maximale théorique (taux de grossesse)",
+  "Capacité de charge exprimée en termes de composante 1+ de la population",
+  "Degré de compensation",
+  # Derived variables
+  "Nombre d'animaux matures d'âge $a$ au début de l'année $y$",
+  "Nombre d'animaux d'âge $a$ au début de l'année $y$",
+  "Nombre d'animaux d'âge 1 et plus au début de l'année $y$",
+  "Mortalité due aux prises accessoires d'animaux d’âges $a$ durant l'année $y$")
+Symbol_definitions <- data.frame(cbind(Symbole,
+                                       Description))
 knitr::kable(format="html", #html  - change to pandoc for ms word 
              Symbol_definitions, 
              escape = FALSE) %>% 
-            kable_styling('bordered') %>%
-            pack_rows('User-specified parameters', 1, 6, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
-            pack_rows('Parameters derived from user-specified parameters', 7, 10, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
-            pack_rows('Derived variables', 11, 14, label_row_css = "font-style: italic;border-bottom: 1px solid black;")
+  kable_styling('bordered') %>%
+  pack_rows("Paramètres spécifiés par l'utilisateur", 1, 6, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
+  pack_rows("Paramètres dérivés des paramètres spécifiés par l'utilisateur", 7, 10, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
+  pack_rows("Variables dérivées", 11, 14, label_row_css = "font-style: italic;border-bottom: 1px solid black;")
 ```
 
-### Performance measures
-There are three primary performance measures included in the outputs:
+### Mesures de performance
+Trois principales mesures de performance sont incluses dans les résultats :
 
--	the probability that the abundance of age 1+ animals exceeds the Maximum Net Productivity Level (MNPL) after 50 and 100 years;
--	the abundance of age 1+ animals compared to 1+ carrying capacity after 10, 20, and 50 years; and
--	the abundance of age 1+ animals compared to the abundance of age 1+ animals under a no-bycatch scenario after 10, 20, and 50 years.
+- la probabilité que l'abondance des animaux d'âge 1+ dépasse le Niveau de Productivité Net Maximal (NPNM) après 50 et 100 ans ;
+- l'abondance des animaux d'âge 1+ par rapport à la capacité de charge des animaux d'âge 1+ après 10, 20 et 50 ans; et
+-	l'abondance des animaux d'âge 1+ par rapport à l'abondance des animaux d'âge 1+ dans un scénario de non prise accidentelle après 10, 20 et 50 ans.
 
-These performance measures are all related to population recovery. Wade (1998) identifies a performance ‘standard’ of a 95% probability of recovery to MNPL after 100 years for a population initially at 30% of its carrying capacity, with an MNPL of 0.5K. MNPL is the lower bound for the Optimum Sustainable Population (OSP), which is defined as the “number of any animals which will result in the maximum productivity of the population or the species, keeping in mind the carrying capacity of the habitat and the health of the ecosystem of which they form a constituent element” (16 USCS § 1362 (9)). In the US management scheme, marine mammal stocks are considered depleted when they are below OSP (16 USCS § 1362 (1B)).
+Ces mesures de performance sont toutes associées à la reconstitution de la population. Wade (1998) a établi une "norme" de performance d'une probabilité de 95 % de rétablissement de la NPNM après 100 ans pour une population se trouvant initialement à 30 % de sa capacité de charge, avec une NPNM de 0,5 K. La NPNM est la limite inférieure de la population optimale durable (POD), qui est définie comme le "nombre d'animaux qui permettra d'obtenir la productivité maximale de la population ou de l'espèce, en tenant compte de la capacité de charge de l'habitat et de la santé de l'écosystème dont ils sont un élément constitutif" (16 USCS § 1362 (9)). Dans le système de gestion américain, les stocks de mammifères marins sont considérés comme épuisés lorsqu'ils sont inférieurs à la POD (16 USCS § 1362 (1B)).
 
-Single values reported in tables are the medians from the number of projections.
-
-
-### Solving for bycatch rate
-
-We solved for the bycatch level that would result in recovery to a given proportion of K in a specific amount of time. The rebuilding probability is calculated as the proportion of simulations in which the population has recovered to the rebuilding goal by the rebuilding year. The “Solve for bycatch” tab uses root finding (the function `uniroot()` in our code) to find the bycatch mortality rate that minimizes the difference between the desired recovery probability and the recovery probability under bycatch mortality rate $E$.
+Les valeurs uniques indiquées dans les tableaux sont les médianes du nombre de projections.
 
 
-### Maximum theoretical fecundity
-The maximum theoretical fecundity rate is calculated based on the population size when the population is growing at its maximum population growth rate $\lambda_{max}$. Parts of this derivation can be found in Butterworth and Punt (1992) and Breiwick et al. (1984). Starting with the population model for the female component of the population:
+### Résoudre le problème du taux de prises accessoires
 
+Nous avons résolu le problème du niveau de prises accessoires qui aboutirait à la reconstitution d'une proportion donnée de K dans un intervalle de temps donné. La probabilité de reconstitution est calculée comme étant la proportion de simulations dans lesquelles la population a atteint l'objectif de reconstitution au cours de l'année de reconstitution. L'onglet "Résoudre le problème des prises accessoires" utilise l'algorithme de recherche d'un zéro d'une fonction (la fonction `uniroot()` dans notre code) pour trouver le taux de mortalité des prises accessoires qui minimise la différence entre la probabilité de reconstitution souhaitée et la probabilité de reconstitution avec un taux de mortalité des prises accessoires de $E$.
+
+
+### Fécondité théorique maximale
+Le taux de fécondité théorique maximal est calculé sur la base de la taille de la population à son taux maximal de croissance démographique $\lambda_{max}$. Des parties de cette dérivation mathematique se trouvent dans Butterworth et Punt (1992) et Breiwick et al. (1984). Commençons par le modèle de population pour la composante féminine de la population :
 $$
 \tag{Eq 4}
 N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
 $$
 
-where $a_p$ is the age at first parturition (assumed to be one year after the age at maturity), $f$ is the fecundity (sometimes expressed as the product of pregnancy rate and pup survival), $q_f$ is the proportion of calves/pups that are female and $a_r$ is the age at which the mammals first suffer any bycatch mortality (in our case, this is equal to 1 year). When the population is growing at its fastest rate, fishing is zero, and $N_{t+1}=N_t \lambda_{max}$. In our case $q_f = 1$ because we are modeling all adults, instead of just mature females. Thus, the above equation becomes:
-
+où $a_p$ est l'âge à la première mise bas (supposée être un an après l'âge à maturité), $f$ est la fécondité (parfois exprimée comme le produit du taux de grossesse et de la survie des nouveau-nés), $q_f$ est la proportion de baleineaux/nouveaux-nés qui sont des femelles et $a_r$ est l'âge auquel les mammifères subissent pour la première fois une mortalité due à des prises accessoires (dans notre cas, cela est égal à 1 an). Lorsque la population croît à son rythme le plus rapide, la pêche est nulle et $N_{t+1}=N_t \lambda_{max}$. Dans notre cas, $q_f = 1$ parce que nous modélisons tous les adultes, et non uniquement femelles matures. Ainsi, l'équation ci-dessus devient :
 $$
 \tag{Eq 5}
 \lambda_{max}N_t=N_t S_{1+}+f_{max} N_{t-a_p-1} \lambda _{max}^{a_p-1} S_0 S_{1+}^{(a_p-2)}
 $$
-Solving for $f_{max}$ gives the maximum theoretical fecundity as a function of $\lambda_{max}$, survival, and age at first parturition:
+Le calcul de $f_{max}$ permet d’obtenir la fécondité maximale théorique comme une fonction de $\lambda_{max}$, de la survie et de l'âge à la première mise bas :
 
 $$
 \tag{Eq. 6}
 f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}}^{a_p -2}}
 $$
-This is referred to as $p$ in Butterworth and Punt (1992). 
+Ceci est désigné sous le nom de $p$ dans Butterworth et Punt (1992).
 
-### Maximum net productivity level
-To calculate the maximum net productivity level ($MNPL$) given $z$, we first calculate the sustainable yield per recruit $\tilde C$  as a function of bycatch mortality rate $E$.
+### Niveau de productivité net maximal
+Pour calculer le niveau de productivité net maximale ($NPNM$) sachany $z$, nous calculons d'abord le rendement durable par recrue $\tilde C$ en fonction du taux de mortalité des prises accessoires $E$.
 
 $$
 \tag{Eq. 7}
 \tilde C = E \tilde B(E)\tilde P(E)
 $$
-where $\tilde B (E)$ is the normalized recruitment when the bycatch rate is fixed at $E$ and $\tilde P (E)$ is the equilibrium number of "recruited" (age 1+) animals per calf/pup when the bycatch mortality rate is fixed at $E$. The normalized recruitment $\tilde B(E)$ is calculated as follows:
+où $\tilde B (E)$ est le recrutement standardisé lorsque le taux de prises accessoires est fixé à $E$ et $\tilde P (E)$ est le nombre d'animaux "recrutés" (âge 1+) par baleineaux/nouveaux nés lorsque le taux de mortalité des prises accessoires est fixé à $E$. Le recrutement standardisé $\tilde B(E)$ est calculé de la manière suivante :
 
 $$
 \tag{Eq. 8}
 \tilde B(E) = \bigg(1 - \frac{1-f_0 \tilde N(E)} {Af_0\tilde N (E)}\bigg)^{1/z}  \bigg(\frac{\tilde B(0)\tilde P(0)}{\tilde P(E)}\bigg)
 $$
-where $f_0 = \frac{1}{\tilde N(0)}$,  $\tilde N(E)$ is the number of animals at the age of first parturition and older (i.e., reproducing animals) per recruit at a no-bycatch-mortality equilibrium, and $A$ is the Pella-Tomlinson resilience parameter ($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ is assumed to be equal to 1, because all calculations are per-recruit.
+où $f_0 = \frac{1}{\tilde N(0)}$, $\tilde N(E)$ est le nombre d'animaux à l'âge de la première mise bas et plus âgés (c'est-à-dire les animaux reproducteurs) par recrue à l'équilibre de la mortalité sans prise accessoire, et $A$ est le paramètre de résilience de Pella-Tomlinson ($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ est considéré comme égal à 1, car tous les calculs sont effectués par recrue.
 
-
-The number of reproducing animals per recruit at exploitation rate E is the sum of adult animals per recruit $\tilde N_a$ from the age at first parturition $a_p$ to the plus group age $x$:
+Le nombre d'animaux reproducteurs par recrue, pour un taux d'exploitation E, est égal à la somme des animaux adultes par recrue $\tilde N_a$ de l'âge à la première mise bas $a_p$ jusqu’ à l'âge du groupe plus $x$ :
 
 $$
 \tag{Eq. 9}
 \tilde N(E) = \sum_{a=a_p}^{x} E \tilde N_{0,a}(E)
 $$
 
-We solve for the bycatch mortality rate at which $\tilde C$ is maximized (i.e., where $\frac{dC}{dE}$ is zero). This is MSYR, which is analogous to $F_{MSY}$ in fisheries.
+Nous déterminons le taux de mortalité des prises accessoires auquel $\tilde C$ est maximal (c'est-à-dire où $\frac{dC}{dE}$ est égal à zéro). C'est le RMDT, qui est analogue à $F_{MSY}$ dans les pêcheries.
 
-The number of 1+ animals per recruit at bycatch mortality rate $E$, $\tilde P(E)$ is defined as:
+Le nombre d'animaux 1+ par recrue, pour un taux de mortalité des prises accessoires $E$, $\tilde P(E)$ est défini de la façon suivante:
 $$
 \tag{Eq. 10}
 \tilde P(E)=\sum_{a=1}^{x} \tilde N_{0,a}(E)
 $$
 
-where $\tilde N_{0,a}(E)$ is the numbers per recruit at each age $a$ given a stable age structure:
+où $\tilde N_{0,a}(E)$ est le nombre par recrue à chaque âge $a$ pour une structure d'âge stable donnée:
 
 $$
 \tag{Eq. 11}
@@ -193,59 +187,72 @@ S_0[S_{1+}(1-E)]^{a-1} &    1\leq a<x \\
 \end{cases}
 $$ 
 
-$MSYR$ is the value of $E$ for which the derivative of $\tilde C$ with respect to $E$ is zero, which we determined through numerical differentiation:
+$MSYR$ est la valeur de $E$ pour laquelle la dérivée de $\tilde C$ par rapport à $E$ est égale à zéro, déterminée par différenciation numérique :
 
 $$
 \tag{Eq. 12}
 \frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
 $$
 
-Then the relative abundance that corresponds to $MSYR$, $MNPL$, is determined by calculating the total 1+ population size at MSYR relative to the equilibrium 1+ population size with no bycatch mortality:
+Ensuite, l'abondance relative qui correspond au $MSYR$, $MNPL$, est déterminée en calculant la taille totale de la population 1+ au RMDT par rapport à la taille de la population 1+ à l'équilibre, sans mortalité due aux prises accessoires:
 
 $$
 \tag{Eq. 13}
 MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)} 
 $$
 
-### Parameterization
-We assume that the population starts with a stable age structure in year 1 of the projection period (Eq. 11). The numbers at age at the start of projections correspond to a constant bycatch mortality rate $E$, which is calculated by solving the following equation for $E$: 
+### Paramétrisation
+Nous considérons que la population commence avec une structure d'âge stable la première année de la période de projection (équation 11). Les valeurs à l'âge au début des projections correspondent à un taux de mortalité par prise accessoire constant $E$, qui est calculé en résolvant l'équation suivante pour $E$ :
 
 $$
 \tag{Eq. 14}
 \frac{\tilde B(E)\tilde P(E)}{\tilde P(0)}= \frac{N_0^{1+}}{K^{1+}}
 $$
 
-The initial depletion $\frac{N_0^{1+}}{K^{1+}}$ is based on the history of human-caused mortality for the population, which is provided by the user.
+L'épuisement initial $\frac{N_0^{1+}}{K^{1+}}$ est basé sur l'historique de la mortalité causée par l'homme au sein de la population, qui est fourni par l'utilisateur.
 
-For cases where observation error is given for the population, the starting abundance is drawn from a lognormal distribution with a standard deviation proportional to the observation CV.
+Dans les cas où l'erreur d'observation est donnée pour la population, l'abondance de départ est déterminée à partir d'une distribution lognormale avec un écart-type proportionnel au CV d'observation.
 
-#### Life history types
-Each marine mammal life history type presented as a default option in this app corresponds to a unique value of calf/pup survival $S_0$, adult survival $S_{1+}$, age at first parturition ($a_p$), and intrinsic rate of population growth $\lambda_{max}$. These values are presented in Table 2. For computation purposes, we assumed that the plus group age $x$ is two years past the age at maturity ($x=a_p+3$). 
+#### Types d'histoire de vie
+Chaque type d'histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né $S_0$, de la survie de l'adulte $S_{1+}$, de l'âge à la première mise bas ($a_p$) et du taux intrinsèque de croissance de la population $\lambda_{max}$. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l'âge du groupe plus $x$ est supérieur de deux ans à l'âge à la maturité ($x=a_p+3$). 
 
 #### Compensation
-We solve for the value of the degree of compensation $z$ that corresponds to the value of MNPL provided by the user. This involves solving the equation   $\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)$ for $z$  where $E^*$ depends on $z$ as outlined above.
+
+Nous déterminons la valeur du degré de compensation $z$ qui correspond à la valeur du NPNM fourni par l'utilisateur. Cela implique de résoudre l'équation $\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)$ pour $z$ où $E^*$ dépend de $z$ comme indiqué ci-dessus.
 
 
 
-**Table 2.**
+**Tableau 2.**
 ```{r echo = F}
 lh.sources <- data.frame(stringsAsFactors=FALSE,
-                           Type = c("Bowhead whale", "Bottlenose dolphin", "Humpback whale",
-                                    "Phocid seal", "Fur seal", "Sea lion",
-                                    "Porpoise", "Minke whale",
-                                    "False killer whale/killer whale", "Pilot whale", "Right whale"),
-                 Representative = c("Balaena mysticetus", "Tursiops truncatus",
-                                    "Megaptera novaeangliae", "Phoca vitulina",
-                                    "Arctocephalus pusillus pusillus",
-                                    "Zalophus californianus", "Phocoena phocoena",
-                                    "Balaenoptera bonaeresis", "Orcinus orca",
-                                    "Globicephala macrorynchus", "Eubalaena glacialis"),
-                             S0 = c(0.944, 0.865, 0.9, 0.802, 0.77, 0.83, 0.8096, 0.84216,
-                                    0.84744, 0.85008, 0.85536),
+                         Type = c("Baleine boréale",
+                                  "Grand dauphin",
+                                  "Baleine à bosse",
+                                  "Phoque commun",
+                                  "Otarie à fourrure",
+                                  "Lion de mer",
+                                  "Marsouin",
+                                  "Petit rorqual",
+                                  "Fausse orque/orque",
+                                  "Globicéphales",
+                                  "Baleine franche"),
+                         Representant = c("Balaena mysticetus",
+                                          "Tursiops truncatus",
+                                          "Megaptera novaeangliae",
+                                          "Phoca vitulina",
+                                          "Arctocephalus pusillus pusillus",
+                                          "Zalophus californianus",
+                                          "Phocoena phocoena",
+                                          "Balaenoptera bonaeresis",
+                                          "Orcinus orca",
+                                          "Globicephala macrorynchus",
+                                          "Eubalaena glacialis"),
+                         S0 = c(0.944, 0.865, 0.9, 0.802, 0.77, 0.83, 0.8096, 0.84216,
+                                0.84744, 0.85008, 0.85536),
                          S1plus = c(0.99, 0.951, 0.95, 0.92, 0.88, 0.95, 0.92, 0.957, 0.963,
                                     0.966, 0.972),
                          AgeMat = c(17, 6, 10, 6, 3, 4, 3, 7, 9, 9, 8),
-                   #PlusGroupAge = c(25, 10, 15, 8, 10, 5, 7, 9, 11, 11, 10),
+                         #PlusGroupAge = c(25, 10, 15, 8, 10, 5, 7, 9, 11, 11, 10),
                          Source = c("Punt et al. (2018) and references therein",
                                     "Punt et al. (2018) and references therein,
                                     except juvenile survival which is set to 0.88($S_{1+}$)", "Punt et al. (2018),
@@ -258,14 +265,12 @@ lh.sources <- data.frame(stringsAsFactors=FALSE,
                                     "Moore unpublished (2019)",
                                     "Moore unpublished (2019)",
                                     "Moore unpublished (2019)")
-              )
-
-
+)
 x <- knitr::kable(format="html",
-             col.names = c('Type','Representative','$S_0$','$S_{1+}$','Age at maturity','Source'),
-             lh.sources, 
-             escape = FALSE) %>% 
-            kable_styling('bordered')
+                  col.names = c('Type','Representant','$S_0$','$S_{1+}$','Âge à maturité','Référence'),
+                  lh.sources, 
+                  escape = FALSE) %>% 
+  kable_styling('bordered')
 x <- column_spec(x, column = 2,italic = TRUE)
 x
 ```
