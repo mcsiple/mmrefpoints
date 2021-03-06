@@ -68,7 +68,7 @@ app_server <- function( input, output, session ) {
     updateSelectInput(session,
                       inputId = "type_simple",
                       label = i18n$t("Mammal life history type (choose one):"),
-                      choices = setNames(paste0(lh$Code, "_simple"), i18n$t(lh$Type))
+                      choices = stats::setNames(paste0(lh$Code, "_simple"), i18n$t(lh$Type))
     ) # / update SelectInput
   })
   
@@ -99,7 +99,7 @@ app_server <- function( input, output, session ) {
   lh.table_simple <- reactive(lh %>% # keep this the same
                                 mutate(K1plus = K1plus_simple()) %>%
                                 mutate(add.as.code = paste(Code, "_simple", sep = "")) %>% # have to rename for shiny...clunky
-                                column_to_rownames("add.as.code") %>%
+                                tibble::column_to_rownames("add.as.code") %>%
                                 select(S0, S1plus, AgeMat, PlusGroupAge, fmax, z, lambdaMax, K1plus) %>%
                                 as.data.frame())
   
@@ -257,7 +257,7 @@ app_server <- function( input, output, session ) {
     updateSelectInput(session,
                       inputId = "type",
                       label = i18n$t("Mammal life history type (choose one):"),
-                      choices = setNames(lh$Code, i18n$t(lh$Type))
+                      choices = stats::setNames(lh$Code, i18n$t(lh$Type))
     ) # / update SelectInput -- this works for translating options but not for the calculations
   })
   
@@ -557,7 +557,6 @@ app_server <- function( input, output, session ) {
         med.d3 = med.list[[3]]$trajectories,
         low.d3 = low.list[[3]]$trajectories,
         ylims = c(0, lh.params$K1plus),
-        years.plot = plotyears,
         spaghetti = spaghetti,
         years.plot = plotyears,
         K1plus = lh.params$K1plus,
@@ -1180,7 +1179,7 @@ app_server <- function( input, output, session ) {
               4,
               selectInput("type_simple",
                           label = i18n$t("Mammal life history type (choose one):"),
-                          setNames(paste0(lh$Code, "_simple"), lh$Type)
+                          stats::setNames(paste0(lh$Code, "_simple"), lh$Type)
               ), # quickly put dataframe elements as options! :)
               radioButtons(
                 inputId = "vdepln_simple",
@@ -1279,7 +1278,7 @@ app_server <- function( input, output, session ) {
               h4(i18n$t("Specify life history and abundance")),
               selectInput("type",
                           label = i18n$t("Life history type (choose one):"),
-                          c(setNames(paste(lh$Code), lh$Type))
+                          c(stats::setNames(paste(lh$Code), lh$Type))
               ),
               fluidRow(
                 column(3, numericInput("global.S0", "\u0053\u2080",
