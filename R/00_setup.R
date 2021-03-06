@@ -56,7 +56,7 @@ splash_fr <- "<div class='jumbotron'>
 tn_en <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='1.png' alt='...'>
+      <img src='www/1.png' alt='...'>
         <div class='caption'>
           <h3>Simple Projections</h3>
           <p>If you have minimal information about abundance and bycatch, go here.</p>
@@ -70,7 +70,7 @@ tn_en <- "<div class='row'>
 tn_es <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='1.png' alt='...'>
+      <img src='www/1.png' alt='...'>
         <div class='caption'>
           <h3>Proyecciones simples</h3>
           <p>Si tiene información mínima sobre la abundancia y la captura incidental, vaya aquí.</p>
@@ -84,7 +84,7 @@ tn_es <- "<div class='row'>
 tn_fr <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='1.png' alt='...'>
+      <img src='www/1.png' alt='...'>
         <div class='caption'>
           <h3>Projections simples</h3>
           <p>Si vous ne possédez que peu d'informations sur les abondances et les prises accessoires, cliquez ici.</p>
@@ -99,7 +99,7 @@ tn_fr <- "<div class='row'>
 tn_en_adv <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='2.png' alt='...'>
+      <img src='www/2.png' alt='...'>
         <div class='caption'>
           <h3>Advanced Projections</h3>
           <p>If you have information about abundance and bycatch, and want to evaluate performance or calculate PBR, go here.</p>
@@ -113,7 +113,7 @@ tn_en_adv <- "<div class='row'>
 tn_es_adv <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='2.png' alt='...'>
+      <img src='www/2.png' alt='...'>
         <div class='caption'>
           <h3>Proyecciones Avanzadas</h3>
           <p>Si tiene información sobre la abundancia y la captura incidental, y desea evaluar el rendimiento o calcular el PBR, vaya aquí.</p>
@@ -127,7 +127,7 @@ tn_es_adv <- "<div class='row'>
 tn_fr_adv <- "<div class='row'>
   <div class='col-sm-14 col-md-12'>
     <div class='thumbnail'>
-      <img src='2.png' alt='...'>
+      <img src='www/2.png' alt='...'>
         <div class='caption'>
           <h3>Projections avancées</h3>
           <p>Si vous possédez des informations à la fois sur les abondances et les prises accessoires et que vous souhaitez évaluer les performances de reconstitution du stock ou calculer le PBR, cliquez ici.</p>
