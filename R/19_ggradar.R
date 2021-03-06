@@ -8,7 +8,7 @@
 #' @param plot.legend logical; whether or not to plot a legend to the right of the plot
 #' @param legend.text.size numeric value for size of legend text
 #' @param palette.vec a vector of colors to use for the different scenarios (each row = 1 color)
-#' @param manual.levels
+#' @param manual.levels a vector if you want to manually set factor levels
 #'
 #' @author Ricardo Bion, modified slightly by Margaret Siple
 #' @details Since this code was originally written, ggradar has becomes its own standalone package. For more information and for the most current version of the function, see Ricardo Bion's \href{https://github.com/ricardo-bion/ggradar/}{GitHub}

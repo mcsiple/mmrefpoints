@@ -30,7 +30,7 @@ ggradar(
 
 \item{palette.vec}{a vector of colors to use for the different scenarios (each row = 1 color)}
 
-\item{manual.levels}{}
+\item{manual.levels}{a vector if you want to manually set factor levels}
 }
 \description{
 Radar plot

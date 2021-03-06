@@ -127,7 +127,7 @@ app_server <- function( input, output, session ) {
   med.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
-      Catch = median(input$constantcatch_simple),
+      Catch = stats::median(input$constantcatch_simple),
       CV = input$cvcatch_simple
     ),
     InitDepl = initdepl_simple(),
@@ -137,7 +137,7 @@ app_server <- function( input, output, session ) {
   low.simple <- reactive(projections(
     NOut = 50,
     ConstantBycatch = list(
-      Catch = median(input$constantcatch_simple[1]),
+      Catch = stats::median(input$constantcatch_simple[1]),
       CV = input$cvcatch_simple
     ),
     InitDepl = initdepl_simple(),
@@ -168,7 +168,7 @@ app_server <- function( input, output, session ) {
   med.simple.rate <- reactive(projections(
     NOut = 50,
     ConstantRateBycatch = list(
-      Rate = median(input$bycatchrate_simple),
+      Rate = stats::median(input$bycatchrate_simple),
       CV = input$cvcatchrate_simple
     ),
     InitDepl = initdepl_simple(),
@@ -359,7 +359,7 @@ app_server <- function( input, output, session ) {
       function(x) {
         projections(
           NOut = as.numeric(input$nproj),
-          ConstantBycatch = list(Catch = median(input$constantcatch), CV = input$cvcatch),
+          ConstantBycatch = list(Catch = stats::median(input$constantcatch), CV = input$cvcatch),
           InitDepl = x,
           lh.params = lh.params2(),
           nyears = nyears,
@@ -419,7 +419,7 @@ app_server <- function( input, output, session ) {
       function(x) {
         projections(
           NOut = as.numeric(input$nproj),
-          ConstantRateBycatch = list(Rate = median(input$bycatchrate), CV = input$cvcatchrate),
+          ConstantRateBycatch = list(Rate = stats::median(input$bycatchrate), CV = input$cvcatchrate),
           InitDepl = x,
           lh.params = lh.params2(),
           nyears = nyears,
@@ -501,7 +501,7 @@ app_server <- function( input, output, session ) {
     
     p <- plot_bycatch_guesses(
       lowval = bycatch[1],
-      medval = median(bycatch),
+      medval = stats::median(bycatch),
       highval = bycatch[2],
       cv = cvb,
       color.palette = colorscheme,
@@ -1079,7 +1079,7 @@ app_server <- function( input, output, session ) {
       # print(catchlevels)
       
       tm <- xx %>%
-        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1], ifelse(bycatch == "high", catchlevels[2], ifelse(bycatch == "zero", 0, median(catchlevels))))) %>%
+        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1], ifelse(bycatch == "high", catchlevels[2], ifelse(bycatch == "zero", 0, stats::median(catchlevels))))) %>%
         select(depletion, `Bycatch`, prebuild50, prebuild100, abundrel10, abundrel20, abundrel50) %>%
         rename(
           `Initial depletion (N/K)` = depletion,
