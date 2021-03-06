@@ -53,7 +53,7 @@ rebuild_by_x <- function(needf.start, init.depl.w, goal.w, desired.prob.w, when.
   if (zero.cross[1] == "error") {
     return("Sorry, recovery is not possible at these starting conditions. Try a longer recovery horizon or lower recovery goal")
   } else {
-    f <- inv.logit(zero.cross$root)
+    f <- inv_logit(zero.cross$root)
     # print(mat)
     # text(10,0.2,paste("Best estimate for \n max bycatch rate = ",round(f,digits=2)) )
     return(list(mat = mat, f = f))
