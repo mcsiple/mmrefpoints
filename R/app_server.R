@@ -1053,9 +1053,10 @@ app_server <- function( input, output, session ) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
+      # tempReport <- file.path(tempdir(), "report.Rmd")
+      # file.copy(from = here::here("R","report.Rmd"), tempReport, overwrite = TRUE)
       tempReport <- file.path(tempdir(), "report.Rmd")
-      file.copy(from = here::here("R","report.Rmd"), tempReport, overwrite = TRUE)
-      
+      file.copy(from = app_sys("report","report.Rmd"), tempReport, overwrite = TRUE)
       
       # NOTE: Need to fix this and clean it up a little
       lh.params <- as.data.frame(lh.params2())
