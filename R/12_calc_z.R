@@ -9,8 +9,10 @@
 #' @export
 #'
 #' @examples
-#' lh.params1 <- list(S0 = .5, S1plus = .944, nages = 25, AgeMat = 18)
-#' test.z <- calc_z(MNPL_in = 0.4, lh.params_in = lh.params1)
+#' test.z <- calc_z(MNPL_in = 0.5,
+#' lh.params_in = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,
+#' PlusGroupAge = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, 
+#' K1plus = 9000))
 calc_z <- function(MNPL_in, lh.params_in) {
   lims <- c(0.107, 7) # z limits from AEP meeting were 0 and 7; I increased the lower bound because too-low z is a problem
   zero.cross <- tryCatch(
