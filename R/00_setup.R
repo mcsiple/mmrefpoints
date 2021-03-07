@@ -12,27 +12,6 @@ i18n <- shiny.i18n::Translator$new(translation_json_path = system.file(package =
   "translation_maritza.json"
 ))
 
-#source(here::here("R","GetF_GetRecAtF_v4.R"))
-#source(here::here("R","getMNPL.R"))
-#source(here::here("R","Plots/Plots.R"))
-#source(here::here("R","ProjectionModel/Age-structured.R"))
-#source(here::here("R","ProjectionModel/ProjectionsFn.R"))
-#source(here::here("R","Parameters/PinnipedParams.R"))
-#source(here::here("R","Performance/PerformanceMeasureFns.R"))
-#source(here::here("R","SolveForStrategy/SolveForCatchRate.R"))
-
-#Constants
-#source(here::here("R","Constants/splashtext.R"))
-#source(here::here("R","Constants/plotlabs.R"))
-#source(here::here("R","uifunctions/jumbotron_thumbnails.R"))
-#documentationpath <- here::here("R","Documentation")
-# dat <- read.csv(here::here("R","Parameters/Pinniped parameters - Data.csv"))
-# lh <- read.csv(here::here("R","Parameters/LHTable.csv"))
-
-# central <- FALSE
-# colorscheme <- c("#7bbcb0", "#3a7c89", "#123f5a")
-# i18n$set_translation_language("en")
-
 # Splash text -------------------------------------------------------------
 
 # Splash page jumbotron
