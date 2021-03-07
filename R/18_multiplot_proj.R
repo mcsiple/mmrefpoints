@@ -38,8 +38,8 @@ multiplot_proj <- function(high.d1 = testing.list[[1]][3][[1]]$trajectories, # d
                            years.to.plot = 50,
                            K1plus = 9000,
                            InitDepls = InitDepl.vec,
-                           color.palette = c("forestgreen", "darkorange", "red",
-                                             lang = "en")) {
+                           color.palette = c("forestgreen", "darkorange", "red"),
+                                             lang = "en") {
   high.col <- color.palette[3]
   med.col <- color.palette[2]
   low.col <- color.palette[1]
