@@ -96,7 +96,7 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl, ConstantCatch = NA, C
     Fec0 <- 1.0 / N0
     A <- (fmax - Fec0) / Fec0
 
-    RF <- get_rf(E = E, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
+    RF <- get_rf(E_in = E, S0 = S0, S1plus = S1plus, nages = nages, K1plus = K1plus, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
     InitNumsAtAge <- Ninit * RF # Initial nums at age
     PropsAtAge <- InitNumsAtAge / sum(InitNumsAtAge) # Proportions at age
 
