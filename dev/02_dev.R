@@ -42,10 +42,8 @@ golem::add_css_file( "custom" )
 #usethis::use_data_raw( name = "my_dataset", open = FALSE ) 
 
 ## DATA! ----------
-dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
-lh <- read.csv(here::here("data","LHTable.csv"))
-usethis::use_data(dat)
-usethis::use_data(lh)
+usethis::use_data(dat) #Pinniped parameters - Data.csv
+usethis::use_data(lh,overwrite = TRUE) #LHTable.csv
 
 ## Tests ----
 ## Add one line by test you want to create
