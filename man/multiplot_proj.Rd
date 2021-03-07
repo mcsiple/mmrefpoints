@@ -20,7 +20,8 @@ multiplot_proj(
   years.to.plot = 50,
   K1plus = 9000,
   InitDepls = InitDepl.vec,
-  color.palette = c("forestgreen", "darkorange", "red", lang = "en")
+  color.palette = c("forestgreen", "darkorange", "red"),
+  lang = "en"
 )
 }
 \arguments{
