@@ -9,13 +9,6 @@ app_server <- function( input, output, session ) {
   # output$R_working_dir <- renderText({
   #   print(here::here())
   # })
-  # output$testPlot <- renderPlot({
-  #   my_fun(vec = 1:20)
-  # })
-  # 
-  # output$lhtable <- renderTable({
-  #   lh%>% filter(Code=="bowhead")
-  # })
   
   # TRANSLATOR --------------------------------------------------------------
   
@@ -1126,8 +1119,7 @@ app_server <- function( input, output, session ) {
   
   
   # DOCUMENTATION -----------------------------------------------------------
-  dpath <- reactive(file.path(
-    documentationpath,
+  dpath <- reactive(app_sys("Documentation", 
     paste0("ProjectionModel_", input$selected_language, ".html")
   ))
   
@@ -1568,7 +1560,7 @@ app_server <- function( input, output, session ) {
           br(),
           h4(i18n$t("Where do these values come from?")),
           p(i18n$t("The values used for generic life history types shown here are a combination of literature values and estimates from a hierarchical analysis. Each life history type is represented by one species, which has survival rates and an age at maturity close to the type-level mean. Humpback whale, bottlenose dolphin, phocid seal, fur seal, and sea lion values are the same as in Punt et al. (2018).  For cetaceans not in Punt et al. (2018), the default survival rates and age at maturity are based on a hierarchical analysis following the methods in Dillingham et al. (2016). All references are listed at the bottom of this tab.")),
-          includeHTML(file.path(documentationpath, "Citations_ed.html"))
+          includeHTML(app_sys("Documentation", "Citations_ed.html"))
         ) # end About the Model tab
       ), # end navbarpage
       tags$style(HTML("
