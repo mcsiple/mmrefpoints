@@ -3,7 +3,7 @@
 \docType{data}
 \name{dat}
 \alias{dat}
-\title{Life history parameters for specific pinnipeds}
+\title{Life history parameters for pinnipeds}
 \format{
 A data frame with 11 rows and 11 variables:
 \describe{
