@@ -1,4 +1,4 @@
-#' Life history parameters for specific pinnipeds
+#' Life history parameters for pinnipeds
 #'
 #' A table with life history information for pinnipeds.
 #'
