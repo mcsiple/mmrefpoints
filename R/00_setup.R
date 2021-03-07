@@ -8,8 +8,7 @@ nyears.simple <- 100
 plotyears <- 50
 cat <- message
 options(shiny.reactlog = TRUE)
-i18n <- shiny.i18n::Translator$new(translation_json_path = here::here(
-  "R","Documentation",
+i18n <- shiny.i18n::Translator$new(translation_json_path = system.file(package = "mmrefpoints","Documentation",
   "translation_maritza.json"
 ))
 
@@ -261,18 +260,11 @@ jumbotron2 <- function (header, content, button = TRUE){
 }
 
 
-# Load documentation ------------------------------------------------------
-documentationpath <- here::here("R","Documentation")
+# Documentation ----------------------------------------------
+# see inst/Documentation
 
 
-# Life history parameters -------------------------------------------------
-
-# dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
-# lh <- read.csv(here::here("data","LHTable.csv"))
-
-#dat <- read.csv(here::here("data","Pinniped parameters - Data.csv"))
-#lh <- read.csv(here::here("data","LHTable.csv"))
-
+# Colors etc -------------------------------------------------
 central <- FALSE
 colorscheme <- c("#7bbcb0", "#3a7c89", "#123f5a")
 i18n$set_translation_language("en")
