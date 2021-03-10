@@ -40,14 +40,14 @@ Alexandre N. Zerbini
 ## Details
 
 This R package contains the functions used in the Marine Mammal Bycatch
-Impacts Exploration Tool (mmBIET), a Shiny app built by Margaret Siple
-and André Punt for the Ocean Modeling Forum’s [Marine Mammal Bycatch
+Impacts Exploration Tool (mmBIET), a Shiny app built by Margaret Siple,
+André Punt, and the Ocean Modeling Forum’s [Marine Mammal Bycatch
 Working
 Group](https://oceanmodelingforum.org/working-groups/marine-mammal-bycatch-working-group/).
-The app is available [here](https://msiple.shinyapps.io/mammaltool/).
-The functions in this package, and the app, are both intended to be used
-in cases where data on bycatch and/or population status are sparse or
-unavailable.
+
+The functions in this package, and the Shiny app, are intended to be
+used in cases where data on bycatch and/or population status are sparse
+or unavailable.
 
 Our target audience is stakeholders interested in projecting marine
 mammal populations to examine the impacts of bycatch. Those code could
@@ -66,9 +66,9 @@ This package can be downloaded directly from GitHub:
 We would like this package to be sustainable in the long term and
 welcome contributions. If you encounter a bug, please leave a note on
 the Issues page. You can also leave comments there about additional
-functionality. If you are interested in contributing, we direct you to
-the R package [contribution advice](http://r-pkgs.had.co.nz/git.html)
-from Hadley Wickham.
+functionality (please add the “enhancement” label). If you are
+interested in contributing, we direct you to the R package [contribution
+advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
 
 ## Accessing the mmBIET Shiny app
 
@@ -77,6 +77,29 @@ for this project, which is located online
 [here](https://msiple.shinyapps.io/mammaltool/). The app provides an
 easy way to explore outcomes and print out a report with inputs and
 outputs.
+
+The mmBIET Shiny app can also be accessed through the R package:
+
+    #> Loading required package: tidyverse
+    #> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
+    #> ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+    #> ✓ tibble  3.1.0     ✓ dplyr   1.0.5
+    #> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+    #> ✓ readr   1.4.0     ✓ forcats 0.5.1
+    #> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+    #> x dplyr::filter() masks stats::filter()
+    #> x dplyr::lag()    masks stats::lag()
+    #> 
+    #> Attaching package: 'mmrefpoints'
+    #> The following object is masked from 'package:datasets':
+    #> 
+    #>     lh
+    #> Loading required package: shiny
+    #> 
+    #> Listening on http://127.0.0.1:7165
+    #> [1] "Language change: en"
+
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
 
 <img src="https://github.com/mcsiple/ltbycatch/blob/master/docs/screenshot1.png" alt="screenshot1" width="400">
 
@@ -93,6 +116,6 @@ Marine Laboratories, Hobart, Australia. Available from
 Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond,
 Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall
 R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob
-Williams, and Alexandre N. Zerbini (t.b.d.). ltbycatch: Projecting
+Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting
 long-term marine mammal abundance with bycatch. R package version 1.0.0.
 url: <https://github.com/mcsiple/ltbycatch>
