@@ -2,11 +2,11 @@
 #'
 #' @description Calculate numbers-per-recruit as a function of the bycatch rate assuming that 1+ animals are subject to bycatch  \emph{E}.
 #'
-#' @param S0 calf survival, a numeric value between 0 and 1
-#' @param S1plus adult survival, a numeric value between 0 and 1
-#' @param nages plus group age in years
-#' @param AgeMat age at maturity in years (must be equal to or less than nages)
-#' @param E bycatch mortality rate, a numeric value between 0 and 1
+#' @param S0 Calf/pup survival, a numeric value between 0 and 1
+#' @param S1plus Adult survival, a numeric value between 0 and 1
+#' @param nages Plus group age in years
+#' @param AgeMat Age at maturity in years (must be equal to or less than nages)
+#' @param E Bycatch mortality rate, a numeric value between 0 and 1
 #'
 #' @return A list of numbers per recruit (\code{npr}), 1+ numbers per recruit (\code{P1r}), and numbers at age per recruit (\code{nvec})
 #'
