@@ -7,21 +7,21 @@
 npr(S0, S1plus, nages, AgeMat, E = 0)
 }
 \arguments{
-\item{S0}{calf survival, a numeric value between 0 and 1}
+\item{S0}{Calf/pup survival, a numeric value between 0 and 1}
 
-\item{S1plus}{adult survival, a numeric value between 0 and 1}
+\item{S1plus}{Adult survival, a numeric value between 0 and 1}
 
-\item{nages}{plus group age in years}
+\item{nages}{Plus group age in years}
 
-\item{AgeMat}{age at maturity in years}
+\item{AgeMat}{Age at maturity in years (must be equal to or less than nages)}
 
-\item{E}{bycatch mortality rate}
+\item{E}{Bycatch mortality rate, a numeric value between 0 and 1}
 }
 \value{
 A list of numbers per recruit (\code{npr}), 1+ numbers per recruit (\code{P1r}), and numbers at age per recruit (\code{nvec})
 }
 \description{
-Calculate nums per recruit at exploitation rate \emph{f}.
+Calculate numbers-per-recruit as a function of the bycatch rate assuming that 1+ animals are subject to bycatch  \emph{E}.
 }
 \examples{
 (unpr <- npr(S0 = 0.9, S1plus = 0.9, 
