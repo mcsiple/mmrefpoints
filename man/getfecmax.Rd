@@ -2,28 +2,28 @@
 % Please edit documentation in R/02_getfecmax.R
 \name{getfecmax}
 \alias{getfecmax}
-\title{Calculate maximum theoretical fecundity}
+\title{Calculate maximum theoretical fecundity rate}
 \usage{
 getfecmax(S0, lambdaMax, S1plus, AgeMat)
 }
 \arguments{
 \item{S0}{calf/pup survival, a numeric value between 0 and 1}
 
-\item{lambdaMax}{maximum population growth rate (default value is 1.04 for cetaceans and 1.12 for pinnipeds)}
+\item{lambdaMax}{maximum population growth rate (must exceed 0; default value is 1.04 for cetaceans and 1.12 for pinnipeds)}
 
 \item{S1plus}{survival of age 1+ individuals, a numeric value between 0 and 1}
 
-\item{AgeMat}{age at maturity (in years)}
+\item{AgeMat}{age at maturity in years (must be equal to or less than nages)}
 }
 \value{
-a single numeric value for maximum theoretical fecundity.
+a numeric value for maximum theoretical fecundity.
 }
 \description{
-Calculate maximum theoretical fecundity \emph{fmax}
+Calculate maximum theoretical fecundity rate \emph{fmax}
 }
 \details{
-Parts of this derivation can be found in Breiwick et al. (1984) and Butterworth and Punt (1992).
-\emph{Important}: when applying this calculation, use age at maturity ( \code{AgeMat} ), and when defining probability of giving birth use parturition age (age at maturity + one year)
+Parts of this derivation can be found in Breiwick et al. (1984) and Butterworth and Punt (1992), and when defining probability of giving birth use parturition age (age at maturity + one year)
+\emph{Important}: when applying this calculation, use age at maturity ( \code{AgeMat} )
 }
 \examples{
 x <- getfecmax(lambdaMax = 1.04, S0 = 0.944, S1plus = 0.99, AgeMat = 17)
