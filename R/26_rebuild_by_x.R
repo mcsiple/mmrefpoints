@@ -5,7 +5,7 @@
 #' @param needf.start starting guess for the bycatch mortality rate needed to recover the population
 #' @param init.depl.w initial depletion (fraction of K)
 #' @param goal.w what goal to rebuild to (MNPL is the simplest one)
-#' @param desired.prob.w what probability you want (e.g., 75% probability that the population will rebuild to X in Y years)
+#' @param desired.prob.w what probability you want (e.g., 75\% probability that the population will rebuild to X in Y years)
 #' @param when.w the year Y when you want rebuilding by
 #' @param lh.params.w life history params (inputs for Projections())
 #' @param fixed.cv.catch.w the CV of the bycatch rate - should be fixed

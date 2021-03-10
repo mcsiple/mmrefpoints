@@ -21,7 +21,7 @@ rebuild_by_x(
 
 \item{goal.w}{what goal to rebuild to (MNPL is the simplest one)}
 
-\item{desired.prob.w}{what probability you want (e.g., 75% probability that the population will rebuild to X in Y years)}
+\item{desired.prob.w}{what probability you want (e.g., 75\% probability that the population will rebuild to X in Y years)}
 
 \item{when.w}{the year Y when you want rebuilding by}
 
