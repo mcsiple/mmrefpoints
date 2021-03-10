@@ -12,7 +12,7 @@
 #' @param K1plus Carrying capacity in terms of the age 1+ component of the population
 #' @param z Pella-Tomlinson parameter (compensation)
 
-#' @example 
+#' @examples 
 #' get_diff(logit.E = logit(0.01),
 #'          S0 = 0.944, S1plus = 0.99,
 #'          nages = 13, AgeMat = 11,
