@@ -42,7 +42,7 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   lims <- logit(c(0.00001, search.limit))
   logit.E <- logit(E.start)
 
-  zero.cross <- stats::uniroot(f = get_dc, interval = lims, tol = 1e-7, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w)
+  zero.cross <- stats::uniroot(f = get_diff, interval = lims, tol = 1e-7, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w)
   fmsy <- inv_logit(zero.cross$root)
 
   MSY <- ce(

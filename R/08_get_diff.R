@@ -13,7 +13,7 @@
 #' @param S0 calf/pup survival
 #'
 #' @export
-get_dc <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
+get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
   exploitation.rate <- inv_logit(logit.E)
   h <- 0.000001
 
