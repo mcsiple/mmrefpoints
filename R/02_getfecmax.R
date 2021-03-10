@@ -1,12 +1,14 @@
 #' Calculate maximum theoretical fecundity rate
 #'
 #' @description Calculate maximum theoretical fecundity rate \emph{fmax}
-#' @details Parts of this derivation can be found in Breiwick et al. (1984) and Butterworth and Punt (1992), and when defining probability of giving birth use parturition age (age at maturity + one year)
+#' @details Parts of this derivation can be found in Breiwick et al. (1984) and Butterworth and Punt (1992), and when defining probability of giving birth use parturition age (age at maturity + one year).
 #' \emph{Important}: when applying this calculation, use age at maturity ( \code{AgeMat} )
+#'
 #' @param S0 calf/pup survival, a numeric value between 0 and 1
 #' @param lambdaMax maximum population growth rate (must exceed 0; default value is 1.04 for cetaceans and 1.12 for pinnipeds)
 #' @param S1plus survival of age 1+ individuals, a numeric value between 0 and 1
 #' @param AgeMat age at maturity in years (must be equal to or less than nages)
+#'
 #' @return a numeric value for maximum theoretical fecundity.
 #'
 #' @examples
