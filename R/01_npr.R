@@ -1,12 +1,12 @@
 #' Calculate numbers per recruit
 #'
-#' @description Calculate nums per recruit at exploitation rate \emph{f}.
+#' @description Calculate numbers-per-recruit as a function of the bycatch rate assuming that 1+ animals are subject to bycatch  \emph{E}.
 #'
 #' @param S0 calf survival, a numeric value between 0 and 1
 #' @param S1plus adult survival, a numeric value between 0 and 1
 #' @param nages plus group age in years
-#' @param AgeMat age at maturity in years
-#' @param E bycatch mortality rate
+#' @param AgeMat age at maturity in years (must be equal to or less than nages)
+#' @param E bycatch mortality rate, a numeric value between 0 and 1
 #'
 #' @return A list of numbers per recruit (\code{npr}), 1+ numbers per recruit (\code{P1r}), and numbers at age per recruit (\code{nvec})
 #'
@@ -23,15 +23,16 @@ npr <- function(S0, S1plus, nages, AgeMat, E = 0) {
   N.vec[1] <- 1 # Age 0
   N.vec[2] <- 1 * S0
 
-  # AEP
+  # Survival (due to natural and bycatch causes)
   OnePlusSurv <- (S1plus * (1 - E))
 
+  # Calculate numbers-at-age
   for (a in 3:(nages)) {
-    N.vec[a] <- S0 * (OnePlusSurv^(a - 2)) # quadruple checked
+    N.vec[a] <- S0 * (OnePlusSurv^(a - 2))
   }
 
   N.vec[nages + 1] <- (S0 * OnePlusSurv^(nages - 1)) / (1 - OnePlusSurv) # plus group age
-  npr <- sum(N.vec[(AgePart + 1):(nages + 1)]) # REPRODUCING animals (AgeMat+1 = age at first parturition)
+  npr <- sum(N.vec[(AgePart + 1):(nages + 1)]) # *Reproducing* animals (AgeMat+1 = age at first parturition)
   P1r <- sum(N.vec[2:(nages + 1)]) # 1+ whales/pinnipeds
   Outs <- list()
   Outs$npr <- npr
