@@ -12,7 +12,13 @@
 #' @param K1plus Carrying capacity in terms of the age 1+ component of the population
 #' @param z Pella-Tomlinson parameter (compensation)
 
-#'
+#' @example 
+#' get_diff(logit.E = logit(0.01),
+#'          S0 = 0.944, S1plus = 0.99,
+#'          nages = 13, AgeMat = 11,
+#'          lambdaMax = 1.04,
+#'          K1plus = 9000,
+#'          z = 2.39)
 #' @export
 get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
   exploitation.rate <- inv_logit(logit.E)
