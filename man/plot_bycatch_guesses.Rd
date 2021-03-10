@@ -10,9 +10,7 @@ plot_bycatch_guesses(
   lowval,
   cv,
   set_size = 18,
-  print.tiff = FALSE,
   color.palette = c("forestgreen", "orange", "red"),
-  outputdir = "/Users/mcsiple/Dropbox/OMFMarineMammals/Talks",
   lang = "en"
 )
 }
@@ -27,11 +25,7 @@ plot_bycatch_guesses(
 
 \item{set_size}{base size to pass to \code{ggplot}}
 
-\item{print.tiff}{\code{logical} whether or not to write a tiff file to \code{outputdir}}
-
 \item{color.palette}{A vector of colors to represent bycatch levels, from low to high end of range}
-
-\item{outputdir}{If \code{print.tiff = TRUE}, the directory to place tiff file of plot}
 
 \item{lang}{Language selected by the user (character, 2 letters)}
 }
