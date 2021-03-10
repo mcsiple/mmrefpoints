@@ -6,18 +6,19 @@
 #' @param lowval The low end of the user-defined range
 #' @param cv CV of bycatch mortality or bycatch mortality rate
 #' @param set_size base size to pass to \code{ggplot}
-#' @param print.tiff \code{logical} whether or not to write a tiff file to \code{outputdir}
 #' @param color.palette A vector of colors to represent bycatch levels, from low to high end of range
 #' @param lang Language selected by the user (character, 2 letters)
-#' @param outputdir If \code{print.tiff = TRUE}, the directory to place tiff file of plot
 #'
 #' @return A \code{ggplot2} grob showing the distributions of bycatch values based on what the user entered.
 #'
 #' @export
-plot_bycatch_guesses <- function(highval, medval, lowval,
-                                 cv, set_size = 18, print.tiff = FALSE,
-                                 color.palette = c("forestgreen", "orange", "red"),
-                                 outputdir = "/Users/mcsiple/Dropbox/OMFMarineMammals/Talks",
+plot_bycatch_guesses <- function(highval,
+                                 medval,
+                                 lowval,
+                                 cv, set_size = 18,
+                                 color.palette = c("forestgreen",
+                                                   "orange",
+                                                   "red"),
                                  lang = "en") {
   ylab <- switch(lang,
                  "en" = "Bycatch or bycatch rate",
@@ -51,7 +52,7 @@ plot_bycatch_guesses <- function(highval, medval, lowval,
                             high=level_names[3])
   pd = position_dodge(0.25)
 
-  r <-  ggplot(md, aes(x = bycatch.rate, y = q50),position = pd) +
+  r <- ggplot(md, aes(x = bycatch.rate, y = q50),position = pd) +
     geom_errorbar(width = 0.02,
                   aes(ymin = q2.5, ymax = q97.5,group = bycatch.rate),
                   colour="darkgrey",position=pd,size=1.1) + #95% intervals
@@ -71,13 +72,7 @@ plot_bycatch_guesses <- function(highval, medval, lowval,
     ylab(ylab) +
     labs(caption = caption)
 
-  if(print.tiff){
-    tiff(filename = paste(outputdir,"/bycatch_intervals.tiff",sep=""),
-         width = 5, height = 4.5,
-         units = 'in',res=100)
-    print(r)
-    dev.off()
-  }else{return(r)}
+  return(r)
 }
 
 
