@@ -4,13 +4,14 @@
 #' All life history params are as above
 #'
 #' @param logit.E logit transform of bycatch mortality
-#' @param S1plus 
-#' @param nages 
-#' @param AgeMat 
-#' @param lambdaMax 
-#' @param K1plus 
-#' @param z 
-#' @param S0 calf/pup survival
+#' @param S0 Calf/pup survival, a numeric value between 0 and 1
+#' @param S1plus adult survival
+#' @param nages Plus group age in years
+#' @param AgeMat Age at maturity in years (must be equal to or less than nages)
+#' @param lambdaMax Maximum theoretical population growth rate
+#' @param K1plus Carrying capacity in terms of the age 1+ component of the population
+#' @param z Pella-Tomlinson parameter (compensation)
+
 #'
 #' @export
 get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
