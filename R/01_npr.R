@@ -17,6 +17,7 @@
 #' AgeMat = 11, nages = 13, E = 0.8)) # nums per recruit at bycatch rate E
 #' @export
 npr <- function(S0, S1plus, nages, AgeMat, E = 0) {
+  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
   AgePart <- AgeMat + 1 # Age at first parturition
 
   N.vec <- vector(length = nages + 1) # Ages 0 thru nages --> vector 1:(nages+1)
