@@ -32,7 +32,11 @@
 #' InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
 #' N0.w = N0, P0.w = P0,Check=T)
 #' @export
-get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, AgeMat.w = NA, InitDepl.w = NA, z.w = NA, lambdaMax.w = NA, N0.w = NA, P0.w = NA, Check=F) {
+get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, 
+                  nages.w = NA, AgeMat.w = NA, InitDepl.w = NA, 
+                  z.w = NA, lambdaMax.w = NA, 
+                  N0.w = NA, P0.w = NA, 
+                  Check=F) {
   # fecundity at unfished equilibrium
   Fec0 <- 1.0 / N0.w
   FecMax <- getfecmax(S1plus = S1plus.w, S0 = S0.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w)
