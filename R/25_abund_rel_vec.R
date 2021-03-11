@@ -1,14 +1,19 @@
-#' Calculate relative abundance (possibly depracated)
-#' @param traj.list a list of simulation outputs (high.list,med.list,low.lis,zero.list) each of these lists is a list of three, one output at each starting depletion (high, med, low depletion)
+#' Calculate relative abundance
 #'
+#' @param traj.list a list of simulation outputs (high.list,med.list,low.lis,zero.list) each of these lists is a list of three, one output at each starting depletion (high, med, low depletion)
 #' @param K carrying capacity
 #' @param years.vec vector of years to check abundances at. If length = 1, the fn returns relative abundance at that year
+#' @return A vector of relative abundances sorted by bycatch level (highest to lowest)
+#'
+#' 
+#' @export
+#' 
 abund_rel_vec <- function(traj.list, K = NA, years.vec = 10) {
   if (length(traj.list) != 4) {
     stop("Make sure all four outputs are here (high, med, low, zero bycatch)")
   }
   if (is.na(K)) {
-    K <- traj.list[[1]][[1]]$params[1, "K1plus"]
+    K <- traj.list[[1]][[1]][["params"]][1, "K1plus"]
   } # If K undefined, use K from outputs
 
   # Define the zero-bycatch outputs separately:
@@ -23,7 +28,10 @@ abund_rel_vec <- function(traj.list, K = NA, years.vec = 10) {
     for (depl in 1:3) {
       tsl <- traj.sublist[[depl]]
       zsl <- traj.sublist.zero[[depl]]$trajectories
-      relabund[depl] <- abund_rel(traj = tsl$trajectories, zero.traj = zsl, K = K, years.vec = years.vec, fulldist = FALSE)
+      relabund[depl] <- abund_rel(traj = tsl$trajectories, 
+                                  zero.traj = zsl, K = K, 
+                                  years.vec = years.vec, 
+                                  fulldist = FALSE)
     }
     relabund.list[[b]] <- relabund # list order: high, med, low bycatch --> high, med, low depl
   }
