@@ -9,53 +9,58 @@ get_f(
   S0.w = NA,
   S1plus.w = NA,
   nages.w = NA,
-  K1plus.w = NA,
   AgeMat.w = NA,
   InitDepl.w = NA,
   z.w = NA,
   lambdaMax.w = NA,
   N0.w = NA,
-  P0.w = NA
+  P0.w = NA,
+  Check = F
 )
 }
 \arguments{
 \item{f.start}{an initial guess for the bycatch mortality rate E. The default value is E = 0.5}
 
-\item{S0.w}{Calf or pup survival, a numeric value between 0 and 1. (Note: the 'w' suffix indicates that \eqn{z} is in the wrapper function, and is used inside the function by \code{optim})}
+\item{S0.w}{Calf/pup survival, a numeric value between 0 and 1. (Note: the 'w' suffix indicates that \eqn{z} is in the wrapper function, and is used inside the function by \code{optim})}
 
-\item{S1plus.w}{survival for animals age 1 year and older (a numeric value between 0 and 1)}
+\item{S1plus.w}{survival rate for animals age 1 year and older (a numeric value between 0 and 1)}
 
 \item{nages.w}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
 
-\item{K1plus.w}{the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
+\item{AgeMat.w}{Age at maturity in years (assumed to be age at first parturition - 1)}
 
-\item{AgeMat.w}{age at maturity in years (assumed to be age at first parturition - 1)}
+\item{InitDepl.w}{The depletion level to solve for (this is equivalent to 'starting depletion')}
 
-\item{InitDepl.w}{the depletion level to solve for (this is equivalent to 'starting depletion')}
+\item{z.w}{The degree of compensation. The default value is \code{z = 2.39}.}
 
-\item{z.w}{the degree of compensation. The default value is \code{z = 2.39}.}
+\item{lambdaMax.w}{The maximum intrinsic growth rate}
 
-\item{lambdaMax.w}{the maximum intrinsic growth rate}
+\item{N0.w}{unfished numbers per recruit in terms of mature individuals individuals}
 
-\item{N0.w}{numbers per recruit in terms of mature individuals individuals}
+\item{P0.w}{Number of individuals per recruit in terms of individuals aged 1+}
 
-\item{P0.w}{numbers per recruit in terms of aged 1+ individuals individuals}
+\item{Check}{logical; if \code{TRUE}, prints the value to be minimized (should be zero)}
+
+\item{K1plus.w}{The pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
 }
 \value{
-The bycatch rate that would lead to the depletion level \code{InitDepl.w} -- a single value.
+The bycatch rate that would lead to a depletion level of \code{InitDepl.w} -- a single value.
 }
 \description{
-This function solves for the bycatch mortality rate \eqn{E} that gives depletion level \code{InitDepl.w}. It is used within the \code{Projections()} function to get the stable age distribution at which to start the projections.
+This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{Projections()} function to calculate the stable age distribution at which to start the projections.
 }
 \examples{
+Set parameters
+S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
-NPROut <- npr(S0 = .5, S1plus = .944, nages = 25, AgeMat = 18, E = 0)
+NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
 N0 <- NPROut$npr # mature numbers per recruit
 # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 P0 <- NPROut$P1r # 1+ nums per recruit
 
 get_f(f.start = 0.5, 
-S0.w = 0.5, S1plus.w = 0.944, nages.w = 25, K1plus.w = 9000, AgeMat.w = 18, 
-InitDepl.w = 0.9, z.w = 2.39, lambdaMax.w = 1.04, 
-N0.w = N0, P0.w = P0)
+S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
+InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
+N0.w = N0, P0.w = P0,Check=T)
 }

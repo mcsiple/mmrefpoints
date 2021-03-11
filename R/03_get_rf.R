@@ -5,7 +5,6 @@
 #' @param S0 calf or pup survival (numeric value)
 #' @param S1plus adult survival  (numeric value)
 #' @param nages number of age classes-- including plus group age-- in years
-#' @param K1plus adult carrying capacity (number of individuals)
 #' @param AgeMat age at maturity in years
 #' @param z degree of compensation, in the app calculated from the value of MNPL defined by the user
 #' @param A Pella-Tomlinson resilience parameter (see Punt 1999; Annex R).
@@ -17,7 +16,7 @@
 #' @return recruitment given exploitation rate \emph{E} - this value is multiplied by the initial abundance \eqn{N_{init}} to get initial nums at age ( a vector)
 #'
 #' @export
-get_rf <- function(E_in, S0, S1plus, nages, K1plus, AgeMat, z, A, P0, N0) {
+get_rf <- function(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0) {
   NE <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = E_in)$npr
   PE <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = E_in)$P1r
 

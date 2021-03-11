@@ -28,11 +28,11 @@
 #' P0 <- NPROut$P1r # 1+ nums per recruit
 #'
 #' get_f(f.start = 0.5, 
-#' S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, K1plus.w = 9000, AgeMat.w = AgeMat.w,
+#' S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
 #' InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
 #' N0.w = N0, P0.w = P0,Check=T)
 #' @export
-get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, K1plus.w = NA, AgeMat.w = NA, InitDepl.w = NA, z.w = NA, lambdaMax.w = NA, N0.w = NA, P0.w = NA, Check=F) {
+get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, AgeMat.w = NA, InitDepl.w = NA, z.w = NA, lambdaMax.w = NA, N0.w = NA, P0.w = NA, Check=F) {
   # fecundity at unfished equilibrium
   Fec0 <- 1.0 / N0.w
   FecMax <- getfecmax(S1plus = S1plus.w, S0 = S0.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w)
@@ -44,7 +44,7 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, K1plus.w
   logit.start <- logit(f.start)
   to.minimize <- function(lf = logit.start,
                           S0 = S0.w, S1plus = S1plus.w,
-                          nages = nages.w, K1plus = K1plus.w,
+                          nages = nages.w,
                           AgeMat = AgeMat.w, InitDepl = InitDepl.w,
                           z = z.w, lambdaMax = lambdaMax.w,
                           P0 = P0.w, # 1+ adults per recruit @E=0
@@ -63,7 +63,7 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, nages.w = NA, K1plus.w
     if ((1 - Fec0 * NE) / (Fec0 * NE * A) > 1) {
       R.F <- 0
     } else {
-      R.F <- get_rf(E_in = f, S0 = S0,S1plus = S1plus,nages = nages,K1plus = K1plus,AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
+      R.F <- get_rf(E_in = f, S0 = S0,S1plus = S1plus,nages = nages, AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
       #R.F <- (1 - (1 - Fec0 * NE) / (Fec0 * NE * A))^(1 / z) * (R0 * P0 / PE)
     }
     

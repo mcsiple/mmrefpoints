@@ -4,7 +4,7 @@
 \alias{ce}
 \title{Calculate normalized sustainable yield}
 \usage{
-ce(S0, S1plus, nages, K1plus, AgeMat, z, lambdaMax, E, A, P0, N0)
+ce(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0)
 }
 \arguments{
 \item{S0}{Calf/pup survival}
@@ -12,8 +12,6 @@ ce(S0, S1plus, nages, K1plus, AgeMat, z, lambdaMax, E, A, P0, N0)
 \item{S1plus}{1+ survival (usually called "juvenile + adult" in literature)}
 
 \item{nages}{Same as plus group age, called "maximum (lumped) age-class" in Punt (1999) Annex R}
-
-\item{K1plus}{1+ carrying capacity}
 
 \item{AgeMat}{Age at maturity (= age at first parturition - 1)}
 

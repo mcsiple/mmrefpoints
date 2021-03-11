@@ -29,7 +29,7 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
     S0.w = S0.w,
     S1plus.w = S1plus.w,
     nages.w = nages.w,
-    K1plus.w = K1plus.w,
+    #K1plus.w = K1plus.w,
     AgeMat.w = AgeMat.w,
     InitDepl.w = 0.000001, # 0 causes strange behavior
     z.w = z.w,
@@ -42,14 +42,14 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   lims <- logit(c(0.00001, search.limit))
   logit.E <- logit(E.start)
 
-  zero.cross <- stats::uniroot(f = get_diff, interval = lims, tol = 1e-7, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w)
+  zero.cross <- stats::uniroot(f = get_diff, interval = lims, tol = 1e-7, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, z = z.w)
   fmsy <- inv_logit(zero.cross$root)
 
   MSY <- ce(
     S0 = S0.w,
     S1plus = S1plus.w,
     nages = nages.w,
-    K1plus = K1plus.w,
+    #K1plus = K1plus.w,
     AgeMat = AgeMat.w,
     z = z.w,
     lambdaMax = lambdaMax.w,

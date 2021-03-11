@@ -4,7 +4,7 @@
 \alias{get_rf}
 \title{Get recruitment at bycatch mortality rate E}
 \usage{
-get_rf(E_in, S0, S1plus, nages, K1plus, AgeMat, z, A, P0, N0)
+get_rf(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0)
 }
 \arguments{
 \item{E_in}{Bycatch mortality rate}
@@ -14,8 +14,6 @@ get_rf(E_in, S0, S1plus, nages, K1plus, AgeMat, z, A, P0, N0)
 \item{S1plus}{adult survival  (numeric value)}
 
 \item{nages}{number of age classes-- including plus group age-- in years}
-
-\item{K1plus}{adult carrying capacity (number of individuals)}
 
 \item{AgeMat}{age at maturity in years}
 

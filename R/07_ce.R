@@ -4,7 +4,6 @@
 #' @param S0 Calf/pup survival
 #' @param S1plus 1+ survival (usually called "juvenile + adult" in literature)
 #' @param nages Same as plus group age, called "maximum (lumped) age-class" in Punt (1999) Annex R
-#' @param K1plus 1+ carrying capacity
 #' @param AgeMat Age at maturity (= age at first parturition - 1)
 #' @param z degree of compensation
 #' @param E bycatch mortality rate
@@ -16,7 +15,7 @@
 #' @return a single value of normalized yield for exploitation rate E
 #'
 #' @export
-ce <- function(S0, S1plus, nages, K1plus, AgeMat, z, lambdaMax, E, A, P0, N0) {
+ce <- function(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0) {
   npr1plus <- npr(
     S0 = S0,
     S1plus = S1plus,
@@ -29,7 +28,6 @@ ce <- function(S0, S1plus, nages, K1plus, AgeMat, z, lambdaMax, E, A, P0, N0) {
     S0 = S0,
     S1plus = S1plus,
     nages = nages,
-    K1plus = K1plus,
     AgeMat = AgeMat,
     z = z,
     A = A,
