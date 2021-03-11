@@ -1,7 +1,7 @@
 #' Get relative recruitment at bycatch mortality rate E
 #'
 #' @description calculates recruitment at bycatch mortality rate \emph{E}, relative to a no-bycatch scenario
-#' @param S0 calf or pup survival (numeric value)
+#' @param S0 calf/pup survival (numeric value)
 #' @param S1plus adult survival  (numeric value)
 #' @param nages number of age classes-- including plus group age-- in years
 #' @param AgeMat age at maturity in years
