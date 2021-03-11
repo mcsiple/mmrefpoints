@@ -82,7 +82,6 @@ Symbol=c(#User-specified parameters
          "$C_{y,a}$")
 
 Description=c(#User-specified parameters
-           
               "Pup or calf survival",
               "Survival of individuals aged 1+",
               "Plus-group age",
