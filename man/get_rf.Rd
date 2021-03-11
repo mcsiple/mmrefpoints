@@ -2,7 +2,7 @@
 % Please edit documentation in R/03_get_rf.R
 \name{get_rf}
 \alias{get_rf}
-\title{Get recruitment at bycatch mortality rate E}
+\title{Get relative recruitment at bycatch mortality rate E}
 \usage{
 get_rf(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0)
 }
@@ -31,4 +31,15 @@ recruitment given exploitation rate \emph{E} - this value is multiplied by the i
 }
 \description{
 calculates recruitment at bycatch mortality rate \emph{E}
+}
+\examples{
+S0 = 0.944; S1plus = 0.99; nages = 25; AgeMat = 17; z = 2.39; lambdaMax = 1.04;
+NPROut <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
+N0 <- NPROut$npr # mature numbers per recruit
+P0 <- NPROut$P1r # 1+ nums per recruit
+Fec0 <- 1.0 / N0
+FecMax <- getfecmax(S1plus = S1plus, S0 = S0, AgeMat = AgeMat, lambdaMax = lambdaMax)
+A <- (FecMax - Fec0) / Fec0
+get_rf(E_in = 0.01, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A,P0 = P0,N0 = N0)
+
 }
