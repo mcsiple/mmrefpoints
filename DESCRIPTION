@@ -28,7 +28,6 @@ Imports:
     shinyBS,
     shinyLP,
     extrafont,
-    gifski,
     gridExtra,
     here,
     xts,
