@@ -21,9 +21,9 @@ plot_pinnipeds <- function(dat, central = FALSE, set_size = 14) {
 
   clean <- dat %>%
     mutate(
-      Value = as.numeric(Value),
-      Range_lo = as.numeric(Range_lo),
-      Range_hi = as.numeric(Range_hi)
+      Value = suppressWarnings(as.numeric(Value)),
+      Range_lo = suppressWarnings(as.numeric(Range_lo)),
+      Range_hi = suppressWarnings(as.numeric(Range_hi))
     ) %>%
     mutate(Species = str_replace(Species, pattern = "\\(", replacement = "\\(\\<i\\>")) %>%
     mutate(Species = str_replace(Species, pattern = "\\)", replacement = "\\<\\/i\\>\\)")) %>%
