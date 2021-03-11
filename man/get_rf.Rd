@@ -30,7 +30,7 @@ A = (FecMax - Fec0) / Fec0 (num)}
 recruitment given exploitation rate \emph{E} - this value is multiplied by the initial abundance \eqn{N_{init}} to get initial nums at age ( a vector)
 }
 \description{
-calculates recruitment at bycatch mortality rate \emph{E}, relative to a non-bycatch scenario
+calculates recruitment at bycatch mortality rate \emph{E}, relative to a no-bycatch scenario
 }
 \examples{
 S0 = 0.944; S1plus = 0.99; nages = 25; AgeMat = 17; z = 2.39; lambdaMax = 1.04;
