@@ -829,9 +829,8 @@ app_server <- function( input, output, session ) {
       select(-depletion, -zero) %>%
       rename_with(~newranges, c("name", "low", "med", "high"))
     
-    
-    print(PM)
-    dput(performance.table())
+    #print(PM)
+    #dput(performance.table())
     kableExtra::kable(PM) %>%
       kableExtra::column_spec(1, width = "10em") %>%
       kableExtra::column_spec(2, color = textvalues[3], width = "7em") %>%
