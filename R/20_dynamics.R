@@ -5,7 +5,7 @@
 #' @details
 #' The population model is a single-sex age-structured model in which the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults \eqn{\tildeN}, the fecundity (pregnancy rate) at pre-exploitation equilibrium \eqn{f_0}, the maximum theoretical fecundity rate fmax, the degree of compensation \eqn{z}, and the abundance of individuals aged 1+ \eqn{N_{y+1}^{1+}} relative to carrying capacity \eqn{K^{1+}}. This function can be used alone but is intended to be used with \code{Projections()} to generate multiple simulations.
 #'
-#' @param S0 Calf or pup survival (a value between 0 and 1)
+#' @param S0 Calf/pup survival (a value between 0 and 1)
 #' @param S1plus Survival for animals age 1 year and older (a value between 0 and 1)
 #' @param K1plus The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance
 #' @param AgeMat Age at maturity in years (assumed to be age at first parturition - 1)
