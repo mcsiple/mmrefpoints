@@ -28,7 +28,9 @@
 #'  z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
 #' print(test)
 #' @export
-dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl, ConstantCatch = NA, ConstantF = NA, z, nyears, nages, lambdaMax) {
+dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl, 
+                     ConstantCatch = NA, ConstantF = NA, z, 
+                     nyears, nages, lambdaMax) {
   # Checks
   if (length(ConstantCatch) > 1 & length(ConstantF) > 1) {
     stop("Cannot have both constant F and constant catch- choose one and set the other to NA!")
