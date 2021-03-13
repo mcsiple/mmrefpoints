@@ -35,6 +35,7 @@ projections <- function(NOut,
   K1plus <- lh.params$K1plus
   AgeMat <- lh.params$AgeMat
   nages <- lh.params$PlusGroupAge
+  if(!"PlusGroupAge" %in% names(lh.params)){nages = lh.params$nages}
   z <- lh.params$z
   lambdaMax <- lh.params$lambdaMax
 
