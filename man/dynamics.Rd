@@ -19,7 +19,7 @@ dynamics(
 )
 }
 \arguments{
-\item{S0}{Calf or pup survival (a value between 0 and 1)}
+\item{S0}{Calf/pup survival (a value between 0 and 1)}
 
 \item{S1plus}{Survival for animals age 1 year and older (a value between 0 and 1)}
 

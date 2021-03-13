@@ -9,7 +9,7 @@ get_rf(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0)
 \arguments{
 \item{E_in}{Bycatch mortality rate}
 
-\item{S0}{calf or pup survival (numeric value)}
+\item{S0}{calf/pup survival (numeric value)}
 
 \item{S1plus}{adult survival  (numeric value)}
 
