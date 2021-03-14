@@ -1052,16 +1052,14 @@ app_server <- function( input, output, session ) {
       # Copy the report file to a temporary directory before processing it, in
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
-      # tempReport <- file.path(tempdir(), "report.Rmd")
-      # file.copy(from = here::here("R","report.Rmd"), tempReport, overwrite = TRUE)
       tempReport <- file.path(tempdir(), "report.Rmd")
       file.copy(from = app_sys("report","report.Rmd"), tempReport, overwrite = TRUE)
       
-      # NOTE: Need to fix this and clean it up a little
+      # Life history params and MNPL
       lh.params <- as.data.frame(lh.params2())
       mnpl <- input$MNPL.usr
       
-      # performance table
+      # Performance table
       xx <- performance.table()
       
       if (input$crad == "n_yr") {
@@ -1069,10 +1067,12 @@ app_server <- function( input, output, session ) {
       } else {
         catchlevels <- input$bycatchrate
       }
-      # print(catchlevels)
       
       tm <- xx %>%
-        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1], ifelse(bycatch == "high", catchlevels[2], ifelse(bycatch == "zero", 0, stats::median(catchlevels))))) %>%
+        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1], 
+                                  ifelse(bycatch == "high", catchlevels[2], 
+                                         ifelse(bycatch == "zero", 0, 
+                                                stats::median(catchlevels))))) %>%
         select(depletion, `Bycatch`, prebuild50, prebuild100, abundrel10, abundrel20, abundrel50) %>%
         rename(
           `Initial depletion (N/K)` = depletion,
