@@ -6,9 +6,6 @@
 #' @noRd
 app_server <- function( input, output, session ) {
   # List the first level callModules here
-  # output$R_working_dir <- renderText({
-  #   print(here::here())
-  # })
   
   # TRANSLATOR --------------------------------------------------------------
   
@@ -575,10 +572,6 @@ app_server <- function( input, output, session ) {
     # }) # end "isolate" with go button
   })
   
-  output$testPlot <- renderPlot({
-    plot(1:20, 1:20)
-  })
-  
   output$yieldPlot <- renderPlot({
     plot_yield_curve(
       lh.params = lh.params2(),
@@ -1020,6 +1013,7 @@ app_server <- function( input, output, session ) {
           theme_minimal(base_size = 24) +
           theme(legend.position = "none")
         
+        print(isRunning())
         gganimate::anim_save(
           "outfile.gif",
           gganimate::animate(p, renderer = gganimate::magick_renderer(loop = F))
@@ -1034,7 +1028,7 @@ app_server <- function( input, output, session ) {
         )
       } else {
         return(list(
-          src = "www/NoRecovery.png",
+          src = app_sys("app","www","NoRecovery.png"),
           contentType = "image/png",
           alt = "NoRecoveryPossible"
         ))
@@ -1470,7 +1464,8 @@ app_server <- function( input, output, session ) {
             column(
               6,
               numericInput("Rmax.usr", label = "\\( R_{MAX} \\)", value = NA),
-              numericInput("fr.usr", label = "\\( F_R \\)", value = 0.5, step = 0.1, max = 1, min = 0)
+              numericInput("fr.usr", label = "\\( F_R \\)", value = 0.5, 
+                           step = 0.1, max = 1, min = 0)
             )
           ),
           shinyBS::bsTooltip(
