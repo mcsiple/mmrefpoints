@@ -1034,7 +1034,7 @@ app_server <- function( input, output, session ) {
         ))
       }
     },
-    deleteFile = TRUE
+    deleteFile = FALSE
   ) # end of renderImage
   
   

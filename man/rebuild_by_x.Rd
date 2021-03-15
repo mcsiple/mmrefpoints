@@ -17,24 +17,24 @@ rebuild_by_x(
 \arguments{
 \item{needf.start}{starting guess for the bycatch mortality rate needed to recover the population}
 
-\item{init.depl.w}{initial depletion (fraction of K)}
+\item{init.depl.w}{initial depletion (a fraction)}
 
-\item{goal.w}{what goal to rebuild to (MNPL is the simplest one)}
+\item{goal.w}{Population size goal to rebuild to, expressed as a whole number}
 
 \item{desired.prob.w}{what probability you want (e.g., 75\% probability that the population will rebuild to X in Y years)}
 
-\item{when.w}{the year Y when you want rebuilding by}
+\item{when.w}{the year Y when rebuilding is desired by (number of years into future; current year = 0)}
 
-\item{lh.params.w}{life history params (inputs for Projections())}
+\item{lh.params.w}{a list of life history parameters used by \code{projections()}}
 
 \item{fixed.cv.catch.w}{the CV of the bycatch rate - should be fixed}
 }
 \value{
-The bycatch rate that will result in the specified rebuilding goal
+The bycatch rate that will result in the specified rebuilding goal. If Shiny is running, it will return a list containing the bycatch rate \code{f} and a matrix of guesses that \code{optim()} has searched through to find the solution.
 }
 \description{
 takes a performance goal (what level you want to rebuild to) and a time window (how long you want that to take) and calculates what the bycatch rate needs to be
 }
 \examples{
-rebuild_by_x(needf.start = 0.05, init.depl.w = 0.5, goal.w = 4500, desired.prob.w=0.8, when.w = 100, lh.params.w = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), fixed.cv.catch.w = 0)
+rebuild_by_x(needf.start = 0.001, init.depl.w = 0.5, goal.w = 4500, desired.prob.w = 0.8, when.w = 100, lh.params.w = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), fixed.cv.catch.w = 0)
 }
