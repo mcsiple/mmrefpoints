@@ -13,10 +13,10 @@ make_ptable(traj.list, depletion, lh.params, mnpl)
 
 \item{lh.params}{A list of life history parameters}
 
-\item{mnpl}{Max net productivity level (defined by user)}
+\item{mnpl}{Max net productivity level (MNPL). If MNPL is specified, that value is used. If the user does not specify MNPL, it is calculated from the life history parameters.}
 }
 \value{
-
+A dataframe containing performance metrics.
 }
 \description{
 Make a performance table
