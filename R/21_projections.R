@@ -39,6 +39,14 @@ projections <- function(NOut,
   z <- lh.params$z
   lambdaMax <- lh.params$lambdaMax
 
+  # Checks for parameter values
+  if(S0 >= 1){stop("Calf/pup survival must be between 0 and 1")}
+  if(S1plus >= 1){stop("Adult survival must be between 0 and 1")}
+  if(AgeMat > nages){stop("Age at maturity must be less than plus group age")}
+  if(!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)){
+    stop("You cannot provide both bycatch as a whole number and as a rate. 
+         Please specify either ConstantBycatch or ConstantRateBycatch.")}
+  
   set.seed(123)
 
   # Observation error
@@ -51,7 +59,6 @@ projections <- function(NOut,
     # INDIVIDUALS PER YEAR
     if (!is.na(ConstantBycatch$Catch)) {
       # Observation error
-      # InitVal <- exp(rnorm(1,meanlog,sdlog.obs)) # "true" abundance is distributed around the mean that the user provides
       InitVal <- rlnorm(1, meanlog, sdlog.obs)
       sdlog.catches <- sqrt(log(ConstantBycatch$CV^2 + 1)) # should be ~cv when sd is low (<0.5)
       catch.vec <- rlnorm(n = nyears, meanlog = log(ConstantBycatch$Catch), sdlog = sdlog.catches)
@@ -69,8 +76,6 @@ projections <- function(NOut,
     }
     # PROPORTION
     if (!is.na(ConstantRateBycatch$Rate)) {
-
-      # InitVal <- exp(rnorm(1,meanlog,sdlog.obs)) # "true" abundance is distributed around the mean that the user provides
       InitVal <- rlnorm(1, meanlog, sdlog.obs)
       CV <- ifelse(ConstantRateBycatch$Rate == 0, 0, ConstantRateBycatch$CV) # betaval() doesn't work if mn=0 and sd>0
       # Generate random catch rates around mean
@@ -90,7 +95,7 @@ projections <- function(NOut,
         S0 = S0, S1plus = S1plus, K1plus = K1plus, AgeMat = AgeMat, InitDepl = InitVal / K1plus,
         ConstantF = f.vec,
         z = z, nyears = nyears, nages = nages, lambdaMax = lambdaMax
-      )$TotalPop # TotalPop is 1+ component
+      )$TotalPop # 1+ component of population
 
       param.vec <- unlist(lh.params)
       if (NTries < NOut) {
