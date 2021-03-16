@@ -1,7 +1,7 @@
-#' Run multiple simulations of a marine mammal population with bycatch mortality
+#' Run simulations of a marine mammal population with bycatch mortality
 #'
 #' @description - generates several projections, stochasticity is in the number of catches from year to year
-#' @param lh.params - life history parameters (as a list)
+#' @param lh.params - life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax
 #' @param NOut - number of simulations
 #' @param ConstantBycatch Mean and CV of number of animals caught as bycatch each year
 #' @param ConstantRateBycatch Mean and CV of bycatch rate
@@ -9,9 +9,16 @@
 #' @param lh.params a list of life history parameters
 #' @param nyears number of years to do projections
 #' @param obs_CV observation CV. Default to 1 for simple projections
-#' @return list of outputs from simulations: 'trajectories' matrix has simulations
+#' @return list of outputs from simulations: 'params' contains parameter values for each trajectory; 'trajectories' matrix contains simulation outputs; 'fishing.rates' contain the bycatch rates for each year in each simulation; InitDepl returns the initial depletion for the projections; ConstantBycatch provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); ConstantRateBycatch contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate.
 #' other params are the same as in the Dynamics() function
 #'
+#' @examples 
+#' projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
+#' InitDepl = 0.8,
+#' lh.params = list(S0=0.944,S1plus=0.99,
+#' K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02),
+#' nyears = 50, obs_CV = 0)
+#' 
 #' @export
 projections <- function(NOut,
                         ConstantBycatch = list(Catch = NA, CV = NA),
@@ -31,7 +38,7 @@ projections <- function(NOut,
   # Life history params
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
-  fmax <- lh.params$fmax
+  #fmax <- lh.params$fmax
   K1plus <- lh.params$K1plus
   AgeMat <- lh.params$AgeMat
   nages <- lh.params$PlusGroupAge
@@ -105,7 +112,8 @@ projections <- function(NOut,
       }
     }
   } # end of sims
-  trajectories <- trajectories[-1, ] # trim top row of zeroes
+  fishing.rates <- fishing.rates[-1, ] # trim top row of zeroes
+  trajectories <- trajectories[-1, ]
   return(list(
     params = params[-1, ],
     trajectories = trajectories,
