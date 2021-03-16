@@ -53,6 +53,8 @@ projections <- function(NOut,
   if(!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)){
     stop("You cannot provide both bycatch as a whole number and as a rate. 
          Please specify either ConstantBycatch or ConstantRateBycatch.")}
+  if(lambdaMax < 1){stop("LambdaMax should be greater than 1. 
+                         Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")}
   
   set.seed(123)
 
