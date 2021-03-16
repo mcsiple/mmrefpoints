@@ -2,7 +2,7 @@
 % Please edit documentation in R/21_projections.R
 \name{projections}
 \alias{projections}
-\title{Run multiple simulations of a marine mammal population with bycatch mortality}
+\title{Run simulations of a marine mammal population with bycatch mortality}
 \usage{
 projections(
   NOut,
@@ -30,9 +30,17 @@ projections(
 \item{obs_CV}{observation CV. Default to 1 for simple projections}
 }
 \value{
-list of outputs from simulations: 'trajectories' matrix has simulations
+list of outputs from simulations: 'params' contains parameter values for each trajectory; 'trajectories' matrix contains simulation outputs; 'fishing.rates' contain the bycatch rates for each year in each simulation; InitDepl returns the initial depletion for the projections; ConstantBycatch provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); ConstantRateBycatch contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate.
 other params are the same as in the Dynamics() function
 }
 \description{
 - generates several projections, stochasticity is in the number of catches from year to year
+}
+\examples{
+projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
+InitDepl = 0.8,
+lh.params = list(S0=0.944,S1plus=0.99,
+K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02),
+nyears = 50, obs_CV = 0)
+
 }

@@ -47,13 +47,13 @@ projections <- function(NOut,
   lambdaMax <- lh.params$lambdaMax
 
   # Checks for parameter values
-  if(S0 >= 1){stop("Calf/pup survival must be between 0 and 1")}
-  if(S1plus >= 1){stop("Adult survival must be between 0 and 1")}
-  if(AgeMat > nages){stop("Age at maturity must be less than plus group age")}
+  if(S0 >= 1){warning("Calf/pup survival must be between 0 and 1")}
+  if(S1plus >= 1){warning("Adult survival must be between 0 and 1")}
+  if(AgeMat > nages){warning("Age at maturity must be less than plus group age")}
   if(!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)){
-    stop("You cannot provide both bycatch as a whole number and as a rate. 
+    warning("You cannot provide both bycatch as a whole number and as a rate. 
          Please specify either ConstantBycatch or ConstantRateBycatch.")}
-  if(lambdaMax < 1){stop("LambdaMax should be greater than 1. 
+  if(lambdaMax < 1){warning("LambdaMax should be greater than 1. 
                          Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")}
   
   set.seed(123)
@@ -114,8 +114,11 @@ projections <- function(NOut,
       }
     }
   } # end of sims
-  fishing.rates <- fishing.rates[-1, ] # trim top row of zeroes
+  
+  if(!is.null(nrow(fishing.rates))){
+    fishing.rates <- fishing.rates[-1, ]} # trim top row of zeroes for cases where it's entered as a rate instead of a absolute # per year
   trajectories <- trajectories[-1, ]
+  
   return(list(
     params = params[-1, ],
     trajectories = trajectories,
