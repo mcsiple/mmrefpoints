@@ -52,8 +52,7 @@ The population model is a single-sex age-structured model in which the number of
 }
 \examples{
 # Generate a time series of abundance for a bowhead whale
-Dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
+dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
  InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), 
  z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
-print(test)
 }
