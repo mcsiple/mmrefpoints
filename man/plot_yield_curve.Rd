@@ -16,7 +16,7 @@ plot_yield_curve(lh.params, z, MNPL_in, lang = "en")
 \item{lang}{language selected by the user (character)}
 }
 \value{
-
+a ggplot object showing depletion (1+ population size relative to K) vs. production. In fisheries this is a yield curve; in marine mammal management it shows where the productivity level is highest, i.e., the Maximum Net Productivity Level (MNPL).
 }
 \description{
 Yield curve for Shiny

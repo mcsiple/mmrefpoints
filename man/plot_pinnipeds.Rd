@@ -14,7 +14,7 @@ plot_pinnipeds(dat, central = FALSE, set_size = 14)
 \item{set_size}{Base size for plot}
 }
 \value{
-
+a plotly interactive plot showing life history parameters for pinnipeds.
 }
 \description{
 Make the table on the documentation tab of the app, which shows the range of pinniped life history parameters

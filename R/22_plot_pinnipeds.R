@@ -4,7 +4,7 @@
 #' @param central Whether or not to plot a line showing the central tendency of all the parameters
 #' @param set_size Base size for plot
 #'
-#' @return
+#' @return a plotly interactive plot showing life history parameters for pinnipeds.
 #' @export
 #'
 #' @examples

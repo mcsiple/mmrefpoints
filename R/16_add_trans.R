@@ -2,13 +2,14 @@
 #'
 #' @param color input color
 #' @param trans degree of transparency - a numeric values between 0 and 255 where 255 is fully visible)
-#' @details This function adds transparancy to a color. It is originally by Tim Essington. Define transparancy with an integer between 0 and 255, 0 being fully transparant and 255 being fully visible. Works with either color and trans a vector of equal length, or one of the two of length 1.
-#' @return
-#' @export
+#'
+#' @details This function adds transparency to a color. It is originally by Tim Essington. Define transparency with an integer between 0 and 255, 0 being fully transparent and 255 being fully visible. Works with either color and trans a vector of equal length, or one of the two of length 1.
+#' @return a hex code for the transparent version of \code{color}
 #'
 #' @examples
 #' x <- add_trans("red", 100)
 #' print(x)
+#' @export
 add_trans <- function(color, trans) {
   if (length(color) != length(trans) & !any(c(length(color), length(trans)) == 1)) stop("Vector lengths not correct")
   if (length(color) == 1 & length(trans) > 1) color <- rep(color, length(trans))

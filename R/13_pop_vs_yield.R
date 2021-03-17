@@ -122,6 +122,8 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
         print(paste("approx MNPL",round(rel1plus[maxyield],digits=2)))
         print(paste("approx FMSY",round(E.vec[maxyield],digits=5)))
       }
-      if(add.legend){legend("topright",lty=c(1,1,1),col=cols,legend = c("z = 1","z = 2.39","z = 5.99"))}
+      if(add.legend){legend("topright",lty=c(1,1,1),
+                            col=cols,
+                            legend = c("z = 1","z = 2.39","z = 5.99"))}
     } # end base R version
 }

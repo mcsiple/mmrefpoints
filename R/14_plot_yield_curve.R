@@ -6,7 +6,7 @@
 #' @param MNPL_in the value of Maximum Net Productivity Level (MNPL) that results in
 #' @param lang language selected by the user (character)
 #'
-#' @return
+#' @return a ggplot object showing depletion (1+ population size relative to K) vs. production. In fisheries this is a yield curve; in marine mammal management it shows where the productivity level is highest, i.e., the Maximum Net Productivity Level (MNPL).
 #' @export
 #'
 #' @examples

@@ -43,7 +43,7 @@ golem::add_css_file( "custom" )
 
 ## DATA! ----------
 usethis::use_data(dat) #Pinniped parameters - Data.csv
-usethis::use_data(lh,overwrite = TRUE) #LHTable.csv
+usethis::use_data(lh) #LHTable.csv
 
 ## Tests ----
 ## Add one line by test you want to create

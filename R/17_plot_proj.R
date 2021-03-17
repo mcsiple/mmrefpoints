@@ -45,8 +45,13 @@
 #'   lh.params = parms,
 #'   nyears = 100)
 
-#' x <- plot_proj(high = high.simple,med = med.simple,low = low.simple,years.plot = 50,ylims = c(0, parms$K1plus),InitDepl = initdepl, 
-#' K1plus =parms$K1plus#' )
+#' x <- plot_proj(high = high.simple,
+#' med = med.simple,
+#' low = low.simple,
+#' years.plot = 50,
+#' ylims = c(0, parms$K1plus),InitDepl = initdepl, 
+#' K1plus =parms$K1plus)
+#' 
 #' x
 #' 
 #' @export

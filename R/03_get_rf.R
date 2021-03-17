@@ -21,9 +21,11 @@
 # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 #' P0 <- NPROut$P1r # 1+ nums per recruit
 #' Fec0 <- 1.0 / N0
-#' FecMax <- getfecmax(S1plus = S1plus, S0 = S0, AgeMat = AgeMat, lambdaMax = lambdaMax)
+#' FecMax <- getfecmax(S1plus = S1plus, S0 = S0, 
+#' AgeMat = AgeMat, lambdaMax = lambdaMax)
 #' A <- (FecMax - Fec0) / Fec0
-#' get_rf(E_in = 0.01, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A,P0 = P0,N0 = N0)
+#' get_rf(E_in = 0.01, S0 = S0, S1plus = S1plus, 
+#' nages = nages, AgeMat = AgeMat, z = z, A = A,P0 = P0,N0 = N0)
 #' 
 #' @export
 get_rf <- function(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0) {
