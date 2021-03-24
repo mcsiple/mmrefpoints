@@ -20,7 +20,7 @@ pop_vs_yield(
 
 \item{add.legend}{logical; whether or not to add a legend}
 
-\item{ggp}{logical; whether to plot in ggplot (default is base R)}
+\item{ggp}{logical; whether to plot in ggplot; set to \code{FALSE} for base R plot.}
 
 \item{linecolor}{color of yield curve line}
 
