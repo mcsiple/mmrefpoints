@@ -19,6 +19,7 @@
 #' @param med.d3 a list containing the middle bycatch value and highest starting depletion
 #' @param low.d3 a list containing the lowest bycatch value and highest starting depletion
 #' @param ylims plot y limits
+#' @param lang language to use. "en" = English; "es" = Spanish; "fr" = French.
 #'
 #' @return A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{Projections()}.
 #'

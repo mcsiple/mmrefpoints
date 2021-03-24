@@ -56,6 +56,8 @@ multiplot_proj(
 \item{InitDepls}{a vector of initial depletion levels; if the user has selected "show multiple depletion levels" in the app, this vector is automatically the depletion they entered, 75 percent of that value ("low" depletion) and 125 percent of that value ("high depletion")}
 
 \item{color.palette}{A vector of length 3 giving the color values for low, medium, and high bycatch mortality or bycatch mortality rate}
+
+\item{lang}{language to use. "en" = English; "es" = Spanish; "fr" = French.}
 }
 \value{
 A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{Projections()}.
