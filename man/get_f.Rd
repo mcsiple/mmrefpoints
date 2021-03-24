@@ -40,8 +40,6 @@ get_f(
 \item{P0.w}{Number of individuals per recruit in terms of individuals aged 1+}
 
 \item{Check}{logical; if \code{TRUE}, prints the value to be minimized (should be zero)}
-
-\item{K1plus.w}{The pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
 }
 \value{
 The bycatch rate that would lead to a depletion level of \code{InitDepl.w} -- a single value.
@@ -51,7 +49,7 @@ This function solves for the bycatch mortality rate \eqn{E} that gives a pre-spe
 }
 \examples{
 Set parameters
-S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
 NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
