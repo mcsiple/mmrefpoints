@@ -4,7 +4,7 @@
 \alias{prob_rebuilt_goal}
 \title{Calculate the probability of reaching a rebuilding goal}
 \usage{
-prob_rebuilt_goal(traj, goal = 0.5 * lh.params.test$K1plus, rebuild.yr = 100)
+prob_rebuilt_goal(traj, goal = 4500, rebuild.yr = 100)
 }
 \arguments{
 \item{traj}{- a matrix of trajectories, with rows=nsims and cols=nyears}
