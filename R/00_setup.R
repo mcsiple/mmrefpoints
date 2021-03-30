@@ -22,7 +22,7 @@ splash_en <- "<div class='jumbotron'>
 
 splash_es <- "<div class='jumbotron'>
   <h2>Bienvenido a la herramienta de exploración de impactos de la captura incidental de mamíferos marinos</h2>
-  <p>Esta herramienta muestra las proyecciones de población bajo diferentes niveles de mortalidad por captura incidental, según la información que proporcione el usuario. También puede usarlo para calcular los parámetros para el Potential Biological Removal (PBR).</p>
+  <p>Esta herramienta muestra las proyecciones de poblaciones de mamíferos marinos bajo diferentes niveles de mortalidad por captura incidental, según la información que proporcione el usuario. También puede usarlo para calcular los parámetros para Remoción Biológica Potencial (Potential Biological Removal; PBR).</p>
 </div>"
 
 splash_fr <- "<div class='jumbotron'>
