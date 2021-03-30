@@ -12,7 +12,7 @@
 #' @param color.palette a vector of three colors to use for low, medium and high bycatch rates
 #' @param lang language selected by the user (character)
 #'
-#' @return A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{spaghetti ==TRUE}),  from \code{Projections()}.
+#' @return A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{is.numeric(spaghetti)}),  from \code{Projections()}.
 #' @examples 
 #' parms <- list(S0=0.944,S1plus=0.99,
 #' K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02)
