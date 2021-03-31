@@ -1495,7 +1495,7 @@ app_server <- function( input, output, session ) {
           ),
           p(strong("0.1-0.3"), i18n$t(" for endangered species or stocks known to be declining")),
           p(strong("0.4-0.5"), i18n$t(" for threatened or depleted species, and for stocks of unknown status")),
-          p(strong("up to 1.0"), i18n$t(" for stocks known to be at their optimum sustainable population (OSP) level, or of unknown status but known to be increasing")),
+          p(strong(i18n$t("up to 1.0")), i18n$t(" for stocks known to be at their optimum sustainable population (OSP) level, or of unknown status but known to be increasing")),
           br(),
           h4(i18n$t("What if I don't have a good abundance or bycatch estimate?")),
           p(
