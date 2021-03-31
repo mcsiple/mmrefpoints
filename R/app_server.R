@@ -506,7 +506,7 @@ app_server <- function( input, output, session ) {
   })
   
   output$MultiDeplNote <- renderText({
-    paste("Results will still be based on the abundance and depletion you entered.")
+    paste("Results will still be based on the abundance and depletion level you indicated above; the values are 75%, 100%, and 125% of that depletion level.")
   })
   
   # Projection plots (advanced) ---------------------------------------------
@@ -909,7 +909,9 @@ app_server <- function( input, output, session ) {
         round(PBR.metrics()$Rmax, digits = 2)
       )
     )
-    kableExtra::kable(PB, escape = FALSE) %>%
+    PB %>%
+      dplyr::mutate_if(is.numeric, funs(as.character(signif(., 2)))) %>%
+      kableExtra::kable(escape = FALSE) %>%
       kableExtra::kable_styling("striped")
   }
   
@@ -970,7 +972,7 @@ app_server <- function( input, output, session ) {
   
   output$solvePMs <- function() { # kableExtra table
     goal_label <- switch(input$selected_language,
-                         "en" = "Max bycatch rate to reach goal",
+                         "en" = "Maximum bycatch rate to reach goal",
                          "es" = "Máxima captura incidental para alcanzar el objetivo",
                          "fr" = "Taux maximal de prises accessoires pour atteindre l'objectif"
     )
@@ -1148,14 +1150,14 @@ app_server <- function( input, output, session ) {
           h3(i18n$t("Simple Projections")),
           br(),
           br(),
-          p(i18n$t("This tab shows model projections of abundance, given very limited data. To change the projections to fit your case:")),
+          p(i18n$t("This tab produces model projections of abundance, given very limited data. To change the projections to fit your case:")),
           tags$ol(
             tags$li(i18n$t("Choose the life history type that most closely resembles your marine mammal of interest.")),
             tags$li(i18n$t("Enter the current population size.")),
             tags$li(i18n$t("Configure the projection to use one of the following:")),
             tags$ul(
               tags$li(i18n$t("Numbers per year - the number of mammals killed each year")),
-              tags$li(i18n$t("Mortality rate - mammals killed each year as a proportion of the population"))
+              tags$li(i18n$t("Mortality rate - mammals killed each year as a proportion of the number of animals 1 and older"))
             )
           ), # /tags$ol
           br(),
@@ -1246,7 +1248,7 @@ app_server <- function( input, output, session ) {
             tags$li(i18n$t("Configure the projection to use one of the following:")),
             tags$ul(
               tags$li(i18n$t("Numbers per year - the number of mammals killed each year")),
-              tags$li(i18n$t("Mortality rate - mammals killed each year as a proportion of the size of the population"))
+              tags$li(i18n$t("Mortality rate - mammals killed each year as a proportion of the number of animals 1 and older"))
             ),
             tags$li(i18n$t("Enter a value for the Maximum Net Productivity Level (MNPL) as a proportion of carrying capacity (K)."))
           ),
@@ -1419,7 +1421,7 @@ app_server <- function( input, output, session ) {
             id = "PMkite",
             title = i18n$t("Outer edge = best performance. All performance measures are on a 0-1 scale.")
           ),
-          p(i18n$t("These plots show projected marine mammal population abundance relative to their carrying capacity K and an 'unfished' (no bycatch) state. The x axis represents the number of years after the start of the projections, and the violin plots show probability distributions.")),
+          p(i18n$t("These plots show projected marine mammal population abundance relative to its carrying capacity K and an 'unfished' (no bycatch) state. The x axis represents the number of years after the start of the projections, and the violin plots show probability distributions.")),
           fluidRow(
             column(6, plotOutput("relAbund")),
             column(6, plotOutput("relUnfished"))
@@ -1439,8 +1441,8 @@ app_server <- function( input, output, session ) {
               # tags$li("If NMIN and Nbest are the same, you must enter a survey CV of abundance."), #txt73
               tags$div(HTML(i18n$t("<li>If N<sub>MIN</sub> and N<sub>BEST</sub> are the same, you must enter a survey CV of abundance.</li>"))),
               tags$li(i18n$t("For this table to give the correct values, the user has to provide an estimate of the population size. Otherwise, the numbers below will not be based on a real population size.")),
-              tags$li(i18n$t("You will need to enter these values in the PBR calculator tab in order to get a value for PBR."))
-            ) # txt75
+              tags$li(i18n$t("You will need to enter these values in the PBR calculator tab in order to calculate a value for PBR."))
+            )
           )
         ), # end advanced tab
         
@@ -1512,11 +1514,11 @@ app_server <- function( input, output, session ) {
         tabPanel(
           i18n$t("Solve for Bycatch"),
           h4(i18n$t("Calculate the bycatch rate necessary to achieve a recovery goal")),
-          p(i18n$t("If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the max bycatch rate that will allow you to achieve your goal.")),
+          p(i18n$t("If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the maximum bycatch rate that will allow you to achieve your goal.")),
           br(),
           p(
             strong(i18n$t("NOTE:")),
-            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), em(i18n$t("Get max bycatch rate"))
+            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), em(i18n$t("Get maximum bycatch rate"))
           ),
           column(
             6,
@@ -1533,7 +1535,7 @@ app_server <- function( input, output, session ) {
                         min = 0.01, max = 1, step = 0.01, value = 0.6
             ),
             actionButton("solveButton1",
-                         label = i18n$t("Get max bycatch rate"),
+                         label = i18n$t("Get maximum bycatch rate"),
                          icon("cog", lib = "glyphicon", "fa-2x"),
                          style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
             )
