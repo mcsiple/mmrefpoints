@@ -17,7 +17,7 @@ i18n <- shiny.i18n::Translator$new(translation_json_path = system.file(package =
 # Splash page jumbotron
 splash_en <- "<div class='jumbotron'>
   <h2>Welcome to the Marine Mammal Bycatch Impacts Exploration Tool</h2>
-  <p>This tool shows population projections under different bycatch mortality levels, based on information you provide. You can also use it to calculate the parameters for Potential Biological Removal (PBR).</p>
+  <p>This app computes population projections under different bycatch mortality levels, based on information you provide. You can also use it to calculate the parameters for Potential Biological Removal (PBR).</p>
   </div>"
 
 splash_es <- "<div class='jumbotron'>
