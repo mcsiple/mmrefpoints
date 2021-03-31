@@ -39,7 +39,7 @@ These are the median outcomes for each of the bycatch and depletion levels.
 # The `params` object is available in the document.
 pm <-  params$performance 
 
-knitr::kable(format="html",pm)%>%
+knitr::kable(format="html",pm) %>%
   kable_styling(full_width = F,position="center")
 
 ```
@@ -61,8 +61,9 @@ PBR <- params$pbr %>%
                             Nmin = "$N_{MIN}$",
                             Rmax = "$R_{MAX}$",
                             Fr = "$F_R$"))
-
-knitr::kable(format="html",PBR)%>%
+PBR %>% 
+  dplyr::mutate_if(is.numeric, list(~as.character(., signif(., 2)))) %>%
+  knitr::kable(format="html") %>%
   kable_styling(full_width = F,position="center")
 
 ```
