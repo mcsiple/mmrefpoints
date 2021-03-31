@@ -20,9 +20,9 @@ library(kableExtra)
 
 ### Modelo de población
 
-Las proyecciones poblacionales se generan utilizando un modelo estructurado por edad de un solo sexo. En este modelo de proyección, el número de crías nacidas cada año es denso dependiente, con la extensión de denso dependencia a una función del número de adultos maduros $\tilde N$, la fecundidad (tasa de embarazo) en equilibrio previo a la explotación $f_0$, la tasa de fecundidad teórica máxima $f_{max}$, el grado de compensación $z$, y  la abundancia de individuos de edades 1+ ($N_{y+1}^{1+}$) en relación con la capacidad de carga $K^{1+}$.
+Las proyecciones poblacionales se generan utilizando un modelo estructurado por edad de un solo sexo. En este modelo de proyección, el número de crías nacidas cada año es denso dependiente, con la extensión de denso dependencia como función del número de adultos maduros $\tilde N$, la fecundidad (tasa de embarazo) en equilibrio previo a la explotación $f_0$, la tasa de fecundidad teórica máxima $f_{max}$, el grado de compensación $z$, y  la abundancia de individuos de edades 1+ ($N_{y+1}^{1+}$) en relación a la capacidad de carga $K^{1+}$.
 
-El número de individuos de 1 año de edad depende de la supervivencia de crías $S_0$, y la tasa de supervivencia de los adultos, $S_{1+}$ y remociones debido a la mortalidad por captura incidental $C_y$ (todos los símbolos están definidos en la Tabla 1).
+El número de individuos de 1 año de edad depende de la supervivencia de crías $S_0$, de la tasa de supervivencia de los adultos, $S_{1+}$ y de remociones debido a la mortalidad por captura incidental $C_y$ (todos los símbolos están definidos en la Tabla 1).
 
 
 $$
@@ -36,7 +36,7 @@ N_{y,0}S_0 &    a=1 \\
 \end{cases}
 $$
 
-dónde $N_{y,a}$ es  el número de animales de edad $a$ a principios del año $y$. El número de animales de edad $a$ muriendo debido a la mortalidad producto de las capturas incidentales durante el año $y$, $C_{y,a}$, es removida uniformemente desde el componente 1+ de la población (se supone que las crías no mueren debido a la captura incidental), es decir:
+dónde $N_{y,a}$ es  el número de animales de edad $a$ a principios del año $y$. El número de animales de edad $a$ muriendo  producto de las capturas incidentales durante el año $y$, $C_{y,a}$, es removida uniformemente desde el componente 1+ de la población (se supone que las crías no mueren debido a la captura incidental), es decir:
 
 $$
 \tag{Eq 2}
@@ -47,9 +47,9 @@ C_{y,a}=
 \end{cases}
 $$
 
-Dado este supuesto, nuestro modelo no caracterizará adecuadamente los escenarios donde la mortalidad por captura incidental ocurre predominantemente entre las crías.
+Dado este supuesto, nuestro modelo no caracterizará adecuadamente los escenarios si la mortalidad por captura incidental ocurre predominantemente en las crías.
 
-Si el usuario especifica una tasa constante de mortalidad por captura incidental, los individuos se eliminan de la población de acuerdo con una tasa de mortalidad por captura incidental $E_y$ y vulnerabilidad (que se supone constante a través del tiempo, y uniforme en individuos de edad 1+):
+Si el usuario especifica una tasa constante de mortalidad por captura incidental, los individuos se eliminan de la población de acuerdo a una tasa de mortalidad por captura incidental $E_y$ y vulnerabilidad (que se supone constante a través del tiempo, y uniforme en individuos de edad 1+):
 
 $$
 \tag{Eq 3}
@@ -83,15 +83,15 @@ Símbolo=c(#User-specified parameters
 
 Descripción=c(#User-specified parameters
   
-  "Sobrevivencia de cachorro o ballenato",
+  "Supervivencia de cachorro o ballenato",
   "Supervivencia de individuos de edad 1+",
   "Edad del grupo plus",
   "Máxima tasa constante de aumento (tasa de crecimiento de la población)",
   "Edad al primer parto",
   "Tasa de mortalidad por captura incidental en el año $y$ (especificado por el usuario o calculado a partir de la mortalidad por captura incidental total especificada por el usuario)", 
   # Parameters derived from user-specified parameters
-  "Fecundidad (tasa de embarazo) en equilibrio previo a la explotación",
-  "Fecundidad teórica máxima (tasa de embarazo)",
+  "Fecundidad (tasa de preñez) en equilibrio previo a la explotación",
+  "Fecundidad teórica máxima (tasa de preñez)",
   "Capacidad de carga en términos de 1+ componente de la población",
   "Grado de compensación",
   # Derived variables
@@ -128,7 +128,7 @@ Los valores individuales informados en las tablas son las medianas del número d
 
 ### Resolviendo la tasa de captura incidental
 
-Resolvimos el nivel de captura incidental que resultaría en la recuperación de una proporción dada de K en una cantidad específica de tiempo. La probabilidad de reconstrucción se calcula como la proporción de simulaciones en las que la población se ha recuperado a la meta de reconstrucción para el año de reconstrucción. La pestaña "Resolver para captura incidental" utiliza la búsqueda de raíz (la función `uniroot()` en nuestro código) para encontrar la tasa de mortalidad de captura incidental que minimiza la diferencia entre la probabilidad de recuperación deseada y la probabilidad de recuperación bajo la tasa de mortalidad de captura incidental $E$.
+Resolvimos el nivel de captura incidental que resultaría en la recuperación de una proporción dada de K en un período específico de tiempo. La probabilidad de reconstrucción se calcula como la proporción de simulaciones en las que la población se ha recuperado a la meta de reconstrucción para el año de reconstrucción. La pestaña "Resolver para captura incidental" utiliza la búsqueda de raíz (la función `uniroot()` en nuestro código) para encontrar la tasa de mortalidad de captura incidental que minimiza la diferencia entre la probabilidad de recuperación deseada y la probabilidad de recuperación bajo la tasa de mortalidad de captura incidental $E$.
 
 
 ### Fecundidad teórica máxima
@@ -140,7 +140,7 @@ $$
 N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
 $$
 
-dónde $a_p$ es la edad en el primer parto (se supone que es un año después de la edad de madurez), $f$ es la fecundidad (a veces expresada como el producto de la tasa de embarazo y la supervivencia de las crías), $q_f$ es la proporción de crias que son hembras y $a_r$ es la edad a la que los mamíferos sufren por primera vez alguna mortalidad por captura incidental (en nuestro caso, esto es igual a 1 año). Cuando la población crece a su ritmo más rápido, la pesca es cero y, and $N_{t+1}=N_t \lambda_{max}$. En nuestro caso $q_f = 1$ porque estamos modelando a todos los adultos, en lugar de solo hembras maduras. Por lo tanto, la ecuación anterior se convierte en:
+dónde $a_p$ es la edad en el primer parto (se supone que es un año después de la edad de madurez sexual), $f$ es la fecundidad (a veces expresada como el producto de la tasa de preñez y la supervivencia de las crías), $q_f$ es la proporción de crias que son hembras y $a_r$ es la edad a la que los animales sufren por primera vez alguna mortalidad por captura incidental (en nuestro caso, esto es igual a 1 año). Cuando la población crece a su ritmo más rápido, la pesca es cero, y $N_{t+1}=N_t \lambda_{max}$. En nuestro caso $q_f = 1$ porque estamos modelando a todos los adultos, en lugar de solo hembras maduras. Por lo tanto, la ecuación anterior se convierte en:
 
 $$
 \tag{Eq 5}
@@ -205,7 +205,7 @@ $$
 \frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
 $$
 
-Entonces la abundancia relativa que corresponde a $MSYR$, $MNPL$, se determina calculando el tamaño total de la población 1+ en MSYR en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:
+Entonces, la abundancia relativa que corresponde a $MSYR$, $MNPL$, se determina calculando el tamaño total de la población 1+ en MSYR en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:
 
 $$
 \tag{Eq. 13}
@@ -213,7 +213,7 @@ MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\
 $$
 
 ### Parametrización
-Suponemos que la población comienza con una estructura de edad estable en el año 1 del período de proyección (Ec. 11). Los números a la edad al comienzo de las proyecciones corresponden a una tasa constante de mortalidad por captura incidental $E$, que se calcula resolviendo la siguiente ecuación para $E$: 
+Supongamos que la población comienza con una estructura de edad estable en el año 1 del período de proyección (Ec. 11). Los números a la edad al comienzo de las proyecciones corresponden a una tasa constante de mortalidad por captura incidental $E$, que se calcula resolviendo la siguiente ecuación para $E$: 
 
 $$
 \tag{Eq. 14}
@@ -236,11 +236,11 @@ Resolvemos el valor del grado de compensación $z$ que corresponde al valor de M
 ```{r echo = F}
 lh.sources <- data.frame(stringsAsFactors=FALSE,
                          Tipo = c("Ballena de Groenlandia o ballena boreal",
-                                  "Tonina",
+                                  "Delfín nariz de botella",
                                   "Ballena jorobada",
                                   "Foca común",
-                                  "Lobo marino de dos pelos",
-                                  "Lobo marino",
+                                  "Lobo fino o de dos pelos",
+                                  "Lobo común o de un pelo",
                                   "Marsopa común",
                                   "Ballena minke antártica",
                                   "Orca",
@@ -255,7 +255,7 @@ lh.sources <- data.frame(stringsAsFactors=FALSE,
                                            "Phocoena phocoena",
                                            "Balaenoptera bonaerensis",
                                            "Orcinus orca",
-                                           "Globicephala macrorynchus",
+                                           "Globicephala macrorhynchus",
                                            "Eubalaena glacialis"),
                          S0 = c(0.944, 0.865, 0.9, 0.802, 0.77, 0.83, 0.8096, 0.84216,
                                 0.84744, 0.85008, 0.85536),
