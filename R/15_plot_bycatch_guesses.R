@@ -20,10 +20,19 @@ plot_bycatch_guesses <- function(highval,
                                                    "orange",
                                                    "red"),
                                  lang = "en") {
-  ylab <- switch(lang,
-                 "en" = "Bycatch or bycatch rate",
-                 "es" = "Mortalidad de captura incidental \n o tasa de mortalidad por captura incidental",
-                 "fr" = "Mortalité par prise accessoire \n ou taux de prises accessoires")
+  
+  if(highval<=1 & highval>0){
+    ylab <- switch(lang,
+                   "en" = "Bycatch rate",
+                   "es" = "Tasa de mortalidad por captura incidental",
+                   "fr" = "Taux de prises accessoires")
+  }else{
+    ylab <- switch(lang,
+                   "en" = "Bycatch",
+                   "es" = "Mortalidad de captura incidental",
+                   "fr" = "Mortalité par prise accessoire")
+  }
+  
   caption <- switch(lang,
                     "en" = "50% and 95% quantiles shown as colored and grey lines respectively",
                     "es" = "50% y 95% cuantiles mostrados como líneas de color y grises respectivamente",
