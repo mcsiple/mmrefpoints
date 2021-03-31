@@ -39,7 +39,7 @@
       },
       {
         "en": "This tab shows model projections of abundance, given very limited data. To change the projections to fit your case:",
-        "es": "Esta pestaña muestra las proyecciones de abundancia del modelo, cuando los datos son limitados. Para cambiar las proyecciones que se ajusten a su caso:",
+        "es": "Esta pestaña muestra las proyecciones de abundancia del modelo, cuando los datos son limitados. Para modificar las proyecciones que se ajusten a su caso:",
         "fr": "Cet onglet présente les projections d’abondance du modèle, à partir de données très limitées. Pour obtenir les projections associées à votre cas d’étude:"
       },
       {
@@ -106,18 +106,18 @@
         "fr": "Entrez la taille actuelle de la population."
       },
       {
-        "es": "Configure la proyección para usar una de las siguientes opciones:",
+        "es": "Configure la proyección utilizando una de las siguientes opciones:",
         "en": "Configure the projection to use one of the following:",
         "fr": "Configurez la projection en utilisant l’un des éléments suivants:"
       },
       {
         "en": "Mortality rate - mammals killed each year as a proportion of the population",
-        "es": "Tasa de mortalidad - número de mamíferos muertos por año como proporción de la población",
+        "es": "Tasa de mortalidad - número de animales muertos por año como proporción de la población",
         "fr": "Nombre par an - le nombre de mammifères morts chaque année"
       },
       {
       	"en": "Mammal life history type (choose one):",
-      	"es": "Tipo de historia de vida del mamífero (seleccione una):",
+      	"es": "Tipo de historia de vida del animales (seleccione una):",
             "fr": "Type d'histoire de vie du mammifère (un seul choix possible):"
       },
       {
@@ -187,8 +187,8 @@
       },
       {
       	"en": "The graphs below are model projections of abundance, based on options you select. To change the projections to fit your case:",
-      	"es": "Los gráficos a continuación son proyecciones de abundancia según el modelo, de acuerdo a las opciones seleccionadas. Para cambiar las proyecciones que se ajusten a su caso,",
-            "fr": "Les graphiques ci-dessous sont des modèles de projections d'abondance, basés sur les options que vous sélectionnez. Pour modifier les projections en fonction de votre cas d’étude :"
+      	"es": "Los gráficos a continuación son proyecciones de abundancia según el modelo, de acuerdo a las opciones seleccionadas. Para modificar las proyecciones que se ajusten a su caso:",
+            "fr": "Les graphiques ci-dessous sont des modèles de projections d'abondance, basés sur les options que vous sélectionnez. Pour modifier les projections en fonction de votre cas d’étude:"
       },
       {
       	"en": "Choose the life history type that most closely resembles your marine mammal of interest or type in parameter values in the boxes provided.",
@@ -423,7 +423,7 @@
       },
       {
             "en": "<span class='help-block'>Note: To use this feature you need to have run projections in the Advanced tab. The values you need in order to calculate PBR are available in that tab. While the Advanced tab automatically calculates N<sub>MIN</sub> from the numbers you entered, you can use your own abundance estimates here if you want. Knowing carrying capacity and depletion is not required, only the abundance estimate and the CV of that estimate.</span>",
-            "es": "<span class='help-block'>Note: para usar esta función necesita haber ejecutado proyecciones en la pestaña Avanzado. Los valores que necesita para calcular el PBR están disponibles en esa pestaña. Mientras que la pestaña Avanzado calcula automáticamente N<sub>MIN</sub> de los números que ingresaste, puede utilizar sus propias estimaciones de abundancia aquí si lo desea. No se requiere conocer la capacidad de carga y el agotamiento, solo la estimación de abundancia y el CV de esa estimación.</span>",
+            "es": "<span class='help-block'>Nota: para usar esta función necesita haber ejecutado proyecciones en la pestaña Avanzado. Los valores que necesita para calcular el PBR están disponibles en esa pestaña. Mientras que la pestaña Avanzado calcula automáticamente N<sub>MIN</sub> de los números ingresados, puede utilizar sus propias estimaciones de abundancia aquí si lo desea. No se requiere conocer la capacidad de carga y el agotamiento; soló la estimación de abundancia y el CV de dicha estimación.</span>",
             "fr": "<span class='help-block'>Remarque: Pour utiliser cette fonction, vous devez avoir exécuté des projections dans l'onglet Avancé. Les valeurs dont vous avez besoin pour calculer le PBR sont disponibles dans cet onglet. Bien que l'onglet Avancé calcule automatiquement N<sub>MIN</sub> à partir des chiffres que vous avez saisis, vous pouvez utiliser vos propres estimations d'abondance ici si vous le souhaitez. Il n'est pas nécessaire de connaître la capacité de charge et le taux d’épuisement, mais seulement l'estimation de l'abondance et le CV de cette estimation.</span>"
       },
       {
@@ -462,6 +462,11 @@
             "fr": " pour les espèces en danger d’extinction ou pour les stocks connus pour être en déclin"
       },
       {
+            "en": "up to 1.0",
+            "es": "Hasta 1.0",
+            "fr": "Jusqu'à 1.0"
+      },
+      {
       	"en": " for threatened or depleted species, and for stocks of unknown status",
       	"es": " para especies amenazadas o diezmadas, y para poblaciones de estado desconocido",
             "fr": " pour les espèces menacées ou épuisées, et pour les stocks dont l'état est inconnu"
@@ -478,8 +483,8 @@
       },
       {
       	"en": "The Ocean Modeling Forum's Marine Mammal Bycatch Working Group is in the process of synthesizing estimation tools to help with the abundance estimates that are needed for estimating PBR. These tools have not yet been published but they will be available",
-      	"es": "El Grupo de trabajo sobre captura incidental de mamíferos marinos del Ocean Modeling Forum se encuentra en proceso de sintetizar herramientas que ayuden en las estimaciones de abundancia que se necesitan para estimar PBR. Estas herramientas no se han publicado aún, pero estarán disponibles aquí.",
-            "fr": "Le groupe de travail sur les prises accessoires de mammifères marins de l'Ocean Modeling Forum est en train de de procéder à la synthèse des outils quantitatifs pour aider à estimer l'abondance nécessaire à l'estimation du PBR. Ces outils n'ont pas encore été publiés, mais seront disponibles ici."
+      	"es": "El Grupo de trabajo sobre captura incidental de mamíferos marinos del Ocean Modeling Forum se encuentra en proceso de sintetizar herramientas que ayuden en las estimaciones de abundancia que se necesitan para estimar PBR. Estas herramientas no se han publicado aún, pero estarán disponibles",
+            "fr": "Le groupe de travail sur les prises accessoires de mammifères marins de l'Ocean Modeling Forum est en train de de procéder à la synthèse des outils quantitatifs pour aider à estimer l'abondance nécessaire à l'estimation du PBR. Ces outils n'ont pas encore été publiés, mais seront disponibles"
       },
       {
             "en":"here.",
@@ -534,8 +539,8 @@
       },
       {
       	"en": "This will take a while! Make sure you are sure of your goals before clicking",
-      	"es": "¡Esto llevará un tiempo! Cerciórese de sus objetivos antes de hacer clic en Obtener la tasa de captura incidental máxima",
-            "fr": "Cela prendra un moment ! Assurez-vous d'être sûr de *vos choix  d’objectifs avant de cliquer sur 'Obtenir le taux de prises accessoires maximum'."
+      	"es": "¡Esto llevará un tiempo! Cerciórese de sus objetivos antes de hacer clic en",
+            "fr": "Cela prendra un moment ! Assurez-vous d'être sûr de *vos choix  d’objectifs avant de cliquer sur"
       },
       {
       	"en": "Get max bycatch rate",
@@ -580,12 +585,12 @@
       },
       {
       	"en": "The values used for generic life history types shown here are a combination of literature values and estimates from a hierarchical analysis. Each life history type is represented by one species, which has survival rates and an age at maturity close to the type-level mean. Humpback whale, bottlenose dolphin, phocid seal, fur seal, and sea lion values are the same as in Punt et al. (2018).  For cetaceans not in Punt et al. (2018), the default survival rates and age at maturity are based on a hierarchical analysis following the methods in Dillingham et al. (2016). All references are listed at the bottom of this tab.",
-      	"es": "Los valores utilizados para las historias de vida genéricas que se muestran aquí son una combinación de valores de literatura y estimaciones de un análisis jerárquico. Cada tipo de historia de vida está representado por una especie, que tiene tasas de sobrevivencia y una edad de madurez sexual cercana al nivel medio del tipo. Los valores de ballena jorobada, delfín nariz de botella, foca, lobo fino y lobo común son los mismos que en Punt et al. (2018). Para los cetáceos que no están en Punt et al. (2018), las tasas de sobrevivencia predeterminadas y la edad de madurez sexual se basan en un análisis jerárquico siguiendo los métodos de Dillingham et al. (2016). Todas las referencias se listan al final de esta pestaña.",
+      	"es": "Los valores utilizados para las historias de vida genéricas que se muestran aquí son una combinación de valores de literatura y estimaciones de un análisis jerárquico. Cada tipo de historia de vida está representado por una especie, que tiene tasas de supervivencia y una edad de madurez sexual cercana al nivel medio del tipo. Los valores de ballena jorobada, delfín nariz de botella, foca, lobo fino y lobo común son los mismos que en Punt et al. (2018). Para los cetáceos que no están en Punt et al. (2018), las tasas de sobrevivencia predeterminadas y la edad de madurez sexual se basan en un análisis jerárquico siguiendo los métodos de Dillingham et al. (2016). Todas las referencias se listan al final de esta pestaña.",
             "fr": "Les valeurs utilisées pour les types génériques d'histoire de vie présentés ici sont une combinaison de valeurs de la littérature et d'estimations issues d'une analyse hiérarchique. Chaque type d'histoire de vie est représenté par une espèce, qui a des taux de survie et un âge à maturité proche de la moyenne au sein de son type. Les valeurs pour la baleine à bosse, le grand dauphin, le phoque commun, l'otarie à fourrure et le lion de mer sont les mêmes que dans Punt et al. (2018).  Pour les cétacés ne figurant pas dans Punt et al. (2018), les taux de survie par défaut et l'âge à maturité sont basés sur une analyse hiérarchique suivant les méthodes de Dillingham et al. (2016). Toutes les références sont énumérées au bas de cet onglet."
       },
       {
             "en": "Citations",
-            "es": "Citas",
+            "es": "Referencias",
             "fr": "Références"
       }
     ]
