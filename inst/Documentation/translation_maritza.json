@@ -38,7 +38,7 @@
             "fr": "Si vous possédez des informations à la fois sur les abondances et les prises accessoires et que vous souhaitez évaluer les performances de reconstitution du stock ou calculer le PBR, cliquez ici."
       },
       {
-        "en": "This tab shows model projections of abundance, given very limited data. To change the projections to fit your case:",
+        "en": "This tab produces model projections of abundance, given very limited data. To change the projections to fit your case:",
         "es": "Esta pestaña muestra las proyecciones de abundancia del modelo, cuando los datos son limitados. Para modificar las proyecciones que se ajusten a su caso:",
         "fr": "Cet onglet présente les projections d’abondance du modèle, à partir de données très limitées. Pour obtenir les projections associées à votre cas d’étude:"
       },
@@ -109,11 +109,6 @@
         "es": "Configure la proyección utilizando una de las siguientes opciones:",
         "en": "Configure the projection to use one of the following:",
         "fr": "Configurez la projection en utilisant l’un des éléments suivants:"
-      },
-      {
-        "en": "Mortality rate - mammals killed each year as a proportion of the population",
-        "es": "Tasa de mortalidad - número de animales muertos por año como proporción de la población",
-        "fr": "Nombre par an - le nombre de mammifères morts chaque année"
       },
       {
       	"en": "Mammal life history type (choose one):",
@@ -212,7 +207,7 @@
             "fr": "Nombre par année - le nombre de mammifères morts chaque année"
       },
       {
-      	"en": "Mortality rate - mammals killed each year as a proportion of the size of the population",
+      	"en": "Mortality rate - mammals killed each year as a proportion of the number of animals 1 and older",
       	"es": "Tasa de mortalidad - mamíferos muertos por año como proporción del tamaño poblacional",
             "fr": "Taux de mortalité – proportion de mammifères morts chaque année par rapport à la population totale"
       },
@@ -357,7 +352,7 @@
             "fr": "Bord extérieur = meilleure performance. Toutes les mesures de performance sont évaluées sur une échelle de 0 à 1."
       },
       {
-      	"en": "These plots show projected marine mammal population abundance relative to their carrying capacity K and an 'unfished' (no bycatch) state. The x axis represents the number of years after the start of the projections, and the violin plots show probability distributions.",
+      	"en": "These plots show projected marine mammal population abundance relative to its carrying capacity K and an 'unfished' (no bycatch) state. The x axis represents the number of years after the start of the projections, and the violin plots show probability distributions.",
       	"es": "Estos gráficos muestran la abundancia proyectada de la población de mamíferos marinos en relación a su capacidad de carga K y un estado 'no capturado' (sin captura incidental). El eje x representa el número de años después del inicio de las proyecciones, y los gráficos de violín muestran la distribución de probabilidades.",
             "fr": "Ces graphiques montrent les projection d’abondances de la population de mammifères marins par rapport à leur capacité de charge K, à un état «non pêché» (pas de prises accessoires). L'axe des x représente le nombre d'années après le début des projections et les graphiques en violon représentent les distributions de probabilité."
       },
@@ -392,7 +387,7 @@
             "fr": "Pour que ce tableau produise les valeurs adéquates, l'utilisateur doit fournir une estimation de la taille de la population. Sinon, les valeurs ci-dessous ne seront pas basées sur une taille réelle de la population."
       },
       {
-      	"en": "You will need to enter these values in the PBR calculator tab in order to get a value for PBR.",
+      	"en": "You will need to enter these values in the PBR calculator tab in order to calculate a value for PBR.",
       	"es": "Necesitará ingresar estos valores en la pestaña del cálculo del PBR para poder obtener un valor de PBR",
             "fr": "Vous devrez entrer ces valeurs dans l'onglet calculateur PBR afin d'obtenir une valeur pour le PBR."
       },
@@ -528,7 +523,7 @@
             "fr": "Calculer le taux de prises accessoires nécessaires pour atteindre un objectif de reconstitution du stock"
       },
       {
-      	"en": "If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the max bycatch rate that will allow you to achieve your goal.",
+      	"en": "If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the maximum bycatch rate that will allow you to achieve your goal.",
       	"es": "Si tiene un objetivo de manejo específico para su población de mamíferos marinos de interés, ingrese el objetivo de recuperación deseado y el cronograma a continuación. Esta parte de la aplicación calculará una tasa aproximada de captura incidental que permitirá a la población alcanzar dicha meta. Esta página utiliza información de la pestaña 'Proyecciones avanzadas' para realizar este cálculo. Una vez que aparezca el gráfico, la animación le mostrará las tasas de captura incidental que se han probado en la búsqueda de la tasa de captura incidental máxima que le permitirá alcanzar su objetivo.",
             "fr": "Si vous avez un objectif de gestion spécifique pour votre population de mammifères marins d'étude, indiquez ci-dessous l'objectif et le calendrier de reconstitution du stock souhaités. Cette partie de l'application calculera un taux approximatif de prises accessoires qui permettra à la population d'atteindre cet objectif. Cette page utilise les informations de l'onglet 'Avancées' pour effectuer ce calcul. Une fois que le graphique apparaît, l'animation montrera les taux de prises accessoires que le solveur a exploré dans sa recherche du taux de prises accessoires maximum afin d'atteindre votre objectif."
       },
@@ -543,7 +538,7 @@
             "fr": "Cela prendra un moment ! Assurez-vous d'être sûr de *vos choix  d’objectifs avant de cliquer sur"
       },
       {
-      	"en": "Get max bycatch rate",
+      	"en": "Get maximum bycatch rate",
       	"es": "Obtener la tasa de captura incidental máxima",
             "fr": "Obtenir un taux maximal de prises accessoires"
       },
