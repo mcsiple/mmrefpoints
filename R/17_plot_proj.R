@@ -76,12 +76,12 @@ plot_proj <- function(high,
 
   plotsubtitle <- switch(lang,
                          "en" = "Median population size and quantiles",
-                         "es" = "Tamaño medio de la población y cuartiles",
+                         "es" = "Tamaño medio de la población y cuantiles",
                          "fr" = "Taille médiane de la population et quantiles")
 
   plotcaption <- switch(lang,
                         "en" = "95%: lightly shaded; 50%: heavily shaded",
-                        "es" = "95%: ligeramente sombreado; 50%: fuertememente sombreado",
+                        "es" = "95%: levemente sombreado; 50%: fuertememente sombreado",
                         "fr" = "95%: légèrement ombragé; 50%: très ombragé")
 
   sdf_labs_hi <- switch(lang,

@@ -58,7 +58,7 @@ multiplot_proj <- function(high.d1 = testing.list[[1]][3][[1]]$trajectories, # d
 
   plotcaption <- switch(lang,
                         "en" = "95%: lightly shaded; 50%: heavily shaded",
-                        "es" = "95%: ligeramente sombreado; 50%: fuertememente sombreado",
+                        "es" = "95%: levemente sombreado; 50%: fuertememente sombreado",
                         "fr" = "95%: légèrement ombragé; 50%: très ombragé")
 
   sdf_labs_hi <- switch(lang,

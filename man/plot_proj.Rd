@@ -39,7 +39,7 @@ plot_proj(
 \item{lang}{language selected by the user (character)}
 }
 \value{
-A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{spaghetti ==TRUE}),  from \code{Projections()}.
+A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{is.numeric(spaghetti)}),  from \code{Projections()}.
 }
 \description{
 plots outputs from several projections that result from a Projections() call.
