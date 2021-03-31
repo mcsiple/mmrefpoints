@@ -6,7 +6,7 @@
 
 
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -20,8 +20,8 @@
 <!-- NOTE: in order to include this html in the shiny app, delete everything in the knitted html before <body> and after </body> -->
 <div id="modelo-de-población" class="section level3">
 <h3>Modelo de población</h3>
-<p>Las proyecciones poblacionales se generan utilizando un modelo estructurado por edad de un solo sexo. En este modelo de proyección, el número de crías nacidas cada año es denso dependiente, con la extensión de denso dependencia a una función del número de adultos maduros <span class="math inline">\(\tilde N\)</span>, la fecundidad (tasa de embarazo) en equilibrio previo a la explotación <span class="math inline">\(f_0\)</span>, la tasa de fecundidad teórica máxima <span class="math inline">\(f_{max}\)</span>, el grado de compensación <span class="math inline">\(z\)</span>, y la abundancia de individuos de edades 1+ (<span class="math inline">\(N_{y+1}^{1+}\)</span>) en relación con la capacidad de carga <span class="math inline">\(K^{1+}\)</span>.</p>
-<p>El número de individuos de 1 año de edad depende de la supervivencia de crías <span class="math inline">\(S_0\)</span>, y la tasa de supervivencia de los adultos, <span class="math inline">\(S_{1+}\)</span> y remociones debido a la mortalidad por captura incidental <span class="math inline">\(C_y\)</span> (todos los símbolos están definidos en la Tabla 1).</p>
+<p>Las proyecciones poblacionales se generan utilizando un modelo estructurado por edad de un solo sexo. En este modelo de proyección, el número de crías nacidas cada año es denso dependiente, con la extensión de denso dependencia como función del número de adultos maduros <span class="math inline">\(\tilde N\)</span>, la fecundidad (tasa de embarazo) en equilibrio previo a la explotación <span class="math inline">\(f_0\)</span>, la tasa de fecundidad teórica máxima <span class="math inline">\(f_{max}\)</span>, el grado de compensación <span class="math inline">\(z\)</span>, y la abundancia de individuos de edades 1+ (<span class="math inline">\(N_{y+1}^{1+}\)</span>) en relación a la capacidad de carga <span class="math inline">\(K^{1+}\)</span>.</p>
+<p>El número de individuos de 1 año de edad depende de la supervivencia de crías <span class="math inline">\(S_0\)</span>, de la tasa de supervivencia de los adultos, <span class="math inline">\(S_{1+}\)</span> y de remociones debido a la mortalidad por captura incidental <span class="math inline">\(C_y\)</span> (todos los símbolos están definidos en la Tabla 1).</p>
 <p><span class="math display">\[
 \tag{Eq 1}
 N_{y+1,a} = 
@@ -32,7 +32,7 @@ N_{y,0}S_0 &amp;    a=1 \\
 (N_{y,x-1}-C_{y,x-1})S_{1+} + (N_{y,x}-C_{y,x})S_{1+} &amp; a=x \\
 \end{cases}
 \]</span></p>
-<p>dónde <span class="math inline">\(N_{y,a}\)</span> es el número de animales de edad <span class="math inline">\(a\)</span> a principios del año <span class="math inline">\(y\)</span>. El número de animales de edad <span class="math inline">\(a\)</span> muriendo debido a la mortalidad producto de las capturas incidentales durante el año <span class="math inline">\(y\)</span>, <span class="math inline">\(C_{y,a}\)</span>, es removida uniformemente desde el componente 1+ de la población (se supone que las crías no mueren debido a la captura incidental), es decir:</p>
+<p>dónde <span class="math inline">\(N_{y,a}\)</span> es el número de animales de edad <span class="math inline">\(a\)</span> a principios del año <span class="math inline">\(y\)</span>. El número de animales de edad <span class="math inline">\(a\)</span> muriendo producto de las capturas incidentales durante el año <span class="math inline">\(y\)</span>, <span class="math inline">\(C_{y,a}\)</span>, es removida uniformemente desde el componente 1+ de la población (se supone que las crías no mueren debido a la captura incidental), es decir:</p>
 <p><span class="math display">\[
 \tag{Eq 2}
 C_{y,a}=
@@ -41,8 +41,8 @@ C_{y,a}=
 \frac{C_y N_{y,a}}{N_y^{1+}} &amp; a&gt;0 \\
 \end{cases}
 \]</span></p>
-<p>Dado este supuesto, nuestro modelo no caracterizará adecuadamente los escenarios donde la mortalidad por captura incidental ocurre predominantemente entre las crías.</p>
-<p>Si el usuario especifica una tasa constante de mortalidad por captura incidental, los individuos se eliminan de la población de acuerdo con una tasa de mortalidad por captura incidental <span class="math inline">\(E_y\)</span> y vulnerabilidad (que se supone constante a través del tiempo, y uniforme en individuos de edad 1+):</p>
+<p>Dado este supuesto, nuestro modelo no caracterizará adecuadamente los escenarios si la mortalidad por captura incidental ocurre predominantemente en las crías.</p>
+<p>Si el usuario especifica una tasa constante de mortalidad por captura incidental, los individuos se eliminan de la población de acuerdo a una tasa de mortalidad por captura incidental <span class="math inline">\(E_y\)</span> y vulnerabilidad (que se supone constante a través del tiempo, y uniforme en individuos de edad 1+):</p>
 <p><span class="math display">\[
 \tag{Eq 3}
 C_{y,a}=
@@ -70,15 +70,15 @@ Descripción
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(S_0\)</span>
 </td>
 <td style="text-align:left;">
-Sobrevivencia de cachorro o ballenato
+Supervivencia de cachorro o ballenato
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(S_{1+}\)</span>
 </td>
 <td style="text-align:left;">
@@ -86,7 +86,7 @@ Supervivencia de individuos de edad 1+
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(x\)</span>
 </td>
 <td style="text-align:left;">
@@ -94,7 +94,7 @@ Edad del grupo plus
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(\lambda_{max}\)</span>
 </td>
 <td style="text-align:left;">
@@ -102,7 +102,7 @@ Máxima tasa constante de aumento (tasa de crecimiento de la población)
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(a_p\)</span>
 </td>
 <td style="text-align:left;">
@@ -110,7 +110,7 @@ Edad al primer parto
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(E_y\)</span>
 </td>
 <td style="text-align:left;">
@@ -123,23 +123,23 @@ Tasa de mortalidad por captura incidental en el año <span class="math inline">\
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(f_0\)</span>
 </td>
 <td style="text-align:left;">
-Fecundidad (tasa de embarazo) en equilibrio previo a la explotación
+Fecundidad (tasa de preñez) en equilibrio previo a la explotación
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(f_{max}\)</span>
 </td>
 <td style="text-align:left;">
-Fecundidad teórica máxima (tasa de embarazo)
+Fecundidad teórica máxima (tasa de preñez)
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(K^{1+}\)</span>
 </td>
 <td style="text-align:left;">
@@ -147,7 +147,7 @@ Capacidad de carga en términos de 1+ componente de la población
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(z\)</span>
 </td>
 <td style="text-align:left;">
@@ -160,7 +160,7 @@ Grado de compensación
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(\tilde N_{y,a}\)</span>
 </td>
 <td style="text-align:left;">
@@ -168,7 +168,7 @@ Número de animales maduros de edad <span class="math inline">\(a\)</span> a pri
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(N_{y,a}\)</span>
 </td>
 <td style="text-align:left;">
@@ -176,7 +176,7 @@ Número de animales de edad <span class="math inline">\(a\)</span> a principios 
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(N_y^{1+}\)</span>
 </td>
 <td style="text-align:left;">
@@ -184,7 +184,7 @@ Número de animales de edad 1 y mayores a principios del año <span class="math 
 </td>
 </tr>
 <tr>
-<td style="text-align:left; padding-left:  2em;" indentlevel="1">
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 <span class="math inline">\(C_{y,a}\)</span>
 </td>
 <td style="text-align:left;">
@@ -207,16 +207,16 @@ Mortalidad por captura incidental de animales de edad <span class="math inline">
 </div>
 <div id="resolviendo-la-tasa-de-captura-incidental" class="section level3">
 <h3>Resolviendo la tasa de captura incidental</h3>
-<p>Resolvimos el nivel de captura incidental que resultaría en la recuperación de una proporción dada de K en una cantidad específica de tiempo. La probabilidad de reconstrucción se calcula como la proporción de simulaciones en las que la población se ha recuperado a la meta de reconstrucción para el año de reconstrucción. La pestaña “Resolver para captura incidental” utiliza la búsqueda de raíz (la función <code>uniroot()</code> en nuestro código) para encontrar la tasa de mortalidad de captura incidental que minimiza la diferencia entre la probabilidad de recuperación deseada y la probabilidad de recuperación bajo la tasa de mortalidad de captura incidental <span class="math inline">\(E\)</span>.</p>
+<p>Resolvimos el nivel de captura incidental que resultaría en la recuperación de una proporción dada de K en un período específico de tiempo. La probabilidad de reconstrucción se calcula como la proporción de simulaciones en las que la población se ha recuperado a la meta de reconstrucción para el año de reconstrucción. La pestaña “Resolver para captura incidental” utiliza la búsqueda de raíz (la función <code>uniroot()</code> en nuestro código) para encontrar la tasa de mortalidad de captura incidental que minimiza la diferencia entre la probabilidad de recuperación deseada y la probabilidad de recuperación bajo la tasa de mortalidad de captura incidental <span class="math inline">\(E\)</span>.</p>
 </div>
 <div id="fecundidad-teórica-máxima" class="section level3">
 <h3>Fecundidad teórica máxima</h3>
-<p>La tasa de fecundidad teórica máxima se calcula en función del tamaño de la población cuando la población está creciendo a su tasa máxima de crecimiento de la población <span class="math inline">\(\lambda_{max}\)</span>. Se pueden encontrar partes de esta derivación en Butterworth y Punt (1992) y Breiwick et al. (1984) Comenzando con el modelo de población para el componente femenino de la población:</p>
+<p>La tasa de fecundidad teórica máxima se calcula en función del tamaño de la población cuando la población está creciendo a su tasa máxima de crecimiento de la población <span class="math inline">\(\lambda_{max}\)</span>. Se pueden encontrar partes de esta derivación en Butterworth y Punt (1992) y Breiwick et al. (1984) Comenzando con el modelo de población para el componente femenino de la población:</p>
 <p><span class="math display">\[
 \tag{Eq 4}
 N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
 \]</span></p>
-<p>dónde <span class="math inline">\(a_p\)</span> es la edad en el primer parto (se supone que es un año después de la edad de madurez), <span class="math inline">\(f\)</span> es la fecundidad (a veces expresada como el producto de la tasa de embarazo y la supervivencia de las crías), <span class="math inline">\(q_f\)</span> es la proporción de crias que son hembras y <span class="math inline">\(a_r\)</span> es la edad a la que los mamíferos sufren por primera vez alguna mortalidad por captura incidental (en nuestro caso, esto es igual a 1 año). Cuando la población crece a su ritmo más rápido, la pesca es cero y, and <span class="math inline">\(N_{t+1}=N_t \lambda_{max}\)</span>. En nuestro caso <span class="math inline">\(q_f = 1\)</span> porque estamos modelando a todos los adultos, en lugar de solo hembras maduras. Por lo tanto, la ecuación anterior se convierte en:</p>
+<p>dónde <span class="math inline">\(a_p\)</span> es la edad en el primer parto (se supone que es un año después de la edad de madurez sexual), <span class="math inline">\(f\)</span> es la fecundidad (a veces expresada como el producto de la tasa de preñez y la supervivencia de las crías), <span class="math inline">\(q_f\)</span> es la proporción de crias que son hembras y <span class="math inline">\(a_r\)</span> es la edad a la que los animales sufren por primera vez alguna mortalidad por captura incidental (en nuestro caso, esto es igual a 1 año). Cuando la población crece a su ritmo más rápido, la pesca es cero, y <span class="math inline">\(N_{t+1}=N_t \lambda_{max}\)</span>. En nuestro caso <span class="math inline">\(q_f = 1\)</span> porque estamos modelando a todos los adultos, en lugar de solo hembras maduras. Por lo tanto, la ecuación anterior se convierte en:</p>
 <p><span class="math display">\[
 \tag{Eq 5}
 \lambda_{max}N_t=N_t S_{1+}+f_{max} N_{t-a_p-1} \lambda _{max}^{a_p-1} S_0 S_{1+}^{(a_p-2)}
@@ -262,7 +262,7 @@ S_0[S_{1+}(1-E)]^{a-1} &amp;    1\leq a&lt;x \\
 \tag{Eq. 12}
 \frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
 \]</span></p>
-<p>Entonces la abundancia relativa que corresponde a <span class="math inline">\(MSYR\)</span>, <span class="math inline">\(MNPL\)</span>, se determina calculando el tamaño total de la población 1+ en MSYR en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:</p>
+<p>Entonces, la abundancia relativa que corresponde a <span class="math inline">\(MSYR\)</span>, <span class="math inline">\(MNPL\)</span>, se determina calculando el tamaño total de la población 1+ en MSYR en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:</p>
 <p><span class="math display">\[
 \tag{Eq. 13}
 MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)} 
@@ -270,7 +270,7 @@ MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\
 </div>
 <div id="parametrización" class="section level3">
 <h3>Parametrización</h3>
-<p>Suponemos que la población comienza con una estructura de edad estable en el año 1 del período de proyección (Ec. 11). Los números a la edad al comienzo de las proyecciones corresponden a una tasa constante de mortalidad por captura incidental <span class="math inline">\(E\)</span>, que se calcula resolviendo la siguiente ecuación para <span class="math inline">\(E\)</span>:</p>
+<p>Supongamos que la población comienza con una estructura de edad estable en el año 1 del período de proyección (Ec. 11). Los números a la edad al comienzo de las proyecciones corresponden a una tasa constante de mortalidad por captura incidental <span class="math inline">\(E\)</span>, que se calcula resolviendo la siguiente ecuación para <span class="math inline">\(E\)</span>:</p>
 <p><span class="math display">\[
 \tag{Eq. 14}
 \frac{\tilde B(E)\tilde P(E)}{\tilde P(0)}= \frac{N_0^{1+}}{K^{1+}}
@@ -326,12 +326,12 @@ Balaena mysticetus
 17
 </td>
 <td style="text-align:left;">
-Punt et al. (2018) and references therein
+Punt et al. (2018) and references therein
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Tonina
+Delfín nariz de botella
 </td>
 <td style="text-align:left;font-style: italic;">
 Tursiops truncatus
@@ -346,7 +346,7 @@ Tursiops truncatus
 6
 </td>
 <td style="text-align:left;">
-Punt et al. (2018) and references therein, except juvenile survival which is set to 0.88(<span class="math inline">\(S_{1+}\)</span>)
+Punt et al. (2018) and references therein, except juvenile survival which is set to 0.88(<span class="math inline">\(S_{1+}\)</span>)
 </td>
 </tr>
 <tr>
@@ -366,7 +366,7 @@ Megaptera novaeangliae
 10
 </td>
 <td style="text-align:left;">
-Punt et al. (2018), Arso Civil et al. (2019), Speakman et al. (2010)
+Punt et al. (2018), Arso Civil et al. (2019), Speakman et al. (2010)
 </td>
 </tr>
 <tr>
@@ -386,12 +386,12 @@ Phoca vitulina
 6
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; Hastings et al. (2012)
+Punt et al. unpublished; Hastings et al. (2012)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Lobo marino de dos pelos
+Lobo fino o de dos pelos
 </td>
 <td style="text-align:left;font-style: italic;">
 Arctocephalus pusillus pusillus
@@ -406,12 +406,12 @@ Arctocephalus pusillus pusillus
 3
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; Butterworth et al. (1995)
+Punt et al. unpublished; Butterworth et al. (1995)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-Lobo marino
+Lobo común o de un pelo
 </td>
 <td style="text-align:left;font-style: italic;">
 Zalophus californianus
@@ -426,7 +426,7 @@ Zalophus californianus
 4
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; De Long et al. (2017)
+Punt et al. unpublished; De Long et al. (2017)
 </td>
 </tr>
 <tr>
@@ -446,7 +446,7 @@ Phocoena phocoena
 3
 </td>
 <td style="text-align:left;">
-Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)
+Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)
 </td>
 </tr>
 <tr>
@@ -494,7 +494,7 @@ Moore unpublished (2019)
 Calderón de aletas cortas
 </td>
 <td style="text-align:left;font-style: italic;">
-Globicephala macrorynchus
+Globicephala macrorhynchus
 </td>
 <td style="text-align:right;">
 0.85008
@@ -554,7 +554,7 @@ Moore unpublished (2019)
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -572,7 +572,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
