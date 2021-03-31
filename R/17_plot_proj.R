@@ -70,136 +70,165 @@ plot_proj <- function(high,
   low.col <- color.palette[1]
 
   plottitle <- switch(lang,
-                      "en" = "Model projections",
-                      "es" = "Proyecciones",
-                      "fr" = "Projections")
+    "en" = "Model projections",
+    "es" = "Proyecciones",
+    "fr" = "Projections"
+  )
 
   plotsubtitle <- switch(lang,
-                         "en" = "Median population size and quantiles",
-                         "es" = "Tamaño medio de la población y cuantiles",
-                         "fr" = "Taille médiane de la population et quantiles")
+    "en" = "Median population size and quantiles",
+    "es" = "Tamaño medio de la población y cuantiles",
+    "fr" = "Taille médiane de la population et quantiles"
+  )
 
   plotcaption <- switch(lang,
-                        "en" = "95%: lightly shaded; 50%: heavily shaded",
-                        "es" = "95%: levemente sombreado; 50%: fuertememente sombreado",
-                        "fr" = "95%: légèrement ombragé; 50%: très ombragé")
+    "en" = "95%: lightly shaded; 50%: heavily shaded",
+    "es" = "95%: levemente sombreado; 50%: fuertememente sombreado",
+    "fr" = "95%: légèrement ombragé; 50%: très ombragé"
+  )
 
   sdf_labs_hi <- switch(lang,
-                        "en" = "High end of \nbycatch range",
-                        "es" = "Extremo superior del rango \nde captura incidental",
-                        "fr" = "Haut de gamme \nde prises accessoires")
+    "en" = "High end of \nbycatch range",
+    "es" = "Extremo superior del rango \nde captura incidental",
+    "fr" = "Haut de gamme \nde prises accessoires"
+  )
 
   sdf_labs_med <- switch(lang,
-                         "en" = "Midpoint of \nbycatch range",
-                         "es" = "Rango medio \nde captura incidental",
-                         "fr" = "Medium de gamme \nde prises accessoires") #FIX FRENCH FOR THIS ONE AND THE ONE BELOW!~
+    "en" = "Midpoint of \nbycatch range",
+    "es" = "Rango medio \nde captura incidental",
+    "fr" = "Medium de gamme \nde prises accessoires"
+  )
 
   sdf_labs_low <- switch(lang,
-                         "en" = "Low end of \nbycatch range",
-                         "es" = "Extremo inferior del rango \nde captura incidental",
-                         "fr" = "Lower de gamme \nde prises accessoires")
+    "en" = "Low end of \nbycatch range",
+    "es" = "Extremo inferior del rango \nde captura incidental",
+    "fr" = "Lower de gamme \nde prises accessoires"
+  )
 
   bylvl_lab <- switch(lang,
-                      "en" = "Bycatch level",
-                      "es" = "Nivel de captura incidental",
-                      "fr" = "Niveau de prises accessoires")
+    "en" = "Bycatch level",
+    "es" = "Nivel de captura incidental",
+    "fr" = "Niveau de prises accessoires"
+  )
 
   year_lab <- switch(lang,
-                     "en" = "Year",
-                     "es" = "Año",
-                     "fr" = "Année")
+    "en" = "Year",
+    "es" = "Año",
+    "fr" = "Année"
+  )
 
   abund_lab <- switch(lang,
-                      "en" = "Abundance  (N/K)",
-                      "es" = "Tamaño poblacional relativo a K",
-                      "fr" = "Abondance (N/K)")
+    "en" = "Abundance  (N/K)",
+    "es" = "Tamaño poblacional relativo a K",
+    "fr" = "Abondance (N/K)"
+  )
 
-  if(spaghetti){
+  # setup medians etc
+  probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
+
+  # low med and high refer to low med and high bycatch
+  summary.high <- apply(high$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
+  summary.med <- apply(med$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
+  summary.low <- apply(low$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
+  ts.length <- ncol(summary.high)
+
+  t.high <- data.frame(t(summary.high), blvl = "high", year = 1:years.plot)
+  t.med <- data.frame(t(summary.med), blvl = "med", year = 1:years.plot)
+  t.low <- data.frame(t(summary.low), blvl = "low", year = 1:years.plot)
+  all <- rbind(t.high, t.med, t.low)
+
+  colnames(all) <- c("lo90", "lo50", "median", "hi50", "hi90", "blvl", "year")
+
+  all <- all %>%
+    mutate(blvl = factor(blvl)) %>%
+    mutate(blvl = recode_factor(blvl,
+      high = sdf_labs_hi,
+      med = sdf_labs_med,
+      low = sdf_labs_low
+    ))
+
+  #browser()
+  if (spaghetti) {
+    all$sim <- 1
     ts.length <- years.plot
-    spag.df <- data.frame(year = as.numeric(rep(1:(ts.length+1),times=spaghetti)),
-                          sim = as.factor(rep(1:spaghetti,each=ts.length+1)),
-                          high = as.vector(t(high$trajectories[1:spaghetti,1:(ts.length+1)]))/K1plus,
-                          med = as.vector(t(med$trajectories[1:spaghetti,1:(ts.length+1)]))/K1plus,
-                          low = as.vector(t(low$trajectories[1:spaghetti,1:(ts.length+1)]))/K1plus
+    spag.df <- data.frame(
+      year = as.numeric(rep(1:(ts.length + 1), times = spaghetti)),
+      sim = as.factor(rep(1:spaghetti, each = ts.length + 1)),
+      high = as.vector(t(high$trajectories[1:spaghetti, 1:(ts.length + 1)])) / K1plus,
+      med = as.vector(t(med$trajectories[1:spaghetti, 1:(ts.length + 1)])) / K1plus,
+      low = as.vector(t(low$trajectories[1:spaghetti, 1:(ts.length + 1)])) / K1plus
     )
 
-    sdf <- reshape2::melt(spag.df,id.vars=c('year','sim'))
+    sdf <- reshape2::melt(spag.df, id.vars = c("year", "sim"))
     sdf$sim <- as.factor(sdf$sim)
-    dlab1 <- paste("N[0] == ",round(InitDepl,digits=2),"*K")
+    dlab1 <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
 
     sdf <- sdf %>% mutate(variable = recode(variable,
-                                            high = sdf_labs_hi,
-                                            med = sdf_labs_med,
-                                            low = sdf_labs_low))
+      high = sdf_labs_hi,
+      med = sdf_labs_med,
+      low = sdf_labs_low
+    ))
 
     p <- sdf %>%
-      ggplot(aes(x=year,y=value,group=sim,colour=variable)) +
-      xlim(0,ts.length)+
-      geom_path(lwd=1,alpha=0.5) +
-      scale_colour_manual(bylvl_lab,values = rev(color.palette)) +
-      theme_classic(base_size=18) +
-      xlab(year_lab) + ylab(abund_lab) +ylim(0,1)+
-      annotate("label", x=ts.length*.8, y=.95, label = dlab1,parse=TRUE,size=6) +
-      labs(title = plottitle,
-           subtitle = plotsubtitle,
-           caption = plotcaption) +
-      theme(legend.position = "bottom",
-            legend.direction = "vertical",
-            axis.text.x = element_text(size=18),
-            axis.text.y = element_text(size=18),
-            axis.title.y = element_text(size=20))
-
-    p
-
-  }else{
-    probs <- c(0.05,0.25,0.5,0.75,0.95)
-
-    # low med and high refer to low med and high bycatch
-    summary.high <- apply(high$trajectories[,1:years.plot],MARGIN = 2,FUN = quantile,probs=probs,na.rm=T)
-    summary.med <- apply(med$trajectories[,1:years.plot],MARGIN = 2,FUN = quantile,probs=probs,na.rm=T)
-    summary.low <- apply(low$trajectories[,1:years.plot],MARGIN = 2,FUN = quantile,probs=probs,na.rm=T)
-    ts.length <- ncol(summary.high)
-
-
-    t.high <- data.frame(t(summary.high),blvl="high",year=1:years.plot)
-    t.med <- data.frame(t(summary.med),blvl="med",year=1:years.plot)
-    t.low <- data.frame(t(summary.low),blvl="low",year=1:years.plot)
-    all <- rbind(t.high,t.med,t.low)
-
-    colnames(all) <- c("lo90","lo50","median","hi50","hi90","blvl","year")
-
-    all <- all %>%
-      mutate(blvl = factor(blvl)) %>%
-      mutate(blvl = recode_factor(blvl,
-                                  high = sdf_labs_hi,
-                                  med = sdf_labs_med,
-                                  low = sdf_labs_low))
-
-    dlab <- paste("N[0] == ",round(InitDepl,digits=2),"*K")
-
-    p <- all %>%
-      ggplot(aes(x=year)) +
-      geom_ribbon(aes(ymin=lo90/K1plus,ymax=hi90/K1plus,fill=blvl),alpha=0.5) +
-      geom_ribbon(aes(ymin=lo50/K1plus,ymax=hi50/K1plus,fill=blvl),alpha=0.5) +
-      geom_line(aes(y=median/K1plus,colour=blvl),lwd=1.1) +
-      ylim(0,1) +
-      scale_fill_manual(bylvl_lab,values = rev(color.palette)) +
-      scale_colour_manual(bylvl_lab,values = rev(color.palette)) +
+      ggplot(aes(x = year, y = value, group = sim, colour = variable)) +
+      geom_path(alpha = 0.2, lwd = 1) +
+      scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
+      geom_line(
+        data = all,
+        aes(x = year, y = median / K1plus, colour = blvl, group = blvl),
+        inherit.aes = FALSE, lwd = 1
+      ) +
+      xlim(0, ts.length) +
+      ylim(0, 1) +
       xlab(year_lab) +
       ylab(abund_lab) +
-      labs(title = plottitle,
-           subtitle = plotsubtitle,
-           caption = plotcaption) +
-      theme_classic(base_size=18) +
-      annotate("label", x=years.plot*.8, y=.95, label = dlab,parse=TRUE,size=6) +
-      theme(legend.position = "bottom",
-            legend.direction = "vertical",
-            axis.text.x = element_text(size = 18),
-            axis.text.y = element_text(size = 18),
-            axis.title.y = element_text(size = 20),
-            plot.title = element_text(size = 20),
-            plot.subtitle = element_text(size = 16))
-    p
+      annotate("label", x = ts.length * .8, y = .95, label = dlab1, parse = TRUE, size = 6) +
+      labs(
+        title = plottitle,
+        subtitle = plotsubtitle,
+        caption = plotcaption
+      ) +
+      theme_classic(base_size = 18) +
+      theme(
+        legend.position = "bottom",
+        legend.direction = "vertical",
+        axis.text.x = element_text(size = 18),
+        axis.text.y = element_text(size = 18),
+        axis.title.y = element_text(size = 20)
+      )
 
+    p
+  } else {
+    
+    dlab <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
+
+    p <- all %>%
+      ggplot(aes(x = year)) +
+      geom_ribbon(aes(ymin = lo90 / K1plus, ymax = hi90 / K1plus, fill = blvl), alpha = 0.5) +
+      geom_ribbon(aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl), alpha = 0.5) +
+      geom_line(aes(y = median / K1plus, colour = blvl), lwd = 1.1) +
+      ylim(0, 1) +
+      scale_fill_manual(bylvl_lab, values = rev(color.palette)) +
+      scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
+      xlab(year_lab) +
+      ylab(abund_lab) +
+      labs(
+        title = plottitle,
+        subtitle = plotsubtitle,
+        caption = plotcaption
+      ) +
+      theme_classic(base_size = 18) +
+      annotate("label", x = years.plot * .8, y = .95, label = dlab, parse = TRUE, size = 6) +
+      theme(
+        legend.position = "bottom",
+        legend.direction = "vertical",
+        axis.text.x = element_text(size = 18),
+        axis.text.y = element_text(size = 18),
+        axis.title.y = element_text(size = 20),
+        plot.title = element_text(size = 20),
+        plot.subtitle = element_text(size = 16)
+      )
+    p
   }
 }
+
