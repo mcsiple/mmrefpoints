@@ -470,7 +470,7 @@ app_server <- function( input, output, session ) {
                          }
       ),
       depletion = InitDepl.vec(),
-      lh.params = lh.params2(),
+     # lh.params = lh.params2(),
       mnpl = input$MNPL.usr
     )
   })
