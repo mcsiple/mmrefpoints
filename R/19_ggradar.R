@@ -13,8 +13,27 @@
 #' @author Ricardo Bion, modified slightly by Margaret Siple
 #' @details Since this code was originally written, ggradar has becomes its own standalone package. For more information and for the most current version of the function, see Ricardo Bion's \href{https://github.com/ricardo-bion/ggradar/}{GitHub}
 #'
-#' @export
+#' @examples 
+#' plot.data <- data.frame(
+#'   bycatch = factor(c(
+#'       "Lower end of bycatch range",
+#'       "Midpoint of bycatch range", 
+#'       "Higher end of bycatch range"
+#'     )),
+#'   prebuild50 = c(0, 0, 1),
+#'   prebuild100 = c(0, 0, 1),
+#'   abundrel10 = c(0, 0, 0.29),
+#'   abundrel20 = c(0, 0, 0.34),
+#'   abundrel50 = c(0, 0, 0.53)
+#' )
 
+#' ggradar(
+#'   plot.data = plot.data,
+#'   axis.label.size = 4,
+#'   grid.label.size = 4
+#' )
+#'
+#' @export
 ggradar <- function(plot.data,
                     axis.labels = colnames(plot.data)[-1],
                     grid.label.size = 7,
