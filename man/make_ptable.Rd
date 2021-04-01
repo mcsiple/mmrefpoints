@@ -2,22 +2,87 @@
 % Please edit documentation in R/26_make_ptable.R
 \name{make_ptable}
 \alias{make_ptable}
-\title{Make a performance table}
+\title{Make a performance table. Trajectories must be based on 100-year simulations.}
 \usage{
-make_ptable(traj.list, depletion, lh.params, mnpl)
+make_ptable(traj.list, depletion, mnpl = NA)
 }
 \arguments{
 \item{traj.list}{A list of trajectories from \code{Projections()}}
 
 \item{depletion}{A vector of starting depletions (abundance relative to carrying capacity)}
 
-\item{lh.params}{A list of life history parameters}
+\item{mnpl}{Max net productivity level (MNPL) defined by user. If MNPL is specified, that value is used. If the user does not specify MNPL, it is calculated from the life history parameters.}
 
-\item{mnpl}{Max net productivity level (MNPL). If MNPL is specified, that value is used. If the user does not specify MNPL, it is calculated from the life history parameters.}
+\item{lh.params}{A list of life history parameters}
 }
 \value{
 A dataframe containing performance metrics.
 }
 \description{
-Make a performance table
+Make a performance table. Trajectories must be based on 100-year simulations.
+}
+\examples{
+parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, 
+              PlusGroupAge = 25, z = 2.39, lambdaMax = 1.02)
+initdepl.vec <- c(0.2, 0.5, 0.9)
+high.list.const <- lapply(
+  X = initdepl.vec,
+  function(x) {
+    projections(
+      NOut = 50,
+      ConstantBycatch = list(Catch = 25, CV = 0.3),
+      InitDepl = x,
+      lh.params = parms,
+      nyears = nyears,
+      obs_CV = 0.1
+    )
+  }
+)
+med.list.const <- lapply(
+  X = initdepl.vec,
+  function(x) {
+    projections(
+      NOut = 50,
+      ConstantBycatch = list(Catch = 12, CV = 0.3),
+      InitDepl = x,
+      lh.params = parms,
+      nyears = nyears,
+      obs_CV = 0.1
+    )
+  }
+)
+low.list.const <- lapply(
+  X = initdepl.vec,
+  function(x) {
+    projections(
+      NOut = 50,
+      ConstantBycatch = list(Catch = 2, CV = 0.3),
+      InitDepl = x,
+      lh.params = parms,
+      nyears = nyears,
+      obs_CV = 0.1
+    )
+  }
+)
+zero.list.const <- lapply(
+  X = initdepl.vec,
+  function(x) {
+    projections(
+      NOut = 50,
+      ConstantBycatch = list(Catch = 0, CV = 0),
+      InitDepl = x,
+      lh.params = parms,
+      nyears = nyears,
+      obs_CV = 0.1
+    )
+  }
+)
+traj.list <- list(
+  high.list.const,
+  med.list.const,
+  low.list.const,
+  zero.list.const
+)
+make_ptable(traj.list = traj.list, depletion = initdepl.vec, mnpl = 0.5)
+
 }
