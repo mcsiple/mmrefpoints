@@ -150,18 +150,18 @@ Resolviendo para $f_{max}$ dada la máxima fecundidad teórica en función de $\
 
 $$
 \tag{Eq. 6}
-f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}}^{a_p -2}}
+f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}^{a_p-2}}}
 $$
 Esto se conoce como $p$ en Butterworth y Punt (1992).
 
 
 ### Máximo nivel de productividad neta
 
-Para calcular el nivel máximo de productividad neta ($MNPL$) dato $z$, primero calculamos el rendimiento sostenible por recluta $\tilde C$ en función de la tasa de mortalidad por captura incidental $E$.
+Para calcular el nivel máximo de productividad neta ($MNPL$) dato $z$, primero calculamos el rendimiento sostenible por recluta $C$ en función de la tasa de mortalidad por captura incidental $E$.
 
 $$
 \tag{Eq. 7}
-\tilde C = E \tilde B(E)\tilde P(E)
+C = E \tilde B(E)\tilde P(E)
 $$
 dónde $\tilde B (E)$ es el reclutamiento normalizado cuando la tasa de captura incidental se fija en $E$ y $\tilde P (E)$ es el número de equilibrio de animales "reclutados" (edad 1+) por cría cuando la tasa de mortalidad por captura incidental se fija en $E$. El reclutamiento normalizado $\tilde B(E)$ se calcula de la siguiente manera:
 
@@ -171,19 +171,19 @@ $$
 $$
 dondé $f_0 = \frac{1}{\tilde N(0)}$,  $\tilde N(E)$ es el número de animales a la edad del primer parto y mayores (es decir, animales reproductores) por recluta al equilibrio sin mortalidad incidental, y $A$ es el parámetro de resiliencia de Pella-Tomlinson (($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ asumiendo que es igual a 1, porque todos los cálculos son por recluta.
 
-El número de animales reproductores por recluta a la tasa de explotación E es la suma de animales adultos por recluta $\tilde N_a$ desde la edad del primer parto $a_p$ a la edad del grupo plus $x$:
+El número de animales reproductores por recluta a la tasa de explotación $E$ es la suma de animales adultos por recluta $\tilde N_a$ desde la edad del primer parto $a_p$ a la edad del grupo plus $x$:
 
 $$
 \tag{Eq. 9}
-\tilde N(E) = \sum_{a=a_p}^{x} E \tilde N_{0,a}(E)
+\tilde N(E) = \sum_{a=a_p}^{x} \tilde N_{a}(E)
 $$
 
-Resolvemos la tasa de mortalidad por captura incidental a la que $\tilde C$ es maximizada (es decir, donde $\frac{dC}{dE}$ es cero) Esto es MSYR, que es análogo a $F_{MSY}$ en pesquerías.
+Resolvemos la tasa de mortalidad por captura incidental a la que $\tilde C$ es maximizada (es decir, donde $\frac{dC}{dE}$ es cero) Esto es $MSYR$, que es análogo a $F_{MSY}$ en pesquerías.
 
 El número de 1+ animales por recluta a la tasa de mortalidad por captura incidental $E$, $\tilde P(E)$ se define como:
 $$
 \tag{Eq. 10}
-\tilde P(E)=\sum_{a=1}^{x} \tilde N_{0,a}(E)
+\tilde P(E)=\sum_{a=1}^{x} \tilde N_{a}(E)
 $$
 
 dónde $\tilde N_{0,a}(E)$ son los números por recluta en cada edad $a$  dada una estructura de edad estable:
@@ -198,14 +198,14 @@ S_0[S_{1+}(1-E)]^{a-1} &    1\leq a<x \\
 \end{cases}
 $$ 
 
-$MSYR$ es el valor de $E$ para el cual la derivada de $\tilde C$ con respecto a $E$ es cero, que determinamos mediante diferenciación numérica:
+$MSYR$ es el valor de $E$ para el cual la derivada de $C$ con respecto a $E$ es cero, que determinamos mediante diferenciación numérica:
 
 $$
 \tag{Eq. 12}
-\frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
+\frac{dC}{dE} = \frac {C(E+0.001) - C(E-0.001)} {0.002}
 $$
 
-Entonces, la abundancia relativa que corresponde a $MSYR$, $MNPL$, se determina calculando el tamaño total de la población 1+ en MSYR en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:
+Entonces, la abundancia relativa que corresponde a $MSYR$, $MNPL$, se determina calculando el tamaño total de la población 1+ en $MSYR$ en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:
 
 $$
 \tag{Eq. 13}
@@ -225,7 +225,7 @@ El agotamiento inicial $\frac{N_0^{1+}}{K^{1+}}$  se basa en la historia de mort
 Para los casos en que se da un error de observación para la población, la abundancia inicial se extrae de una distribución log normal con una desviación estándar proporcional al CV de observación.
 
 #### Tipos de historia de vida
-Cada tipo de historia de vida de mamíferos marinos presentado como una opción predeterminada en esta aplicación corresponde a un valor único de supervivencia de las crías $S_0$, sobrevivencia adulta $S_{1+}$, , edad al primer parto ($a_p$), ) y tasa intrínseca de crecimiento de la población $\lambda_{max}$. . Estos valores se presentan en la Tabla 2. Para fines de cálculo, supusimos que la edad del grupo más $x$ es dos años después de la edad de madurez ($x=a_p+3$).
+Cada tipo de historia de vida de mamíferos marinos presentado como una opción predeterminada en esta aplicación corresponde a un valor único de supervivencia de las crías $S_0$, sobrevivencia adulta $S_{1+}$, edad al primer parto, $a_p$, y tasa intrínseca de crecimiento de la población $\lambda_{max}$. Estos valores se presentan en la Tabla 2. Para fines de cálculo, supusimos que la edad del grupo más $x$ es dos años después de la edad de madurez ($x=a_p+2$).
 
 #### Compensación
 Resolvemos el valor del grado de compensación $z$ que corresponde al valor de MNPL proporcionado por el usuario. Esto implica resolver la ecuación $\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)$ para $z$  donde $E^*$ depende de $z$  como se describe arriba.

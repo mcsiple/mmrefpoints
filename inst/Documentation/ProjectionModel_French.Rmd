@@ -141,16 +141,16 @@ Le calcul de $f_{max}$ permet d’obtenir la fécondité maximale théorique com
 
 $$
 \tag{Eq. 6}
-f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}}^{a_p -2}}
+f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}^{a_p-2}}}
 $$
 Ceci est désigné sous le nom de $p$ dans Butterworth et Punt (1992).
 
 ### Niveau de productivité net maximal
-Pour calculer le niveau de productivité net maximale ($NPNM$) sachany $z$, nous calculons d'abord le rendement durable par recrue $\tilde C$ en fonction du taux de mortalité des prises accessoires $E$.
+Pour calculer le niveau de productivité net maximale ($NPNM$) sachany $z$, nous calculons d'abord le rendement durable par recrue $C$ en fonction du taux de mortalité des prises accessoires $E$.
 
 $$
 \tag{Eq. 7}
-\tilde C = E \tilde B(E)\tilde P(E)
+C = E \tilde B(E)\tilde P(E)
 $$
 où $\tilde B (E)$ est le recrutement standardisé lorsque le taux de prises accessoires est fixé à $E$ et $\tilde P (E)$ est le nombre d'animaux "recrutés" (âge 1+) par baleineaux/nouveaux nés lorsque le taux de mortalité des prises accessoires est fixé à $E$. Le recrutement standardisé $\tilde B(E)$ est calculé de la manière suivante :
 
@@ -160,7 +160,7 @@ $$
 $$
 où $f_0 = \frac{1}{\tilde N(0)}$, $\tilde N(E)$ est le nombre d'animaux à l'âge de la première mise bas et plus âgés (c'est-à-dire les animaux reproducteurs) par recrue à l'équilibre de la mortalité sans prise accessoire, et $A$ est le paramètre de résilience de Pella-Tomlinson ($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ est considéré comme égal à 1, car tous les calculs sont effectués par recrue.
 
-Le nombre d'animaux reproducteurs par recrue, pour un taux d'exploitation E, est égal à la somme des animaux adultes par recrue $\tilde N_a$ de l'âge à la première mise bas $a_p$ jusqu’ à l'âge du groupe plus $x$ :
+Le nombre d'animaux reproducteurs par recrue, pour un taux d'exploitation $E$, est égal à la somme des animaux adultes par recrue $\tilde N_a$ de l'âge à la première mise bas $a_p$ jusqu’ à l'âge du groupe plus $x$ :
 
 $$
 \tag{Eq. 9}
@@ -187,14 +187,14 @@ S_0[S_{1+}(1-E)]^{a-1} &    1\leq a<x \\
 \end{cases}
 $$ 
 
-$MSYR$ est la valeur de $E$ pour laquelle la dérivée de $\tilde C$ par rapport à $E$ est égale à zéro, déterminée par différenciation numérique :
+$MSYR$ est la valeur de $E$ pour laquelle la dérivée de $C$ par rapport à $E$ est égale à zéro, déterminée par différenciation numérique :
 
 $$
 \tag{Eq. 12}
-\frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
+\frac{dC}{dE} = \frac {C(E+0.001) - C(E-0.001)} {0.002}
 $$
 
-Ensuite, l'abondance relative qui correspond au $MSYR$, $MNPL$, est déterminée en calculant la taille totale de la population 1+ au RMDT par rapport à la taille de la population 1+ à l'équilibre, sans mortalité due aux prises accessoires:
+Ensuite, l'abondance relative qui correspond au $MSYR$, $MNPL$, est déterminée en calculant la taille totale de la population 1+ au $RMDT$ par rapport à la taille de la population 1+ à l'équilibre, sans mortalité due aux prises accessoires:
 
 $$
 \tag{Eq. 13}
@@ -214,7 +214,7 @@ L'épuisement initial $\frac{N_0^{1+}}{K^{1+}}$ est basé sur l'historique de la
 Dans les cas où l'erreur d'observation est donnée pour la population, l'abondance de départ est déterminée à partir d'une distribution lognormale avec un écart-type proportionnel au CV d'observation.
 
 #### Types d'histoire de vie
-Chaque type d'histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né $S_0$, de la survie de l'adulte $S_{1+}$, de l'âge à la première mise bas ($a_p$) et du taux intrinsèque de croissance de la population $\lambda_{max}$. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l'âge du groupe plus $x$ est supérieur de deux ans à l'âge à la maturité ($x=a_p+3$). 
+Chaque type d'histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né $S_0$, de la survie de l'adulte $S_{1+}$, de l'âge à la première mise bas, $a_p$ et du taux intrinsèque de croissance de la population $\lambda_{max}$. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l'âge du groupe plus $x$ est supérieur de deux ans à l'âge à la maturité ($x=a_p+2$). 
 
 #### Compensation
 
