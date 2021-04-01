@@ -195,12 +195,12 @@ app_server <- function( input, output, session ) {
                       max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
                       step = 0.01
     )
-    updateSliderInput(session, "cvcatchrate_simple",
-                      value = val1,
-                      min = floor(val1),
-                      max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
-                      step = 0.01
-    )
+    # updateSliderInput(session, "cvcatchrate_simple",
+    #                   value = val1,
+    #                   min = floor(val1),
+    #                   max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
+    #                   step = 0.01
+    # )
   })
   
   
@@ -218,7 +218,7 @@ app_server <- function( input, output, session ) {
       zero.list <- zero.simple.rate()
     }
     
-    print(input$selected_language)
+    #print(input$selected_language)
     # print(translator$get_languages())
     
     
@@ -822,8 +822,6 @@ app_server <- function( input, output, session ) {
       select(-depletion, -zero) %>%
       rename_with(~newranges, c("name", "low", "med", "high"))
     
-    #print(PM)
-    #dput(performance.table())
     kableExtra::kable(PM) %>%
       kableExtra::column_spec(1, width = "10em") %>%
       kableExtra::column_spec(2, color = textvalues[3], width = "7em") %>%
@@ -864,6 +862,7 @@ app_server <- function( input, output, session ) {
                                      "med" = rangenames[2],
                                      "high" = rangenames[3]
       ))
+
     kiteplot <- ggradar(PM.try2,
                         axis.labels = axis.labels,
                         grid.label.size = 3,
@@ -872,6 +871,7 @@ app_server <- function( input, output, session ) {
                         plot.legend = T,
                         palette.vec = colorscheme[c(3, 1, 2)]
     )
+
     plot(kiteplot)
   })
   
@@ -916,21 +916,21 @@ app_server <- function( input, output, session ) {
   }
   
   # PBR CALCULATOR ----------------------------------------------------------
-  Nbest <- reactive(input$popsize_usr)
-  
-  Ndist <- reactive(0.842 * sqrt(log(1 + input$obs_cv^2))) # 0.842 = -1*qnorm(0.2,0,1)
-  
-  Nmin <- reactive(Nbest() / exp(Ndist()))
-  
-  PBR.metrics <- reactive(list(
-    depl = initdepl_adv(),
-    lh.params = lh.params2(),
-    Nbest = Nbest(), # user-defined
-    Ndist = Ndist(),
-    Nmin = Nmin(),
-    Rmax = input$lambdaMax - 1
-  ))
-  
+  # Nbest <- reactive(input$popsize_usr)
+  # 
+  # Ndist <- reactive(0.842 * sqrt(log(1 + input$obs_cv^2))) # 0.842 = -1*qnorm(0.2,0,1)
+  # 
+  # Nmin <- reactive(Nbest() / exp(Ndist()))
+  # 
+  # PBR.metrics <- reactive(list(
+  #   depl = initdepl_adv(),
+  #   lh.params = lh.params2(),
+  #   Nbest = Nbest(), # user-defined
+  #   Ndist = Ndist(),
+  #   Nmin = Nmin(),
+  #   Rmax = input$lambdaMax - 1
+  # ))
+  # 
   output$PBRprint <- renderText({
     P <- input$Nmin.usr * 0.5 * input$Rmax.usr * input$fr.usr
     paste0("PBR = ", P)
