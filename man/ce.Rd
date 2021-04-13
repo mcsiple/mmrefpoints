@@ -4,14 +4,25 @@
 \alias{ce}
 \title{Calculate normalized sustainable yield}
 \usage{
-ce(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0)
+ce(
+  S0 = NA,
+  S1plus = NA,
+  nages = NA,
+  AgeMat = NA,
+  z = NA,
+  lambdaMax = NA,
+  E = NA,
+  A = NA,
+  P0 = NA,
+  N0 = NA
+)
 }
 \arguments{
 \item{S0}{Calf/pup survival}
 
-\item{S1plus}{1+ survival (usually called "juvenile + adult" in literature)}
+\item{S1plus}{1+ survival rate for animals age 1 year and older (a numeric value between 0 and 1)}
 
-\item{nages}{Same as plus group age, called "maximum (lumped) age-class" in Punt (1999) Annex R}
+\item{nages}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
 
 \item{AgeMat}{Age at maturity (= age at first parturition - 1)}
 
@@ -19,17 +30,35 @@ ce(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0)
 
 \item{lambdaMax}{maximum steady rate of increase (population growth rate)}
 
-\item{E}{bycatch mortality rate}
+\item{E}{bycatch mortality rate (applies to 1+ numbers)}
 
 \item{A}{the Pella-Tomlinson resilience parameter ((fmax - f0)/f0)}
 
-\item{P0}{unfished nums per recruit - 1+ adults}
+\item{P0}{unfished number-per-recruit - 1+ adults}
 
-\item{N0}{unfished nums per recruit - mature adults}
+\item{N0}{unfished numbers-per-recruit - mature adults}
+
+\item{K1plus}{the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
 }
 \value{
 a single value of normalized yield for exploitation rate E
 }
 \description{
 This function calculates the normalized sustainable yield, which is used to find MNPL (the population size at which productivity is maximized).
+}
+\examples{
+Set parameters
+S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+# Get number of individuals per recruit in terms of mature individuals (N0.w)
+NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
+
+N0 <- NPROut$npr # mature numbers per recruit
+# Get number of individuals per recruit in terms of individuals aged 1+ (P0.w)
+P0 <- NPROut$P1r # 1+ nums per recruit
+
+ce(S0 = S0.w, S1plus = S1plus.w, 
+nages = nages.w, K1plus = 9000, 
+AgeMat = AgeMat.w, 
+E=0.01, z=2.39,A=2, N0 = N0, P0 = P0)
 }

@@ -2,20 +2,36 @@
 #' @description This function calculates the normalized sustainable yield, which is used to find MNPL (the population size at which productivity is maximized).
 #'
 #' @param S0 Calf/pup survival
-#' @param S1plus 1+ survival (usually called "juvenile + adult" in literature)
-#' @param nages Same as plus group age, called "maximum (lumped) age-class" in Punt (1999) Annex R
+#' @param S1plus 1+ survival rate for animals age 1 year and older (a numeric value between 0 and 1)
+#' @param nages "maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.
+#' @param K1plus the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.
 #' @param AgeMat Age at maturity (= age at first parturition - 1)
 #' @param z degree of compensation
-#' @param E bycatch mortality rate
-#' @param P0 unfished nums per recruit - 1+ adults
+#' @param E bycatch mortality rate (applies to 1+ numbers)
+#' @param P0 unfished number-per-recruit - 1+ adults
 #' @param lambdaMax maximum steady rate of increase (population growth rate)
 #' @param A the Pella-Tomlinson resilience parameter ((fmax - f0)/f0)
-#' @param N0 unfished nums per recruit - mature adults
+#' @param N0 unfished numbers-per-recruit - mature adults
 #'
 #' @return a single value of normalized yield for exploitation rate E
 #'
+#' @examples
+#' Set parameters
+#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+#' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+#' # Get number of individuals per recruit in terms of mature individuals (N0.w)
+#' NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
+#' 
+#' N0 <- NPROut$npr # mature numbers per recruit
+#' # Get number of individuals per recruit in terms of individuals aged 1+ (P0.w)
+#' P0 <- NPROut$P1r # 1+ nums per recruit
+#'
+#' ce(S0 = S0.w, S1plus = S1plus.w, 
+#' nages = nages.w, K1plus = 9000, 
+#' AgeMat = AgeMat.w, 
+#' E=0.01, z=2.39,A=2, N0 = N0, P0 = P0)
 #' @export
-ce <- function(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0) {
+ce <- function(S0 = NA, S1plus = NA, nages = NA, AgeMat = NA, z = NA, lambdaMax = NA, E = NA, A = NA, P0 = NA, N0 = NA) {
   npr1plus <- npr(
     S0 = S0,
     S1plus = S1plus,
@@ -35,7 +51,6 @@ ce <- function(S0, S1plus, nages, AgeMat, z, lambdaMax, E, A, P0, N0) {
     N0 = N0
   ) # recruitment at E
   recat0 <- 1 # recruitment at E = 0 (no bycatch)
-  rel_rec <- recatF / recat0 # normalized recruitment at E, known as B(E)
-  cpr1plus <- E * rel_rec * npr1plus # 1+ catch-per-recruit at bycatch mortality rate E, AKA normalized sustainable yield
+  cpr1plus <- E * (recatF / recat0) * npr1plus # 1+ catch-per-recruit at bycatch mortality rate E, AKA normalized sustainable yield. The middle term is normalized recruitment at E, known as B(E) in some other formulations.
   return(cpr1plus)
 }
