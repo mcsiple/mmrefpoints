@@ -37,10 +37,12 @@ this is the function to minimize, but needs to be restricted to that yield > 0
 All life history params are as above
 }
 \examples{
-get_diff(logit.E = logit(0.01),
-         S0 = 0.944, S1plus = 0.99,
-         nages = 13, AgeMat = 11,
-         lambdaMax = 1.04,
-         K1plus = 9000,
-         z = 2.39)
+get_diff(
+  logit.E = logit(0.01),
+  S0 = 0.944, S1plus = 0.99,
+  nages = 13, AgeMat = 11,
+  lambdaMax = 1.04,
+  K1plus = 9000,
+  z = 2.39
+)
 }

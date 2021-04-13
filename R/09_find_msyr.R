@@ -29,7 +29,6 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
     S0.w = S0.w,
     S1plus.w = S1plus.w,
     nages.w = nages.w,
-    #K1plus.w = K1plus.w,
     AgeMat.w = AgeMat.w,
     InitDepl.w = 0.000001, # 0 causes strange behavior
     z.w = z.w,
@@ -49,10 +48,8 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
     S0 = S0.w,
     S1plus = S1plus.w,
     nages = nages.w,
-    #K1plus = K1plus.w,
     AgeMat = AgeMat.w,
     z = z.w,
-    lambdaMax = lambdaMax.w,
     E = fmsy,
     A = A, P0 = P0, N0 = N0
   )

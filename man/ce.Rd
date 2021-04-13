@@ -10,7 +10,6 @@ ce(
   nages = NA,
   AgeMat = NA,
   z = NA,
-  lambdaMax = NA,
   E = NA,
   A = NA,
   P0 = NA,
@@ -28,8 +27,6 @@ ce(
 
 \item{z}{degree of compensation}
 
-\item{lambdaMax}{maximum steady rate of increase (population growth rate)}
-
 \item{E}{bycatch mortality rate (applies to 1+ numbers)}
 
 \item{A}{the Pella-Tomlinson resilience parameter ((fmax - f0)/f0)}
@@ -39,6 +36,8 @@ ce(
 \item{N0}{unfished numbers-per-recruit - mature adults}
 
 \item{K1plus}{the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
+
+\item{lambdaMax}{maximum steady rate of increase (population growth rate)}
 }
 \value{
 a single value of normalized yield for exploitation rate E

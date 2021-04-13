@@ -31,7 +31,7 @@
 #' AgeMat = AgeMat.w, 
 #' E=0.01, z=2.39,A=2, N0 = N0, P0 = P0)
 #' @export
-ce <- function(S0 = NA, S1plus = NA, nages = NA, AgeMat = NA, z = NA, lambdaMax = NA, E = NA, A = NA, P0 = NA, N0 = NA) {
+ce <- function(S0 = NA, S1plus = NA, nages = NA, AgeMat = NA, z = NA, E = NA, A = NA, P0 = NA, N0 = NA) {
   npr1plus <- npr(
     S0 = S0,
     S1plus = S1plus,
