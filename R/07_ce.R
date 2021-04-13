@@ -50,7 +50,7 @@ ce <- function(S0 = NA, S1plus = NA, nages = NA, AgeMat = NA, z = NA, lambdaMax 
     P0 = P0,
     N0 = N0
   ) # recruitment at E
-  recat0 <- 1 # recruitment at E = 0 (no bycatch)
-  cpr1plus <- E * (recatF / recat0) * npr1plus # 1+ catch-per-recruit at bycatch mortality rate E, AKA normalized sustainable yield. The middle term is normalized recruitment at E, known as B(E) in some other formulations.
+  
+  cpr1plus <- E * recatF * npr1plus # 1+ catch-per-recruit at bycatch mortality rate E, AKA normalized sustainable yield. The middle term is normalized recruitment at E, known as B(E) in some other formulations. It is recatF/recat0, where recat0 is recruitment at E = 0 (no bycatch) -- but because our calculation is per-recruit, recat0 = 1 and the relative recruitment is just recatF.
   return(cpr1plus)
 }
