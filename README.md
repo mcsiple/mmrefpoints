@@ -32,10 +32,20 @@ Alexandre N. Zerbini
 
 ## Contents
 
+  - [Need](#need)
   - [Details](#details)
-  - [Install](#install)
+  - [Installation](#installation)
   - [Contributing](#contributing)
   - [References](#references) <!-- end toc -->
+
+## Need
+
+Stakeholders involved in the management of marine mammal bycatch in
+marine fisheries need tools to simulate the effects of management
+decisions on marine mammal populations. Population models are a key part
+of this process. This package contains the tools to simulate marine
+mammal populations and an app that shows model outputs in a
+user-friendly way.
 
 ## Details
 
@@ -55,13 +65,15 @@ also be used as a teaching tool, or for anyone who is more familiar with
 R than FORTRAN and wants to use some components of the BALEEN II model
 (Punt 1999).
 
-## Install
+## Installation
 
 This package can be downloaded directly from GitHub:
 
     devtools::install_github("mcsiple/mmrefpoints")
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
+### Community guidelines
 
 We would like this package to be sustainable in the long term and
 welcome contributions. If you encounter a bug, please leave a note on
@@ -80,28 +92,32 @@ outputs.
 
 The mmBIET Shiny app can also be accessed through the R package:
 
-    #> Loading required package: tidyverse
-    #> ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──
-    #> ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-    #> ✓ tibble  3.1.0     ✓ dplyr   1.0.5
-    #> ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-    #> ✓ readr   1.4.0     ✓ forcats 0.5.1
-    #> ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    #> x dplyr::filter() masks stats::filter()
-    #> x dplyr::lag()    masks stats::lag()
-    #> 
-    #> Attaching package: 'mmrefpoints'
-    #> The following object is masked from 'package:datasets':
-    #> 
-    #>     lh
-    #> Loading required package: shiny
-    #> 
-    #> Listening on http://127.0.0.1:7165
-    #> [1] "Language change: en"
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+``` r
+library(mmrefpoints)
+run_app()
+```
 
 <img src="https://github.com/mcsiple/ltbycatch/blob/master/docs/screenshot1.png" alt="screenshot1" width="400">
+
+## Functionality
+
+Key functions in this package:
+
+| Function      | Purpose                                                         |
+| :------------ | :-------------------------------------------------------------- |
+| dynamics()    | Generate a single trajectory for marine mammal population size  |
+| projections() | Generate several trajectories for marine mammal population size |
+
+To create a single projection for a marine mammal population, use the
+`dynamics()` function:
+
+``` r
+x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
+InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+plot(1:100, x$TotalPop, type = 'l', xlab = "Year", ylab = "Population size")
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
 
 ## References
 
