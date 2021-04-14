@@ -538,6 +538,11 @@
             "fr": "Cela prendra un moment ! Assurez-vous d'être sûr de *vos choix  d’objectifs avant de cliquer sur"
       },
       {
+            "en": ". Be patient-- the progress bar may disappear while the plot is rendering.",
+            "es": ". Tenga paciencia: la barra de progreso puede desaparecer mientras se procesa el gráfico.",
+            "fr": ". Soyez patient - la barre de progression peut disparaître pendant le rendu du tracé."
+      },
+      {
       	"en": "Get maximum bycatch rate",
       	"es": "Obtener la tasa de captura incidental máxima",
             "fr": "Obtenir un taux maximal de prises accessoires"

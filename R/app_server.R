@@ -1518,7 +1518,9 @@ app_server <- function( input, output, session ) {
           br(),
           p(
             strong(i18n$t("NOTE:")),
-            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), em(i18n$t("Get maximum bycatch rate"))
+            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), 
+            em(i18n$t("Get maximum bycatch rate")),
+            ". Be patient-- the progress bar may disappear while the plot is rendering."
           ),
           column(
             6,
