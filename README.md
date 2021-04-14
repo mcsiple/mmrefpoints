@@ -134,4 +134,4 @@ Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall
 R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob
 Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting
 long-term marine mammal abundance with bycatch. R package version 1.0.0.
-url: <https://github.com/mcsiple/ltbycatch>
+url: <https://github.com/mcsiple/mmrefpoints>
