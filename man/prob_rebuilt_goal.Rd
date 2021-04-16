@@ -9,7 +9,7 @@ prob_rebuilt_goal(traj, goal = 2000, rebuild.yr = 100)
 \arguments{
 \item{traj}{- a matrix of trajectories, with rows=nsims and cols=nyears}
 
-\item{goal}{- what is the rebuilding goal?}
+\item{goal}{- what is the rebuilding goal? An absolute number.}
 
 \item{rebuild.yr}{- the year by which you want pop to be recovered (calculate probability that pop will recover to MNPL by rebuild.yr)}
 }

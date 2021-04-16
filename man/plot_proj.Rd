@@ -18,11 +18,11 @@ plot_proj(
 )
 }
 \arguments{
-\item{high}{a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user in the Shiny app)}
+\item{high}{a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user in the Shiny app)}
 
-\item{med}{a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a medium bycatch level (this is at the median of the low and high end of the range defined by the user)}
+\item{med}{a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a medium bycatch level (this is at the median of the low and high end of the range defined by the user)}
 
-\item{low}{a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user)}
+\item{low}{a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user)}
 
 \item{years.plot}{number of years to plot on the x axis}
 
@@ -32,7 +32,7 @@ plot_proj(
 
 \item{K1plus}{carrying capacity in terms of age 1+ individuals}
 
-\item{InitDepl}{initial depletion level (set by the user)}
+\item{InitDepl}{initial depletion level (1+ population size relative to K). Must be between 0 and 1.}
 
 \item{color.palette}{a vector of three colors to use for low, medium and high bycatch rates}
 
@@ -45,27 +45,31 @@ A plot of 50 percent and 90 percent confidence intervals of population projectio
 plots outputs from several projections that result from a Projections() call.
 }
 \examples{
-parms <- list(S0=0.944,S1plus=0.99,
-K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02)
+parms <- list(
+  S0 = 0.944, S1plus = 0.99,
+  K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1.02
+)
 initdepl <- 0.5
 high.simple <- projections(
   NOut = 50,
   ConstantBycatch = list(
     Catch = 100,
-   CV = 0.3
+    CV = 0.3
   ),
   InitDepl = initdepl,
   lh.params = parms,
-  nyears = 100)
+  nyears = 100
+)
 med.simple <- projections(
   NOut = 50,
   ConstantBycatch = list(
     Catch = 50,
     CV = 0.3
   ),
- InitDepl = initdepl,
+  InitDepl = initdepl,
   lh.params = parms,
-  nyears = 100)
+  nyears = 100
+)
 low.simple <- projections(
   NOut = 50,
   ConstantBycatch = list(
@@ -74,14 +78,17 @@ low.simple <- projections(
   ),
   InitDepl = initdepl,
   lh.params = parms,
-  nyears = 100)
-x <- plot_proj(high = high.simple,
-med = med.simple,
-low = low.simple,
-years.plot = 50,
-ylims = c(0, parms$K1plus),InitDepl = initdepl, 
-K1plus =parms$K1plus)
+  nyears = 100
+)
+
+x <- plot_proj(
+  high = high.simple,
+  med = med.simple,
+  low = low.simple,
+  years.plot = 50,
+  ylims = c(0, parms$K1plus), InitDepl = initdepl,
+  K1plus = parms$K1plus
+)
 
 x
-
 }

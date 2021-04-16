@@ -17,11 +17,11 @@ projections(
 \arguments{
 \item{NOut}{- number of simulations}
 
-\item{ConstantBycatch}{Mean and CV of number of animals caught as bycatch each year}
+\item{ConstantBycatch}{Mean and CV of number of animals killed as bycatch per year}
 
 \item{ConstantRateBycatch}{Mean and CV of bycatch rate}
 
-\item{InitDepl}{initial depletion. If obs_CV>0, this is the mean depletion}
+\item{InitDepl}{initial depletion. If obs_CV>0, this is the mean depletion.}
 
 \item{lh.params}{a list of life history parameters}
 
@@ -30,8 +30,7 @@ projections(
 \item{obs_CV}{observation CV. Default to 1 for simple projections}
 }
 \value{
-list of outputs from simulations: 'params' contains parameter values for each trajectory; 'trajectories' matrix contains simulation outputs; 'fishing.rates' contain the bycatch rates for each year in each simulation; InitDepl returns the initial depletion for the projections; ConstantBycatch provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); ConstantRateBycatch contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate.
-other params are the same as in the Dynamics() function
+list of outputs from simulations: \code{params} contains parameter values for each trajectory; \code{trajectories} matrix contains simulation outputs; \code{fishing.rates} contain the bycatch rates for each year in each simulation; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
 }
 \description{
 - generates several projections, stochasticity is in the number of catches from year to year

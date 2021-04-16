@@ -13,7 +13,7 @@ getfecmax(S0, lambdaMax, S1plus, AgeMat)
 
 \item{S1plus}{survival of age 1+ individuals, a numeric value between 0 and 1}
 
-\item{AgeMat}{age at maturity in years (must be equal to or less than nages)}
+\item{AgeMat}{age at maturity in years (must be equal to or less than \code{nages})}
 }
 \value{
 a numeric value for maximum theoretical fecundity.

@@ -7,15 +7,15 @@
 get_rf(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0)
 }
 \arguments{
-\item{E_in}{Bycatch mortality rate}
+\item{E_in}{Bycatch mortality rate, a numeric value between 0 and 1}
 
-\item{S0}{calf/pup survival (numeric value)}
+\item{S0}{calf/pup survival, a numeric value between 0 and 1}
 
-\item{S1plus}{adult survival  (numeric value)}
+\item{S1plus}{adult survival, a numeric value between 0 and 1}
 
 \item{nages}{number of age classes-- including plus group age-- in years}
 
-\item{AgeMat}{age at maturity in years}
+\item{AgeMat}{age at maturity in years, must be less than nages}
 
 \item{z}{degree of compensation, in the app calculated from the value of MNPL defined by the user}
 

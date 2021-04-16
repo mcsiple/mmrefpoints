@@ -23,13 +23,13 @@ get_f(
 
 \item{S0.w}{Calf/pup survival, a numeric value between 0 and 1. (Note: the 'w' suffix indicates that \eqn{z} is in the wrapper function, and is used inside the function by \code{optim})}
 
-\item{S1plus.w}{survival rate for animals age 1 year and older (a numeric value between 0 and 1)}
+\item{S1plus.w}{survival rate for animals age 1 year and older, a numeric value between 0 and 1}
 
 \item{nages.w}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
 
 \item{AgeMat.w}{Age at maturity in years (assumed to be age at first parturition - 1)}
 
-\item{InitDepl.w}{The depletion level to solve for (this is equivalent to 'starting depletion')}
+\item{InitDepl.w}{The depletion level to solve for as a proportion of carrying capacity; a numeric value between 0 and 1. This is equivalent to 'starting depletion'.}
 
 \item{z.w}{The degree of compensation. The default value is \code{z = 2.39}.}
 
@@ -45,7 +45,7 @@ get_f(
 The bycatch rate that would lead to a depletion level of \code{InitDepl.w} -- a single value.
 }
 \description{
-This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{Projections()} function to calculate the stable age distribution at which to start the projections.
+This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{projections()} function to calculate the stable age distribution at which to start the projections.
 }
 \examples{
 # Set parameters

@@ -19,13 +19,13 @@ dynamics(
 )
 }
 \arguments{
-\item{S0}{Calf/pup survival (a value between 0 and 1)}
+\item{S0}{Calf/pup survival, a numeric value between 0 and 1}
 
-\item{S1plus}{Survival for animals age 1 year and older (a value between 0 and 1)}
+\item{S1plus}{Survival for animals age 1 year and older, a numeric value between 0 and 1}
 
 \item{K1plus}{The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance}
 
-\item{AgeMat}{Age at maturity in years (assumed to be age at first parturition - 1)}
+\item{AgeMat}{Age at maturity in years (assumed to be age at first parturition - 1).}
 
 \item{InitDepl}{Starting depletion level}
 
@@ -37,7 +37,7 @@ dynamics(
 
 \item{nyears}{Number of years to project}
 
-\item{nages}{"Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy}
+\item{nages}{"Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than AgeMat.}
 
 \item{lambdaMax}{Maximum steady rate of increase (population growth rate)}
 }
