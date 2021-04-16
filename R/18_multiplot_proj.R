@@ -1,13 +1,11 @@
 # Plot projections for multiple depletion levels
 
 #' multiplot.proj
-#' @description plots outputs from several projections that result from \code{Projections()}, with multiple depletion levels.
+#' @description plots outputs from several projections that result from \code{projections()}, with multiple depletion levels.
 #' @param spaghetti either FALSE or a number, where the number is how many simulations to show from the same scenario
 #' @param years.to.plot How many years to plot on the x axis
-#' @param K1plus carrying capacity in terms of the 1+ component of the population
-#' @param InitDepls a vector of initial depletion levels; if the user has selected "show multiple depletion levels" in the app, this vector is automatically the depletion they entered, 75 percent of that value ("low" depletion) and 125 percent of that value ("high depletion")
 #' @param color.palette A vector of length 3 giving the color values for low, medium, and high bycatch mortality or bycatch mortality rate
-#' @param high.d1 a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - this corresponds to the highest bycatch level (thus "high") and the depletion level ( \code{d1} indicates the lowest starting depletion level)
+#' @param high.d1 a list containing output from \code{projections()} (including a matrix of simulation trajectories) - this corresponds to the highest bycatch level (thus "high") and the depletion level ( \code{d1} indicates the lowest starting depletion level)
 #' @param med.d1 a list containing the middle bycatch value and lowest starting depletion
 #' @param low.d1 a list containing the lowest bycatch value and lowest starting depletion
 #' @param high.d2 a list containing the highest bycatch value and middle starting depletion
@@ -18,83 +16,112 @@
 #' @param low.d3 a list containing the lowest bycatch value and highest starting depletion
 #' @param lang language to use. "en" = English; "es" = Spanish; "fr" = French.
 #'
-#' @return A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{Projections()}.
+#' @return A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
-#' parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1)
+#' parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, PlusGroupAge = #' 25, z = 2.39, lambdaMax = 1.02)
 #' InitDepl.vec <- c(0.1, 0.5, 0.9)
 #' BycatchCV <- 0.2
 #' high.list <- lapply(
-#'  X = InitDepl.vec,
-#'  function(x) {
-#'    projections(
-#'      NOut = 50,
-#'      ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
-#'      InitDepl = x,
-#'      lh.params = parms,
-#'      nyears = 100,
-#'      obs_CV = 0.2
-#'    )
-#'  }
+#' X = InitDepl.vec,
+#' function(x) {
+#'   projections(
+#'     NOut = 50,
+#'     ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
+#'     InitDepl = x,
+#'     lh.params = parms,
+#'     nyears = 100,
+#'     obs_CV = 0.2
+#'   )
+#' }
 #' )
 
 #' med.list <- lapply(
-#'  X = InitDepl.vec,
-#'  function(x) {
-#'    projections(
-#'      NOut = 50,
-#'      ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
-#'      InitDepl = x,
-#'      lh.params = parms,
-#'      nyears = 100,
-#'      obs_CV = 0.2
-#'    )
-#'  }
+#' X = InitDepl.vec,
+#' function(x) {
+#'   projections(
+#'     NOut = 50,
+#'     ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
+#'     InitDepl = x,
+#'     lh.params = parms,
+#'     nyears = 100,
+#'     obs_CV = 0.2
+#'   )
+#' }
 #' )
 #' low.list <- lapply(
-#'  X = InitDepl.vec,
-#'  function(x) {
-#'    projections(
-#'      NOut = 50,
-#'      ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
-#'      InitDepl = x,
-#'      lh.params = parms,
-#'      nyears = 100,
-#'      obs_CV = 0.2
-#'    )
-#'  }
+#' X = InitDepl.vec,
+#' function(x) {
+#'   projections(
+#'     NOut = 50,
+#'     ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
+#'     InitDepl = x,
+#'     lh.params = parms,
+#'     nyears = 100,
+#'     obs_CV = 0.2
+#'   )
+#' }
 #' )
 #' multiplot_proj(
-#'  high.d1 = high.list[[1]]$trajectories, # d1 is the lowest depletion
-#'  med.d1 = med.list[[1]]$trajectories,
-#'  low.d1 = low.list[[1]]$trajectories,
-#'  high.d2 = high.list[[2]]$trajectories,
-#'  med.d2 = med.list[[2]]$trajectories,
-#'  low.d2 = low.list[[2]]$trajectories,
-#'  high.d3 = high.list[[3]]$trajectories,
-#'  med.d3 = med.list[[3]]$trajectories,
-#'  low.d3 = low.list[[3]]$trajectories,
-#'  years.to.plot = plotyears,
-#'  K1plus = parms$K1plus,
-#'  InitDepls = InitDepl.vec
+#' high.d1 = high.list[[1]], # d1 is the lowest depletion
+#' med.d1 = med.list[[1]],
+#' low.d1 = low.list[[1]],
+#' high.d2 = high.list[[2]],
+#' med.d2 = med.list[[2]],
+#' low.d2 = low.list[[2]],
+#' high.d3 = high.list[[3]],
+#' med.d3 = med.list[[3]],
+#' low.d3 = low.list[[3]],
+#' years.to.plot = plotyears
 #' )
 #' @export
-multiplot_proj <- function(high.d1 = testing.list[[1]][3][[1]]$trajectories, # d1 is lowest depl, high is highest bycatch rate
-                           med.d1 = testing.list[[1]][2][[1]]$trajectories,
-                           low.d1 = testing.list[[1]][1][[1]]$trajectories,
-                           high.d2 = testing.list[[2]][3][[1]]$trajectories,
-                           med.d2 = testing.list[[2]][2][[1]]$trajectories,
-                           low.d2 = testing.list[[2]][1][[1]]$trajectories,
-                           high.d3 = testing.list[[3]][3][[1]]$trajectories, # d3 is the highest depl
-                           med.d3 = testing.list[[3]][2][[1]]$trajectories,
-                           low.d3 = testing.list[[3]][1][[1]]$trajectories,
-                          # years.plot = 50, # different from years.plot?
+multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch rate
+                           med.d1,
+                           low.d1,
+                           high.d2,
+                           med.d2,
+                           low.d2,
+                           high.d3, # d3 is the highest depl
+                           med.d3,
+                           low.d3,
                            spaghetti = FALSE,
                            years.to.plot = 50,
-                           K1plus = 9000,
-                           InitDepls = InitDepl.vec,
+                           #K1plus = 9000,
+                           #InitDepls = InitDepl.vec,
                            color.palette = c("forestgreen", "darkorange", "red"),
                            lang = "en") {
+  
+  # Checks
+  if(!identical(length(high.d1$trajectories),
+                length(med.d1$trajectories),
+                length(low.d1$trajectories),
+                length(high.d2$trajectories),
+                length(med.d2$trajectories),
+                length(low.d2$trajectories),
+                length(high.d3$trajectories),
+                length(med.d3$trajectories)
+                ) |
+     !identical(length(high.d1$trajectories),
+                length(low.d3$trajectories)) #there is a length limit for identical()
+     ){
+    stop("trajectories are different lengths; make sure all input projections have the same number of years and same number of projections.")
+  }
+  
+  if(!identical(high.d1$params[1,'K1plus'],
+                med.d1$params[1,'K1plus'],
+                low.d1$params[1,'K1plus'],
+                high.d2$params[1,'K1plus'],
+                med.d2$params[1,'K1plus'],
+                low.d2$params[1,'K1plus'],
+                high.d3$params[1,'K1plus'],
+                med.d3$params[1,'K1plus'])){
+    stop("K1plus is mismatched among projections. Check K for your projects and try again.")}
+  
+  K1plus <- high.d1$params[1,'K1plus']
+  #browser()
+  InitDepls <- c(mean(high.d1$trajectories[,1]) / K1plus,
+                    mean(high.d2$trajectories[,1]) / K1plus,
+                    mean(high.d3$trajectories[,1]) / K1plus)
   
   high.col <- color.palette[3]
   med.col <- color.palette[2]
@@ -154,7 +181,17 @@ multiplot_proj <- function(high.d1 = testing.list[[1]][3][[1]]$trajectories, # d
     "es" = "Tamaño poblacional relativo a K",
     "fr" = "Abondance (N/K)"
   )
-  #browser()
+  
+  high.d1 <- high.d1$trajectories
+  med.d1 <- med.d1$trajectories
+  low.d1 <- low.d1$trajectories
+  high.d2 <- high.d2$trajectories
+  med.d2 <- med.d2$trajectories
+  low.d2 <- low.d2$trajectories
+  high.d3 <- high.d3$trajectories
+  med.d3 <- med.d3$trajectories
+  low.d3 <- low.d3$trajectories
+  
   if (spaghetti) { # did user ask to see individual projections?
     ts.length <- years.to.plot
     spag.df1 <- data.frame(

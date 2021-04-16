@@ -5,25 +5,23 @@
 \title{multiplot.proj}
 \usage{
 multiplot_proj(
-  high.d1 = testing.list[[1]][3][[1]]$trajectories,
-  med.d1 = testing.list[[1]][2][[1]]$trajectories,
-  low.d1 = testing.list[[1]][1][[1]]$trajectories,
-  high.d2 = testing.list[[2]][3][[1]]$trajectories,
-  med.d2 = testing.list[[2]][2][[1]]$trajectories,
-  low.d2 = testing.list[[2]][1][[1]]$trajectories,
-  high.d3 = testing.list[[3]][3][[1]]$trajectories,
-  med.d3 = testing.list[[3]][2][[1]]$trajectories,
-  low.d3 = testing.list[[3]][1][[1]]$trajectories,
+  high.d1,
+  med.d1,
+  low.d1,
+  high.d2,
+  med.d2,
+  low.d2,
+  high.d3,
+  med.d3,
+  low.d3,
   spaghetti = FALSE,
   years.to.plot = 50,
-  K1plus = 9000,
-  InitDepls = InitDepl.vec,
   color.palette = c("forestgreen", "darkorange", "red"),
   lang = "en"
 )
 }
 \arguments{
-\item{high.d1}{a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - this corresponds to the highest bycatch level (thus "high") and the depletion level ( \code{d1} indicates the lowest starting depletion level)}
+\item{high.d1}{a list containing output from \code{projections()} (including a matrix of simulation trajectories) - this corresponds to the highest bycatch level (thus "high") and the depletion level ( \code{d1} indicates the lowest starting depletion level)}
 
 \item{med.d1}{a list containing the middle bycatch value and lowest starting depletion}
 
@@ -45,75 +43,69 @@ multiplot_proj(
 
 \item{years.to.plot}{How many years to plot on the x axis}
 
-\item{K1plus}{carrying capacity in terms of the 1+ component of the population}
-
-\item{InitDepls}{a vector of initial depletion levels; if the user has selected "show multiple depletion levels" in the app, this vector is automatically the depletion they entered, 75 percent of that value ("low" depletion) and 125 percent of that value ("high depletion")}
-
 \item{color.palette}{A vector of length 3 giving the color values for low, medium, and high bycatch mortality or bycatch mortality rate}
 
 \item{lang}{language to use. "en" = English; "es" = Spanish; "fr" = French.}
 }
 \value{
-A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{Projections()}.
+A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 }
 \description{
-plots outputs from several projections that result from \code{Projections()}, with multiple depletion levels.
+plots outputs from several projections that result from \code{projections()}, with multiple depletion levels.
 }
 \examples{
-parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1)
+parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, PlusGroupAge = #' 25, z = 2.39, lambdaMax = 1.02)
 InitDepl.vec <- c(0.1, 0.5, 0.9)
 BycatchCV <- 0.2
 high.list <- lapply(
- X = InitDepl.vec,
- function(x) {
-   projections(
-     NOut = 50,
-     ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
-     InitDepl = x,
-     lh.params = parms,
-     nyears = 100,
-     obs_CV = 0.2
-   )
- }
+X = InitDepl.vec,
+function(x) {
+  projections(
+    NOut = 50,
+    ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
+    InitDepl = x,
+    lh.params = parms,
+    nyears = 100,
+    obs_CV = 0.2
+  )
+}
 )
 med.list <- lapply(
- X = InitDepl.vec,
- function(x) {
-   projections(
-     NOut = 50,
-     ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
-     InitDepl = x,
-     lh.params = parms,
-     nyears = 100,
-     obs_CV = 0.2
-   )
- }
+X = InitDepl.vec,
+function(x) {
+  projections(
+    NOut = 50,
+    ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
+    InitDepl = x,
+    lh.params = parms,
+    nyears = 100,
+    obs_CV = 0.2
+  )
+}
 )
 low.list <- lapply(
- X = InitDepl.vec,
- function(x) {
-   projections(
-     NOut = 50,
-     ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
-     InitDepl = x,
-     lh.params = parms,
-     nyears = 100,
-     obs_CV = 0.2
-   )
- }
+X = InitDepl.vec,
+function(x) {
+  projections(
+    NOut = 50,
+    ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
+    InitDepl = x,
+    lh.params = parms,
+    nyears = 100,
+    obs_CV = 0.2
+  )
+}
 )
 multiplot_proj(
- high.d1 = high.list[[1]]$trajectories, # d1 is the lowest depletion
- med.d1 = med.list[[1]]$trajectories,
- low.d1 = low.list[[1]]$trajectories,
- high.d2 = high.list[[2]]$trajectories,
- med.d2 = med.list[[2]]$trajectories,
- low.d2 = low.list[[2]]$trajectories,
- high.d3 = high.list[[3]]$trajectories,
- med.d3 = med.list[[3]]$trajectories,
- low.d3 = low.list[[3]]$trajectories,
- years.to.plot = plotyears,
- K1plus = parms$K1plus,
- InitDepls = InitDepl.vec
+high.d1 = high.list[[1]], # d1 is the lowest depletion
+med.d1 = med.list[[1]],
+low.d1 = low.list[[1]],
+high.d2 = high.list[[2]],
+med.d2 = med.list[[2]],
+low.d2 = low.list[[2]],
+high.d3 = high.list[[3]],
+med.d3 = med.list[[3]],
+low.d3 = low.list[[3]],
+years.to.plot = plotyears
 )
 }

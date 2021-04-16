@@ -535,22 +535,20 @@ app_server <- function( input, output, session ) {
     
     if (input$multipledepl) {
       multiplot_proj(
-        high.d1 = high.list[[1]]$trajectories, # d1 is the lowest depletion
-        med.d1 = med.list[[1]]$trajectories,
-        low.d1 = low.list[[1]]$trajectories,
+        high.d1 = high.list[[1]], # d1 is the lowest depletion
+        med.d1 = med.list[[1]],
+        low.d1 = low.list[[1]],
         
-        high.d2 = high.list[[2]]$trajectories,
-        med.d2 = med.list[[2]]$trajectories,
-        low.d2 = low.list[[2]]$trajectories,
+        high.d2 = high.list[[2]],
+        med.d2 = med.list[[2]],
+        low.d2 = low.list[[2]],
         
-        high.d3 = high.list[[3]]$trajectories,
-        med.d3 = med.list[[3]]$trajectories,
-        low.d3 = low.list[[3]]$trajectories,
-        #ylims = c(0, lh.params$K1plus),
+        high.d3 = high.list[[3]],
+        med.d3 = med.list[[3]],
+        low.d3 = low.list[[3]],
+        
         spaghetti = spaghetti,
         years.to.plot = plotyears,
-        K1plus = lh.params$K1plus,
-        InitDepls = InitDepl.vec(),
         color.palette = colorscheme,
         lang = input$selected_language
       )
