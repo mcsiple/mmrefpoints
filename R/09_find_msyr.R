@@ -16,6 +16,11 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   lambdaMax.w <- lh.params$lambdaMax
   K1plus.w <- lh.params$K1plus
   z.w <- lh.params$z
+  
+  if(AgeMat.w > nages.w){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0.w < 0 | S0.w >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus.w < 0 | S1plus.w >= 1){stop("Adult survival must be between 0 and 1.")}
+  if(K1plus.w < 0){stop("Carrying capacity K1plus must be greater than zero.")}
 
   unex <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
   # N0 <- unex$npr

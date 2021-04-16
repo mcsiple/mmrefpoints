@@ -23,6 +23,11 @@
 #' )
 #' @export
 get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
+  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
+  if(is.infinite(logit.E)){stop("Check inputs; bycatch mortality rate E must be less than 1.")}
+  
   exploitation.rate <- inv_logit(logit.E)
   h <- 0.000001
 

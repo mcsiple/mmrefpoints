@@ -34,10 +34,16 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
   if (length(ConstantCatch) > 1 & length(ConstantF) > 1) {
     stop("Cannot have both constant F and constant catch- choose one and set the other to NA!")
   }
-
+  
+  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
+  if(K1plus < 0){stop("Carrying capacity K1plus must be greater than zero.")}
+  
   if (InitDepl > 1) {
     InitDepl <- 1
   }
+  
   nyrs <- nyears + 1
   AgePart <- AgeMat + 1 # Age at first parturition = age at maturity +1 (~gestation period)
 

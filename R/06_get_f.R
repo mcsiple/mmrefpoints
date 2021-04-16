@@ -17,7 +17,7 @@
 #' @return The bycatch rate that would lead to a depletion level of \code{InitDepl.w} -- a single value.
 #'
 #' @examples
-#' Set parameters
+#' # Set parameters
 #' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 #' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 #' # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
@@ -26,6 +26,7 @@
 #' # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 #' P0 <- NPROut$P1r # 1+ nums per recruit
 #'
+#' # Get bycatch mortality rate for the initial depletion defined above
 #' get_f(f.start = 0.5, 
 #' S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
 #' InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
@@ -35,7 +36,12 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA,
                   nages.w = NA, AgeMat.w = NA, InitDepl.w = NA, 
                   z.w = NA, lambdaMax.w = NA, 
                   N0.w = NA, P0.w = NA, 
-                  Check=F) {
+                  Check = F) {
+  # checks
+  if(AgeMat.w > nages.w){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0.w < 0 | S0.w >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus.w < 0 | S1plus.w >= 1){stop("Adult survival must be between 0 and 1.")}
+  
   # fecundity at unfished equilibrium
   Fec0 <- 1.0 / N0.w
   FecMax <- getfecmax(S1plus = S1plus.w, S0 = S0.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w)

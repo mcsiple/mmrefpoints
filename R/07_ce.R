@@ -32,6 +32,11 @@
 #' E=0.01, z=2.39,A=2, N0 = N0, P0 = P0)
 #' @export
 ce <- function(S0 = NA, S1plus = NA, nages = NA, AgeMat = NA, z = NA, E = NA, A = NA, P0 = NA, N0 = NA) {
+  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
+  if(E > 1){warning("Check E input: bycatch mortality rate E should be <= 1")}
+  
   npr1plus <- npr(
     S0 = S0,
     S1plus = S1plus,

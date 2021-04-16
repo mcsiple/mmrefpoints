@@ -29,6 +29,10 @@
 #' 
 #' @export
 get_rf <- function(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0) {
+  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
+  
   NE <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = E_in)$npr
   PE <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = E_in)$P1r
 

@@ -19,7 +19,7 @@ get_mnpl <- function(E.start = 0.001, lh.params) {
   lambdaMax <- lh.params$lambdaMax
   K1plus <- lh.params$K1plus
   z <- lh.params$z
-
+  
   unex <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
   N0 <- unex$npr
   P0 <- unex$P1r

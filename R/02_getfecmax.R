@@ -17,6 +17,9 @@
 #' print(1 / unpr$npr)
 #' @export
 getfecmax <- function(S0, lambdaMax, S1plus, AgeMat) {
+  if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
+  if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
+  
   fmax <- (lambdaMax^(AgeMat) - (S1plus * (lambdaMax^(AgeMat - 1)))) / (S0 * S1plus^(AgeMat - 1))
   return(fmax)
 }
