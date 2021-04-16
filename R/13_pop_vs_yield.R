@@ -4,7 +4,7 @@
 #' @param z.vec a vector of z values
 #' @param lh.params a list of life history parameters
 #' @param add.legend logical; whether or not to add a legend
-#' @param ggp logical; whether to plot in ggplot; set to \code{FALSE} for base R plot.
+#' @param ggp logical; whether to plot in ggplot and plot a single yield curve; set to \code{FALSE} for base R plot and multiple yield curves.
 #' @param linecolor color of yield curve line
 #' @param lang language selected by the user (character)
 #'
@@ -14,7 +14,7 @@
 #' pop_vs_yield(lh.params = list(
 #'   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
 #'   nages = 19, fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000
-#' ))
+#' ), ggp = FALSE)
 #' @export
 #'
 pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
@@ -92,9 +92,14 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
         # relative 1+ pop size at E
         rel1plus[i] <- n1p / u1p
       }
-
+      if(j==1){
+        maxyield <- which.max(yield.vec)
+        print(paste("approx MNPL", round(rel1plus[maxyield], digits = 2)))
+        print(paste("approx FMSY", round(E.vec[maxyield], digits = 5)))
+      }
+      
       z.list[[j]] <- data.frame(z = z, E = E.vec, yield = yield.vec, rel1p = rel1plus)
-    }
+    } #/ j loop
     dat <- bind_rows(z.list, .id = "column_label")
 
     p <- dat %>%
@@ -111,6 +116,7 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
       scale_x_continuous(limits = c(0, 1.5)) +
       xlab(xlab1) + # "Depletion \n(population size relative to K)",
       ylab(ylab1) # Production
+  
     return(p)
   } else {
     plot(0:1, 0:1,
@@ -142,9 +148,10 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
       }
       lines(rel1plus[1:n2p], yield.vec[1:n2p], col = "darkblue")
       maxyield <- which.max(yield.vec)
+     
       print(paste("approx MNPL", round(rel1plus[maxyield], digits = 2)))
-      print(paste("approx FMSY", round(E.vec[maxyield], digits = 5)))
-    }
+      print(paste("approx FMSY", round(E.vec[maxyield], digits = 5)))}
+    
     if (add.legend) {
       legend("topright",
         lty = c(1, 1, 1),
