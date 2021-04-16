@@ -6,20 +6,20 @@
 #' @param logit.E logit transform of bycatch mortality
 #' @param S0 Calf/pup survival, a numeric value between 0 and 1
 #' @param S1plus adult survival, a numeric value between 0 and 1
-#' @param nages Plus group age in years
-#' @param AgeMat Age at maturity in years (must be equal to or less than nages)
-#' @param lambdaMax Maximum theoretical population growth rate
-#' @param K1plus Carrying capacity in terms of the age 1+ component of the population. Must be greater than zero.
-#' @param z Pella-Tomlinson parameter (compensation)
+#' @param nages "maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.
+#' @param AgeMat Age at maturity (= age at first parturition - 1)
+#' @param lambdaMax maximum steady rate of increase (population growth rate)
+#' @param K1plus the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.
+#' @param z Degree of compensation (also known as the Pella-Tomlinson parameter)
 
 #' @examples
+#' # Set parameters
+#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+#' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+#' # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
 #' get_diff(
-#'   logit.E = logit(0.01),
-#'   S0 = 0.944, S1plus = 0.99,
-#'   nages = 13, AgeMat = 11,
-#'   lambdaMax = 1.04,
-#'   K1plus = 9000,
-#'   z = 2.39
+#'   logit.E = logit(0.01), S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, 
+#' lambdaMax=lambdaMax.w, K1plus = 9000, z=2.39
 #' )
 #' @export
 get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, K1plus = K1plus.w, z = z.w) {
