@@ -48,7 +48,7 @@ The bycatch rate that would lead to a depletion level of \code{InitDepl.w} -- a 
 This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{Projections()} function to calculate the stable age distribution at which to start the projections.
 }
 \examples{
-Set parameters
+# Set parameters
 S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
@@ -57,6 +57,7 @@ N0 <- NPROut$npr # mature numbers per recruit
 # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
 P0 <- NPROut$P1r # 1+ nums per recruit
 
+# Get bycatch mortality rate for the initial depletion defined above
 get_f(f.start = 0.5, 
 S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
 InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
