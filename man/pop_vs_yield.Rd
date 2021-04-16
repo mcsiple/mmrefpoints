@@ -20,7 +20,7 @@ pop_vs_yield(
 
 \item{add.legend}{logical; whether or not to add a legend}
 
-\item{ggp}{logical; whether to plot in ggplot; set to \code{FALSE} for base R plot.}
+\item{ggp}{logical; whether to plot in ggplot and plot a single yield curve; set to \code{FALSE} for base R plot and multiple yield curves.}
 
 \item{linecolor}{color of yield curve line}
 
@@ -36,5 +36,5 @@ relative population size (x) vs. Sustainable yield (y)
 pop_vs_yield(lh.params = list(
   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
   nages = 19, fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000
-))
+), ggp = FALSE)
 }
