@@ -6,7 +6,30 @@
 #' @param lh.params a list of life history parameters (S0, S1plus, nages, AgeMat, lmabdaMax, K1plus, and z)
 #' @param fmax Max theoretical fecundity (num)
 #' @param N0 unfished nums per recruit - mature adults
+#' 
+#' @examples
+#' Set parameters
+#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+#' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+#' lh.params = list(S0 = S0.w,S1plus = S1plus.w,PlusGroupAge = nages.w,AgeMat = AgeMat.w,K1plus=9000,z=z.w,lambdaMax = lambdaMax.w) 
+#' # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
+#' NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
+#' N0 <- NPROut$npr # mature numbers per recruit
+#' # Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
+#' P0 <- NPROut$P1r # 1+ nums per recruit
 #'
+#' fmax <- getfecmax(lambdaMax = lambdaMax.w, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w)
+#' Fec0 <- 1.0 / N0
+#' A <- (fmax - Fec0) / Fec0
+#' fmsy<-find_msyr(E.start=0.01, lh.params=lh.params, fmax=fmax, N0=N0)
+#' cat("fmsy =",fmsy,"\n")
+#' results <- matrix(0,ncol=2,nrow=101)
+#' results[,1] <- c(0:100)*fmsy/50
+#' for (II in 1:101)
+#'  results[II,2] <- ce(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w,z = z.w,
+#'                      E=results[II,1], A = A, P0 = P0, N0 = N0)
+#' plot(results[,1],results[,2],xlab="f",ylab="ce",type="l",yaxs="i",ylim=c(0,max(results[,2])*1.2))
+#' abline(v=fmsy)
 #' @export
 find_msyr <- function(E.start, lh.params, fmax, N0) {
   S0.w <- lh.params$S0
@@ -27,7 +50,7 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   P0 <- unex$P1r
 
   Fec0 <- 1.0 / N0
-  A <- (fmax - Fec0) / Fec0
+  A.w <- (fmax - Fec0) / Fec0
 
   search.limit <- get_f(
     f.start = 0.005,
@@ -46,7 +69,9 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   lims <- logit(c(0.00001, search.limit))
   logit.E <- logit(E.start)
 
-  zero.cross <- stats::uniroot(f = get_diff, interval = lims, tol = 1e-7, S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, lambdaMax = lambdaMax.w, z = z.w)
+  zero.cross <- stats::uniroot(f = get_diff, interval = lims, tol = 1e-7, 
+                               S0 = S0.w, S1plus = S1plus.w, nages = nages.w, 
+                               AgeMat = AgeMat.w, A = A.w, z = z.w)
   fmsy <- inv_logit(zero.cross$root)
 
   MSY <- ce(
@@ -56,13 +81,9 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
     AgeMat = AgeMat.w,
     z = z.w,
     E = fmsy,
-    A = A, P0 = P0, N0 = N0
+    A = A.w, P0 = P0, N0 = N0
   )
   if (MSY == 0) cat("Warning FMSY is not correct", "\n")
   # cat("FMSY Final",fmsy,zero.cross$f.root,MSY,"\n")
   return(fmsy)
 }
-
-# findMSYR(E.start = 0.005,
-#          lh.params = lh.params1,
-#          fmax = getFecmax2(lambdaMax = lh.params1$lambdaMax,S1plus = lh.params1$S1plus,S0 = lh.params1$S0,AgeMat = lh.params1$AgeMat),N0 = NPR(S0 = lh.params1$S0,S1plus = lh.params1$S1plus,nages = lh.params1$nages,AgeMat = lh.params1$AgeMat,f = 0)$npr)

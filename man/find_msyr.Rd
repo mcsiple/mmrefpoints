@@ -18,3 +18,27 @@ find_msyr(E.start, lh.params, fmax, N0)
 \description{
 one of the functions needed for getting MNPL. MSYR is the same as FMSY.
 }
+\examples{
+Set parameters
+S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+lh.params = list(S0 = S0.w,S1plus = S1plus.w,PlusGroupAge = nages.w,AgeMat = AgeMat.w,K1plus=9000,z=z.w,lambdaMax = lambdaMax.w) 
+# Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
+NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
+N0 <- NPROut$npr # mature numbers per recruit
+# Get number of individuals per recruit in terms of individuals aged 1+ (\eqn{P0.w})
+P0 <- NPROut$P1r # 1+ nums per recruit
+
+fmax <- getfecmax(lambdaMax = lambdaMax.w, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w)
+Fec0 <- 1.0 / N0
+A <- (fmax - Fec0) / Fec0
+fmsy<-find_msyr(E.start=0.01, lh.params=lh.params, fmax=fmax, N0=N0)
+cat("fmsy =",fmsy,"\n")
+results <- matrix(0,ncol=2,nrow=101)
+results[,1] <- c(0:100)*fmsy/50
+for (II in 1:101)
+ results[II,2] <- ce(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w,z = z.w,
+                     E=results[II,1], A = A, P0 = P0, N0 = N0)
+plot(results[,1],results[,2],xlab="f",ylab="ce",type="l",yaxs="i",ylim=c(0,max(results[,2])*1.2))
+abline(v=fmsy)
+}

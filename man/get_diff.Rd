@@ -8,9 +8,9 @@ get_diff(
   logit.E,
   S0 = S0.w,
   S1plus = S1plus.w,
-  nages = nages.w,
   AgeMat = AgeMat.w,
-  lambdaMax = lambdaMax.w,
+  nages = nages.w,
+  A = A.w,
   K1plus = K1plus.w,
   z = z.w
 )
@@ -22,27 +22,32 @@ get_diff(
 
 \item{S1plus}{adult survival, a numeric value between 0 and 1}
 
-\item{nages}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
-
 \item{AgeMat}{Age at maturity (= age at first parturition - 1)}
 
-\item{lambdaMax}{maximum steady rate of increase (population growth rate)}
+\item{nages}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
 
 \item{K1plus}{the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
 
 \item{z}{Degree of compensation (also known as the Pella-Tomlinson parameter)}
+
+\item{lambdaMax}{maximum steady rate of increase (population growth rate)}
 }
 \description{
 this is the function to minimize, but needs to be restricted to that yield > 0
 All life history params are as above
 }
 \examples{
-# Set parameters
 S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
 InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+# Get A parameter
+NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
+N0 <- NPROut$npr # mature numbers per recruit
+Fec0 <- 1.0 / N0
+fmax <- getfecmax(lambdaMax = lambdaMax.w, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w)
+A.w <- (fmax - Fec0) / Fec0
 # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
 get_diff(
-  logit.E = logit(0.01), S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, 
-lambdaMax=lambdaMax.w, K1plus = 9000, z=2.39
+ logit.E = logit(0.01), S0 = S0.w, S1plus = S1plus.w, nages = nages.w, A = A.w, AgeMat = AgeMat.w, 
+ K1plus = 9000, z = 2.39
 )
 }
