@@ -1,11 +1,11 @@
 #' Calculate normalized sustainable yield
 #' @description This function calculates the normalized sustainable yield, which is used to find MNPL (the population size at which productivity is maximized).
 #'
-#' @param S0 Calf/pup survival
-#' @param S1plus 1+ survival rate for animals age 1 year and older (a numeric value between 0 and 1)
+#' @param S0 Calf/pup survival, a numeric value between 0 and 1
+#' @param S1plus 1+ survival rate for animals age 1 year and older, a numeric value between 0 and 1
 #' @param nages "maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.
 #' @param K1plus the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.
-#' @param AgeMat Age at maturity (= age at first parturition - 1)
+#' @param AgeMat Age at maturity (= age at first parturition - 1). Must be less than \code{nages}
 #' @param z degree of compensation
 #' @param E bycatch mortality rate (applies to 1+ numbers)
 #' @param P0 unfished number-per-recruit - 1+ adults

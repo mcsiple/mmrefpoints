@@ -1,13 +1,13 @@
 #' Get bycatch mortality rate given depletion
 #'
-#' This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{Projections()} function to calculate the stable age distribution at which to start the projections.
+#' This function solves for the bycatch mortality rate \eqn{E} that gives a pre-specified depletion level \code{InitDepl.w}. It is used within the \code{projections()} function to calculate the stable age distribution at which to start the projections.
 #'
 #' @param f.start an initial guess for the bycatch mortality rate E. The default value is E = 0.5
 #' @param S0.w Calf/pup survival, a numeric value between 0 and 1. (Note: the 'w' suffix indicates that \eqn{z} is in the wrapper function, and is used inside the function by \code{optim})
-#' @param S1plus.w  survival rate for animals age 1 year and older (a numeric value between 0 and 1)
+#' @param S1plus.w  survival rate for animals age 1 year and older, a numeric value between 0 and 1
 #' @param AgeMat.w Age at maturity in years (assumed to be age at first parturition - 1)
 #' @param nages.w "maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.
-#' @param InitDepl.w The depletion level to solve for (this is equivalent to 'starting depletion')
+#' @param InitDepl.w The depletion level to solve for as a proportion of carrying capacity; a numeric value between 0 and 1. This is equivalent to 'starting depletion'.
 #' @param z.w The degree of compensation. The default value is \code{z = 2.39}.
 #' @param lambdaMax.w The maximum intrinsic growth rate
 #' @param P0.w Number of individuals per recruit in terms of individuals aged 1+

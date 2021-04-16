@@ -3,7 +3,7 @@
 #' @description - a simple function that calculates the probability of recovery (in terms of 1+ numbers) to MNPL (or other population size) at \code{rebuilt.yr} years
 #'
 #' @param traj - a matrix of trajectories, with rows=nsims and cols=nyears
-#' @param goal - what is the rebuilding goal?
+#' @param goal - what is the rebuilding goal? An absolute number.
 #' @param rebuild.yr - the year by which you want pop to be recovered (calculate probability that pop will recover to MNPL by rebuild.yr)
 #'
 #' @return - the probability that the stock will be rebuilt to the goal population size by year \code{rebuilt.yr}

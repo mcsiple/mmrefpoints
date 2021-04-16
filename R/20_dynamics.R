@@ -5,16 +5,16 @@
 #' @details
 #' The population model is a single-sex age-structured model in which the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults \eqn{\tildeN}, the fecundity (pregnancy rate) at pre-exploitation equilibrium \eqn{f_0}, the maximum theoretical fecundity rate fmax, the degree of compensation \eqn{z}, and the abundance of individuals aged 1+ \eqn{N_{y+1}^{1+}} relative to carrying capacity \eqn{K^{1+}}. This function can be used alone but is intended to be used with \code{Projections()} to generate multiple simulations.
 #'
-#' @param S0 Calf/pup survival (a value between 0 and 1)
-#' @param S1plus Survival for animals age 1 year and older (a value between 0 and 1)
+#' @param S0 Calf/pup survival, a numeric value between 0 and 1
+#' @param S1plus Survival for animals age 1 year and older, a numeric value between 0 and 1
 #' @param K1plus The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance
-#' @param AgeMat Age at maturity in years (assumed to be age at first parturition - 1)
+#' @param AgeMat Age at maturity in years (assumed to be age at first parturition - 1).
 #' @param InitDepl Starting depletion level
 #' @param ConstantCatch Total bycatch each year, expressed as a vector of length \code{nyears}
 #' @param ConstantF vector (length = \code{nyears}) rate of bycatch each year
 #' @param z The degree of compensation.  The default value is \code{z = 2.39}.
 #' @param nyears Number of years to project
-#' @param nages "Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy
+#' @param nages "Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than AgeMat.
 #' @param lambdaMax Maximum steady rate of increase (population growth rate)
 #'
 #' @return A list containing a matrix \code{N} of numbers at age (dimensions \code{nyears} (rows) x \code{nages} (columns)) and one vector \code{TotalPop} (a vector of length \code{nyears}), containing the number of age 1+ individuals in the population.
@@ -35,7 +35,7 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
     stop("Cannot have both constant F and constant catch- choose one and set the other to NA!")
   }
   
-  if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
+  if(AgeMat > nages){stop("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
   if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
   if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
   if(K1plus < 0){stop("Carrying capacity K1plus must be greater than zero.")}

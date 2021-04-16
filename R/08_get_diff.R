@@ -5,11 +5,11 @@
 #'
 #' @param logit.E logit transform of bycatch mortality
 #' @param S0 Calf/pup survival, a numeric value between 0 and 1
-#' @param S1plus adult survival
+#' @param S1plus adult survival, a numeric value between 0 and 1
 #' @param nages Plus group age in years
 #' @param AgeMat Age at maturity in years (must be equal to or less than nages)
 #' @param lambdaMax Maximum theoretical population growth rate
-#' @param K1plus Carrying capacity in terms of the age 1+ component of the population
+#' @param K1plus Carrying capacity in terms of the age 1+ component of the population. Must be greater than zero.
 #' @param z Pella-Tomlinson parameter (compensation)
 
 #' @examples
