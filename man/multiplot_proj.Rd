@@ -14,8 +14,6 @@ multiplot_proj(
   high.d3 = testing.list[[3]][3][[1]]$trajectories,
   med.d3 = testing.list[[3]][2][[1]]$trajectories,
   low.d3 = testing.list[[3]][1][[1]]$trajectories,
-  years.plot = 50,
-  ylims,
   spaghetti = FALSE,
   years.to.plot = 50,
   K1plus = 9000,
@@ -43,10 +41,6 @@ multiplot_proj(
 
 \item{low.d3}{a list containing the lowest bycatch value and highest starting depletion}
 
-\item{years.plot}{number of years to plot}
-
-\item{ylims}{plot y limits}
-
 \item{spaghetti}{either FALSE or a number, where the number is how many simulations to show from the same scenario}
 
 \item{years.to.plot}{How many years to plot on the x axis}
@@ -64,4 +58,62 @@ A plot of 50% and 90% confidence intervals of population projections if \code{sp
 }
 \description{
 plots outputs from several projections that result from \code{Projections()}, with multiple depletion levels.
+}
+\examples{
+parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1)
+InitDepl.vec <- c(0.1, 0.5, 0.9)
+BycatchCV <- 0.2
+high.list <- lapply(
+ X = InitDepl.vec,
+ function(x) {
+   projections(
+     NOut = 50,
+     ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
+     InitDepl = x,
+     lh.params = parms,
+     nyears = 100,
+     obs_CV = 0.2
+   )
+ }
+)
+med.list <- lapply(
+ X = InitDepl.vec,
+ function(x) {
+   projections(
+     NOut = 50,
+     ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
+     InitDepl = x,
+     lh.params = parms,
+     nyears = 100,
+     obs_CV = 0.2
+   )
+ }
+)
+low.list <- lapply(
+ X = InitDepl.vec,
+ function(x) {
+   projections(
+     NOut = 50,
+     ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
+     InitDepl = x,
+     lh.params = parms,
+     nyears = 100,
+     obs_CV = 0.2
+   )
+ }
+)
+multiplot_proj(
+ high.d1 = high.list[[1]]$trajectories, # d1 is the lowest depletion
+ med.d1 = med.list[[1]]$trajectories,
+ low.d1 = low.list[[1]]$trajectories,
+ high.d2 = high.list[[2]]$trajectories,
+ med.d2 = med.list[[2]]$trajectories,
+ low.d2 = low.list[[2]]$trajectories,
+ high.d3 = high.list[[3]]$trajectories,
+ med.d3 = med.list[[3]]$trajectories,
+ low.d3 = low.list[[3]]$trajectories,
+ years.to.plot = plotyears,
+ K1plus = parms$K1plus,
+ InitDepls = InitDepl.vec
+)
 }
