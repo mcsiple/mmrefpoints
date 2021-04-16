@@ -7,8 +7,8 @@
 ce(
   S0 = NA,
   S1plus = NA,
-  nages = NA,
   AgeMat = NA,
+  nages = NA,
   z = NA,
   E = NA,
   A = NA,
@@ -21,9 +21,9 @@ ce(
 
 \item{S1plus}{1+ survival rate for animals age 1 year and older, a numeric value between 0 and 1}
 
-\item{nages}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
-
 \item{AgeMat}{Age at maturity (= age at first parturition - 1). Must be less than \code{nages}}
+
+\item{nages}{"maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.}
 
 \item{z}{degree of compensation}
 
