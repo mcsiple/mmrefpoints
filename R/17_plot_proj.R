@@ -1,40 +1,44 @@
 #' Plot projections
 #' @description plots outputs from several projections that result from a Projections() call.
 #'
-#' @param high a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user in the Shiny app)
-#' @param med a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a medium bycatch level (this is at the median of the low and high end of the range defined by the user)
-#' @param low a list containing output from \code{Projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user)
+#' @param high a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user in the Shiny app)
+#' @param med a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a medium bycatch level (this is at the median of the low and high end of the range defined by the user)
+#' @param low a list containing output from \code{projections()} (including a matrix of simulation trajectories) - corresponding to a high bycatch level (this is at the high end of the range defined by the user)
 #' @param years.plot number of years to plot on the x axis
 #' @param spaghetti either FALSE or a number, where the number is how many simulations to show from the same scenario
 #' @param ylims y-limits of projection plot
 #' @param K1plus carrying capacity in terms of age 1+ individuals
-#' @param InitDepl initial depletion level (set by the user)
+#' @param InitDepl initial depletion level (1+ population size relative to K). Must be between 0 and 1.
 #' @param color.palette a vector of three colors to use for low, medium and high bycatch rates
 #' @param lang language selected by the user (character)
 #'
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{is.numeric(spaghetti)}),  from \code{Projections()}.
-#' @examples 
-#' parms <- list(S0=0.944,S1plus=0.99,
-#' K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02)
+#' @examples
+#' parms <- list(
+#'   S0 = 0.944, S1plus = 0.99,
+#'   K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1.02
+#' )
 #' initdepl <- 0.5
 #' high.simple <- projections(
 #'   NOut = 50,
 #'   ConstantBycatch = list(
 #'     Catch = 100,
-#'    CV = 0.3
+#'     CV = 0.3
 #'   ),
 #'   InitDepl = initdepl,
 #'   lh.params = parms,
-#'   nyears = 100)
+#'   nyears = 100
+#' )
 #' med.simple <- projections(
 #'   NOut = 50,
 #'   ConstantBycatch = list(
 #'     Catch = 50,
 #'     CV = 0.3
 #'   ),
-#'  InitDepl = initdepl,
+#'   InitDepl = initdepl,
 #'   lh.params = parms,
-#'   nyears = 100)
+#'   nyears = 100
+#' )
 #' low.simple <- projections(
 #'   NOut = 50,
 #'   ConstantBycatch = list(
@@ -43,17 +47,19 @@
 #'   ),
 #'   InitDepl = initdepl,
 #'   lh.params = parms,
-#'   nyears = 100)
-
-#' x <- plot_proj(high = high.simple,
-#' med = med.simple,
-#' low = low.simple,
-#' years.plot = 50,
-#' ylims = c(0, parms$K1plus),InitDepl = initdepl, 
-#' K1plus =parms$K1plus)
-#' 
+#'   nyears = 100
+#' )
+#'
+#' x <- plot_proj(
+#'   high = high.simple,
+#'   med = med.simple,
+#'   low = low.simple,
+#'   years.plot = 50,
+#'   ylims = c(0, parms$K1plus), InitDepl = initdepl,
+#'   K1plus = parms$K1plus
+#' )
+#'
 #' x
-#' 
 #' @export
 plot_proj <- function(high,
                       med,
@@ -64,7 +70,7 @@ plot_proj <- function(high,
                       K1plus = 9000,
                       InitDepl = 0.8,
                       color.palette = c("#7bbcb0", "#3a7c89", "#123f5a"),
-                                        lang = "en") {
+                      lang = "en") {
   high.col <- color.palette[3]
   med.col <- color.palette[2]
   low.col <- color.palette[1]
@@ -147,7 +153,7 @@ plot_proj <- function(high,
       low = sdf_labs_low
     ))
 
-  #browser()
+  # browser()
   if (spaghetti) {
     all$sim <- 1
     ts.length <- years.plot
@@ -199,7 +205,6 @@ plot_proj <- function(high,
 
     p
   } else {
-    
     dlab <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
 
     p <- all %>%
@@ -231,4 +236,3 @@ plot_proj <- function(high,
     p
   }
 }
-
