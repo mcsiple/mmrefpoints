@@ -82,8 +82,10 @@ bibliography: paper.bib
 ---
 
 # Statement of Need
+Fisheries bycatch is one of the top threats to marine mammals worldwide. Data on bycatch and marine mammal abundance are required to make management decisions, yet many marine mammal populations exist in locations where these data are sparse. 
 
 # Summary
+This tool provides a way for managers and other stakeholders to explore different bycatch scenarios, based on simple information about marine mammal life history and rough estimates of abundance and bycatch. It also provides a way to calculate the common U.S. reference point for bycatch, Potential Biological Removal (PBR).
 
 # Acknowledgements
 
