@@ -17,27 +17,28 @@ get_mnpl <- function(E.start = 0.001, lh.params) {
   nages <- lh.params$PlusGroupAge
   AgeMat <- lh.params$AgeMat
   lambdaMax <- lh.params$lambdaMax
-  K1plus <- lh.params$K1plus
+#  K1plus <- lh.params$K1plus
   z <- lh.params$z
   
+  # Quantities at E=0
   unex <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
-  N0 <- unex$npr
-  P0 <- unex$P1r
-  fmax <- getfecmax(lambdaMax = lambdaMax, S1plus = S1plus, S0 = S0, AgeMat = AgeMat)
+  N0 <- unex$npr; P0 <- unex$P1r
+  
+  # Compute A
   Fec0 <- 1 / N0
+  fmax <- getfecmax(lambdaMax = lambdaMax, S1plus = S1plus, S0 = S0, AgeMat = AgeMat)
   A <- (fmax - Fec0) / Fec0
-
 
   fmsy <- find_msyr(E.start = E.start, lh.params = lh.params, fmax = fmax)
 
 
-  Rf0 <- get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # This is == 1
+  # Rf0 <- get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # This is == 1
   Rfmsy <- get_rf(E_in = fmsy, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
 
-  u1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)$P1r * Rf0
+  # u1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)$P1r * Rf0
   n1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = fmsy)$P1r * Rfmsy
 
-  MNPL <- n1p / u1p # MNPL relative to unexploited
+  MNPL <- n1p / P0 # MNPL relative to unexploited
   # cat("z, LambdaMaxFMSY & MNPL",z,lambdaMax,fmsy, MNPL,"\n")
   return(MNPL)
 }
