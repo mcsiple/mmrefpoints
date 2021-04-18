@@ -9,7 +9,6 @@
 #' @param z degree of compensation
 #' @param E bycatch mortality rate (applies to 1+ numbers)
 #' @param P0 unfished number-per-recruit - 1+ adults
-#' @param lambdaMax maximum steady rate of increase (population growth rate)
 #' @param A the Pella-Tomlinson resilience parameter ((fmax - f0)/f0)
 #' @param N0 unfished numbers-per-recruit - mature adults
 #'
@@ -17,8 +16,7 @@
 #'
 #' @examples
 #' Set parameters
-#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
-#' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
+#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 #' # Get number of individuals per recruit in terms of mature individuals (N0.w)
 #' NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
 #' 
@@ -27,7 +25,7 @@
 #' P0 <- NPROut$P1r # 1+ nums per recruit
 #'
 #' ce(S0 = S0.w, S1plus = S1plus.w, 
-#' nages = nages.w, K1plus = 9000, 
+#' nages = nages.w, 
 #' AgeMat = AgeMat.w, 
 #' E=0.01, z=2.39,A=2, N0 = N0, P0 = P0)
 #' @export
@@ -35,7 +33,7 @@ ce <- function(S0 = NA, S1plus = NA, AgeMat = NA, nages = NA, z = NA, E = NA, A 
   if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
   if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
   if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
-  if(E > 1){warning("Check E input: bycatch mortality rate E should be <= 1")}
+  if(E > 1 | E < 0){warning("Check E input: bycatch mortality rate E should be between 0 and 1")}
   
   npr1plus <- npr(
     S0 = S0,
