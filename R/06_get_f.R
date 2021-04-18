@@ -39,8 +39,10 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA,
                   Check = F) {
   # checks
   if(AgeMat.w > nages.w){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
-  if(S0.w < 0 | S0.w >= 1){stop("Calf/pup survival must be between 0 and 1.")}
-  if(S1plus.w < 0 | S1plus.w >= 1){stop("Adult survival must be between 0 and 1.")}
+  if(S0.w < 0 | S0.w >= 1){stop("Calf/pup survival must be between 0 and 1")}
+  if(S1plus.w < 0 | S1plus.w >= 1){stop("Adult survival must be between 0 and 1")}
+  if(f.start < 0 | f.start >= 1){stop("f.start must be between 0 and 1")}
+  if(lambdaMax.w < 1){stop("lambdaMax.w must be greater than 1")}
   
   # fecundity at unfished equilibrium
   Fec0 <- 1.0 / N0.w
@@ -63,18 +65,11 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA,
     
     # Get numbers per recruit at f=f
     NPR <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = f) 
-    NE <- NPR$npr
     PE <- NPR$P1r
     
-    R0 <- 1 # Can compute this for one recruit because this function is "scale irrelevant" (AEP)
-    
-    # Full solution for R.F is in methods
-    if ((1 - Fec0 * NE) / (Fec0 * NE * A) > 1) {
-      R.F <- 0
-    } else {
-      R.F <- get_rf(E_in = f, S0 = S0,S1plus = S1plus,nages = nages, AgeMat = AgeMat,z = z,A = A,P0 = P0,N0 = N0)
-      #R.F <- (1 - (1 - Fec0 * NE) / (Fec0 * NE * A))^(1 / z) * (R0 * P0 / PE)
-    }
+    # Compute unfished recruitment (set to 1) and fished recruitment
+    R0 <- 1 
+    R.F <- get_rf(E_in = f, S0 = S0,S1plus = S1plus,nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
     
     # Calculate the depletion in terms of nature females
     Pt1 <- R.F * PE / (R0 * P0)
@@ -95,7 +90,7 @@ get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA,
   if (Check==T)
   {  
     to.min.val <- to.minimize(lf = logit(f))
-    cat("   val of to.minimize (should be 0)",to.min.val)
+    cat("   val of to.minimize (should be 0)",to.min.val, "/n")
   }
   
   return(f)
