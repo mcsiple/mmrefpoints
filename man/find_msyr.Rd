@@ -4,7 +4,7 @@
 \alias{find_msyr}
 \title{calculate MSYR}
 \usage{
-find_msyr(E.start, lh.params, fmax, N0)
+find_msyr(E.start, lh.params, fmax)
 }
 \arguments{
 \item{E.start}{a starting guess for bycatch mortality rate that will result in FMSY (numeric value)}

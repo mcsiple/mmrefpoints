@@ -28,7 +28,7 @@ get_mnpl <- function(E.start = 0.001, lh.params) {
   A <- (fmax - Fec0) / Fec0
 
 
-  fmsy <- find_msyr(E.start = E.start, lh.params = lh.params, fmax = fmax, N0 = N0)
+  fmsy <- find_msyr(E.start = E.start, lh.params = lh.params, fmax = fmax)
 
 
   Rf0 <- get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # This is == 1

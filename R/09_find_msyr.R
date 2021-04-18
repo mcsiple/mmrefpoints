@@ -31,7 +31,7 @@
 #' plot(results[,1],results[,2],xlab="f",ylab="ce",type="l",yaxs="i",ylim=c(0,max(results[,2])*1.2))
 #' abline(v=fmsy)
 #' @export
-find_msyr <- function(E.start, lh.params, fmax, N0) {
+find_msyr <- function(E.start, lh.params, fmax) {
   S0.w <- lh.params$S0
   S1plus.w <- lh.params$S1plus
   nages.w <- lh.params$PlusGroupAge
@@ -46,7 +46,7 @@ find_msyr <- function(E.start, lh.params, fmax, N0) {
   if(K1plus.w < 0){stop("Carrying capacity K1plus must be greater than zero.")}
 
   unex <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
-  # N0 <- unex$npr
+  N0 <- unex$npr
   P0 <- unex$P1r
 
   Fec0 <- 1.0 / N0
