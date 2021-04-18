@@ -9,12 +9,11 @@
 #' @param AgeMat Age at maturity (= age at first parturition - 1)
 #' @param nages "maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy.
 #' @param A the Pella-Tomlinson resilience parameter ((fmax - f0)/f0)
-#' @param K1plus the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.
 #' @param z Degree of compensation (also known as the Pella-Tomlinson parameter)
 #' 
 #' @examples
 # Set parameters
-#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
+#' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 #' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 #' # Get A parameter
 #' NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
@@ -25,10 +24,10 @@
 #' # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
 #' get_diff(
 #'  logit.E = logit(0.01), S0 = S0.w, S1plus = S1plus.w, nages = nages.w, A = A.w, AgeMat = AgeMat.w, 
-#'  K1plus = 9000, z = 2.39
+#'   z = 2.39
 #' )
 #' @export
-get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w, nages = nages.w, A = A.w, K1plus = K1plus.w, z = z.w) {
+get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w, nages = nages.w, A = A.w, z = z.w) {
   if(AgeMat > nages){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
   if(S0 < 0 | S0 >= 1){stop("Calf/pup survival must be between 0 and 1.")}
   if(S1plus < 0 | S1plus >= 1){stop("Adult survival must be between 0 and 1.")}
@@ -36,15 +35,10 @@ get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w, n
   
   exploitation.rate <- inv_logit(logit.E)
   h <- 0.000001
-
+  
   NPROut <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
   N0 <- NPROut$npr
-  P0 <- NPROut$P1r
-  ##
-  # Fec0 <- 1.0 / N0
-  # fmax <- getfecmax(lambdaMax = lambdaMax, S0 = S0, S1plus = S1plus, AgeMat = AgeMat)
-  # A <- (fmax - Fec0) / Fec0
-
+  
   # approximate the derivative by evaluating cE() at a slightly higher and slightly lower E
   C1 <- ce(
     S0 = S0,
@@ -65,7 +59,7 @@ get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w, n
     E = exploitation.rate - h,
     A = A, P0 = P0, N0 = N0
   ) / (2 * h)
-
+  
   dC <- C1 - C2 # diff
   return(dC)
 }
