@@ -12,7 +12,7 @@
 #'   \item{doi}{doi for source}
 #'   \item{Location}{Location where data were collected}
 #'   \item{Time.period}{Time period studied in the paper}
-#'   \item{Sex.specific}{If only one sex was included in the paper}
+#'   \item{Sex.specific.}{If only one sex was included in the paper}
 #'   \item{Notes}{Messy notes about data collection and source}
 #'   ...
 #' }
