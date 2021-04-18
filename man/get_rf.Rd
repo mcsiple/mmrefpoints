@@ -22,15 +22,15 @@ get_rf(E_in, S0, S1plus, nages, AgeMat, z, A, P0, N0)
 \item{A}{Pella-Tomlinson resilience parameter (see Punt 1999; Annex R).
 A = (FecMax - Fec0) / Fec0 (num)}
 
-\item{P0}{unfished 1+ numbers per recruit, \eqn{tildeP(0)}}
+\item{P0}{unfished 1+ numbers per recruit, \eqn{\tildeP(0)}}
 
-\item{N0}{unfished mature numbers per recruit, \eqn{tildeN(0)}}
+\item{N0}{unfished mature numbers per recruit, \eqn{\tildeN(0)}}
 }
 \value{
 recruitment given exploitation rate \emph{E} - this value is multiplied by the initial abundance \eqn{N_{init}} to get initial nums at age ( a vector)
 }
 \description{
-calculates recruitment at bycatch mortality rate \emph{E}, relative to a no-bycatch scenario
+calculates recruitment at bycatch mortality rate \emph{E}, relative to recruitment for a no-bycatch scenario
 }
 \examples{
 S0 = 0.944; S1plus = 0.99; nages = 25; AgeMat = 17; z = 2.39; lambdaMax = 1.04;
