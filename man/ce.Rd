@@ -34,8 +34,6 @@ ce(
 \item{P0}{unfished number-per-recruit - 1+ adults}
 
 \item{N0}{unfished numbers-per-recruit - mature adults}
-
-\item{K1plus}{the pre-exploitation population size of individuals aged 1 and older. If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance.}
 }
 \value{
 a single value of normalized yield for exploitation rate E
