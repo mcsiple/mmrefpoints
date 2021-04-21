@@ -35,6 +35,6 @@ relative population size (x) vs. Sustainable yield (y)
 \examples{
 pop_vs_yield(lh.params = list(
   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-  nages = 19, fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000
+  nages = 19, z = 2.39, lambdaMax = 1.04,
 ), ggp = FALSE)
 }

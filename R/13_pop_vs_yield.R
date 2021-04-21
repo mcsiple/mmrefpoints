@@ -13,7 +13,7 @@
 #' @examples
 #' pop_vs_yield(lh.params = list(
 #'   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-#'   nages = 19, fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000
+#'   nages = 19, z = 2.39, lambdaMax = 1.04,
 #' ), ggp = FALSE)
 #' @export
 #'
@@ -41,7 +41,6 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
   PlusGroupAge <- lh.params$PlusGroupAge
   nages <- lh.params$nages
   lambdaMax <- lh.params$lambdaMax
-  K1plus <- lh.params$K1plus
 
   # Other stuff that depends only on life history
   NPROut <- npr(
@@ -72,8 +71,9 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
     rel1plus <- vector()
 
     # unfished nums per recruit
-    u1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)$P1r *
-      get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # == 1
+    u1p <- P0
+    # u1p <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)$P1r *
+    #   get_rf(E_in = 0, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0) # == 1
 
     for (i in 1:length(E.vec)) {
       # yield at exploitation E
@@ -121,13 +121,13 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
       ylab(ylab1) # Production
     return(p)
   } else {
-    print("should be base r!")
     plot(0:1, 0:1,
       type = "n",
       xlab = xlab1,
       ylab = ylab1,
       xlim = c(0, 1.5),
-      ylim = c(0, max(dat$yield))
+      ylim = c(0, max(dat$yield)*1.2), 
+      yaxs="i"
     )
     maxyield <- MNPL <- FMSY <- vector()
     for (z in 1:length(z.vec)) {
