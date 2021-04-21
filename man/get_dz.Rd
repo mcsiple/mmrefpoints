@@ -22,5 +22,5 @@ Derivative of z (function to minimize)
 \examples{
 get_dz(z = 2.39, MNPL = 0.5, 
 lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, 
-PlusGroupAge = 25, fmax = 0.29, lambdaMax = 1.04))
+PlusGroupAge = 25, lambdaMax = 1.04))
 }

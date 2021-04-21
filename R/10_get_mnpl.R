@@ -8,7 +8,7 @@
 #' @examples 
 #' get_mnpl(E.start = 0.001, 
 #' lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,
-#' PlusGroupAge = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, 
+#' PlusGroupAge = 19, z = 2.39, lambdaMax = 1.04, 
 #' K1plus = 9000))
 #' 
 get_mnpl <- function(E.start = 0.001, lh.params) {
@@ -17,7 +17,6 @@ get_mnpl <- function(E.start = 0.001, lh.params) {
   nages <- lh.params$PlusGroupAge
   AgeMat <- lh.params$AgeMat
   lambdaMax <- lh.params$lambdaMax
-#  K1plus <- lh.params$K1plus
   z <- lh.params$z
   
   # Quantities at E=0
