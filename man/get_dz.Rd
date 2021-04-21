@@ -9,9 +9,9 @@ get_dz(z, MNPL, lh.params)
 \arguments{
 \item{z}{the degree of compensation}
 
-\item{MNPL}{maximum net productivity level}
+\item{MNPL}{desired maximum net productivity level}
 
-\item{lh.params}{a list of life history parameters (juvenile survival S0, adult survival S1plus, age at maturity AgeMat, plus group age, max theoretical fecundity fmax, maximum steady steady rate of increase (population growth rate) lambdaMax, and carrying capacity K1plus)}
+\item{lh.params}{a list of life history parameters (juvenile survival S0, adult survival S1plus, age at maturity AgeMat, plus group age, max theoretical fecundity fmax, and maximum steady rate of increase (population growth rate) lambdaMax)}
 }
 \value{
 The difference between the MNPL associated with the value of z that the user defined and the MNPL that the user has defined.
@@ -22,5 +22,5 @@ Derivative of z (function to minimize)
 \examples{
 get_dz(z = 2.39, MNPL = 0.5, 
 lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, 
-PlusGroupAge = 25, fmax = 0.29, lambdaMax = 1.04, K1plus = 9000))
+PlusGroupAge = 25, fmax = 0.29, lambdaMax = 1.04))
 }
