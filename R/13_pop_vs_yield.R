@@ -13,7 +13,7 @@
 #' @examples
 #' pop_vs_yield(lh.params = list(
 #'   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-#'   nages = 19, z = 2.39, lambdaMax = 1.04,
+#'   nages = 19, z = 2.39, lambdaMax = 1.04
 #' ), ggp = FALSE)
 #' @export
 #'
