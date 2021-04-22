@@ -17,7 +17,7 @@ Calculate MNPL
 \examples{
 get_mnpl(E.start = 0.001, 
 lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,
-PlusGroupAge = 19, z = 2.39, lambdaMax = 1.04, 
+z = 2.39, lambdaMax = 1.04, 
 K1plus = 9000))
 
 }

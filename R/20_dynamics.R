@@ -19,7 +19,7 @@
 #'
 #' @return A list containing a matrix \code{N} of numbers at age (dimensions \code{nyears} (rows) x \code{nages} (columns)) and one vector \code{TotalPop} (a vector of length \code{nyears}), containing the number of age 1+ individuals in the population.
 
-# Note, nages = PlusGroupAge, and PlusGroupAge can = AgeMat+2 without losing accuracy (per AEP 11/30/18)
+# Note, nages = Plus Group Age, and Plus Group Age can = AgeMat+2 without losing accuracy (per AEP 11/30/18)
 #'
 #' @examples
 #' # Generate a time series of abundance for a bowhead whale

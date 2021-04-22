@@ -90,7 +90,7 @@ app_server <- function( input, output, session ) {
                                 mutate(K1plus = K1plus_simple()) %>%
                                 mutate(add.as.code = paste(Code, "_simple", sep = "")) %>% # have to rename for shiny...clunky
                                 tibble::column_to_rownames("add.as.code") %>%
-                                select(S0, S1plus, AgeMat, PlusGroupAge, fmax, z, lambdaMax, K1plus) %>%
+                                select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
                                 as.data.frame())
   
   # lookup lh type
@@ -289,7 +289,7 @@ app_server <- function( input, output, session ) {
                            lambdaMax = input$lambdaMax
                          ) %>%
                          column_to_rownames("Code") %>%
-                         select(S0, S1plus, AgeMat, PlusGroupAge, fmax, z, lambdaMax, K1plus) %>%
+                         select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
                          as.data.frame())
   
   
@@ -297,7 +297,6 @@ app_server <- function( input, output, session ) {
     S0 = input$global.S0,
     S1plus = input$global.S1plus,
     AgeMat = input$global.AgeMat,
-    PlusGroupAge = input$global.AgeMat + 2,
     nages = input$global.AgeMat + 2,
     fmax = 0.29,
     z = 2.39, # I think I can remove this
@@ -318,7 +317,6 @@ app_server <- function( input, output, session ) {
     S0 = input$global.S0,
     S1plus = input$global.S1plus,
     AgeMat = input$global.AgeMat,
-    PlusGroupAge = input$global.AgeMat + 2,
     nages = input$global.AgeMat + 2,
     fmax = 0.29,
     z = z.usr(),

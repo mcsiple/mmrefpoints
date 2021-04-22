@@ -38,7 +38,6 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
   AgeMat <- lh.params$AgeMat
-  PlusGroupAge <- lh.params$PlusGroupAge
   nages <- lh.params$nages
   lambdaMax <- lh.params$lambdaMax
 

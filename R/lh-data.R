@@ -10,7 +10,7 @@
 #'   \item{S0}{Calf/pup survival}
 #'   \item{S1plus}{Adult survival}
 #'   \item{AgeMat}{Age at maturity}
-#'   \item{PlusGroupAge}{Plus group age}
+#'   \item{nages}{Plus group age}
 #'   \item{fmax}{Max theoretical fecundity}
 #'   \item{z}{Degree of compensation}
 #'   \item{lambdaMax}{Maximum theoretical population growth rate}

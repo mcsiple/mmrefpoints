@@ -8,10 +8,11 @@
 #' @param N0 unfished nums per recruit - mature adults
 #' 
 #' @examples
-#' Set parameters
+#' # Set parameters
 #' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; K1plus.w = 9000; AgeMat.w = 18 
 #' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
-#' lh.params = list(S0 = S0.w,S1plus = S1plus.w,PlusGroupAge = nages.w,AgeMat = AgeMat.w,K1plus=9000,z=z.w,lambdaMax = lambdaMax.w) 
+#' lh.params = list(S0 = S0.w,S1plus = S1plus.w, nages = nages.w,
+#' AgeMat = AgeMat.w,K1plus=9000,z=z.w,lambdaMax = lambdaMax.w) 
 #' # Get number of individuals per recruit in terms of mature individuals (\eqn{N0.w})
 #' NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
 #' N0 <- NPROut$npr # mature numbers per recruit
@@ -34,9 +35,7 @@
 find_msyr <- function(E.start, lh.params, fmax) {
   S0.w <- lh.params$S0
   S1plus.w <- lh.params$S1plus
-  if("PlusGroupAge" %in% names(lh.params)){
-    nages.w <- lh.params$PlusGroupAge}else{
-      nages.w <- lh.params$nages}
+  nages.w <- lh.params$nages
   AgeMat.w <- lh.params$AgeMat
   lambdaMax.w <- lh.params$lambdaMax
   K1plus.w <- lh.params$K1plus

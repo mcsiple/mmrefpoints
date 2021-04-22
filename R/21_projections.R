@@ -15,7 +15,7 @@
 #' projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
 #' InitDepl = 0.8,
 #' lh.params = list(S0=0.944,S1plus=0.99,
-#' K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02),
+#' K1plus=9000,AgeMat=18,z= 2.39,lambdaMax=1.02),
 #' nyears = 50, obs_CV = 0)
 #' 
 #' @export
@@ -26,7 +26,7 @@ projections <- function(NOut,
                         lh.params,
                         nyears,
                         obs_CV = 0) {
-  # Bowhead default for life history: lh.params = list(S0=0.944,S1plus=0.99,fmax=0.29,K1plus=9000,AgeMat=18,PlusGroupAge=25,z= 2.39,lambdaMax=1.02)
+  # Bowhead default for life history: lh.params = list(S0=0.944,S1plus=0.99,fmax=0.29,K1plus=9000,AgeMat=18,Plus Group Age=25,z= 2.39,lambdaMax=1.02)
 
   trajectories <- rep(0, times = nyears)
   fishing.rates <- rep(0, times = nyears)
@@ -40,8 +40,7 @@ projections <- function(NOut,
   #fmax <- lh.params$fmax
   K1plus <- lh.params$K1plus
   AgeMat <- lh.params$AgeMat
-  nages <- lh.params$PlusGroupAge
-  if(!"PlusGroupAge" %in% names(lh.params)){nages = lh.params$nages}
+  nages <- lh.params$nages
   z <- lh.params$z
   lambdaMax <- lh.params$lambdaMax
 

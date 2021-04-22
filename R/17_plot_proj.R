@@ -16,7 +16,7 @@
 #' @examples
 #' parms <- list(
 #'   S0 = 0.944, S1plus = 0.99,
-#'   K1plus = 9000, AgeMat = 18, PlusGroupAge = 25, z = 2.39, lambdaMax = 1.02
+#'   K1plus = 9000, AgeMat = 18, z = 2.39, lambdaMax = 1.02
 #' )
 #' initdepl <- 0.5
 #' high.simple <- projections(

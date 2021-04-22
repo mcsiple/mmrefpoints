@@ -21,7 +21,7 @@ This function returns a vector of relative abundances based on a list of project
 }
 \examples{
 parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, 
-              PlusGroupAge = 25, z = 2.39, lambdaMax = 1.02)
+              nages = 25, z = 2.39, lambdaMax = 1.02)
 initdepl.vec <- c(0.2, 0.5, 0.9)
 high.list.const <- lapply(
   X = initdepl.vec,

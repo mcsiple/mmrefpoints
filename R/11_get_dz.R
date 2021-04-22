@@ -11,7 +11,7 @@
 #' @examples
 #' get_dz(z = 2.39, MNPL = 0.5, 
 #' lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, 
-#' PlusGroupAge = 25, lambdaMax = 1.04, K1plus = 9000))
+#' lambdaMax = 1.04, K1plus = 9000))
 get_dz <- function(z, MNPL, lh.params) {
   # want diff between MNPL and f(z) equal to zero
   lh.params$z <- z

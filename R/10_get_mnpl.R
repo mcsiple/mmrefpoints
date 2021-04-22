@@ -8,16 +8,13 @@
 #' @examples 
 #' get_mnpl(E.start = 0.001, 
 #' lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,
-#' PlusGroupAge = 19, z = 2.39, lambdaMax = 1.04, 
+#' z = 2.39, lambdaMax = 1.04, 
 #' K1plus = 9000))
 #' 
 get_mnpl <- function(E.start = 0.001, lh.params) {
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
-  if("PlusGroupAge" %in% names(lh.params)){
-    nages <- lh.params$PlusGroupAge}else{
-    nages <- lh.params$nages
-  }
+  nages <- lh.params$nages
   AgeMat <- lh.params$AgeMat
   lambdaMax <- lh.params$lambdaMax
   z <- lh.params$z
