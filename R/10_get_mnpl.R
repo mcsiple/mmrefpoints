@@ -14,7 +14,10 @@
 get_mnpl <- function(E.start = 0.001, lh.params) {
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
-  nages <- lh.params$PlusGroupAge
+  if("PlusGroupAge" %in% names(lh.params)){
+    nages <- lh.params$PlusGroupAge}else{
+    nages <- lh.params$nages
+  }
   AgeMat <- lh.params$AgeMat
   lambdaMax <- lh.params$lambdaMax
   z <- lh.params$z
