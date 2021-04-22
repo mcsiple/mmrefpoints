@@ -9,9 +9,9 @@ plot_yield_curve(lh.params, z, MNPL_in, lang = "en")
 \arguments{
 \item{lh.params}{a list of life history parameters}
 
-\item{z}{a vector of degrees of compensation that you want to plot. Default is the user-defined z, calculated from \code{MNPL_in}}
+\item{z}{degree of compensation. If this function is used outside the Shiny app, z is calculated from MNPL.}
 
-\item{MNPL_in}{the value of Maximum Net Productivity Level (MNPL) that results in}
+\item{MNPL_in}{Maximum Net Productivity Level (MNPL)}
 
 \item{lang}{language selected by the user (character)}
 }
@@ -22,7 +22,11 @@ a ggplot object showing depletion (1+ population size relative to K) vs. product
 Yield curve for Shiny
 }
 \examples{
-plot_yield_curve(lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, 
-nages = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), 
-z = 2.39, MNPL_in = 0.5, lang = "en")
+plot_yield_curve(
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99, AgeMat = 17,
+    nages = 19, z = 2.39, lambdaMax = 1.02, K1plus = 9000
+  ),
+  MNPL_in = 0.5, z = NA, lang = "en"
+)
 }
