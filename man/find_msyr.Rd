@@ -32,7 +32,7 @@ P0 <- NPROut$P1r # 1+ nums per recruit
 fmax <- getfecmax(lambdaMax = lambdaMax.w, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w)
 Fec0 <- 1.0 / N0
 A <- (fmax - Fec0) / Fec0
-fmsy<-find_msyr(E.start=0.01, lh.params=lh.params, fmax=fmax, N0=N0)
+fmsy<-find_msyr(E.start=0.01, lh.params=lh.params, fmax=fmax)
 cat("fmsy =",fmsy,"\n")
 results <- matrix(0,ncol=2,nrow=101)
 results[,1] <- c(0:100)*fmsy/50
