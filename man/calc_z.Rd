@@ -9,7 +9,7 @@ calc_z(MNPL_in, lh.params_in)
 \arguments{
 \item{MNPL_in}{User-specified value for MNPL (between 0 and 1)}
 
-\item{lh.params_in}{a list of life history parameters}
+\item{lh.params_in}{a list of life history parameters. Must contain S0, S1plus, nages, AgeMat, lambdaMax and z.}
 }
 \value{
 the value of z corresponding to the value of MNPL (as a proportion of K) that the user has defined.
@@ -23,5 +23,6 @@ Helper function for calculating z when user specifies MNPL
 \examples{
 test.z <- calc_z(MNPL_in = 0.5,
 lh.params_in = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19,
-PlusGroupAge = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04))
+PlusGroupAge = 19,  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000))
+test.z
 }
