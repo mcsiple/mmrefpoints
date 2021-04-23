@@ -11,7 +11,10 @@
 #' @examples 
 #' #' lh.params = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, 
 #'  z = 2.39, lambdaMax = 1.04, K1plus = 9000)
-#' Projection <- projections(NOut=100,ConstantBycatch = list(Catch = 200, CV = 01),InitDepl=0.8,lh.params=lh.params,nyears=40,obs_CV = 0.2) 
+#' Projection <- projections(NOut=100,
+#' ConstantBycatch = list(Catch = 200, CV = 01),
+#' InitDepl=0.8,
+#' lh.params=lh.params,nyears=40,obs_CV = 0.2) 
 #' print(prob_rebuilt_goal(Projection$trajectories, goal = 0.5 * lh.params$K1plus, rebuild.yr = 40))
 #' 
 #' @export
