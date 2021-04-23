@@ -77,15 +77,15 @@ affiliations:
  - name: Marine Ecology and Telemetry Research, 2468 Camp McKenzie Tr NW, Seabeck, WA, 98380, USA
    index: 14
    
-date: 14 April 2021
+date: 23 April 2021
 bibliography: paper.bib
 ---
 
 # Statement of Need
-Fisheries bycatch is one of the top threats to marine mammals worldwide. Data on bycatch and marine mammal abundance are required to make management decisions, yet many marine mammal populations exist in locations where these data are sparse. 
+Fisheries bycatch is one of the top threats to marine mammals worldwide. Data on bycatch and marine mammal abundance are required to make management decisions, yet many marine mammal populations exist in locations where these data are sparse. Population models offer a way to explore the long-term impacts of different bycatch scenarios even when data are sparse or uncertain. 
 
 # Summary
-This tool provides a way for managers and other stakeholders to explore different bycatch scenarios, based on simple information about marine mammal life history and rough estimates of abundance and bycatch. It also provides a way to calculate the common U.S. reference point for bycatch, Potential Biological Removal (PBR).
+This tool provides a way for managers and other stakeholders to explore different bycatch scenarios, based on simple information about marine mammal life history and rough estimates of abundance and bycatch. It also provides performance metrics, a way to calculate the U.S. reference point for bycatch, Potential Biological Removal (PBR), and a solver that estimates the maximum bycatch rate required in order to meet management objectives. The app also creates a report that summarizes inputs and outputs, for use in situations when app output is used for decision-making.
 
 # Acknowledgements
 
