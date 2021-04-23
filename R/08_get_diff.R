@@ -12,7 +12,7 @@
 #' @param z Degree of compensation (also known as the Pella-Tomlinson parameter)
 #' 
 #' @examples
-# Set parameters
+# # Set parameters
 #' S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 #' InitDepl.w = 0.9; z.w = 2.39; lambdaMax.w = 1.04
 #' # Get A parameter

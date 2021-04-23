@@ -2,7 +2,6 @@
 #'
 #' @param traj.list A list of trajectories from \code{Projections()}
 #' @param depletion A vector of starting depletions (abundance relative to carrying capacity)
-#' @param lh.params A list of life history parameters
 #' @param mnpl Max net productivity level (MNPL) defined by user. If MNPL is specified, that value is used. If the user does not specify MNPL, it is calculated from the life history parameters.
 #'
 #' @return A dataframe containing performance metrics. 

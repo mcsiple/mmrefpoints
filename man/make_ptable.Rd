@@ -12,8 +12,6 @@ make_ptable(traj.list, depletion, mnpl = NA)
 \item{depletion}{A vector of starting depletions (abundance relative to carrying capacity)}
 
 \item{mnpl}{Max net productivity level (MNPL) defined by user. If MNPL is specified, that value is used. If the user does not specify MNPL, it is calculated from the life history parameters.}
-
-\item{lh.params}{A list of life history parameters}
 }
 \value{
 A dataframe containing performance metrics.

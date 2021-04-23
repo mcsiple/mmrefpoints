@@ -42,7 +42,7 @@ a single value of normalized yield for exploitation rate E
 This function calculates the normalized sustainable yield, which is used to find MNPL (the population size at which productivity is maximized).
 }
 \examples{
-Set parameters
+# Set parameters
 S0.w = 0.5; S1plus.w = 0.944; nages.w = 25; AgeMat.w = 18 
 # Get number of individuals per recruit in terms of mature individuals (N0.w)
 NPROut <- npr(S0 = S0.w, S1plus = S1plus.w, nages = nages.w, AgeMat = AgeMat.w, E = 0)
