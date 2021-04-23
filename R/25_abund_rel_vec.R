@@ -8,6 +8,7 @@
 #' @examples 
 #' parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, 
 #'               nages = 25, z = 2.39, lambdaMax = 1.02)
+#' nyears <- 50
 #' initdepl.vec <- c(0.2, 0.5, 0.9)
 #' high.list.const <- lapply(
 #'   X = initdepl.vec,
