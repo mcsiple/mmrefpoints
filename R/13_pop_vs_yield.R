@@ -11,9 +11,10 @@
 #' @return a plot of population size vs. 'yield'
 #'
 #' @examples
-#' pop_vs_yield(lh.params = list(
+#' pop_vs_yield(z.vec = c( 1.1, 2.5, 5.99),
+#' lh.params = list(
 #'   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-#'   nages = 19, z = 2.39, lambdaMax = 1.04
+#'   nages = 19, lambdaMax = 1.04
 #' ), ggp = FALSE)
 #' @export
 #'
@@ -23,6 +24,13 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
                          ggp = TRUE,
                          linecolor = "#123f5a",
                          lang = "en") {
+  
+  # Check z param values
+  if (any(z.vec < -0.5) | any(z.vec > 6)) {
+    stop("One of the z values is out of range; try a value for MNPL that is between 0 and 1.")
+  }
+  
+  # Labels
   xlab1 <- switch(lang,
     "en" = "Depletion \n(population size relative to K)",
     "es" = "Agotamiento \n(tamaño de la población en relación con K)",
@@ -61,7 +69,7 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
   )
   A <- (fmax - Fec0) / Fec0
   E.vec <- seq(0, 0.1, length.out = 100)
-
+  
   # paste in
   z.list <- list()
   for (j in 1:length(z.vec)) {
