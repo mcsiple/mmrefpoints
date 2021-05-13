@@ -1,12 +1,11 @@
 #' Run simulations of a marine mammal population with bycatch mortality
 #'
 #' @description - generates several projections, stochasticity is in the number of catches from year to year
-#' @param lh.params - life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax
 #' @param NOut - number of simulations
 #' @param ConstantBycatch Mean and CV of number of animals killed as bycatch per year
 #' @param ConstantRateBycatch Mean and CV of bycatch rate
 #' @param InitDepl initial depletion. If obs_CV>0, this is the mean depletion.
-#' @param lh.params a list of life history parameters
+#' @param lh.params - life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax
 #' @param nyears number of years to do projections
 #' @param obs_CV observation CV. Default to 1 for simple projections
 #' @return list of outputs from simulations: \code{params} contains parameter values for each trajectory; \code{trajectories} matrix contains simulation outputs; \code{fishing.rates} contain the bycatch rates for each year in each simulation; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
@@ -37,7 +36,6 @@ projections <- function(NOut,
   # Life history params
   S0 <- lh.params$S0
   S1plus <- lh.params$S1plus
-  #fmax <- lh.params$fmax
   K1plus <- lh.params$K1plus
   AgeMat <- lh.params$AgeMat
   nages <- lh.params$nages

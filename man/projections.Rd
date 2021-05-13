@@ -23,7 +23,7 @@ projections(
 
 \item{InitDepl}{initial depletion. If obs_CV>0, this is the mean depletion.}
 
-\item{lh.params}{a list of life history parameters}
+\item{lh.params}{- life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax}
 
 \item{nyears}{number of years to do projections}
 
