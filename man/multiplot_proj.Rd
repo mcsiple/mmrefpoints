@@ -54,9 +54,11 @@ A plot of 50% and 90% confidence intervals of population projections if \code{sp
 plots outputs from several projections that result from \code{projections()}, with multiple depletion levels.
 }
 \examples{
-parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18,  z = 2.39, lambdaMax = 1.02)
+parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, nages = 20,  z = 2.39, lambdaMax = 1.02)
 InitDepl.vec <- c(0.1, 0.5, 0.9)
 BycatchCV <- 0.2
+nyears <- 100
+
 high.list <- lapply(
 X = InitDepl.vec,
 function(x) {
@@ -65,7 +67,7 @@ function(x) {
     ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
     InitDepl = x,
     lh.params = parms,
-    nyears = 100,
+    nyears = nyears,
     obs_CV = 0.2
   )
 }
@@ -78,7 +80,7 @@ function(x) {
     ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
     InitDepl = x,
     lh.params = parms,
-    nyears = 100,
+    nyears = nyears,
     obs_CV = 0.2
   )
 }
@@ -91,7 +93,7 @@ function(x) {
     ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
     InitDepl = x,
     lh.params = parms,
-    nyears = 100,
+    nyears = nyears,
     obs_CV = 0.2
   )
 }
@@ -106,6 +108,6 @@ low.d2 = low.list[[2]],
 high.d3 = high.list[[3]],
 med.d3 = med.list[[3]],
 low.d3 = low.list[[3]],
-years.to.plot = plotyears
+years.to.plot = nyears
 )
 }
