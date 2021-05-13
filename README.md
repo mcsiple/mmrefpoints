@@ -7,6 +7,7 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![DOI](https://zenodo.org/badge/344858328.svg)](https://zenodo.org/badge/latestdoi/344858328)
 <!-- badges: end -->
 
 `mmrefpoints` is an R package that generates marine mammal population
@@ -32,11 +33,11 @@ Alexandre N. Zerbini
 
 ## Contents
 
-  - [Need](#need)
-  - [Details](#details)
-  - [Installation](#installation)
-  - [Contributing](#contributing)
-  - [References](#references) <!-- end toc -->
+-   [Need](#need)
+-   [Details](#details)
+-   [Installation](#installation)
+-   [Contributing](#contributing)
+-   [References](#references) <!-- end toc -->
 
 ## Need
 
@@ -104,7 +105,7 @@ run_app()
 Key functions in this package:
 
 | Function      | Purpose                                                         |
-| :------------ | :-------------------------------------------------------------- |
+|:--------------|:----------------------------------------------------------------|
 | dynamics()    | Generate a single trajectory for marine mammal population size  |
 | projections() | Generate several trajectories for marine mammal population size |
 
