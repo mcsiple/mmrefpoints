@@ -7,7 +7,7 @@
 abund_rel(traj, zero.traj, K = NA, years.vec = c(10, 20, 50), fulldist = TRUE)
 }
 \arguments{
-\item{traj}{a matrix of trajectories, with rows=nsims and cols=nyears}
+\item{traj}{a matrix of trajectories, with rows=nsims and cols=nyears. Can be produced from \code{projections()}}
 
 \item{zero.traj}{a matrix of trajectories, same as traj but unfished. CHECK to make sure both start at the same simulation, in the app code.}
 
@@ -22,4 +22,34 @@ a vector of abundance relative to K or zero-exploitation where nrows=length of y
 }
 \description{
 Calculates the expected abundance relative to zero exploitation, years.vec years after projections start
+}
+\examples{
+parms <- list(
+  S0 = 0.944, S1plus = 0.99,
+  K1plus = 9000,
+  AgeMat = 18, nages = 20,
+  z = 2.39, lambdaMax = 1.02
+)
+initdepl <- 0.5
+traj <- projections(
+  NOut = 50,
+  ConstantBycatch = list(
+    Catch = 50,
+    CV = 0.3
+  ),
+  InitDepl = initdepl,
+  lh.params = parms,
+  nyears = 100
+)$trajectories
+traj0 <- projections(
+  NOut = 50,
+  ConstantBycatch = list(
+    Catch = 0,
+    CV = 0
+  ),
+  InitDepl = initdepl,
+  lh.params = parms,
+  nyears = 100
+)$trajectories
+abund_rel(traj = traj, zero.traj = traj0, K = parms$K1plus)
 }
