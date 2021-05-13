@@ -906,24 +906,16 @@ app_server <- function( input, output, session ) {
   }
   
   # PBR CALCULATOR ----------------------------------------------------------
-  # Nbest <- reactive(input$popsize_usr)
-  # 
-  # Ndist <- reactive(0.842 * sqrt(log(1 + input$obs_cv^2))) # 0.842 = -1*qnorm(0.2,0,1)
-  # 
-  # Nmin <- reactive(Nbest() / exp(Ndist()))
-  # 
-  # PBR.metrics <- reactive(list(
-  #   depl = initdepl_adv(),
-  #   lh.params = lh.params2(),
-  #   Nbest = Nbest(), # user-defined
-  #   Ndist = Ndist(),
-  #   Nmin = Nmin(),
-  #   Rmax = input$lambdaMax - 1
-  # ))
-  # 
+  
   output$PBRprint <- renderText({
     P <- input$Nmin.usr * 0.5 * input$Rmax.usr * input$fr.usr
+    if(!is.na(input$Rmax.usr) & 
+       !is.na(input$Nmin.usr) & 
+       input$Rmax.usr < 1 &
+       input$Nmin.usr > 1){
     paste0("PBR = ", P)
+    }
+    else(paste("Rmax must be less than 1 and Nmin must be > 0"))
   })
   
   
