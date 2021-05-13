@@ -1485,7 +1485,7 @@ app_server <- function( input, output, session ) {
           br(),
           h4(i18n$t("What if I don't have a good abundance or bycatch estimate?")),
           p(
-            i18n$t("The Ocean Modeling Forum's Marine Mammal Bycatch Working Group is in the process of synthesizing estimation tools to help with the abundance estimates that are needed for estimating PBR. These tools have not yet been published but they will be available"),
+            i18n$t("The Ocean Modeling Forum's Marine Mammal Bycatch Working Group is in the process of synthesizing estimation tools to help compute the abundance estimates that are needed for estimating PBR. These tools have not yet been published but they will be available"),
             a(href = "http://oceanmodelingforum.org/working-groups/marine-mammal-bycatch-working-group/", i18n$t("here."))
           ),
           br(),
