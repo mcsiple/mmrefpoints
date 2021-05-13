@@ -7,12 +7,12 @@
 calc_z(MNPL_in, lh.params_in)
 }
 \arguments{
-\item{MNPL_in}{User-specified value for MNPL (between 0 and 1)}
+\item{MNPL_in}{User-specified value for MNPL as a proportion of K (between 0 and 1)}
 
 \item{lh.params_in}{a list of life history parameters. Must contain S0, S1plus, nages, AgeMat, lambdaMax and z.}
 }
 \value{
-the value of z corresponding to the value of MNPL (as a proportion of K) that the user has defined.
+the value of z corresponding to the user-defined value of MNPL.
 }
 \description{
 Calculate the parameter z, the degree of compensation

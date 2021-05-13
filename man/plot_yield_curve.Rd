@@ -7,16 +7,16 @@
 plot_yield_curve(lh.params, z, MNPL_in, lang = "en")
 }
 \arguments{
-\item{lh.params}{a list of life history parameters}
+\item{lh.params}{a list of life history parameters: S0, S1plus, AgeMat, nages, lambdaMax, K1plus}
 
 \item{z}{degree of compensation. If this function is used outside the Shiny app, z is calculated from MNPL.}
 
-\item{MNPL_in}{Maximum Net Productivity Level (MNPL)}
+\item{MNPL_in}{Maximum Net Productivity Level (MNPL) defined as the greatest net annual increment in population numbers or biomass resulting from additions to the population due to reproduction and/or growth less losses due to natural mortality. If the function is used outside Shiny, it will calculate z from this value. In Shiny, only z is used for productivity.}
 
 \item{lang}{language selected by the user (character)}
 }
 \value{
-a ggplot object showing depletion (1+ population size relative to K) vs. production. In fisheries this is a yield curve; in marine mammal management it shows where the productivity level is highest, i.e., the Maximum Net Productivity Level (MNPL).
+a ggplot object showing depletion (1+ population size relative to K) vs. production. In fisheries this is a yield curve; in marine mammal management it shows where the productivity level is highest, i.e., MNPL.
 }
 \description{
 Yield curve for Shiny
@@ -25,7 +25,7 @@ Yield curve for Shiny
 plot_yield_curve(
   lh.params = list(
     S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-    nages = 19, z = 2.39, lambdaMax = 1.02, K1plus = 9000
+    nages = 19, lambdaMax = 1.02, K1plus = 9000
   ),
   MNPL_in = 0.5, z = NA, lang = "en"
 )

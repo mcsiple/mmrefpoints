@@ -1,4 +1,4 @@
-#' Calculate MNPL
+#' Calculate Maximum Net Productivity Level (MNPL)
 #'
 #' @param E.start a starting guess for bycatch mortality rate that will result in MSYR (equivalent mathematically to FMSY for fisheries). A numeric value between 0 and 1.
 #' @param lh.params a list of life history parameters

@@ -1,11 +1,11 @@
 #' Degree of compensation
 #'
 #' @description Calculate the parameter z, the degree of compensation
-#' @param MNPL_in User-specified value for MNPL (between 0 and 1)
+#' @param MNPL_in User-specified value for MNPL as a proportion of K (between 0 and 1)
 #' @param lh.params_in a list of life history parameters. Must contain S0, S1plus, nages, AgeMat, lambdaMax and z.
 #' @details Helper function for calculating z when user specifies MNPL
 #'
-#' @return the value of z corresponding to the value of MNPL (as a proportion of K) that the user has defined.
+#' @return the value of z corresponding to the user-defined value of MNPL.
 #' @export
 #'
 #' @examples

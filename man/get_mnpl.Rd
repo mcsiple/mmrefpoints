@@ -2,7 +2,7 @@
 % Please edit documentation in R/10_get_mnpl.R
 \name{get_mnpl}
 \alias{get_mnpl}
-\title{Calculate MNPL}
+\title{Calculate Maximum Net Productivity Level (MNPL)}
 \usage{
 get_mnpl(E.start = 0.001, lh.params)
 }
@@ -12,7 +12,7 @@ get_mnpl(E.start = 0.001, lh.params)
 \item{lh.params}{a list of life history parameters}
 }
 \description{
-Calculate MNPL
+Calculate Maximum Net Productivity Level (MNPL)
 }
 \examples{
 get_mnpl(E.start = 0.001, 
