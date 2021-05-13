@@ -19,9 +19,9 @@ rebuild_by_x(
 
 \item{init.depl.w}{initial depletion (a fraction)}
 
-\item{goal.w}{Population size goal to rebuild to, expressed as a whole number}
+\item{goal.w}{Population size goal (number of whales or pinnipeds) to rebuild to, expressed as a whole number}
 
-\item{desired.prob.w}{what probability you want (e.g., 75\% probability that the population will rebuild to X in Y years)}
+\item{desired.prob.w}{what probability you want (e.g., 0.75 probability that the population will rebuild to X in Y years)}
 
 \item{when.w}{the year Y when rebuilding is desired by (number of years into future; current year = 0)}
 
@@ -36,9 +36,15 @@ The bycatch rate that will result in the specified rebuilding goal. If Shiny is 
 takes a performance goal (what level you want to rebuild to) and a time window (how long you want that to take) and calculates what the bycatch rate needs to be
 }
 \examples{
-rebuild_by_x(needf.start = 0.001, init.depl.w = 0.5, goal.w = 4500, 
-desired.prob.w = 0.8, when.w = 100, 
-lh.params.w = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19, 
- fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), 
- fixed.cv.catch.w = 0)
+rebuild_by_x(
+  needf.start = 0.001,
+  init.depl.w = 0.5, goal.w = 4500,
+  desired.prob.w = 0.8, when.w = 100,
+  lh.params.w = list(
+    S0 = 0.944, S1plus = 0.99,
+    AgeMat = 17, nages = 19,
+    z = 2.39, lambdaMax = 1.04, K1plus = 9000
+  ),
+  fixed.cv.catch.w = 0
+)
 }

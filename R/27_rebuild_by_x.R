@@ -4,8 +4,8 @@
 #'
 #' @param needf.start starting guess for the bycatch mortality rate needed to recover the population
 #' @param init.depl.w initial depletion (a fraction)
-#' @param goal.w Population size goal to rebuild to, expressed as a whole number
-#' @param desired.prob.w what probability you want (e.g., 75\% probability that the population will rebuild to X in Y years)
+#' @param goal.w Population size goal (number of whales or pinnipeds) to rebuild to, expressed as a whole number
+#' @param desired.prob.w what probability you want (e.g., 0.75 probability that the population will rebuild to X in Y years)
 #' @param when.w the year Y when rebuilding is desired by (number of years into future; current year = 0)
 #' @param lh.params.w a list of life history parameters used by \code{projections()}
 #' @param fixed.cv.catch.w the CV of the bycatch rate - should be fixed
@@ -14,12 +14,26 @@
 #' @export
 #'
 #' @examples
-#' rebuild_by_x(needf.start = 0.001, init.depl.w = 0.5, goal.w = 4500, 
-#' desired.prob.w = 0.8, when.w = 100, 
-#' lh.params.w = list(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 19, 
-#'  fmax = 0.29, z = 2.39, lambdaMax = 1.04, K1plus = 9000), 
-#'  fixed.cv.catch.w = 0)
+#' rebuild_by_x(
+#'   needf.start = 0.001,
+#'   init.depl.w = 0.5, goal.w = 4500,
+#'   desired.prob.w = 0.8, when.w = 100,
+#'   lh.params.w = list(
+#'     S0 = 0.944, S1plus = 0.99,
+#'     AgeMat = 17, nages = 19,
+#'     z = 2.39, lambdaMax = 1.04, K1plus = 9000
+#'   ),
+#'   fixed.cv.catch.w = 0
+#' )
 rebuild_by_x <- function(needf.start, init.depl.w, goal.w, desired.prob.w, when.w, lh.params.w, fixed.cv.catch.w) {
+
+  # Checks
+  if (init.depl.w < 0 | init.depl.w > 1) {
+    stop("init.depl.w must be between 0 and 1")
+  }
+  if (desired.prob.w < 0 | desired.prob.w > 1) {
+    stop("desired.prob.w must be between 0 and 1")
+  }
 
   # Set up matrix for storing outputs while uniroot is searching
   mat <- matrix(0, 100, 2)
