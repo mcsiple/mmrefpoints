@@ -7,7 +7,7 @@
 plot_pinnipeds(dat, central = FALSE, set_size = 14)
 }
 \arguments{
-\item{dat}{a dataframe with all the parameters in in (from Pinniped parameters - Data.csv)}
+\item{dat}{dat a dataframe with all the parameters (from Pinniped parameters - Data.csv)}
 
 \item{central}{Whether or not to plot a line showing the central tendency of all the parameters}
 

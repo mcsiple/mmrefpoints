@@ -1,6 +1,6 @@
 #' Plot all the pinniped life history parameters
 #' @description Make the table on the documentation tab of the app, which shows the range of pinniped life history parameters
-#' @param dat a dataframe with all the parameters in in (from Pinniped parameters - Data.csv)
+#' @param dat dat a dataframe with all the parameters (from Pinniped parameters - Data.csv)
 #' @param central Whether or not to plot a line showing the central tendency of all the parameters
 #' @param set_size Base size for plot
 #'
