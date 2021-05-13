@@ -33,8 +33,9 @@ a plot of population size vs. 'yield'
 relative population size (x) vs. Sustainable yield (y)
 }
 \examples{
-pop_vs_yield(lh.params = list(
+pop_vs_yield(z.vec = c( 1.1, 2.5, 5.99),
+lh.params = list(
   S0 = 0.944, S1plus = 0.99, AgeMat = 17,
-  nages = 19, z = 2.39, lambdaMax = 1.04
+  nages = 19, lambdaMax = 1.04
 ), ggp = FALSE)
 }

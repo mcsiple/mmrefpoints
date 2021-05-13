@@ -13,16 +13,16 @@ A data frame with 11 rows and 11 variables:
   \item{S0}{Calf/pup survival}
   \item{S1plus}{Adult survival}
   \item{AgeMat}{Age at maturity}
-  \item{nages}{Plus group age}
-  \item{fmax}{Max theoretical fecundity}
+  \item{nages}{Plus group age; referred to as nages in code}
+  \item{fmax}{Maximum theoretical fecundity}
   \item{z}{Degree of compensation}
   \item{lambdaMax}{Maximum theoretical population growth rate}
-  \item{K1plus}{Carrying capacity in terms of the 1+ segment of the population}
+  \item{K1plus}{Carrying capacity in terms of the 1+ component of the population}
   ...
 }
 }
 \source{
-Compiled from literature by M Siple and coauthors
+Compiled from literature by M. Siple and coauthors
 }
 \usage{
 lh
