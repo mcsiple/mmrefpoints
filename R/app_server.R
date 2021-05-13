@@ -195,12 +195,6 @@ app_server <- function( input, output, session ) {
                       max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
                       step = 0.01
     )
-    # updateSliderInput(session, "cvcatchrate_simple",
-    #                   value = val1,
-    #                   min = floor(val1),
-    #                   max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
-    #                   step = 0.01
-    # )
   })
   
   
@@ -1173,7 +1167,8 @@ app_server <- function( input, output, session ) {
                   "The population has been reduced by 50%",
                   "The population has been reduced by 25%"
                 )),
-                choiceValues = c("lo", "med", "hi")
+                choiceValues = c("lo", "med", "hi"),
+                selected = "med"
               ),
               h4(i18n$t("Specify bycatch")),
               
@@ -1194,7 +1189,7 @@ app_server <- function( input, output, session ) {
                 sliderInput("constantcatch_simple",
                             label = i18n$t("Bycatch mortality range to explore:"),
                             min = 0, max = 1000,
-                            value = c(50, 100)
+                            value = c(0, 100)
                 ),
                 numericInput("cvcatch_simple",
                              label = i18n$t("Bycatch coefficient of variation (CV):"),
@@ -1313,7 +1308,8 @@ app_server <- function( input, output, session ) {
                     "The population has been reduced by 25%"
                   )
                 ),
-                choiceValues = c("lo", "med", "hi")
+                choiceValues = c("lo", "med", "hi"),
+                selected = "med"
               ),
               h4(i18n$t("Specify bycatch")),
               radioButtons(
@@ -1327,7 +1323,7 @@ app_server <- function( input, output, session ) {
                 sliderInput("constantcatch",
                             label = i18n$t("Bycatch mortality range to explore"),
                             min = 0, max = 2000,
-                            value = c(10, 500)
+                            value = c(0, 100)
                 ),
                 sliderInput("cvcatch",
                             label = i18n$t("CV of bycatch mortality:"),
