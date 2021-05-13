@@ -1,14 +1,14 @@
 #' Run simulations of a marine mammal population with bycatch mortality
 #'
-#' @description - generates several projections, stochasticity is in the number of catches from year to year
-#' @param NOut - number of simulations
-#' @param ConstantBycatch Mean and CV of number of animals killed as bycatch per year
-#' @param ConstantRateBycatch Mean and CV of bycatch rate
+#' @description Generates several projections, stochasticity is in the number of catches from year to year
+#' @param NOut  number of simulations
+#' @param ConstantBycatch Mean and CV of number of animals killed as bycatch per year (assumed lognormal)
+#' @param ConstantRateBycatch Mean and CV of bycatch rate (assumed normal)
 #' @param InitDepl initial depletion. If obs_CV>0, this is the mean depletion.
 #' @param lh.params - life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax
 #' @param nyears number of years to do projections
 #' @param obs_CV observation CV. Default to 1 for simple projections
-#' @return list of outputs from simulations: \code{params} contains parameter values for each trajectory; \code{trajectories} matrix contains simulation outputs; \code{fishing.rates} contain the bycatch rates for each year in each simulation; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year)  and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
+#' @return list of outputs from simulations: \code{params} contains parameter values for each trajectory as a matrix; \code{trajectories} contains simulation outputs as a matrix; \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
 #'
 #' @examples 
 #' projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
@@ -25,13 +25,10 @@ projections <- function(NOut,
                         lh.params,
                         nyears,
                         obs_CV = 0) {
-  # Bowhead default for life history: lh.params = list(S0=0.944,S1plus=0.99,fmax=0.29,K1plus=9000,AgeMat=18,Plus Group Age=25,z= 2.39,lambdaMax=1.02)
 
   trajectories <- rep(0, times = nyears)
   fishing.rates <- rep(0, times = nyears)
   params <- 0 # S0, S1plus, fmax, K1plus, z # also need: nyears = 50, nages = 15
-  NTries <- 0
-
 
   # Life history params
   S0 <- lh.params$S0
@@ -59,7 +56,7 @@ projections <- function(NOut,
   sdlog.obs <- sqrt(log(obs_CV^2 + 1))
   meanlog <- log(MeanObs) - (sdlog.obs^2) / 2
 
-
+  NTries <- 0
   while (NTries < NOut) {
     # INDIVIDUALS PER YEAR
     if (!is.na(ConstantBycatch$Catch)) {
