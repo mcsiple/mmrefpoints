@@ -3,7 +3,7 @@
 #' This function generates one trajectory for a marine mammal population, starting at a user-specified depletion level \code{InitDepl}.
 #'
 #' @details
-#' The population model is a single-sex age-structured model in which the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults \eqn{\tildeN}, the fecundity (pregnancy rate) at pre-exploitation equilibrium \eqn{f_0}, the maximum theoretical fecundity rate fmax, the degree of compensation \eqn{z}, and the abundance of individuals aged 1+ \eqn{N_{y+1}^{1+}} relative to carrying capacity \eqn{K^{1+}}. This function can be used alone but is intended to be used with \code{Projections()} to generate multiple simulations.
+#' The population model is a single-sex age-structured model in which the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults \eqn{\tildeN}, the fecundity (pregnancy rate) at pre-exploitation equilibrium \eqn{f_0}, the maximum theoretical fecundity rate fmax, the degree of compensation \eqn{z}, and the abundance of individuals aged 1+ \eqn{N_{y+1}^{1+}} relative to carrying capacity \eqn{K^{1+}}. This function can be used alone but is intended to be used with \code{Projections()} to generate multiple simulations. NOTE: Either \code{ConstantCatch} or \code{ConstantF} can be specified, but not both.
 #'
 #' @param S0 Calf/pup survival, a numeric value between 0 and 1
 #' @param S1plus Survival for animals age 1 year and older, a numeric value between 0 and 1
@@ -53,7 +53,14 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
   Tot1P <- rep(0, length = nyrs)
   Nrep <- rep(0, length = nyrs) # number of reproductive individuals
 
-  f0 <- (1 - S1plus) / (S0 * (S1plus)^(AgeMat - 1)) # analytical soln for f0
+  
+  NPROut <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
+  N0 <- NPROut$npr # mature nums per recruit
+  P0 <- NPROut$P1r # 1+ nums per recruit
+  Neq <- NPROut$nvec # 1+ nums per recruit
+  
+  f0 = 1/N0
+  #f0 <- (1 - S1plus) / (S0 * (S1plus)^(AgeMat - 1)) # analytical soln for f0
   fmax <- getfecmax(lambdaMax = lambdaMax, S1plus = S1plus, S0 = S0, AgeMat = AgeMat)
 
   # Equilibrium conditions (need outside of if() statement to get R0)
@@ -74,9 +81,6 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
 
     # Initial conditions, non-equilibrium
   } else { # pop starts at InitDepl*K
-    NPROut <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
-    N0 <- NPROut$npr # mature nums per recruit
-    P0 <- NPROut$P1r # 1+ nums per recruit
 
     E <- get_f(
       f.start = 0.5,
@@ -99,8 +103,9 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
     Ninit[nages + 1] <- (S0 * (S1plus * (1 - E))^(nages - 1)) / (1 - (S1plus * (1 - E)))
 
     #-----
-    Fec0 <- 1.0 / N0
-    A <- (fmax - Fec0) / Fec0
+    A <- (fmax - f0) / f0
+    # Fec0 <- 1.0 / N0
+    # A <- (fmax - Fec0) / Fec0
 
     RF <- get_rf(E_in = E, S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, z = z, A = A, P0 = P0, N0 = N0)
     InitNumsAtAge <- Ninit * RF # Initial nums at age
@@ -127,9 +132,9 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
       N[Yr + 1, 1] <- Nrep[Yr + 1] * (f0 + (fmax - f0) * (1 - (Tot1P[Yr + 1] / K1plus)^z))
     }
   } else {
-    sel <- 1
+    #sel <- 1
     for (Yr in 1:nyears) {
-      MortE <- ConstantF[Yr] * sel
+      MortE <- ConstantF[Yr] #* sel
 
       N[Yr + 1, 2] <- N[Yr, 1] * S0
       N[Yr + 1, 3:(nages + 1)] <- N[Yr, 2:nages] * (1 - MortE) * S1plus
