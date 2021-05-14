@@ -169,7 +169,7 @@ $$
 
 Nous déterminons le taux de mortalité des prises accessoires auquel $\tilde C$ est maximal (c'est-à-dire où $\frac{dC}{dE}$ est égal à zéro). C'est le RMDT, qui est analogue à $F_{MSY}$ dans les pêcheries.
 
-Le nombre d'animaux 1+ par recrue, pour un taux de mortalité des prises accessoires $E$, $\tilde P(E)$ est défini de la façon suivante:
+Le nombre d'animaux 1+ par recrue, pour un taux de mortalité des prises accessoires $\boldsymbol{E}$, $\tilde P(E)$ est défini de la façon suivante:
 $$
 \tag{Eq. 10}
 \tilde P(E)=\sum_{a=1}^{x} \tilde N_{0,a}(E)
@@ -214,7 +214,7 @@ L'épuisement initial $\frac{N_0^{1+}}{K^{1+}}$ est basé sur l'historique de la
 Dans les cas où l'erreur d'observation est donnée pour la population, l'abondance de départ est déterminée à partir d'une distribution lognormale avec un écart-type proportionnel au CV d'observation.
 
 #### Types d'histoire de vie
-Chaque type d'histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né $S_0$, de la survie de l'adulte $S_{1+}$, de l'âge à la première mise bas, $a_p$ et du taux intrinsèque de croissance de la population $\lambda_{max}$. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l'âge du groupe plus $x$ est supérieur de deux ans à l'âge à la maturité ($x=a_p+2$). 
+Chaque type d'histoire de vie de mammifère marin présenté comme option par défaut dans cette application correspond à une valeur unique de la survie du baleineau/nouveau né $S_0$, de la survie de l'adulte $S_{1+}$, de l'âge à la première mise bas, $a_p$ et du taux intrinsèque de croissance de la population $\lambda_{max}$. Ces valeurs sont présentées dans le tableau 2. Pour des raisons de calcul, nous avons supposé que l'âge du groupe plus $x$ est supérieur de deux ans à l'âge à la maturité ($x=a_p+1$). 
 
 #### Compensation
 
@@ -257,9 +257,9 @@ lh.sources <- data.frame(stringsAsFactors=FALSE,
                                     "Punt et al. (2018) and references therein,
                                     except juvenile survival which is set to 0.88($S_{1+}$)", "Punt et al. (2018),
                                     Arso Civil et al. (2019), Speakman et al. (2010)",
-                                    "Punt et al. unpublished; Hastings et al. (2012)",
-                                    "Punt et al. unpublished; Butterworth et al. (1995)",
-                                    "Punt et al. unpublished; De Long et al. (2017)",
+                                    "Punt et al. (2018); Hastings et al. (2012)",
+                                    "Punt et al. (2018); Butterworth et al. (1995)",
+                                    "Punt et al. (2018); De Long et al. (2017)",
                                     "Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)",
                                     "Moore unpublished (2019)",
                                     "Moore unpublished (2019)",

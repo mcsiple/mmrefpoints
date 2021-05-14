@@ -165,7 +165,7 @@ $$
 where $f_0 = \frac{1}{\tilde N(0)}$,  $\tilde N(E)$ is the number of animals at the age of first parturition and older (i.e., reproducing animals) per recruit at no-bycatch-mortality equilibrium, and $A$ is the Pella-Tomlinson resilience parameter ($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ is assumed to be equal to 1, because all calculations are per-recruit.
 
 
-The number of reproducing animals per recruit at exploitation rate $E$ is the sum of adult animals per recruit $\tilde N_a$ from the age at first parturition $a_p$ to the plus group age $x$:
+The number of reproducing animals per recruit at exploitation rate $\boldsymbol{E}$ is the sum of adult animals per recruit $\tilde N_a$ from the age at first parturition $a_p$ to the plus group age $x$:
 
 $$
 \tag{Eq. 9}
@@ -219,7 +219,7 @@ The initial depletion $\frac{N_0^{1+}}{K^{1+}}$ is based on the history of human
 For cases where observation error is given for the initial population size, the starting abundance is drawn from a lognormal distribution with a standard deviation proportional to the observation CV.
 
 #### Life history types
-Each marine mammal life history type presented as a default option in this app corresponds to a unique value of calf/pup survival $S_0$, adult survival $S_{1+}$, age at first parturition, $a_p$, and intrinsic rate of population growth $\lambda_{max}$. These values are presented in Table 2. For computation purposes, we assumed that the plus group age $x$ is two years past the age at maturity ($x=a_p+2$). 
+Each marine mammal life history type presented as a default option in this app corresponds to a unique value of calf/pup survival $S_0$, adult survival $S_{1+}$, age at first parturition, $a_p$, and intrinsic rate of population growth $\lambda_{max}$. These values are presented in Table 2. For computation purposes, we assumed that the plus group age $x$ is two years past the age at maturity ($x=a_p+1$). 
 
 #### Compensation
 We solve for the value of the degree of compensation $z$ that corresponds to the value of MNPL provided by the user. This involves solving the equation   $\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)$ for $z$  where $E^*$ depends on $z$ as outlined above.
@@ -249,9 +249,9 @@ lh.sources <- data.frame(stringsAsFactors=FALSE,
                                     "Punt et al. (2018) and references therein,
                                     except juvenile survival which is set to 0.88($S_{1+}$)", "Punt et al. (2018),
                                     Arso Civil et al. (2019), Speakman et al. (2010)",
-                                    "Punt et al. unpublished; Hastings et al. (2012)",
-                                    "Punt et al. unpublished; Butterworth et al. (1995)",
-                                    "Punt et al. unpublished; De Long et al. (2017)",
+                                    "Punt et al. (2018); Hastings et al. (2012)",
+                                    "Punt et al. (2018); Butterworth et al. (1995)",
+                                    "Punt et al. (2018); De Long et al. (2017)",
                                     "Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)",
                                     "Moore unpublished (2019)",
                                     "Moore unpublished (2019)",
