@@ -54,7 +54,10 @@ A plot of 50% and 90% confidence intervals of population projections if \code{sp
 plots outputs from several projections that result from \code{projections()}, with multiple depletion levels.
 }
 \examples{
-parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, nages = 20,  z = 2.39, lambdaMax = 1.02)
+parms <- list(S0 = 0.944, S1plus = 0.99, 
+K1plus = 9000, 
+AgeMat = 18, nages = 20,  
+z = 2.39, lambdaMax = 1.02)
 InitDepl.vec <- c(0.1, 0.5, 0.9)
 BycatchCV <- 0.2
 nyears <- 100

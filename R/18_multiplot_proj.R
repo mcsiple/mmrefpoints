@@ -19,7 +19,10 @@
 #' @return A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
-#' parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, nages = 20,  z = 2.39, lambdaMax = 1.02)
+#' parms <- list(S0 = 0.944, S1plus = 0.99, 
+#' K1plus = 9000, 
+#' AgeMat = 18, nages = 20,  
+#' z = 2.39, lambdaMax = 1.02)
 #' InitDepl.vec <- c(0.1, 0.5, 0.9)
 #' BycatchCV <- 0.2
 #' nyears <- 100
