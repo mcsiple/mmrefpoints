@@ -909,13 +909,17 @@ app_server <- function( input, output, session ) {
   
   output$PBRprint <- renderText({
     P <- input$Nmin.usr * 0.5 * input$Rmax.usr * input$fr.usr
+    warningmessage <- switch(input$selected_language,
+                             "en" = "Rmax must be less than 1 and Nmin must be > 0",
+                             "es" = "Rmax debe ser menor que 1 y Nmin debe ser > 0",
+                             "fr" = "Rmax doit être inférieur à 1 et Nmin doit être > 0")
     if(!is.na(input$Rmax.usr) & 
        !is.na(input$Nmin.usr) & 
        input$Rmax.usr < 1 &
        input$Nmin.usr > 1){
     paste0("PBR = ", P)
     }
-    else(paste("Rmax must be less than 1 and Nmin must be > 0"))
+    else(paste(warningmessage))
   })
   
   
