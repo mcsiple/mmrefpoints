@@ -2,6 +2,9 @@
 #' @description Make the table on the documentation tab of the app, which shows the range of pinniped life history parameters
 #' @importFrom ggplot2 ggplot aes geom_point geom_linerange scale_colour_manual facet_grid xlab ylab geom_hline theme_classic theme element_blank coord_flip
 #' @importFrom grDevices colorRampPalette
+#' @importFrom magrittr %>%
+#' @importFrom stringr str_replace
+#' @importFrom dplyr summarise mutate group_by vars mutate mutate_at
 #' @param dat dat a dataframe with all the parameters (from Pinniped parameters - Data.csv)
 #' @param central Whether or not to plot a line showing the central tendency of all the parameters
 #' @param set_size Base size for plot
