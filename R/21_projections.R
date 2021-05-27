@@ -1,6 +1,7 @@
 #' Run simulations of a marine mammal population with bycatch mortality
 #'
 #' @description Generates several projections, stochasticity is in the number of catches from year to year
+#' @importFrom stats rlnorm
 #' @param NOut  number of simulations
 #' @param ConstantBycatch Mean and CV of number of animals killed as bycatch per year (assumed lognormal)
 #' @param ConstantRateBycatch Mean and CV of bycatch rate (assumed normal)
@@ -61,9 +62,9 @@ projections <- function(NOut,
     # INDIVIDUALS PER YEAR
     if (!is.na(ConstantBycatch$Catch)) {
       # Observation error
-      InitVal <- rlnorm(1, meanlog, sdlog.obs)
+      InitVal <- stats::rlnorm(1, meanlog, sdlog.obs)
       sdlog.catches <- sqrt(log(ConstantBycatch$CV^2 + 1)) # should be ~cv when sd is low (<0.5)
-      catch.vec <- rlnorm(n = nyears, meanlog = log(ConstantBycatch$Catch), sdlog = sdlog.catches)
+      catch.vec <- stats::rlnorm(n = nyears, meanlog = log(ConstantBycatch$Catch), sdlog = sdlog.catches)
       traj <- dynamics(
         S0 = S0, S1plus = S1plus, K1plus = K1plus, AgeMat = AgeMat, InitDepl = InitVal / K1plus,
         ConstantCatch = catch.vec,
@@ -78,7 +79,7 @@ projections <- function(NOut,
     }
     # PROPORTION
     if (!is.na(ConstantRateBycatch$Rate)) {
-      InitVal <- rlnorm(1, meanlog, sdlog.obs)
+      InitVal <- stats::rlnorm(1, meanlog, sdlog.obs)
       CV <- ifelse(ConstantRateBycatch$Rate == 0, 0, ConstantRateBycatch$CV) # betaval() doesn't work if mn=0 and sd>0
       # Generate random catch rates around mean
       mn <- ConstantRateBycatch$Rate

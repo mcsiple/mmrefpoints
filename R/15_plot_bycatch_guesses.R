@@ -8,7 +8,9 @@
 #' @param set_size base size to pass to \code{ggplot}
 #' @param color.palette A vector of colors to represent bycatch levels, from low to high end of range
 #' @param lang Language selected by the user (character, 2 letters)
-#'
+#' @importFrom dplyr recode
+#' @importFrom ggplot2 position_dodge ggplot geom_errorbar aes geom_point theme_classic scale_fill_manual scale_colour_manual theme coord_cartesian xlab labs
+#' 
 #' @return A \code{ggplot2} grob showing the distributions of bycatch values based on what the user entered.
 #'
 #' @export
@@ -48,9 +50,9 @@ plot_bycatch_guesses <- function(highval,
                         "fr" = c("Inférieure","Médian","Supérieure"))
 
   sdlog.usr <- sqrt(log((cv^2)+1)) # should be ~cv when sd is low (<0.5)
-  high <- rlnorm(1000,meanlog = log(highval),sdlog = sdlog.usr)
-  med <- rlnorm(1000,meanlog = log(medval),sdlog = sdlog.usr)
-  low <- rlnorm(1000,meanlog = log(lowval),sdlog = sdlog.usr)
+  high <- stats::rlnorm(1000,meanlog = log(highval),sdlog = sdlog.usr)
+  med <- stats::rlnorm(1000,meanlog = log(medval),sdlog = sdlog.usr)
+  low <- stats::rlnorm(1000,meanlog = log(lowval),sdlog = sdlog.usr)
   dat <- data.frame(high, med, low)
   md <- t(apply(dat,2,FUN = quantile, probs = c(0.025,0.25,0.5,0.75,0.975))) %>% as.data.frame()
   colnames(md) <- c('q2.5','q25','q50','q75','q97.5')

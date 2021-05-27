@@ -3,6 +3,11 @@
 #' @param input,output,session Internal parameters for {shiny}. 
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @importFrom dplyr select mutate rename filter rename_with recode_factor funs
+#' @importFrom forcats fct_recode
+#' @importFrom tidyr pivot_longer pivot_wider expand
+#' @importFrom magrittr %>%
+#' @importFrom ggplot2 ggplot geom_violin theme_classic theme xlab ylab scale_fill_manual
 #' @noRd
 app_server <- function( input, output, session ) {
   # List the first level callModules here
@@ -282,7 +287,7 @@ app_server <- function( input, output, session ) {
                            ),
                            lambdaMax = input$lambdaMax
                          ) %>%
-                         column_to_rownames("Code") %>%
+                         tibble::column_to_rownames("Code") %>%
                          select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
                          as.data.frame())
   

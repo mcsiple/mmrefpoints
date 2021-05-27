@@ -43,22 +43,22 @@ Since this code was originally written, ggradar has becomes its own standalone p
 \examples{
 plot.data <- data.frame(
   bycatch = factor(c(
-      "Lower end of bycatch range",
-      "Midpoint of bycatch range", 
-      "Higher end of bycatch range"
-    )),
+    "Lower end of bycatch range",
+    "Midpoint of bycatch range",
+    "Higher end of bycatch range"
+  )),
   prebuild50 = c(0, 0, 1),
   prebuild100 = c(0, 0, 1),
   abundrel10 = c(0, 0, 0.29),
   abundrel20 = c(0, 0, 0.34),
   abundrel50 = c(0, 0, 0.53)
 )
+
 ggradar(
   plot.data = plot.data,
   axis.label.size = 4,
   grid.label.size = 4
 )
-
 }
 \author{
 Ricardo Bion, modified slightly by Margaret Siple

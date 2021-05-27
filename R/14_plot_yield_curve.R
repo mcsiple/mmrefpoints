@@ -5,6 +5,7 @@
 #' @param z degree of compensation. If this function is used outside the Shiny app, z is calculated from MNPL.
 #' @param MNPL_in Maximum Net Productivity Level (MNPL) defined as the greatest net annual increment in population numbers or biomass resulting from additions to the population due to reproduction and/or growth less losses due to natural mortality. If the function is used outside Shiny, it will calculate z from this value. In Shiny, only z is used for productivity.
 #' @param lang language selected by the user (character)
+#' @importFrom ggplot2 ggplot geom_vline
 #'
 #' @return a ggplot object showing depletion (1+ population size relative to K) vs. production. In fisheries this is a yield curve; in marine mammal management it shows where the productivity level is highest, i.e., MNPL.
 #' @export

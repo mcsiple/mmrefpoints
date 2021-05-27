@@ -7,7 +7,10 @@
 #' @param ggp logical; whether to plot in ggplot and plot a single yield curve; set to \code{FALSE} for base R plot and multiple yield curves.
 #' @param linecolor color of yield curve line
 #' @param lang language selected by the user (character)
-#'
+#' @importFrom magrittr %>%
+#' @importFrom dplyr filter bind_rows
+#' @importFrom ggplot2 ggplot xlim ylim xlab ylab annotate labs geom_path theme_classic theme scale_x_continuous scale_y_continuous
+#' @importFrom tidyr expand
 #' @return a plot of population size vs. 'yield'
 #'
 #' @examples

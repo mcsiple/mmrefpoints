@@ -11,6 +11,9 @@
 #' @param InitDepl initial depletion level (1+ population size relative to K). Must be between 0 and 1.
 #' @param color.palette a vector of three colors to use for low, medium and high bycatch rates
 #' @param lang language selected by the user (character)
+#' @importFrom magrittr %>%
+#' @importFrom dplyr recode recode_factor mutate
+#' @importFrom ggplot2 ggplot scale_colour_manual geom_line xlim ylim xlab ylab annotate labs theme_classic theme geom_ribbon geom_path scale_fill_manual element_text
 #'
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections (if \code{spaghetti == FALSE}) or a spaghetti plot (if \code{is.numeric(spaghetti)}),  from \code{Projections()}.
 #' @examples

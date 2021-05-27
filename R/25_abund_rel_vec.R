@@ -5,6 +5,7 @@
 #' @param K carrying capacity
 #' @param years.vec vector of years to check abundances at. If length = 1, the fn returns relative abundance at that year
 #' @return A vector of relative abundances sorted by bycatch (high, med, low, zero) within depletion level (low, med, high). 
+#' @importFrom purrr map
 #' @examples 
 #' parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18, 
 #'               nages = 25, z = 2.39, lambdaMax = 1.02)
