@@ -16,7 +16,7 @@
 calc_z <- function(MNPL_in, lh.params_in) {
   # Checks
   if(MNPL_in < 0 | MNPL_in > 1){
-    top("Check inputs; MNPL_in must be between 0 and 1.")}
+    stop("Check inputs; MNPL_in must be between 0 and 1.")}
   
   lims <- c(0.107, 7) # z limits from AEP meeting were 0 and 7; I increased the lower bound because too-low z is a problem
   # Solve for z value that gives MNPL = MNPL_in
