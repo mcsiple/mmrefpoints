@@ -48,7 +48,7 @@ multiplot_proj(
 \item{lang}{language to use. "en" = English; "es" = Spanish; "fr" = French.}
 }
 \value{
-A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
+A plot of 50 percent and 90 percent confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 }
 \description{
 plots outputs from several projections that result from \code{projections()}, with multiple depletion levels.
