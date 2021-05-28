@@ -46,7 +46,8 @@ plot_pinnipeds <- function(dat, central = FALSE, set_size = 14) {
     mutate(value = round(Value, digits = 2))
 
   colourCount <- length(unique(dat$Species))
-  getPalette <- colorRampPalette(RColorBrewer::brewer.pal(9, "Paired"))
+  getPalette <- colorRampPalette(c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", 
+                                   "#FDBF6F", "#FF7F00", "#CAB2D6"))
   labs <- c(
     "S<sub>0</sub>",
     "S<sub>1+</sub>",
