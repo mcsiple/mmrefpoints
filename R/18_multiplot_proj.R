@@ -16,7 +16,9 @@
 #' @param low.d3 a list containing the lowest bycatch value and highest starting depletion
 #' @param lang language to use. "en" = English; "es" = Spanish; "fr" = French.
 #'
-#' @return A plot of 50% and 90% confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
+#' @importFrom ggplot2 ggplot aes xlim geom_path scale_colour_manual theme_classic xlab ylab ylim facet_wrap geom_label theme theme_classic geom_ribbon label_bquote element_blank
+#' @importFrom dplyr mutate recode
+#' @return A plot of 50 percent and 90 percent confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
 #' parms <- list(S0 = 0.944, S1plus = 0.99, 
