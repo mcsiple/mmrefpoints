@@ -69,9 +69,7 @@ usethis::use_package("extrafont")
 #usethis::use_package("gifski")
 #usethis::use_package("magick")
 usethis::use_package("gridExtra")
-usethis::use_package("here")
 usethis::use_package("xts")
-usethis::use_package("tseries")
 usethis::use_package("shiny.i18n")
 
 
