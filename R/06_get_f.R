@@ -32,13 +32,13 @@
 #' get_f(f.start = 0.5, 
 #' S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
 #' InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
-#' N0.w = N0, P0.w = P0, Check = F)
+#' N0.w = N0, P0.w = P0, Check = FALSE)
 #' @export
 get_f <- function(f.start = NA, S0.w = NA, S1plus.w = NA, 
                   nages.w = NA, AgeMat.w = NA, InitDepl.w = NA, 
                   z.w = NA, lambdaMax.w = NA, 
                   N0.w = NA, P0.w = NA, 
-                  Check = F) {
+                  Check = FALSE) {
   # checks
   if(AgeMat.w > nages.w){warning("Age at maturity cannot be larger than plus group age. Change AgeMat or nages.")}
   if(S0.w < 0 | S0.w >= 1){stop("Calf/pup survival must be between 0 and 1")}

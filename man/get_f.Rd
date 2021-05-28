@@ -15,7 +15,7 @@ get_f(
   lambdaMax.w = NA,
   N0.w = NA,
   P0.w = NA,
-  Check = F
+  Check = FALSE
 )
 }
 \arguments{
@@ -63,5 +63,5 @@ P0 <- NPROut$P1r # 1+ nums per recruit
 get_f(f.start = 0.5, 
 S0.w = S0.w, S1plus.w = S1plus.w, nages.w = nages.w, AgeMat.w = AgeMat.w,
 InitDepl.w = InitDepl.w, z.w = z.w, lambdaMax.w = lambdaMax.w, 
-N0.w = N0, P0.w = P0, Check = F)
+N0.w = N0, P0.w = P0, Check = FALSE)
 }
