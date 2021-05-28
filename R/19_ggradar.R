@@ -45,7 +45,7 @@ ggradar <- function(plot.data,
                     manual.levels = NA) {
 
   # settings (originally these were function options; I have hard coded them here)
-  font.radar <- "Circular Air Light"
+  font.radar <- "Helvetica"
   values.radar <- c("0", "", "1")
   plot.data <- as.data.frame(plot.data)
   grid.min <- 0
