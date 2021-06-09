@@ -140,7 +140,7 @@ dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl,
       N[Yr + 1, 3:(nages + 1)] <- N[Yr, 2:nages] * (1 - MortE) * S1plus
       N[Yr + 1, (nages + 1)] <- (N[Yr, nages] + N[Yr, nages + 1]) * (1 - MortE) * S1plus
       Tot1P[Yr + 1] <- sum(N[Yr + 1, 2:(nages + 1)])
-      Nrep[Yr + 1] <- sum(N[Yr + 1, AgePart:(nages + 1)])
+      Nrep[Yr + 1] <- sum(N[Yr + 1, (AgePart + 1):(nages + 1)])
       N[Yr + 1, 1] <- Nrep[Yr + 1] * (f0 + (fmax - f0) * (1 - (Tot1P[Yr + 1] / K1plus)^z)) # rec
     }
   }
