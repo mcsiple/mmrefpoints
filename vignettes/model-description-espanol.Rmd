@@ -5,7 +5,7 @@ output:
   toc: true
 bibliography: refs.bib
 vignette: >
-  %\VignetteIndexEntry{Description del Modelo}
+  %\VignetteIndexEntry{Model description (Spanish)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
