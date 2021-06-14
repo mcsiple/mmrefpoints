@@ -1384,8 +1384,8 @@ app_server <- function( input, output, session ) {
               br(),
               actionButton("go",
                            label = i18n$t("Run projections"),
-                           icon("cog", lib = "glyphicon", "fa-2x"), # Button to make projections go
-                           style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                           icon("cog", lib = "glyphicon", "fa-1x"), # Button to make projections go
+                           style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
               ),
               p(i18n$t("Scroll down to see more outputs"))
             ),
@@ -1531,8 +1531,8 @@ app_server <- function( input, output, session ) {
             ),
             actionButton("solveButton1",
                          label = i18n$t("Get maximum bycatch rate"),
-                         icon("cog", lib = "glyphicon", "fa-2x"),
-                         style = "color: #fff; background-color: #337ab7; border-color: #2e6da4"
+                         icon("cog", lib = "glyphicon", "fa-1x"),
+                         style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
             )
           ),
           column(
