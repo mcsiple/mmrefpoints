@@ -1,6 +1,7 @@
 ---
 title: "Model description"
-output: rmarkdown::html_vignette:
+output:
+  rmarkdown::html_vignette:
   toc: true
 bibliography: refs.bib
 vignette: >
@@ -15,10 +16,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 library(kableExtra)
-```
-
-```{r setup}
-library(mmrefpoints)
 ```
 
 ### Population model
@@ -248,18 +245,18 @@ lh.sources <- data.frame(stringsAsFactors=FALSE,
                                     0.966, 0.972),
                          AgeMat = c(17, 6, 10, 6, 3, 4, 3, 7, 9, 9, 8),
                    #PlusGroupAge = c(25, 10, 15, 8, 10, 5, 7, 9, 11, 11, 10),
-                         Source = c("Punt et al. (2018) and references therein",
-                                    "Punt et al. (2018) and references therein,
-                                    except juvenile survival which is set to 0.88($S_{1+}$)", "Punt et al. (2018),
-                                    Arso Civil et al. (2019), Speakman et al. (2010)",
-                                    "Punt et al. (2018); Hastings et al. (2012)",
-                                    "Punt et al. (2018); Butterworth et al. (1995)",
-                                    "Punt et al. (2018); De Long et al. (2017)",
-                                    "Moore unpublished (2019); G. Vikingsson pers. comm.; Olafsdottir et al. (2003)",
-                                    "Moore unpublished (2019)",
-                                    "Moore unpublished (2019)",
-                                    "Moore unpublished (2019)",
-                                    "Moore unpublished (2019)")
+                         Source = c("@punt_conserving_2018 and references therein",
+                                    "@punt_conserving_2018 and references therein,
+                                    except juvenile survival which is set to 0.88($S_{1+}$)", "@punt_conserving_2018,
+                                    @arso_civil_variations_2019, @speakman_mark-recapture_2010",
+                                    "@punt_conserving_2018; @hastings_sex-_2012",
+                                    "@punt_conserving_2018; @butterworth_effects_1995",
+                                    "@punt_conserving_2018; @delong_age-_2017",
+                                    "@moore_unpublished_2019; G. Vikingsson pers. comm.; olafsdottir_growth_2003",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019")
               )
 
 
