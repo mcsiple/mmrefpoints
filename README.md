@@ -128,11 +128,14 @@ Marine Laboratories, Hobart, Australia. Available from
 <https://duwamish.lib.washington.edu/uwnetid/illiad.dll?Action=10&Form=75&Value=1651729>
 (accessed August 7, 2018).
 
-## Citation (t.b.d.)
+## How to cite
 
-Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond,
-Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall
-R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob
-Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting
-long-term marine mammal abundance with bycatch. R package version 1.0.0.
-url: <https://github.com/mcsiple/mmrefpoints>
+To cite this package or the MMBIET Shiny app, please use the following
+citation:
+
+> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond,
+> Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda,
+> Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
+> Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints:
+> Projecting long-term marine mammal abundance with bycatch. R package
+> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints>
