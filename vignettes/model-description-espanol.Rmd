@@ -1,0 +1,310 @@
+---
+title: "Description del Modelo"
+output:
+  rmarkdown::html_vignette:
+  toc: true
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{Description del Modelo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(kableExtra)
+```
+
+### Modelo de población
+
+Las proyecciones poblacionales se generan utilizando un modelo estructurado por edad de un solo sexo. En este modelo de proyección, el número de crías nacidas cada año es denso dependiente, con la extensión de denso dependencia como función del número de adultos maduros $\tilde N$, la fecundidad (tasa de embarazo) en equilibrio previo a la explotación $f_0$, la tasa de fecundidad teórica máxima $f_{max}$, el grado de compensación $z$, y  la abundancia de individuos de edades 1+ ($N_{y+1}^{1+}$) en relación a la capacidad de carga $K^{1+}$.
+
+El número de individuos de 1 año de edad depende de la supervivencia de crías $S_0$, de la tasa de supervivencia de los adultos, $S_{1+}$ y de remociones debido a la mortalidad por captura incidental $C_y$ (todos los símbolos están definidos en la Tabla 1).
+
+
+$$
+\tag{Eq 1}
+N_{y+1,a} = 
+\begin{cases}
+\tilde N_{y+1}\bigg(f_0 + (f_{max}-f_0)\bigg[1-\bigg(\frac{N_{y+1}^{1+}}{K^{1+}}\bigg)^z\bigg]\bigg) &   a=0\\ 
+N_{y,0}S_0 &    a=1 \\
+(N_{y,a-1}-C_{y,a-1})S_{1+}  & 2\leq a<x \\
+(N_{y,x-1}-C_{y,x-1})S_{1+} + (N_{y,x}-C_{y,x})S_{1+} & a=x \\
+\end{cases}
+$$
+
+dónde $N_{y,a}$ es  el número de animales de edad $a$ a principios del año $y$. El número de animales de edad $a$ muriendo  producto de las capturas incidentales durante el año $y$, $C_{y,a}$, es removida uniformemente desde el componente 1+ de la población (se supone que las crías no mueren debido a la captura incidental), es decir:
+
+$$
+\tag{Eq 2}
+C_{y,a}=
+\begin{cases}
+0 &   a=0 \\ 
+\frac{C_y N_{y,a}}{N_y^{1+}} & a>0 \\
+\end{cases}
+$$
+
+Dado este supuesto, nuestro modelo no caracterizará adecuadamente los escenarios si la mortalidad por captura incidental ocurre predominantemente en las crías.
+
+Si el usuario especifica una tasa constante de mortalidad por captura incidental, los individuos se eliminan de la población de acuerdo a una tasa de mortalidad por captura incidental $E_y$ y vulnerabilidad (que se supone constante a través del tiempo, y uniforme en individuos de edad 1+):
+
+$$
+\tag{Eq 3}
+C_{y,a}=
+\begin{cases}
+0 &   a=0 \\ 
+N_{y,a} E_{y} & a>0 \\
+\end{cases}
+$$
+
+**Tabla 1.**  Símbolos incluidos en el modelo de proyección.
+
+```{r echo = F}
+Símbolo=c(#User-specified parameters
+  "$S_0$",
+  "$S_{1+}$",
+  "$x$",
+  "$\\lambda_{max}$",
+  "$a_p$",
+  "$E_y$",
+  # Parameters derived from user-specified parameters
+  "$f_0$",
+  "$f_{max}$",
+  "$K^{1+}$",
+  "$z$",
+  # Derived variables
+  "$\\tilde N_{y,a}$", # need double dash for using in kableExtra
+  "$N_{y,a}$",
+  "$N_y^{1+}$",
+  "$C_{y,a}$")
+
+Descripción=c(#User-specified parameters
+  
+  "Supervivencia de cachorro o ballenato",
+  "Supervivencia de individuos de edad 1+",
+  "Edad del grupo plus",
+  "Máxima tasa constante de aumento (tasa de crecimiento de la población)",
+  "Edad al primer parto",
+  "Tasa de mortalidad por captura incidental en el año $y$ (especificado por el usuario o calculado a partir de la mortalidad por captura incidental total especificada por el usuario)", 
+  # Parameters derived from user-specified parameters
+  "Fecundidad (tasa de preñez) en equilibrio previo a la explotación",
+  "Fecundidad teórica máxima (tasa de preñez)",
+  "Capacidad de carga en términos de 1+ componente de la población",
+  "Grado de compensación",
+  # Derived variables
+  "Número de animales maduros de edad $a$ a principios del año $y$",
+  "Número de animales de edad $a$ a principios del año $y$",
+  "Número de animales de edad 1 y mayores a principios del año $y$",
+  "Mortalidad por captura incidental de animales de edad $a$ en año $y$")
+
+Symbol_definitions <- data.frame(cbind(Símbolo,
+                                       Descripción))
+knitr::kable(format="html", #html  - change to pandoc for ms word 
+             Symbol_definitions, 
+             escape = FALSE) %>% 
+  kable_styling('bordered') %>%
+  pack_rows('Parámetros especificados por el usuario', 1, 6,
+            label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
+  pack_rows('Parámetros derivados de los parámetros especificados por el usuario', 7, 10,
+            label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
+  pack_rows('Parámetros derivados', 11, 14, 
+            label_row_css = "font-style: italic;border-bottom: 1px solid black;")
+```
+
+### Medidas de desempeño
+Hay tres medidas principales de rendimiento incluidas en los resultados:
+
+- la probabilidad de que la abundancia de animales de edad 1+ exceda el Nivel de Productividad Neta Máxima (MNPL por sus siglas en inglés) después de 50 y 100 años;
+- la abundancia de animales de edad 1+ en comparación con la capacidad de carga 1+ después de 10, 20 y 50 años; y
+- la abundancia de animales de edad 1+ en comparación con la abundancia de animales de edad 1+ en un escenario sin captura incidental después de 10, 20 y 50 años.
+
+Estas medidas de rendimiento están relacionadas con la recuperación de la población. Wade (1998) identifica un 'estándar' de rendimiento de un 95% de probabilidad de recuperación a MNPL después de 100 años para una población inicialmente al 30% de su capacidad de carga, con un MNPL de 0.5K. MNPL es el límite inferior para la Población Óptima Sostenible (OSP de su sigla en inglés), que se define como el "número de animales que dará como resultado la productividad máxima de la población o la especie, teniendo en cuenta la capacidad de carga del hábitat y la salud del ecosistema del cual forman un elemento constituyente ”(16 USCS § 1362 (9)). En el esquema de manejo de EE. UU., las poblaciones de mamíferos marinos se consideran agotadas cuando están por debajo de OSP (16 USCS § 1362 (1B)).
+
+Los valores individuales informados en las tablas son las medianas del número de proyecciones.
+
+
+### Resolviendo la tasa de captura incidental
+
+Resolvimos el nivel de captura incidental que resultaría en la recuperación de una proporción dada de K en un período específico de tiempo. La probabilidad de reconstrucción se calcula como la proporción de simulaciones en las que la población se ha recuperado a la meta de reconstrucción para el año de reconstrucción. La pestaña "Resolver para captura incidental" utiliza la búsqueda de raíz (la función `uniroot()` en nuestro código) para encontrar la tasa de mortalidad de captura incidental que minimiza la diferencia entre la probabilidad de recuperación deseada y la probabilidad de recuperación bajo la tasa de mortalidad de captura incidental $E$.
+
+
+### Fecundidad teórica máxima
+
+La tasa de fecundidad teórica máxima se calcula en función del tamaño de la población cuando la población está creciendo a su tasa máxima de crecimiento de la población $\lambda_{max}$. Se pueden encontrar partes de esta derivación en Butterworth y Punt (1992) y Breiwick et al. (1984) Comenzando con el modelo de población para el componente femenino de la población:
+
+$$
+\tag{Eq 4}
+N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
+$$
+
+dónde $a_p$ es la edad en el primer parto (se supone que es un año después de la edad de madurez sexual), $f$ es la fecundidad (a veces expresada como el producto de la tasa de preñez y la supervivencia de las crías), $q_f$ es la proporción de crias que son hembras y $a_r$ es la edad a la que los animales sufren por primera vez alguna mortalidad por captura incidental (en nuestro caso, esto es igual a 1 año). Cuando la población crece a su ritmo más rápido, la pesca es cero, y $N_{t+1}=N_t \lambda_{max}$. En nuestro caso $q_f = 1$ porque estamos modelando a todos los adultos, en lugar de solo hembras maduras. Por lo tanto, la ecuación anterior se convierte en:
+
+$$
+\tag{Eq 5}
+\lambda_{max}N_t=N_t S_{1+}+f_{max} N_{t-a_p-1} \lambda _{max}^{a_p-1} S_0 S_{1+}^{(a_p-2)}
+$$
+Resolviendo para $f_{max}$ dada la máxima fecundidad teórica en función de $\lambda_{max}$, supervivencia y edad en el primer parto:
+
+$$
+\tag{Eq. 6}
+f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}^{a_p-2}}}
+$$
+Esto se conoce como $p$ en Butterworth y Punt (1992).
+
+
+### Máximo nivel de productividad neta
+
+Para calcular el nivel máximo de productividad neta ($MNPL$) dato $z$, primero calculamos el rendimiento sostenible por recluta $C$ en función de la tasa de mortalidad por captura incidental $E$.
+
+$$
+\tag{Eq. 7}
+C = E \tilde B(E)\tilde P(E)
+$$
+dónde $\tilde B (E)$ es el reclutamiento normalizado cuando la tasa de captura incidental se fija en $E$ y $\tilde P (E)$ es el número de equilibrio de animales "reclutados" (edad 1+) por cría cuando la tasa de mortalidad por captura incidental se fija en $E$. El reclutamiento normalizado $\tilde B(E)$ se calcula de la siguiente manera:
+
+$$
+\tag{Eq. 8}
+\tilde B(E) = \bigg(1 - \frac{1-f_0 \tilde N(E)} {Af_0\tilde N (E)}\bigg)^{1/z}  \bigg(\frac{\tilde B(0)\tilde P(0)}{\tilde P(E)}\bigg)
+$$
+dondé $f_0 = \frac{1}{\tilde N(0)}$,  $\tilde N(E)$ es el número de animales a la edad del primer parto y mayores (es decir, animales reproductores) por recluta al equilibrio sin mortalidad incidental, y $A$ es el parámetro de resiliencia de Pella-Tomlinson (($A=\frac{f_{max}-f_0}{f_0}$ ; Punt 1999). $\tilde B(0)$ asumiendo que es igual a 1, porque todos los cálculos son por recluta.
+
+El número de animales reproductores por recluta a la tasa de explotación $\boldsymbol{E}$ es la suma de animales adultos por recluta $\tilde N_a$ desde la edad del primer parto $a_p$ a la edad del grupo plus $x$:
+
+$$
+\tag{Eq. 9}
+\tilde N(E) = \sum_{a=a_p}^{x} \tilde N_{a}(E)
+$$
+
+Resolvemos la tasa de mortalidad por captura incidental a la que $\tilde C$ es maximizada (es decir, donde $\frac{dC}{dE}$ es cero) Esto es $MSYR$, que es análogo a $F_{MSY}$ en pesquerías.
+
+El número de 1+ animales por recluta a la tasa de mortalidad por captura incidental $E$, $\tilde P(E)$ se define como:
+$$
+\tag{Eq. 10}
+\tilde P(E)=\sum_{a=1}^{x} \tilde N_{a}(E)
+$$
+
+dónde $\tilde N_{0,a}(E)$ son los números por recluta en cada edad $a$  dada una estructura de edad estable:
+
+$$
+\tag{Eq. 11}
+\tilde N_{0,a}(E) = 
+\begin{cases}
+1 &   a=0 \\
+S_0[S_{1+}(1-E)]^{a-1} &    1\leq a<x \\
+\frac{S_0[S_{1+}(1-E)]^{x-1}}{1-[S_{1+}(1-E)]} &    a=x \\
+\end{cases}
+$$ 
+
+$MSYR$ es el valor de $E$ para el cual la derivada de $C$ con respecto a $E$ es cero, que determinamos mediante diferenciación numérica:
+
+$$
+\tag{Eq. 12}
+\frac{dC}{dE} = \frac {C(E+0.001) - C(E-0.001)} {0.002}
+$$
+
+Entonces, la abundancia relativa que corresponde a $MSYR$, $MNPL$, se determina calculando el tamaño total de la población 1+ en $MSYR$ en relación con el tamaño de la población de equilibrio 1+ sin mortalidad por captura incidental:
+
+$$
+\tag{Eq. 13}
+MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)} 
+$$
+
+### Parametrización
+Supongamos que la población comienza con una estructura de edad estable en el año 1 del período de proyección (Ec. 11). Los números a la edad al comienzo de las proyecciones corresponden a una tasa constante de mortalidad por captura incidental $E$, que se calcula resolviendo la siguiente ecuación para $E$: 
+
+$$
+\tag{Eq. 14}
+\frac{\tilde B(E)\tilde P(E)}{\tilde P(0)}= \frac{N_0^{1+}}{K^{1+}}
+$$
+
+El agotamiento inicial $\frac{N_0^{1+}}{K^{1+}}$  se basa en la historia de mortalidad causada por humanos para la población, que es proporcionada por el usuario.
+
+Para los casos en que se da un error de observación para la población, la abundancia inicial se extrae de una distribución log normal con una desviación estándar proporcional al CV de observación.
+
+#### Tipos de historia de vida
+Cada tipo de historia de vida de mamíferos marinos presentado como una opción predeterminada en esta aplicación corresponde a un valor único de supervivencia de las crías $S_0$, sobrevivencia adulta $S_{1+}$, edad al primer parto, $a_p$, y tasa intrínseca de crecimiento de la población $\lambda_{max}$. Estos valores se presentan en la Tabla 2. Para fines de cálculo, supusimos que la edad del grupo más $x$ es dos años después de la edad de madurez ($x=a_p+1$).
+
+#### Compensación
+Resolvemos el valor del grado de compensación $z$ que corresponde al valor de MNPL proporcionado por el usuario. Esto implica resolver la ecuación $\tilde P(E^*) \tilde B(E^*) = MSYL * \tilde P(0)$ para $z$  donde $E^*$ depende de $z$  como se describe arriba.
+
+
+
+**Tabla 2.**
+```{r echo = F}
+lh.sources <- data.frame(stringsAsFactors=FALSE,
+                           Tipo = c("Ballena de Groenlandia o ballena boreal",
+                                  "Delfín nariz de botella",
+                                  "Ballena jorobada",
+                                  "Foca común",
+                                  "Lobo fino o de dos pelos",
+                                  "Lobo común o de un pelo",
+                                  "Marsopa común",
+                                  "Ballena minke antártica",
+                                  "Orca",
+                                  "Calderón de aletas cortas",
+                                  "Ballena franca"),
+                         Representante = c("Balaena mysticetus",
+                                           "Tursiops truncatus",
+                                           "Megaptera novaeangliae",
+                                           "Phoca vitulina",
+                                           "Arctocephalus pusillus pusillus",
+                                           "Zalophus californianus",
+                                           "Phocoena phocoena",
+                                           "Balaenoptera bonaerensis",
+                                           "Orcinus orca",
+                                           "Globicephala macrorhynchus",
+                                           "Eubalaena glacialis"),
+                             S0 = c(0.944, 0.865, 0.9, 0.802, 0.77, 0.83, 0.8096, 0.84216,
+                                    0.84744, 0.85008, 0.85536),
+                         S1plus = c(0.99, 0.951, 0.95, 0.92, 0.88, 0.95, 0.92, 0.957, 0.963,
+                                    0.966, 0.972),
+                         AgeMat = c(17, 6, 10, 6, 3, 4, 3, 7, 9, 9, 8),
+                   #PlusGroupAge = c(25, 10, 15, 8, 10, 5, 7, 9, 11, 11, 10),
+                         Source = c("@punt_conserving_2018 and references therein",
+                                    "@punt_conserving_2018 and references therein,
+                                    except juvenile survival which is set to 0.88($S_{1+}$)", "@punt_conserving_2018,
+                                    @arso_civil_variations_2019, @speakman_mark-recapture_2010",
+                                    "@punt_conserving_2018; @hastings_sex-_2012",
+                                    "@punt_conserving_2018; @butterworth_effects_1995",
+                                    "@punt_conserving_2018; @delong_age-_2017",
+                                    "@moore_unpublished_2019; G. Vikingsson pers. comm.; olafsdottir_growth_2003",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019",
+                                    "@moore_unpublished_2019")
+              )
+
+
+x <- knitr::kable(format="html",
+             col.names = c('Tipo','Representante','$S_0$','$S_{1+}$','Edad de madurez','Referencias'),
+             lh.sources, 
+             escape = FALSE) %>% 
+            kable_styling('bordered')
+x <- column_spec(x, column = 2,italic = TRUE)
+x
+```
+
+
+<!-- ### Citations -->
+<!-- Arso Civil, M., Cheney, B., Quick, N.J., Islas-Villanueva, V., Graves, J.A., Janik, V.M., et al. (2019). Variations in age- and sex-specific survival rates help explain population trend in a discrete marine mammal population. Ecology and Evolution, 9, 533–544. -->
+
+<!-- Breiwick, J.M., Eberhardt, L.L. & Braham, H.W. (1984). Population Dynamics of Western Arctic Bowhead Whales ( Balaena mysticetus ). Canadian Journal of Fisheries and Aquatic Sciences, 41, 484–496. -->
+
+<!-- Butterworth, D.S. & Punt, A.E. (1992). The Scientific Committee “...Agreed That The MSY Rate Would Most Likely Lie Between 1 and 4%” - But Which MSY Rate? Reports of the International Whaling Commission, 42, 583–591. -->
+
+<!-- Butterworth, D.S., Punt, A.E., Oosthuizen, W.H., Wickens, P.A. (1995) The effects of future consumption by the Cape fur seal on catches and catch rates of the Cape hakes. 3. Modelling the dynamics of the Cape fur seal Arctocephalus pusillus pusillus. South African Journal of Marine Science, 16, 161–183. -->
+
+<!-- DeLong, R.L., Melin, S.R., Laake, J.L., Morris, P., Orr, A.J. & Harris, J.D. (2017). Age- and sex-specific survival of California sea lions (Zalophus californianus) at San Miguel Island, California. Marine Mammal Science, 33, 1097–1125. -->
+
+<!-- Dillingham, P.W., Moore, J.E., Fletcher, D., Cortés, E., Curtis, K.A., James, K.C., et al. (2016). Improved estimation of intrinsic growth rmax for long-lived species: integrating matrix models and allometry. Ecological Applications, 26, 322–333. -->
+
+<!-- Moore 2019. Unpublished estimate following the methods of Dillingham et al. 2016. -->
+
+<!-- Ólafsdóttir, D., Víkingsson, G. A., Halldórsson, S. D., & Sigurjónsson, J. (2003). Growth and reproduction in harbour porpoises (Phocoena phocoena) in Icelandic waters. NAMMCO Scientific Publications, 5, 195–210. -->
+
+<!-- Punt, A. E. (1999). Annex R: A full description of the standard Baleen II model and some variants thereof. Division of Marine Research, CSIRO Marine Laboratories, Hobart, Australia. -->
+
+<!-- Punt, A.E., Moreno, P., Brandon, J.R. & Mathews, M.A. (2018). Conserving and recovering vulnerable marine species: a comprehensive evaluation of the US approach for marine mammals. ICES Journal of Marine Science, 75, 1813–1831. -->
