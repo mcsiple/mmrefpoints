@@ -20,8 +20,8 @@
 <!-- NOTE: in order to include this html in the shiny app, delete everything in the knitted html before <body> and after </body> -->
 <div id="population-model" class="section level3">
 <h3>Population model</h3>
-<p>Population projections are generated using a single-sex age-structured model. In this projection model, the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults <span class="math inline">\(\tilde N\)</span>, the fecundity (pregnancy rate) at pre-exploitation equilibrium <span class="math inline">\(f_0\)</span>, the maximum theoretical fecundity rate <span class="math inline">\(f_{max}\)</span>, the degree of compensation <span class="math inline">\(z\)</span>, and the abundance of individuals aged 1+ (<span class="math inline">\(N_{y+1}^{1+}\)</span>) relative to carrying capacity <span class="math inline">\(K^{1+}\)</span>.</p>
-<p>The number of age 1 individuals is a function of calf/pup survival <span class="math inline">\(S_0\)</span>, and the survival rate of adults, <span class="math inline">\(S_{1+}\)</span> and removals due to bycatch mortality <span class="math inline">\(C_y\)</span> (all symbols are defined in Table 1).</p>
+<p>Population projections are generated using a single-sex age-structured model. In this projection model, the number of calves or pups born each year is density dependent, with the extent of density dependence being a function of the number of mature adults <span class="math inline">\(\tilde N\)</span>, the fecundity (pregnancy rate) at pre-exploitation equilibrium <span class="math inline">\(f_0\)</span>, the maximum theoretical fecundity rate <span class="math inline">\(f_{max}\)</span>, the degree of compensation <span class="math inline">\(z\)</span>, and the abundance of individuals aged 1+ (<span class="math inline">\(N_{y+1}^{1+}\)</span>) relative to carrying capacity <span class="math inline">\(K^{1+}\)</span>.</p>
+<p>The number of individuals age 1 and older is a function of calf/pup survival, <span class="math inline">\(S_0\)</span>, and the survival rate of adults, <span class="math inline">\(S_{1+}\)</span>, and removals due to bycatch mortality, <span class="math inline">\(C_y\)</span> (all symbols are defined in Table 1).</p>
 <p><span class="math display">\[
 \tag{Eq 1}
 N_{y+1,a} = 
@@ -41,7 +41,7 @@ C_{y,a}=
 \frac{C_y N_{y,a}}{N_y^{1+}} &amp; a&gt;0 \\
 \end{cases}
 \]</span></p>
-<p>Given this assumption, our model will not adequately characterize scenarios where bycatch mortality occurs predominantly among calves/pups.</p>
+<p>Given this assumption, our model will not adequately characterize cases where bycatch mortality occurs predominantly among calves/pups.</p>
 <p>If the user specifies a constant rate of bycatch mortality, individuals are removed from the population according to a bycatch mortality rate <span class="math inline">\(E_y\)</span> and vulnerability (which is assumed constant through time, and uniform on age 1+ individuals):</p>
 <p><span class="math display">\[
 \tag{Eq 3}
@@ -50,7 +50,7 @@ C_{y,a}=
 0 &amp;   a=0 \\ 
 N_{y,a} E_{y} &amp; a&gt;0 \\
 \end{cases}
-\]</span></p>
+\]</span> If bycatch is specified by the user as a number of individuals per year, annual bycatch rates <span class="math inline">\(E_y\)</span> are lognormally distributed with mean <span class="math inline">\(log(C_{user})\)</span> and standard deviation <span class="math inline">\(\sigma_E\)</span> of <span class="math inline">\(\sqrt{log(CV_C^2 + 1)}\)</span>, where <span class="math inline">\(C_{user}\)</span> is the bycatch in numbers per year defined by the user and <span class="math inline">\(CV_C\)</span> is the bycatch CV defined by the user. If bycatch is specified as a constant rate, <span class="math inline">\(E_y\)</span> is beta-distributed with mean <span class="math inline">\(E_{user}\)</span> and standard deviation <span class="math inline">\(E_{user} \cdot CV_E\)</span>.</p>
 <p><strong>Table 1.</strong> Symbols included in the projection model.</p>
 <table class="table table-bordered" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -202,12 +202,12 @@ Mortality due to bycatch of animals of age <span class="math inline">\(a\)</span
 <li>the abundance of age 1+ animals compared to 1+ carrying capacity after 10, 20, and 50 years; and</li>
 <li>the abundance of age 1+ animals compared to the abundance of age 1+ animals under a no-bycatch scenario after 10, 20, and 50 years.</li>
 </ul>
-<p>These performance measures are all related to population recovery. Wade (1998) identifies a performance ‘standard’ of a 95% probability of recovery to MNPL after 100 years for a population initially at 30% of its carrying capacity, with an MNPL of 0.5K. MNPL is the lower bound for the Optimum Sustainable Population (OSP), which is defined as the “number of any animals which will result in the maximum productivity of the population or the species, keeping in mind the carrying capacity of the habitat and the health of the ecosystem of which they form a constituent element” (16 USCS § 1362 (9)). In the US management scheme, marine mammal stocks are considered depleted when they are below OSP (16 USCS § 1362 (1B)).</p>
+<p>These performance measures are all related to population recovery. Wade (1998) identifies a performance ‘standard’ of a 95% probability of recovery to MNPL after 100 years for a population initially at 30% of its carrying capacity, with an MNPL of 0.5K. MNPL is the lower bound for the U.S. Marine Mammal Protection Act Optimum Sustainable Population (OSP), which is defined as the “number of any animals which will result in the maximum productivity of the population or the species, keeping in mind the carrying capacity of the habitat and the health of the ecosystem of which they form a constituent element” (16 USCS § 1362 (9)). In the US management scheme, marine mammal stocks are considered depleted when they are below OSP (16 USCS § 1362 (1B)).</p>
 <p>Single values reported in tables are the medians from the number of projections.</p>
 </div>
 <div id="solving-for-bycatch-rate" class="section level3">
 <h3>Solving for bycatch rate</h3>
-<p>We solved for the bycatch level that would result in recovery to a given proportion of K in a specific amount of time. The rebuilding probability is calculated as the proportion of simulations in which the population has recovered to the rebuilding goal by the rebuilding year. The “Solve for bycatch” tab uses root finding (the function <code>uniroot()</code> in our code) to find the bycatch mortality rate that minimizes the difference between the desired recovery probability and the recovery probability under bycatch mortality rate <span class="math inline">\(E\)</span>.</p>
+<p>The app can solve for the bycatch level that would result in recovery to a given proportion of K in a specific amount of time. The rebuilding probability is calculated as the proportion of simulations in which the population has recovered to the rebuilding goal by the rebuilding year. The “Solve for bycatch” tab uses root finding (the function <code>uniroot()</code> in our code) to find the bycatch mortality rate that minimizes the difference between the desired recovery probability and the recovery probability under bycatch mortality rate <span class="math inline">\(E\)</span>.</p>
 </div>
 <div id="maximum-theoretical-fecundity" class="section level3">
 <h3>Maximum theoretical fecundity</h3>
@@ -223,29 +223,29 @@ N_{t+1} = N_t(1-E)S_{1+}+N_{t-a_p}f q_f S_0 (S_{1+})^{a_p -2}(1-E)^{a_p-1-a_r}
 \]</span> Solving for <span class="math inline">\(f_{max}\)</span> gives the maximum theoretical fecundity as a function of <span class="math inline">\(\lambda_{max}\)</span>, survival, and age at first parturition:</p>
 <p><span class="math display">\[
 \tag{Eq. 6}
-f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}}^{a_p -2}}
+f_{max} = \frac {\lambda_{max}^{a_p -1} - \lambda_{max}^{{a_p -2}}}  {S_0 {S_{1+}^{a_p-2}}}
 \]</span> This is referred to as <span class="math inline">\(p\)</span> in Butterworth and Punt (1992).</p>
 </div>
 <div id="maximum-net-productivity-level" class="section level3">
 <h3>Maximum net productivity level</h3>
-<p>To calculate the maximum net productivity level (<span class="math inline">\(MNPL\)</span>) given <span class="math inline">\(z\)</span>, we first calculate the sustainable yield per recruit <span class="math inline">\(\tilde C\)</span> as a function of bycatch mortality rate <span class="math inline">\(E\)</span>.</p>
+<p>To calculate the maximum net productivity level (<span class="math inline">\(MNPL\)</span>) given <span class="math inline">\(z\)</span>, we first calculate the sustainable yield <span class="math inline">\(C\)</span> as a function of bycatch mortality rate <span class="math inline">\(E\)</span>.</p>
 <p><span class="math display">\[
 \tag{Eq. 7}
-\tilde C = E \tilde B(E)\tilde P(E)
-\]</span> where <span class="math inline">\(\tilde B (E)\)</span> is the normalized recruitment when the bycatch rate is fixed at <span class="math inline">\(E\)</span> and <span class="math inline">\(\tilde P (E)\)</span> is the equilibrium number of “recruited” (age 1+) animals per calf/pup when the bycatch mortality rate is fixed at <span class="math inline">\(E\)</span>. The normalized recruitment <span class="math inline">\(\tilde B(E)\)</span> is calculated as follows:</p>
+C = E \tilde B(E)\tilde P(E)
+\]</span> where <span class="math inline">\(\tilde B (E)\)</span> is the normalized (to numbers at unfished equilibrium) recruitment when the bycatch rate is fixed at <span class="math inline">\(E\)</span> and <span class="math inline">\(\tilde P (E)\)</span> is the equilibrium number of “recruited” (age 1+) animals per calf/pup when the bycatch mortality rate is fixed at <span class="math inline">\(E\)</span>. The normalized recruitment <span class="math inline">\(\tilde B(E)\)</span> is calculated as follows:</p>
 <p><span class="math display">\[
 \tag{Eq. 8}
 \tilde B(E) = \bigg(1 - \frac{1-f_0 \tilde N(E)} {Af_0\tilde N (E)}\bigg)^{1/z}  \bigg(\frac{\tilde B(0)\tilde P(0)}{\tilde P(E)}\bigg)
-\]</span> where <span class="math inline">\(f_0 = \frac{1}{\tilde N(0)}\)</span>, <span class="math inline">\(\tilde N(E)\)</span> is the number of animals at the age of first parturition and older (i.e., reproducing animals) per recruit at a no-bycatch-mortality equilibrium, and <span class="math inline">\(A\)</span> is the Pella-Tomlinson resilience parameter (<span class="math inline">\(A=\frac{f_{max}-f_0}{f_0}\)</span> ; Punt 1999). <span class="math inline">\(\tilde B(0)\)</span> is assumed to be equal to 1, because all calculations are per-recruit.</p>
-<p>The number of reproducing animals per recruit at exploitation rate E is the sum of adult animals per recruit <span class="math inline">\(\tilde N_a\)</span> from the age at first parturition <span class="math inline">\(a_p\)</span> to the plus group age <span class="math inline">\(x\)</span>:</p>
+\]</span> where <span class="math inline">\(f_0 = \frac{1}{\tilde N(0)}\)</span>, <span class="math inline">\(\tilde N(E)\)</span> is the number of animals at the age of first parturition and older (i.e., reproducing animals) per recruit at no-bycatch-mortality equilibrium, and <span class="math inline">\(A\)</span> is the Pella-Tomlinson resilience parameter (<span class="math inline">\(A=\frac{f_{max}-f_0}{f_0}\)</span> ; Punt 1999). <span class="math inline">\(\tilde B(0)\)</span> is assumed to be equal to 1, because all calculations are per-recruit.</p>
+<p>The number of reproducing animals per recruit at exploitation rate <span class="math inline">\(\boldsymbol{E}\)</span> is the sum of adult animals per recruit <span class="math inline">\(\tilde N_a\)</span> from the age at first parturition <span class="math inline">\(a_p\)</span> to the plus group age <span class="math inline">\(x\)</span>:</p>
 <p><span class="math display">\[
 \tag{Eq. 9}
-\tilde N(E) = \sum_{a=a_p}^{x} E \tilde N_{0,a}(E)
+\tilde N(E) = \sum_{a=a_p}^{x} \tilde N_{a}(E)
 \]</span></p>
-<p>We solve for the bycatch mortality rate at which <span class="math inline">\(\tilde C\)</span> is maximized (i.e., where <span class="math inline">\(\frac{dC}{dE}\)</span> is zero). This is MSYR, which is analogous to <span class="math inline">\(F_{MSY}\)</span> in fisheries.</p>
+<p>We solve for the bycatch mortality rate at which <span class="math inline">\(\tilde C\)</span> is maximized (i.e., where <span class="math inline">\(\frac{dC}{dE}\)</span> is zero). This is <span class="math inline">\(MSYR\)</span>, which is analogous to <span class="math inline">\(F_{MSY}\)</span> in fisheries.</p>
 <p>The number of 1+ animals per recruit at bycatch mortality rate <span class="math inline">\(E\)</span>, <span class="math inline">\(\tilde P(E)\)</span> is defined as: <span class="math display">\[
 \tag{Eq. 10}
-\tilde P(E)=\sum_{a=1}^{x} \tilde N_{0,a}(E)
+\tilde P(E)=\sum_{a=1}^{x} \tilde N_{a}(E)
 \]</span></p>
 <p>where <span class="math inline">\(\tilde N_{0,a}(E)\)</span> is the numbers per recruit at each age <span class="math inline">\(a\)</span> given a stable age structure:</p>
 <p><span class="math display">\[
@@ -257,12 +257,12 @@ S_0[S_{1+}(1-E)]^{a-1} &amp;    1\leq a&lt;x \\
 \frac{S_0[S_{1+}(1-E)]^{x-1}}{1-[S_{1+}(1-E)]} &amp;    a=x \\
 \end{cases}
 \]</span></p>
-<p><span class="math inline">\(MSYR\)</span> is the value of <span class="math inline">\(E\)</span> for which the derivative of <span class="math inline">\(\tilde C\)</span> with respect to <span class="math inline">\(E\)</span> is zero, which we determined through numerical differentiation:</p>
+<p><span class="math inline">\(MSYR\)</span> is the value of <span class="math inline">\(E\)</span> for which the derivative of <span class="math inline">\(C\)</span> with respect to <span class="math inline">\(E\)</span> is zero, which we determined through numerical differentiation:</p>
 <p><span class="math display">\[
 \tag{Eq. 12}
-\frac{d\tilde C}{dE} = \frac {\tilde C(E+0.001) - \tilde C(E-0.001)} {0.002}
+\frac{dC}{dE} = \frac {C(E+0.001) - C(E-0.001)} {0.002}
 \]</span></p>
-<p>Then the relative abundance that corresponds to <span class="math inline">\(MSYR\)</span>, <span class="math inline">\(MNPL\)</span>, is determined by calculating the total 1+ population size at MSYR relative to the equilibrium 1+ population size with no bycatch mortality:</p>
+<p>Then the relative abundance that corresponds to <span class="math inline">\(MSYR\)</span>, <span class="math inline">\(MNPL\)</span>, is determined by calculating the total 1+ population size at <span class="math inline">\(MSYR\)</span> relative to the equilibrium 1+ population size with no bycatch mortality:</p>
 <p><span class="math display">\[
 \tag{Eq. 13}
 MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)} 
@@ -276,10 +276,10 @@ MNPL = \frac{\tilde P(E=MSYR)\tilde B(E=MSYR)}{\tilde P(0)\tilde B(0)} = \frac{\
 \frac{\tilde B(E)\tilde P(E)}{\tilde P(0)}= \frac{N_0^{1+}}{K^{1+}}
 \]</span></p>
 <p>The initial depletion <span class="math inline">\(\frac{N_0^{1+}}{K^{1+}}\)</span> is based on the history of human-caused mortality for the population, which is provided by the user.</p>
-<p>For cases where observation error is given for the population, the starting abundance is drawn from a lognormal distribution with a standard deviation proportional to the observation CV.</p>
+<p>For cases where observation error is given for the initial population size, the starting abundance is drawn from a lognormal distribution with a standard deviation proportional to the observation CV.</p>
 <div id="life-history-types" class="section level4">
 <h4>Life history types</h4>
-<p>Each marine mammal life history type presented as a default option in this app corresponds to a unique value of calf/pup survival <span class="math inline">\(S_0\)</span>, adult survival <span class="math inline">\(S_{1+}\)</span>, age at first parturition (<span class="math inline">\(a_p\)</span>), and intrinsic rate of population growth <span class="math inline">\(\lambda_{max}\)</span>. These values are presented in Table 2. For computation purposes, we assumed that the plus group age <span class="math inline">\(x\)</span> is two years past the age at maturity (<span class="math inline">\(x=a_p+3\)</span>).</p>
+<p>Each marine mammal life history type presented as a default option in this app corresponds to a unique value of calf/pup survival <span class="math inline">\(S_0\)</span>, adult survival <span class="math inline">\(S_{1+}\)</span>, age at first parturition, <span class="math inline">\(a_p\)</span>, and intrinsic rate of population growth <span class="math inline">\(\lambda_{max}\)</span>. These values are presented in Table 2. For computation purposes, we assumed that the plus group age <span class="math inline">\(x\)</span> is two years past the age at maturity (<span class="math inline">\(x=a_p+1\)</span>).</p>
 </div>
 <div id="compensation" class="section level4">
 <h4>Compensation</h4>
@@ -386,7 +386,7 @@ Phoca vitulina
 6
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; Hastings et al. (2012)
+Punt et al. (2018); Hastings et al. (2012)
 </td>
 </tr>
 <tr>
@@ -406,7 +406,7 @@ Arctocephalus pusillus pusillus
 3
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; Butterworth et al. (1995)
+Punt et al. (2018); Butterworth et al. (1995)
 </td>
 </tr>
 <tr>
@@ -426,7 +426,7 @@ Zalophus californianus
 4
 </td>
 <td style="text-align:left;">
-Punt et al. unpublished; De Long et al. (2017)
+Punt et al. (2018); De Long et al. (2017)
 </td>
 </tr>
 <tr>

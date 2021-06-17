@@ -59,6 +59,8 @@ C_{y,a}=
 N_{y,a} E_{y} & a>0 \\
 \end{cases}
 $$
+If bycatch is specified by the user as a number of individuals per year, annual bycatch rates $E_y$ are lognormally distributed with mean $log(C_{user})$ and standard deviation $\sigma_E$ of $\sqrt{log(CV_C^2 + 1)}$, where $C_{user}$ is the bycatch in numbers per year defined by the user and $CV_C$ is the bycatch CV defined by the user. If bycatch is specified as a constant rate, $E_y$ is beta-distributed with mean $E_{user}$ and standard deviation $E_{user} \cdot CV_E$.
+
 
 **Table 1.** Symbols included in the projection model.
  
