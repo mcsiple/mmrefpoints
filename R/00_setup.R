@@ -238,12 +238,8 @@ jumbotron2 <- function (header, content, button = TRUE){
   }
 }
 
-
-# Documentation ----------------------------------------------
-# see inst/Documentation
-
-
 # Colors etc -------------------------------------------------
 central <- FALSE
 colorscheme <- c("#7bbcb0", "#3a7c89", "#123f5a")
 i18n$set_translation_language("en")
+
