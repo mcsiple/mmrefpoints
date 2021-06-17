@@ -51,7 +51,7 @@ user-friendly way.
 ## Details
 
 This R package contains the functions used in the Marine Mammal Bycatch
-Impacts Exploration Tool (mmBIET), a Shiny app built by Margaret Siple,
+Impacts Exploration Tool (MMBIET), a Shiny app built by Margaret Siple,
 André Punt, and the Ocean Modeling Forum’s [Marine Mammal Bycatch
 Working
 Group](https://oceanmodelingforum.org/working-groups/marine-mammal-bycatch-working-group/).
@@ -79,11 +79,12 @@ This package can be downloaded directly from GitHub:
 We would like this package to be sustainable in the long term and
 welcome contributions. If you encounter a bug, please leave a note on
 the Issues page. You can also leave comments there about additional
-functionality (please add the “enhancement” label). If you are
-interested in contributing, we direct you to the R package [contribution
-advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
+functionality (please add the “enhancement” label to your issue). If you
+are interested in contributing, we direct you to the R package
+[contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley
+Wickham.
 
-## Accessing the mmBIET Shiny app
+## Accessing the MMBIET Shiny app
 
 The functions in this package can also be accessed through the Shiny app
 for this project, which is located online
@@ -138,4 +139,5 @@ citation:
 > Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
 > Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints:
 > Projecting long-term marine mammal abundance with bycatch. R package
-> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints>
+> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
+> 10.5281/zenodo.4758402

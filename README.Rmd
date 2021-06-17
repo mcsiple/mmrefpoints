@@ -51,7 +51,7 @@ Alexandre N. Zerbini
 Stakeholders involved in the management of marine mammal bycatch in marine fisheries need tools to simulate the effects of management decisions on marine mammal populations. Population models are a key part of this process. This package contains the tools to simulate marine mammal populations and an app that shows model outputs in a user-friendly way.
 
 ## Details
-This R package contains the functions used in the Marine Mammal Bycatch Impacts Exploration Tool (mmBIET), a Shiny app built by Margaret Siple, André Punt, and the Ocean Modeling Forum's [Marine Mammal Bycatch Working Group](https://oceanmodelingforum.org/working-groups/marine-mammal-bycatch-working-group/). 
+This R package contains the functions used in the Marine Mammal Bycatch Impacts Exploration Tool (MMBIET), a Shiny app built by Margaret Siple, André Punt, and the Ocean Modeling Forum's [Marine Mammal Bycatch Working Group](https://oceanmodelingforum.org/working-groups/marine-mammal-bycatch-working-group/). 
 
 The functions in this package, and the Shiny app, are intended to be used in cases where data on bycatch and/or population status are sparse or unavailable. 
 
@@ -67,9 +67,9 @@ devtools::install_github("mcsiple/mmrefpoints")
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 ### Community guidelines
-We would like this package to be sustainable in the long term and welcome contributions. If you encounter a bug, please leave a note on the Issues page. You can also leave comments there about additional functionality (please add the "enhancement" label). If you are interested in contributing, we direct you to the R package [contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
+We would like this package to be sustainable in the long term and welcome contributions. If you encounter a bug, please leave a note on the Issues page. You can also leave comments there about additional functionality (please add the "enhancement" label to your issue). If you are interested in contributing, we direct you to the R package [contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
 
-## Accessing the mmBIET Shiny app
+## Accessing the MMBIET Shiny app
 The functions in this package can also be accessed through the Shiny app for this project, which is located online [here](https://msiple.shinyapps.io/mammaltool/). The app provides an easy way to explore outcomes and print out a report with inputs and outputs. 
 
 The mmBIET Shiny app can also be accessed through the R package:
@@ -109,4 +109,4 @@ Punt, A. E. 1999. Annex R: A full description of the standard Baleen II model an
 ## How to cite
 To cite this package or the MMBIET Shiny app, please use the following citation:
 
-> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond, Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting long-term marine mammal abundance with bycatch. R package version 1.0.0. url: https://github.com/mcsiple/mmrefpoints
+> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond, Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting long-term marine mammal abundance with bycatch. R package version 1.0.0. url: https://github.com/mcsiple/mmrefpoints doi: 10.5281/zenodo.4758402
