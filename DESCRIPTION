@@ -35,7 +35,6 @@ Imports:
     gganimate,
     plotly,
     popbio,
-    reshape2,
     shinyBS,
     shinythemes
 Encoding: UTF-8

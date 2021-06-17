@@ -157,8 +157,9 @@ plot_proj <- function(high,
       med = sdf_labs_med,
       low = sdf_labs_low
     ))
+  
+  #browser()
 
-  # browser()
   if (spaghetti) {
     all$sim <- 1
     ts.length <- years.plot
@@ -170,18 +171,21 @@ plot_proj <- function(high,
       low = as.vector(t(low$trajectories[1:spaghetti, 1:(ts.length + 1)])) / K1plus
     )
 
-    sdf <- reshape2::melt(spag.df, id.vars = c("year", "sim"))
-    sdf$sim <- as.factor(sdf$sim)
+    sdf <- tidyr::pivot_longer(spag.df, cols = high:low,
+                                names_transform = list(name = as.factor, 
+                                                       sim = as.factor)) %>% 
+            arrange(desc(name, sim))
+
     dlab1 <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
 
-    sdf <- sdf %>% mutate(variable = recode(variable,
+    sdf <- sdf %>% mutate(name = recode(name,
       high = sdf_labs_hi,
       med = sdf_labs_med,
       low = sdf_labs_low
     ))
 
     p <- sdf %>%
-      ggplot(aes(x = year, y = value, group = sim, colour = variable)) +
+      ggplot(aes(x = year, y = value, group = sim, colour = name)) +
       geom_path(alpha = 0.2, lwd = 1) +
       scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
       geom_line(
@@ -239,5 +243,6 @@ plot_proj <- function(high,
         plot.subtitle = element_text(size = 16)
       )
     p
-  }
+  } 
 }
+

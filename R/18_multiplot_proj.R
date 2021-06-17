@@ -18,6 +18,7 @@
 #'
 #' @importFrom ggplot2 ggplot aes xlim geom_path scale_colour_manual theme_classic xlab ylab ylim facet_wrap geom_label theme theme_classic geom_ribbon label_bquote element_blank
 #' @importFrom dplyr mutate recode
+#' @importFrom tidyr pivot_longer
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
@@ -223,16 +224,22 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
       low = as.vector(t(low.d3[1:spaghetti, 1:ts.length])) / K1plus
     )
 
-    sdf1 <- reshape2::melt(spag.df1, id.vars = c("year", "sim"))
-    sdf1$sim <- as.factor(sdf1$sim)
+    sdf1 <- tidyr::pivot_longer(spag.df1, cols = high:low,
+                        names_transform = list(name = as.factor, 
+                                               sim = as.factor)) %>% 
+            arrange(desc(name, sim))
     sdf1$depl.level <- InitDepls[1]
 
-    sdf2 <- reshape2::melt(spag.df2, id.vars = c("year", "sim"))
-    sdf2$sim <- as.factor(sdf2$sim)
+    sdf2 <- tidyr::pivot_longer(spag.df2, cols = high:low,
+                        names_transform = list(name = as.factor, 
+                                               sim = as.factor)) %>% 
+            arrange(desc(name, sim))
     sdf2$depl.level <- InitDepls[2]
 
-    sdf3 <- reshape2::melt(spag.df3, id.vars = c("year", "sim"))
-    sdf3$sim <- as.factor(sdf3$sim)
+    sdf3 <- tidyr::pivot_longer(spag.df3, cols = high:low,
+                                names_transform = list(name = as.factor, 
+                                                       sim = as.factor)) %>% 
+            arrange(desc(name, sim))
     sdf3$depl.level <- InitDepls[3]
 
     megadf <- bind_rows(sdf1, sdf2, sdf3)

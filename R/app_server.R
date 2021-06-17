@@ -652,8 +652,10 @@ app_server <- function( input, output, session ) {
         
         tp.all <- rbind(tp.all, tp)
       }
-      
-      df <- reshape2::melt(tp.all, id.vars = c("BycatchLvl", "sim", "Depl"))
+
+      df <- tp.all %>% tidyr::pivot_longer(cols = abund10:abund50,
+                                             names_to = c('variable'),
+                                             names_transform = list(variable = as.factor))
       
       df <- df %>%
         subset(Depl == initdepl_adv()) %>%
@@ -755,7 +757,9 @@ app_server <- function( input, output, session ) {
         tp.all <- rbind(tp.all, tp)
       }
       
-      df <- reshape2::melt(tp.all, id.vars = c("BycatchLvl", "sim", "Depl"))
+      df <- tp.all %>% tidyr::pivot_longer(cols = abund10:abund50,
+                                           names_to = c('variable'),
+                                           names_transform = list(variable = as.factor))
       
       xlab <- switch(input$selected_language,
                      "en" = "Years after projections start",
