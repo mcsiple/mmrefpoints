@@ -12,7 +12,7 @@ app_ui <- function(request) {
  shinyUI(fluidPage(
    shiny.i18n::usei18n(i18n),
    theme = shinythemes::shinytheme("flatly"),
-   tags$head(tags$style(".shiny-output-error{color: darkblue;}")), # dblue error messages
+   tags$head(tags$style(".shiny-output-error{color: darkblue;}")), # dark blue error messages
    fluidRow(
      column(
        8,

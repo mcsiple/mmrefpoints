@@ -21,7 +21,8 @@ app_server <- function( input, output, session ) {
   
   # HOMEPAGE ----------------------------------------------------------------
   output$splash <- renderUI({
-    htmltools::HTML(switch(input$selected_language,
+    htmltools::HTML(
+      switch(input$selected_language,
                            "en" = splash_en,
                            "es" = splash_es,
                            "fr" = splash_fr
