@@ -1,11 +1,12 @@
 ---
-title: 'About the projection model'
-author: 'Siple MC and Punt AE'
+title: "About the projection model"
+author: "Siple MC and Punt AE"
 date: 'Last updated: June 12, 2020'
 output:
   html_document:
     highlight: tango
     theme: flatly
+  pdf_document: default
   word_document: default
 ---
 
