@@ -14,22 +14,20 @@ This report was generated using the [marine mammal bycatch impacts exploration t
 ```{r echo=FALSE,  warning=FALSE, message=FALSE}
 # The `params` object is available in the document.
 options(knitr.table.format = "html") 
-library(knitr)
-library(kableExtra)
-library(tidyverse)
+library(magrittr)
 
 lhdf <- as.data.frame(params$lh.params)
 
-lhdf <- lhdf %>% 
-  select(S0,S1plus,AgeMat,lambdaMax,z) %>%
-  rename("$S_0$" = S0,
+lhdf <- lhdf %>%
+  dplyr::select(S0,S1plus,AgeMat,lambdaMax,z) %>%
+  dplyr::rename("$S_0$" = S0,
          "$S_{1+}$" = S1plus,
          "Age at maturity" = AgeMat,
          "$\\lambda_{max}$" = lambdaMax)
 
 knitr::kable(format="html", # make table showing all the parameters
              lhdf) %>% 
-            kable_styling()
+            kableExtra::kable_styling()
 ```
 
 ### Performance measures
@@ -40,7 +38,7 @@ These are the median outcomes for each of the bycatch and depletion levels.
 pm <-  params$performance 
 
 knitr::kable(format="html",pm) %>%
-  kable_styling(full_width = F,position="center")
+  kableExtra::kable_styling(full_width = F,position="center")
 
 ```
 
@@ -56,7 +54,7 @@ If $N_{MIN}$ and $N_{BEST}$ are the same, the user has not specified a survey CV
 ```{r echo=FALSE,  warning=FALSE, message=FALSE}
 # The `params` object is available in the document.
 PBR <- params$pbr %>%
-  mutate(Parameter = recode(Parameter, 
+  dplyr::mutate(Parameter = dplyr::recode(Parameter, 
                             Nbest = "$N_{BEST}$",
                             Nmin = "$N_{MIN}$",
                             Rmax = "$R_{MAX}$",
@@ -64,6 +62,6 @@ PBR <- params$pbr %>%
 PBR %>% 
   dplyr::mutate_if(is.numeric, list(~as.character(., signif(., 2)))) %>%
   knitr::kable(format="html") %>%
-  kable_styling(full_width = F,position="center")
+  kableExtra::kable_styling(full_width = F,position="center")
 
 ```
