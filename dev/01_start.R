@@ -69,6 +69,12 @@ usethis::use_package("gridExtra")
 usethis::use_package("xts")
 usethis::use_package("shiny.i18n")
 
+# Specific functions
+# Note: This uses the development version of usethis: remotes::install_github("r-lib/usethis")
+#usethis::use_import_from("graphics","legend")
+# Datasets
+#load(here::here('data','lh.rda')) 
+#usethis::use_data(lh,overwrite = TRUE)
 
 ## Favicon ----
 # If you want to change the favicon (default is golem's one)
