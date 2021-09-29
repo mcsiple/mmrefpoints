@@ -88,7 +88,7 @@ Wickham.
 
 The functions in this package can also be accessed through the Shiny app
 for this project, which is located online
-[here](https://msiple.shinyapps.io/mammaltool/). The app provides an
+[here](https://msiple.shinyapps.io/mmrefpoints/). The app provides an
 easy way to explore outcomes and print out a report with inputs and
 outputs.
 
