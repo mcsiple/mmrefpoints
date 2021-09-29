@@ -218,15 +218,12 @@ app_server <- function( input, output, session ) {
       zero.list <- zero.simple.rate()
     }
     
-    #print(input$selected_language)
-    # print(translator$get_languages())
-    
-    
+
     stf <- input$spag_simple
     nspag <- 50
     spaghetti <- ifelse(stf, nspag, FALSE)
     lh.params <- lh.params2_simple()
-    # Only one depletion level in the simple case
+    # Only one depletion level in simple tab
     plot_proj(
       high = high.list,
       med = med.list,
@@ -468,7 +465,6 @@ app_server <- function( input, output, session ) {
                          }
       ),
       depletion = InitDepl.vec(),
-     # lh.params = lh.params2(),
       mnpl = input$MNPL.usr
     )
   })
@@ -510,8 +506,7 @@ app_server <- function( input, output, session ) {
   # Projection plots (advanced) ---------------------------------------------
   
   output$projPlot1 <- renderPlot({
-    # input$go
-    # isolate({
+
     if (input$crad == "n_yr") {
       high.list <- high.list.const()
       med.list <- med.list.const()
@@ -705,8 +700,6 @@ app_server <- function( input, output, session ) {
   
   # Relative to unfished
   output$relUnfished <- renderPlot({
-    # input$PMButton
-    # isolate({
     if (input$crad == "n_yr") {
       high.list <- high.list.const()
       med.list <- med.list.const()
@@ -781,7 +774,6 @@ app_server <- function( input, output, session ) {
                                      "10" = "abund10",
                                      "20" = "abund20",
                                      "50" = "abund50"))
-      #print(str(df))
       
       relunfished <- ggplot(df, 
                             aes(x = variable, y = value, 
