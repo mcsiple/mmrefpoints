@@ -25,7 +25,7 @@ test_that(
         "pkgload::load_all(here::here());run_app()"
       )
     )
-    Sys.sleep(5)
+    Sys.sleep(1)
     expect_true(x$is_alive())
     x$kill()
   }
