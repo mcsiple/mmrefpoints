@@ -11,3 +11,6 @@ $run_dev.*
 ^Meta$
 ^app\.R$
 ^rsconnect$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
