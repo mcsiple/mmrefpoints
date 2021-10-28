@@ -1,0 +1,38 @@
+{
+    "creators": [
+        {   
+            "orcid": "0000-0002-4260-9856",
+            "affiliation": "National Oceanographic and Atmospheric Administration",
+            "name": "Siple, Margaret"
+        },
+        {   
+            "orcid": "0000-0001-8489-2488",
+            "affiliation": "University of Washington",
+            "name": "Punt, André"
+        }
+    ],    
+
+    "license": "MIT + file LICENSE",
+
+    "title": "mmrefpoints",
+
+    "related_identifiers": [
+        {
+            "scheme": "doi",
+            "identifier": "10.1234/software.paper.5678",
+            "relation": "isDocumentedBy",
+            "resource_type": {
+                "type": "publication",
+                "subtype": "article"
+            }
+        }
+    ],
+
+    "keywords": ["Cats", "Laser", "Behavior"],
+
+    "communities": [
+        {"identifier": "software-cats"}
+    ],
+
+    "grants": [{"id":"777541"}]
+}
