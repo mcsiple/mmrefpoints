@@ -900,8 +900,9 @@ app_server <- function( input, output, session ) {
         round(PBR.metrics()$Rmax, digits = 2)
       )
     )
+
     PB %>%
-      dplyr::mutate_if(is.numeric, .funs = as.character(signif(., 2))) %>%
+      dplyr::mutate_if(is.numeric, function(x) as.character(signif(x, 2))) %>%
       kableExtra::kable(escape = FALSE) %>%
       kableExtra::kable_styling("striped")
   }
