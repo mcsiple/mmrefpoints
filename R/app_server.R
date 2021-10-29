@@ -774,7 +774,6 @@ app_server <- function( input, output, session ) {
                                      "10" = "abund10",
                                      "20" = "abund20",
                                      "50" = "abund50"))
-      
       relunfished <- ggplot(df, 
                             aes(x = variable, y = value, 
                                 fill = BycatchLvl,
@@ -902,7 +901,7 @@ app_server <- function( input, output, session ) {
       )
     )
     PB %>%
-      dplyr::mutate_if(is.numeric, funs(as.character(signif(., 2)))) %>%
+      dplyr::mutate_if(is.numeric, .funs = as.character(signif(., 2))) %>%
       kableExtra::kable(escape = FALSE) %>%
       kableExtra::kable_styling("striped")
   }
