@@ -103,7 +103,7 @@ make_ptable <- function(traj.list, depletion, mnpl = NA) {
   # make the table
   bycatch <- c("high", "med", "low", "zero")
 #browser()
-  ptable <- expand_grid(depletion, bycatch) %>%
+  ptable <- expand_grid(depletion, bycatch) |>
     add_column(
       prebuild50 = c(HiDepl1, MedDepl1, LowDepl1),
       prebuild100 = c(HiDepl2, MedDepl2, LowDepl2),
