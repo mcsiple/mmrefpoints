@@ -20,8 +20,9 @@
 #'   ConstantBycatch = list(Catch = 40, CV = 01),
 #'   InitDepl = 0.3,
 #'   lh.params = lh.params,
-#'   nyears = 40, obs_CV = 0.2
+#'   nyears = 100, obs_CV = 0.2
 #' )
+#' prob_rebuilt_goal(traj = Projection$trajectories, goal = 3500, rebuild.yr = 25)
 #' @export
 prob_rebuilt_goal <- function(traj, goal = 2000, rebuild.yr = 100) {
   if (ncol(traj) < rebuild.yr) stop("Need more years of projection")
