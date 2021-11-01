@@ -79,18 +79,14 @@
     "related_identifiers": [
         {
             "scheme": "doi",
-            "identifier": "10.1234/software.paper.5678",
+            "identifier": "10.5281/zenodo.4758402",
             "relation": "isDocumentedBy",
             "resource_type": {
                 "type": "publication",
-                "subtype": "article"
+                "subtype": "software"
             }
         }
     ],
 
-    "keywords": ["marine mammal bycatch", "population dynamics", "Shiny", "risk assessment"],
-
-    "communities": [
-        {"identifier": "software-marine-mammals"}
-    ]
+    "keywords": ["marine mammal bycatch", "population dynamics", "Shiny", "risk assessment"]
 }
