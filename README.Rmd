@@ -67,7 +67,9 @@ devtools::install_github("mcsiple/mmrefpoints")
 
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 ### Community guidelines
-We would like this package to be sustainable in the long term and welcome contributions. If you encounter a bug, please leave a note on the Issues page. You can also leave comments there about additional functionality (please add the "enhancement" label to your issue). If you are interested in contributing, we direct you to the R package [contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
+We would like this package to be sustainable in the long term and welcome contributions. If you encounter a bug, please leave a note on the [Issues page](https://github.com/mcsiple/mmrefpoints/issues). You can also leave comments there about additional functionality (please add the "enhancement" label to your issue). 
+
+If you are interested in contributing, we direct you to the R package [contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley Wickham.
 
 ## Accessing the MMBIET Shiny app
 The functions in this package can also be accessed through the Shiny app for this project, which is located online [here](https://msiple.shinyapps.io/mmrefpoints/). The app provides an easy way to explore outcomes and print out a report with inputs and outputs. 
@@ -82,7 +84,7 @@ run_app()
 
 ## Functionality
 
-Key functions in this package:
+The foundation of this package is an age-structured population projection model with bycatch mortality. Key functions in this package:
 
 ```{r eval=TRUE,echo=FALSE, results='asis'}
 x <- data.frame("Function" = c("dynamics()",
@@ -97,11 +99,77 @@ knitr::kable(x)
 
 To create a single projection for a marine mammal population, use the `dynamics()` function:
 ```{r message=FALSE}
-x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
-InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, 
+                           K1plus = 9000, AgeMat = 17,
+                           InitDepl = 0.6, 
+                           ConstantCatch = NA, 
+                           ConstantF = rep(0.01, times = 100), 
+                           z = 2.39, nyears = 100, 
+                           nages = 25, lambdaMax = 1.04)
 plot(1:100, x$TotalPop, type = 'l', xlab = "Year", ylab = "Population size")
 ```
 
+Variation in the model is introduced through variation in bycatch mortality over time and uncertainty in the estimate of starting abundance.
+
+```{r message=FALSE}
+x <- mmrefpoints::projections(
+  NOut = 1,
+  ConstantBycatch = list(Catch = 50, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+# One trajectory with bycatch uncertainty and an observation CV:
+plot(x$trajectories, type = "l", xlab = "Year", ylab = "Population size")
+```
+
+Projections shown in the app are based on simulation parameters provided by the user. They include a "high", "medium", and "low" bycatch level based on a user-determined range. 
+
+```{r message=FALSE}
+x_lo <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 0, CV = 0),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+x_med <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 50, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+x_hi <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 200, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+mmrefpoints::plot_proj(high = x_hi,
+                       med = x_med,
+                       low = x_lo,
+                       years.plot = 100,
+                       ylims = c(0, 9000),
+                       K1plus = 9000)
+```
 
 ## References
 Punt, A. E. 1999. Annex R: A full description of the standard Baleen II model and some variants thereof. Division of Marine Research, CSIRO Marine Laboratories, Hobart, Australia. Available from https://duwamish.lib.washington.edu/uwnetid/illiad.dll?Action=10&Form=75&Value=1651729 (accessed August 7, 2018).
@@ -109,4 +177,4 @@ Punt, A. E. 1999. Annex R: A full description of the standard Baleen II model an
 ## How to cite
 To cite this package or the MMBIET Shiny app, please use the following citation:
 
-> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond, Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting long-term marine mammal abundance with bycatch. R package version 1.0.0. url: https://github.com/mcsiple/mmrefpoints doi: 10.5281/zenodo.4758402
+> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond, Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda, Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints: Projecting long-term marine mammal abundance with bycatch. R package version 0.1.0. url: https://github.com/mcsiple/mmrefpoints doi: 10.5281/zenodo.4758402

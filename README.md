@@ -78,9 +78,11 @@ This package can be downloaded directly from GitHub:
 
 We would like this package to be sustainable in the long term and
 welcome contributions. If you encounter a bug, please leave a note on
-the Issues page. You can also leave comments there about additional
-functionality (please add the “enhancement” label to your issue). If you
-are interested in contributing, we direct you to the R package
+the [Issues page](https://github.com/mcsiple/mmrefpoints/issues). You
+can also leave comments there about additional functionality (please add
+the “enhancement” label to your issue).
+
+If you are interested in contributing, we direct you to the R package
 [contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley
 Wickham.
 
@@ -103,7 +105,8 @@ run_app()
 
 ## Functionality
 
-Key functions in this package:
+The foundation of this package is an age-structured population
+projection model with bycatch mortality. Key functions in this package:
 
 | Function      | Purpose                                                         |
 |:--------------|:----------------------------------------------------------------|
@@ -114,12 +117,88 @@ To create a single projection for a marine mammal population, use the
 `dynamics()` function:
 
 ``` r
-x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
-InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, 
+                           K1plus = 9000, AgeMat = 17,
+                           InitDepl = 0.6, 
+                           ConstantCatch = NA, 
+                           ConstantF = rep(0.01, times = 100), 
+                           z = 2.39, nyears = 100, 
+                           nages = 25, lambdaMax = 1.04)
 plot(1:100, x$TotalPop, type = 'l', xlab = "Year", ylab = "Population size")
 ```
 
 <img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
+Variation in the model is introduced through variation in bycatch
+mortality over time and uncertainty in the estimate of starting
+abundance.
+
+``` r
+x <- mmrefpoints::projections(
+  NOut = 1,
+  ConstantBycatch = list(Catch = 50, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+# One trajectory with bycatch uncertainty and an observation CV:
+plot(x$trajectories, type = "l", xlab = "Year", ylab = "Population size")
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+
+Projections shown in the app are based on simulation parameters provided
+by the user. They include a “high”, “medium”, and “low” bycatch level
+based on a user-determined range.
+
+``` r
+x_lo <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 0, CV = 0),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+x_med <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 50, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+x_hi <- mmrefpoints::projections(
+  NOut = 100,
+  ConstantBycatch = list(Catch = 200, CV = 0.7),
+  InitDepl = 0.6,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 25, z = 2.39, lambdaMax = 1.04
+  ),
+  nyears = 100, obs_CV = 0.1
+)
+
+mmrefpoints::plot_proj(high = x_hi,
+                       med = x_med,
+                       low = x_lo,
+                       years.plot = 100,
+                       ylims = c(0, 9000),
+                       K1plus = 9000)
+#> Warning: Removed 38 row(s) containing missing values (geom_path).
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" />
 
 ## References
 
@@ -139,5 +218,5 @@ citation:
 > Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
 > Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints:
 > Projecting long-term marine mammal abundance with bycatch. R package
-> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
+> version 0.1.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
 > 10.5281/zenodo.4758402
