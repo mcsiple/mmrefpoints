@@ -1,0 +1,46 @@
+cff-version: 0.1.0
+message: "If you use this package or the Shiny app within, please cite it as below."
+authors:
+  - family-names: Siple
+    given-names: Margaret C.
+    orcid: https://orcid.org/0000-0002-4260-9856
+  - family-names: Punt
+    given-names: André E.
+    orcid: https://orcid.org/0000-0001-8489-2488  
+  - family-names: Francis
+    given-names: Tessa B.
+    orcid: https://orcid.org/0000-0002-3383-5392
+  - family-names: Hammond
+    given-names: Philip S.
+    orcid: https://orcid.org/0000-0002-2381-8302
+  - family-names: Heinemann
+    given-names: Dennis
+    orcid: https://orcid.org/0000-0002-1434-2445
+  - family-names: Long
+    given-names: Kristy J.
+    orcid: https://orcid.org/0000-0001-6970-0935
+  - family-names: Moore
+    given-names: Jeffrey E.
+    orcid: https://orcid.org/0000-0003-3715-7442
+  - family-names: Reeves
+    given-names: Randall R.
+    orcid: https://orcid.org/0000-0002-6512-6507
+  - family-names: Sepúlveda
+    given-names: Maritza
+    orcid: https://orcid.org/0000-0002-1403-176X
+  - family-names: Sigurðsson
+    given-names: Guðjón Már
+    orcid: https://orcid.org/0000-0001-9390-6693
+  - family-names: Wade
+    given-names: Paul R.
+    orcid: https://orcid.org/0000-0003-2428-9323
+   - family-names: Williams
+    given-names: Rob
+    orcid: https://orcid.org/0000-0001-7496-453X
+   - family-names: Zerbini
+    given-names: Alexandre N. 
+    orcid: https://orcid.org/0000-0002-9776-6605
+    
+title: mcsiple/mmrefpoints: Journal submission pre-release
+version: v.0.1.0
+date-released: 2021-11-1
