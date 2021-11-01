@@ -2,19 +2,79 @@
     "creators": [
         {   
             "orcid": "0000-0002-4260-9856",
-            "affiliation": "National Oceanographic and Atmospheric Administration",
-            "name": "Siple, Margaret"
+            "affiliation": "Resource Assessment and Conservation Engineering Division, NOAA AFSC, Seattle, WA, United States",
+            "name": "Siple, Margaret C."
         },
         {   
             "orcid": "0000-0001-8489-2488",
-            "affiliation": "University of Washington",
-            "name": "Punt, André"
+            "affiliation": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, United States",
+            "name": "Punt, André E."
+        },
+        {   
+            "orcid": "0000-0002-3383-5392",
+            "affiliation": "School of Aquatic and Fishery Sciences, University of Washington, Seattle, WA, United States",
+            "name": "Francis, Tessa B."
+        },
+        {   
+            "orcid": "0000-0002-2381-8302",
+            "affiliation": "Sea Mammal Research Unit, Scottish Oceans Institute, University of St Andrews, St Andrews, United Kingdom",
+            "name": "Hammond, Phillip S."
+        },
+        {   
+            "orcid": "0000-0002-1434-2445",
+            "affiliation": "U.S. Marine Mammal Commission, Bethesda, MD, United States",
+            "name": "Heinemann, Dennis"
+        },
+        {   
+            "orcid": "0000-0001-6970-0935",
+            "affiliation": "Office of Protected Resources, NOAA’s National Marine Fisheries Service, Silver Spring, MD, United States",
+            "name": "Long, Kristy J."
+        },
+        {   
+            "orcid": "0000-0003-3715-7442",
+            "affiliation": "Protected Resources Division, NOAA SWFSC, La Jolla, CA, United States",
+            "name": "Moore, Jeffrey E."
+        },
+        {   
+            "orcid": "0000-0002-6512-6507",
+            "affiliation": "Okapi Wildlife Associates, Hudson, QC, Canada",
+            "name": "Reeves, Randall R."
+        },
+        {   
+            "orcid": "0000-0002-1403-176X",
+            "affiliation": "Facultad de Ciencias, Universidad de Valparaíso, Valparaíso, Chile",
+            "name": "Sepúlveda, M."
+        },
+        {   
+            "orcid": "0000-0001-9390-6693",
+            "affiliation": "",
+            "name": "Sigurðsson, Guðjón Már"
+        },
+        {   
+            "orcid": "0000-0002-4501-193X",
+            "affiliation": "Pelagic Division, Marine and Freshwater Research Institute, Hafnarfjörður, Iceland",
+            "name": "Víkingsson, Gísli"
+        },
+        {   
+            "orcid": "0000-0003-2428-9323",
+            "affiliation": "Marine Mammal Laboratory, NOAA AFSC, Seattle, WA, United States",
+            "name": "Wade, Paul R."
+        },
+        {   
+            "orcid": "0000-0001-7496-453X",
+            "affiliation": "Oceans Initiative, Seattle, WA, United States",
+            "name": "Williams, Rob"
+        },
+        {   
+            "orcid": "0000-0002-9776-6605",
+            "affiliation": "Marine Mammal Laboratory, NOAA AFSC, Seattle, WA, United States",
+            "name": "Zerbini, Alexandre N."
         }
     ],    
 
     "license": "MIT + file LICENSE",
 
-    "title": "mmrefpoints",
+    "title": "mmrefpoints: Projecting long-term marine mammal abundance with bycatch",
 
     "related_identifiers": [
         {
@@ -28,11 +88,9 @@
         }
     ],
 
-    "keywords": ["Cats", "Laser", "Behavior"],
+    "keywords": ["marine mammal bycatch", "population dynamics", "Shiny", "risk assessment"],
 
     "communities": [
-        {"identifier": "software-cats"}
-    ],
-
-    "grants": [{"id":"777541"}]
+        {"identifier": "software-marine-mammals"}
+    ]
 }
