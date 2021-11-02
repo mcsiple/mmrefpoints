@@ -1,5 +1,5 @@
 ---
-title: 'MMBIET: Projecting long-term marine mammal abundance with bycatch'
+title: 'mmrefpoints: Projecting long-term marine mammal abundance with bycatch'
 tags:
   - Shiny
   - R
