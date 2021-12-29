@@ -72,6 +72,10 @@ This package can be downloaded directly from GitHub:
 
     devtools::install_github("mcsiple/mmrefpoints")
 
+-   NOTE: For Linux users, if you run into an error about the `magick`
+    package, try installing `magick` first using the instructions
+    [here](https://cran.r-project.org/web/packages/magick/vignettes/intro.html).
+
 ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 ### Community guidelines
