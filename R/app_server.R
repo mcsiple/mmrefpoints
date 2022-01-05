@@ -3,7 +3,6 @@
 #' @param input,output,session Internal parameters for {shiny}. 
 #'     DO NOT REMOVE.
 #' @import shiny
-#' @import mmrefpoints
 #' @importFrom dplyr select mutate rename filter rename_with recode_factor funs
 #' @importFrom forcats fct_recode
 #' @importFrom tidyr pivot_longer pivot_wider expand
@@ -1486,7 +1485,7 @@ app_server <- function( input, output, session ) {
           p(
             i18n$t("The recovery factor is set in the U.S. based on the status of the stock. See the"),
             a(href = "https://www.fisheries.noaa.gov/national/marine-mammal-protection/marine-mammal-protection-act", "MMPA"), i18n$t("or the most recent"),
-            a(href = "https://www.fisheries.noaa.gov/webdam/download/64669267", "GAMMS"),
+            a(href = "https://www.fisheries.noaa.gov/national/marine-mammal-protection/guidelines-assessing-marine-mammal-stocks", "GAMMS"),
             i18n$t("for more detail.")
           ),
           p(strong("0.1-0.3"), i18n$t(" for endangered species or stocks known to be declining")),
