@@ -14,4 +14,4 @@ $run_dev.*
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-$_disable_autoload.*
+^_disable_autoload\.R$
