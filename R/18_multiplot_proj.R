@@ -22,65 +22,67 @@
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
-#' parms <- list(S0 = 0.944, S1plus = 0.99, 
-#' K1plus = 9000, 
-#' AgeMat = 18, nages = 20,  
-#' z = 2.39, lambdaMax = 1.02)
+#' parms <- list(
+#'   S0 = 0.944, S1plus = 0.99,
+#'   K1plus = 9000,
+#'   AgeMat = 18, nages = 20,
+#'   z = 2.39, lambdaMax = 1.02
+#' )
 #' InitDepl.vec <- c(0.1, 0.5, 0.9)
 #' BycatchCV <- 0.2
 #' nyears <- 100
-#' 
+#'
 #' high.list <- lapply(
-#' X = InitDepl.vec,
-#' function(x) {
-#'   projections(
-#'     NOut = 50,
-#'     ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
-#'     InitDepl = x,
-#'     lh.params = parms,
-#'     nyears = nyears,
-#'     obs_CV = 0.2
-#'   )
-#' }
+#'   X = InitDepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantRateBycatch = list(Rate = 0.3, CV = BycatchCV),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.2
+#'     )
+#'   }
 #' )
-
+#'
 #' med.list <- lapply(
-#' X = InitDepl.vec,
-#' function(x) {
-#'   projections(
-#'     NOut = 50,
-#'     ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
-#'     InitDepl = x,
-#'     lh.params = parms,
-#'     nyears = nyears,
-#'     obs_CV = 0.2
-#'   )
-#' }
+#'   X = InitDepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantRateBycatch = list(Rate = 0.02, CV = BycatchCV),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.2
+#'     )
+#'   }
 #' )
 #' low.list <- lapply(
-#' X = InitDepl.vec,
-#' function(x) {
-#'   projections(
-#'     NOut = 50,
-#'     ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
-#'     InitDepl = x,
-#'     lh.params = parms,
-#'     nyears = nyears,
-#'     obs_CV = 0.2
-#'   )
-#' }
+#'   X = InitDepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantRateBycatch = list(Rate = 0.001, CV = BycatchCV),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.2
+#'     )
+#'   }
 #' )
 #' multiplot_proj(
-#' high.d1 = high.list[[1]], # d1 is the lowest depletion
-#' med.d1 = med.list[[1]],
-#' low.d1 = low.list[[1]],
-#' high.d2 = high.list[[2]],
-#' med.d2 = med.list[[2]],
-#' low.d2 = low.list[[2]],
-#' high.d3 = high.list[[3]],
-#' med.d3 = med.list[[3]],
-#' low.d3 = low.list[[3]],
-#' years.to.plot = nyears
+#'   high.d1 = high.list[[1]], # d1 is the lowest depletion
+#'   med.d1 = med.list[[1]],
+#'   low.d1 = low.list[[1]],
+#'   high.d2 = high.list[[2]],
+#'   med.d2 = med.list[[2]],
+#'   low.d2 = low.list[[2]],
+#'   high.d3 = high.list[[3]],
+#'   med.d3 = med.list[[3]],
+#'   low.d3 = low.list[[3]],
+#'   years.to.plot = nyears
 #' )
 #' @export
 multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch rate
@@ -96,39 +98,47 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
                            years.to.plot = 50,
                            color.palette = c("forestgreen", "darkorange", "red"),
                            lang = "en") {
-  
+
   # Checks
-  if(!identical(length(high.d1$trajectories),
-                length(med.d1$trajectories),
-                length(low.d1$trajectories),
-                length(high.d2$trajectories),
-                length(med.d2$trajectories),
-                length(low.d2$trajectories),
-                length(high.d3$trajectories),
-                length(med.d3$trajectories)
-                ) |
-     !identical(length(high.d1$trajectories),
-                length(low.d3$trajectories)) #there is a length limit for identical()
-     ){
+  if (!identical(
+    length(high.d1$trajectories),
+    length(med.d1$trajectories),
+    length(low.d1$trajectories),
+    length(high.d2$trajectories),
+    length(med.d2$trajectories),
+    length(low.d2$trajectories),
+    length(high.d3$trajectories),
+    length(med.d3$trajectories)
+  ) |
+    !identical(
+      length(high.d1$trajectories),
+      length(low.d3$trajectories)
+    ) # there is a length limit for identical()
+  ) {
     stop("trajectories are different lengths; make sure all input projections have the same number of years and same number of projections.")
   }
-  
-  if(!identical(high.d1$params[1,'K1plus'],
-                med.d1$params[1,'K1plus'],
-                low.d1$params[1,'K1plus'],
-                high.d2$params[1,'K1plus'],
-                med.d2$params[1,'K1plus'],
-                low.d2$params[1,'K1plus'],
-                high.d3$params[1,'K1plus'],
-                med.d3$params[1,'K1plus'])){
-    stop("K1plus is mismatched among projections. Check K for your projects and try again.")}
-  
-  K1plus <- high.d1$params[1,'K1plus']
-  #browser()
-  InitDepls <- c(mean(high.d1$trajectories[,1]) / K1plus,
-                    mean(high.d2$trajectories[,1]) / K1plus,
-                    mean(high.d3$trajectories[,1]) / K1plus)
-  
+
+  if (!identical(
+    high.d1$params[1, "K1plus"],
+    med.d1$params[1, "K1plus"],
+    low.d1$params[1, "K1plus"],
+    high.d2$params[1, "K1plus"],
+    med.d2$params[1, "K1plus"],
+    low.d2$params[1, "K1plus"],
+    high.d3$params[1, "K1plus"],
+    med.d3$params[1, "K1plus"]
+  )) {
+    stop("K1plus is mismatched among projections. Check K for your projects and try again.")
+  }
+
+  K1plus <- high.d1$params[1, "K1plus"]
+  # browser()
+  InitDepls <- c(
+    mean(high.d1$trajectories[, 1]) / K1plus,
+    mean(high.d2$trajectories[, 1]) / K1plus,
+    mean(high.d3$trajectories[, 1]) / K1plus
+  )
+
   high.col <- color.palette[3]
   med.col <- color.palette[2]
   low.col <- color.palette[1]
@@ -187,7 +197,7 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
     "es" = "Tamaño poblacional relativo a K",
     "fr" = "Abondance (N/K)"
   )
-  
+
   high.d1 <- high.d1$trajectories
   med.d1 <- med.d1$trajectories
   low.d1 <- low.d1$trajectories
@@ -197,7 +207,7 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
   high.d3 <- high.d3$trajectories
   med.d3 <- med.d3$trajectories
   low.d3 <- low.d3$trajectories
-  
+
   if (spaghetti) { # did user ask to see individual projections?
     ts.length <- years.to.plot
     spag.df1 <- data.frame(
@@ -224,22 +234,34 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
       low = as.vector(t(low.d3[1:spaghetti, 1:ts.length])) / K1plus
     )
 
-    sdf1 <- tidyr::pivot_longer(spag.df1, cols = high:low,
-                        names_transform = list(name = as.factor, 
-                                               sim = as.factor)) %>% 
-            arrange(desc(name, sim))
+    sdf1 <- tidyr::pivot_longer(spag.df1,
+      cols = high:low,
+      names_transform = list(
+        name = as.factor,
+        sim = as.factor
+      )
+    ) %>%
+      dplyr::arrange(dplyr::desc(name, sim))
     sdf1$depl.level <- InitDepls[1]
 
-    sdf2 <- tidyr::pivot_longer(spag.df2, cols = high:low,
-                        names_transform = list(name = as.factor, 
-                                               sim = as.factor)) %>% 
-            arrange(desc(name, sim))
+    sdf2 <- tidyr::pivot_longer(spag.df2,
+      cols = high:low,
+      names_transform = list(
+        name = as.factor,
+        sim = as.factor
+      )
+    ) %>%
+      dplyr::arrange(dplyr::desc(name, sim))
     sdf2$depl.level <- InitDepls[2]
 
-    sdf3 <- tidyr::pivot_longer(spag.df3, cols = high:low,
-                                names_transform = list(name = as.factor, 
-                                                       sim = as.factor)) %>% 
-            arrange(desc(name, sim))
+    sdf3 <- tidyr::pivot_longer(spag.df3,
+      cols = high:low,
+      names_transform = list(
+        name = as.factor,
+        sim = as.factor
+      )
+    ) %>%
+      dplyr::arrange(dplyr::desc(name, sim))
     sdf3$depl.level <- InitDepls[3]
 
     megadf <- bind_rows(sdf1, sdf2, sdf3)
@@ -331,9 +353,12 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
 
     p <-
       ggplot(tp, aes(x = year)) +
-      geom_ribbon(aes(ymin = lo90 / K1plus, ymax = hi90 / K1plus, fill = blvl), alpha = 0.5) +
-      geom_ribbon(aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl), alpha = 0.5) +
-      geom_line(aes(y = median / K1plus, colour = blvl), lwd = 1.1) +
+      geom_ribbon(
+        aes(ymin = lo90 / K1plus, ymax = hi90 / K1plus, fill = blvl), alpha = 0.5) +
+      geom_ribbon(
+        aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl), alpha = 0.5) +
+      geom_line(
+        aes(y = median / K1plus, colour = blvl), lwd = 1.1) +
       ylim(0, 1) +
       scale_fill_manual(bylvl_lab, values = rev(color.palette)) +
       scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
