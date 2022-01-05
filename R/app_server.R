@@ -64,7 +64,7 @@ app_server <- function( input, output, session ) {
     updateSelectInput(session,
                       inputId = "type_simple",
                       label = i18n$t("Mammal life history type (choose one):"),
-                      choices = stats::setNames(paste0(lh$Code, "_simple"), i18n$t(lh$Type))
+                      choices = stats::setNames(paste0(mmrefpoints::lh$Code, "_simple"), i18n$t(mmrefpoints::lh$Type))
     ) # / update SelectInput
   })
   
@@ -92,7 +92,7 @@ app_server <- function( input, output, session ) {
   
   K1plus_simple <- reactive(input$popsize_usr_simple / initdepl_simple()) # new
   
-  lh.table_simple <- reactive(lh %>% # keep this the same
+  lh.table_simple <- reactive(mmrefpoints::lh %>% # keep this the same
                                 mutate(K1plus = K1plus_simple()) %>%
                                 mutate(add.as.code = paste(Code, "_simple", sep = "")) %>% # have to rename for shiny...clunky
                                 tibble::column_to_rownames("add.as.code") %>%
@@ -244,7 +244,8 @@ app_server <- function( input, output, session ) {
     updateSelectInput(session,
                       inputId = "type",
                       label = i18n$t("Mammal life history type (choose one):"),
-                      choices = stats::setNames(lh$Code, i18n$t(lh$Type))
+                      choices = stats::setNames(mmrefpoints::lh$Code, 
+                                                i18n$t(mmrefpoints::lh$Type))
     ) # / update SelectInput -- this works for translating options but not for the calculations
   })
   
@@ -277,11 +278,11 @@ app_server <- function( input, output, session ) {
   # K1p, based on user depletion and population size:
   K1plus_adv <- reactive(input$popsize_usr / initdepl_adv()) # new
   
-  lh.table <- reactive(lh %>% # default life history setting
+  lh.table <- reactive(mmrefpoints::lh %>% # default life history setting
                          mutate(
                            K1plus = ifelse(input$crad == "n_yr",
                                            K1plus_adv(),
-                                           lh$K1plus[1]
+                                           mmrefpoints::lh$K1plus[1]
                            ),
                            lambdaMax = input$lambdaMax
                          ) %>%
@@ -576,7 +577,7 @@ app_server <- function( input, output, session ) {
   
   
   # LH table to show in "simple" tab -------------------------------------------
-  tableReact <- reactive(lh %>%
+  tableReact <- reactive(mmrefpoints::lh %>%
                            select(Type, S0, S1plus, AgeMat) %>%
                            mutate(
                              S0 = round(S0, digits = 2),
@@ -1155,7 +1156,8 @@ app_server <- function( input, output, session ) {
               4,
               selectInput("type_simple",
                           label = i18n$t("Mammal life history type (choose one):"),
-                          stats::setNames(paste0(lh$Code, "_simple"), lh$Type)
+                          stats::setNames(paste0(mmrefpoints::lh$Code, "_simple"),
+                                          mmrefpoints::lh$Type)
               ), # quickly put dataframe elements as options! :)
               radioButtons(
                 inputId = "vdepln_simple",
@@ -1255,7 +1257,8 @@ app_server <- function( input, output, session ) {
               h4(i18n$t("Specify life history and abundance")),
               selectInput("type",
                           label = i18n$t("Life history type (choose one):"),
-                          c(stats::setNames(paste(lh$Code), lh$Type))
+                          c(stats::setNames(paste(mmrefpoints::lh$Code), 
+                                            mmrefpoints::lh$Type))
               ),
               fluidRow(
                 column(3, numericInput("global.S0", "\u0053\u2080",
