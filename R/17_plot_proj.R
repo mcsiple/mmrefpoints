@@ -157,8 +157,6 @@ plot_proj <- function(high,
       med = sdf_labs_med,
       low = sdf_labs_low
     ))
-  
-  #browser()
 
   if (spaghetti) {
     all$sim <- 1
