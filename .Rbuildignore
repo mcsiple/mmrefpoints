@@ -15,3 +15,8 @@ $run_dev.*
 ^docs$
 ^pkgdown$
 ^_disable_autoload\.R$
+^\.zenodo\.json$
+^\.github$
+^paper\.bib$
+^paper\.md$
+^CITATION\.cff$
