@@ -52,7 +52,7 @@ abund_rel <- function(traj, zero.traj, K = NA, years.vec = c(10, 20, 50), fulldi
   if (fulldist) {
     return(list.outputs)
   } else {
-    final <- lapply(X = list.outputs, FUN = median)
+    final <- lapply(X = list.outputs, FUN = stats::median)
     final <- round(as.numeric(final), digits = 2)
     return(final)
   }
