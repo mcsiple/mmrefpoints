@@ -144,14 +144,14 @@ pop_vs_yield <- function(z.vec = c(1, 2.39, 5.99),
       col_vec <- c("lightblue", "blue", "darkblue")
       x_values <- dat[which(dat$column_label == z), "rel1p"]
       y_values <- dat[which(dat$column_label == z), "yield"]
-      lines(x_values[1:n2p], y_values[1:n2p], col = col_vec[z])
+      graphics::lines(x_values[1:n2p], y_values[1:n2p], col = col_vec[z])
       maxyield[z] <- which.max(y_values)
       MNPL[z] <- x_values[maxyield][1]
       FMSY[z] <- dat[which(dat$column_label == z)[maxyield[z]], "E"][1]
     }
     MNPL <- round(MNPL, digits = 2)
     FMSY <- round(FMSY, digits = 2)
-    legend("topright", legend = paste0("z = ", z.vec, "\napprox MNPL = ", MNPL, "\napprox FMSY = ", FMSY, "\n"), lty = 1, col = col_vec, box.lwd = 0)
+    graphics::legend("topright", legend = paste0("z = ", z.vec, "\napprox MNPL = ", MNPL, "\napprox FMSY = ", FMSY, "\n"), lty = 1, col = col_vec, box.lwd = 0)
     return(data.frame(z = z.vec, MNPL = MNPL, FMSY = FMSY))
   } # /base R
 }

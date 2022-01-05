@@ -138,9 +138,9 @@ plot_proj <- function(high,
   probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
   # low med and high refer to low med and high bycatch
-  summary.high <- apply(high$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
-  summary.med <- apply(med$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
-  summary.low <- apply(low$trajectories[, 1:years.plot], MARGIN = 2, FUN = quantile, probs = probs, na.rm = T)
+  summary.high <- apply(high$trajectories[, 1:years.plot], MARGIN = 2, FUN = stats::quantile, probs = probs, na.rm = T)
+  summary.med <- apply(med$trajectories[, 1:years.plot], MARGIN = 2, FUN = stats::quantile, probs = probs, na.rm = T)
+  summary.low <- apply(low$trajectories[, 1:years.plot], MARGIN = 2, FUN = stats::quantile, probs = probs, na.rm = T)
   ts.length <- ncol(summary.high)
 
   t.high <- data.frame(t(summary.high), blvl = "high", year = 1:years.plot)
@@ -174,11 +174,12 @@ plot_proj <- function(high,
     sdf <- tidyr::pivot_longer(spag.df, cols = high:low,
                                 names_transform = list(name = as.factor, 
                                                        sim = as.factor)) %>% 
-            arrange(desc(name, sim))
+            dplyr::arrange(dplyr::desc(name, sim))
 
     dlab1 <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
 
-    sdf <- sdf %>% mutate(name = recode(name,
+    sdf <- sdf %>% 
+      mutate(name = recode(name,
       high = sdf_labs_hi,
       med = sdf_labs_med,
       low = sdf_labs_low
