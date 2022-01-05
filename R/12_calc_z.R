@@ -18,7 +18,7 @@ calc_z <- function(MNPL_in, lh.params_in) {
   if(MNPL_in < 0 | MNPL_in > 1){
     stop("Check inputs; MNPL_in must be between 0 and 1.")}
   
-  lims <- c(0.107, 7) # z limits from AEP meeting were 0 and 7; I increased the lower bound because too-low z is a problem
+  lims <- c(0.107, 7) # z limits from AEP meeting were 0 and 7; I increased the lower bound because z cannot be too low.
   # Solve for z value that gives MNPL = MNPL_in
   zero.cross <- tryCatch(
     stats::uniroot(f = get_dz, interval = lims, tol = 1e-7, MNPL = MNPL_in, lh.params = lh.params_in),
