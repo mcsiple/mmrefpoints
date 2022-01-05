@@ -811,7 +811,7 @@ app_server <- function( input, output, session ) {
       pivot_wider(names_from = bycatch) %>%
       mutate(name = recode(name, !!!pmkey)) %>%
       filter(depletion == initdepl_adv()) %>%
-      select(-depletion, -zero) %>%
+      dplyr::select(-depletion, -zero) %>%
       rename_with(~newranges, c("name", "low", "med", "high"))
     
     kableExtra::kable(PM) %>%
