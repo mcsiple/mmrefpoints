@@ -854,7 +854,7 @@ app_server <- function( input, output, session ) {
                                      "med" = rangenames[2],
                                      "high" = rangenames[3]
       )) %>%
-      mutate_if(is.numeric,function(x)replace(x,which(x>1),1))
+      dplyr::mutate_if(is.numeric,function(x)replace(x,which(x>1),1))
    
       kiteplot <- ggradar(PM.try2,
                         axis.labels = axis.labels,
