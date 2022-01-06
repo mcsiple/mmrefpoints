@@ -17,8 +17,9 @@
 #' @param lang language to use. "en" = English; "es" = Spanish; "fr" = French.
 #'
 #' @importFrom ggplot2 ggplot aes xlim geom_path scale_colour_manual theme_classic xlab ylab ylim facet_wrap geom_label theme theme_classic geom_ribbon label_bquote element_blank
-#' @importFrom dplyr mutate recode
+#' @importFrom dplyr mutate recode bind_rows
 #' @importFrom tidyr pivot_longer
+#' @importFrom magrittr %>%
 #' @return A plot of 50 percent and 90 percent confidence intervals of population projections if \code{spaghetti == FALSE} or a spaghetti plot with n individual projections if \code{spaghetti == n },  from \code{projections()}.
 #'
 #' @examples
@@ -267,12 +268,13 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
     megadf <- bind_rows(sdf1, sdf2, sdf3)
 
     megadf <- megadf %>%
+      rename(variable = name) %>%
       mutate(variable = recode(variable,
         high = sdf_labs_hi,
         med = sdf_labs_med,
         low = sdf_labs_low
       ))
-
+    #browser()
     anno <- data.frame(
       x = ts.length * .8, y = 1, # annotations
       sim = 1:3,
@@ -354,11 +356,17 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
     p <-
       ggplot(tp, aes(x = year)) +
       geom_ribbon(
-        aes(ymin = lo90 / K1plus, ymax = hi90 / K1plus, fill = blvl), alpha = 0.5) +
+        aes(ymin = lo90 / K1plus, ymax = hi90 / K1plus, fill = blvl),
+        alpha = 0.5
+      ) +
       geom_ribbon(
-        aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl), alpha = 0.5) +
+        aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl),
+        alpha = 0.5
+      ) +
       geom_line(
-        aes(y = median / K1plus, colour = blvl), lwd = 1.1) +
+        aes(y = median / K1plus, colour = blvl),
+        lwd = 1.1
+      ) +
       ylim(0, 1) +
       scale_fill_manual(bylvl_lab, values = rev(color.palette)) +
       scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
@@ -380,4 +388,3 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
     p
   }
 }
-# multiplot.proj(spaghetti=10)
