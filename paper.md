@@ -89,7 +89,8 @@ This tool provides a way for managers and other stakeholders to explore bycatch 
 
 ```{r}
 remotes::install_github("mcsiple/mmrefpoints")
-mmrefpoints::run_app()
+library(mmrefpoints)
+run_app()
 ```
 
 ## Population model
@@ -107,10 +108,11 @@ The full model description including equations is contained in the “Model desc
 ### The MMBIET app is *not* intended for the following:
 
 * Permitting specific management actions regarding bycatch. We refer users to Hammond et al. [-@hammond_estimating_2021], Moore et al. [-@moore_estimating_nodate], and Wade et al. [-@wade_best_nodate] for guidance on developing a management program for marine mammal bycatch including monitoring.
-* Calculating PBR for marine mammal stocks that already have a stock assessment. If reference points have already been calculated for the stock, those should be used
+* Calculating PBR for marine mammal stocks that already have a stock assessment. If reference points have already been calculated for the stock, those should be used.
+* Fitting population models to data (we direct readers to other tools like [rSPAMM](https://github.com/NorskRegnesentral/rSPAMM) for this type of need)
 
 ## Acknowledgements
-The authors would like to thank several pilot testers for reviewing a beta version of the MMBIET Shiny app, and Christine Stawitz for reviewing an earlier version of the `mmrefpoints` R package and the app.
+The authors would like to thank several pilot testers for reviewing a beta version of the MMBIET Shiny app, and Christine Stawitz and Jay Barlow for reviewing an earlier version of the `mmrefpoints` R package and the app.
 
 ## Ongoing projects using MMBIET
 At the time of this submission, three papers have cited `mmrefpoints` and/or MMBIET:
