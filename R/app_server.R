@@ -853,9 +853,10 @@ app_server <- function( input, output, session ) {
                                      "low" = rangenames[1],
                                      "med" = rangenames[2],
                                      "high" = rangenames[3]
-      ))
-
-    kiteplot <- ggradar(PM.try2,
+      )) %>%
+      mutate_if(is.numeric,function(x)replace(x,which(x>1),1))
+   
+      kiteplot <- ggradar(PM.try2,
                         axis.labels = axis.labels,
                         grid.label.size = 3,
                         axis.label.size = 4,
