@@ -1192,10 +1192,9 @@ app_server <- function( input, output, session ) {
                             min = 0, max = 1000,
                             value = c(0, 100)
                 ),
-                numericInput("cvcatch_simple",
-                             label = i18n$t("Bycatch coefficient of variation (CV):"),
-                             min = 0, max = 1,
-                             value = 0.5
+                sliderInput("cvcatch_simple",
+                             label = i18n$t("Bycatch coefficient of variation (CV)"),
+                             min = 0, max = 0.8, value = 0.5
                 )
               ),
               
