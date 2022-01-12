@@ -243,3 +243,15 @@ central <- FALSE
 colorscheme <- c("#7bbcb0", "#3a7c89", "#123f5a")
 i18n$set_translation_language("en")
 
+
+# Aesthetics functions ----------------------------------------------------
+
+get_bycatch_legend <- function(x) {
+  if (all(!is.na(x$ConstantBycatch))) {
+    a <- paste(c("N", "CV"),"=", x$ConstantBycatch)
+  } else {
+    a <- paste(c("Rate", "CV"), "=", x$ConstantRateBycatch)
+  }
+  numslabel <- paste0(a[1], " (", a[2], ")")
+  return(numslabel)
+}

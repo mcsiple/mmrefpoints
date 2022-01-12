@@ -79,7 +79,7 @@ plot_proj <- function(high,
   high.col <- color.palette[3]
   med.col <- color.palette[2]
   low.col <- color.palette[1]
-
+  
   plottitle <- switch(lang,
     "en" = "Model projections",
     "es" = "Proyecciones",
@@ -134,7 +134,7 @@ plot_proj <- function(high,
     "fr" = "Abondance (N/K)"
   )
 
-  # setup medians etc
+  # get quantiles
   probs <- c(0.05, 0.25, 0.5, 0.75, 0.95)
 
   # low med and high refer to low med and high bycatch
@@ -157,6 +157,9 @@ plot_proj <- function(high,
       med = sdf_labs_med,
       low = sdf_labs_low
     ))
+  
+  # Get bycatch level labels
+  blvls <- sapply(X = list(high,med,low),FUN = get_bycatch_legend)
 
   if (spaghetti) {
     all$sim <- 1
@@ -186,7 +189,7 @@ plot_proj <- function(high,
     p <- sdf %>%
       ggplot(aes(x = year, y = value, group = sim, colour = name)) +
       geom_path(alpha = 0.2, lwd = 1) +
-      scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
+      scale_colour_manual(bylvl_lab, values = rev(color.palette), labels = blvls) +
       geom_line(
         data = all,
         aes(x = year, y = median / K1plus, colour = blvl, group = blvl),
@@ -221,8 +224,8 @@ plot_proj <- function(high,
       geom_ribbon(aes(ymin = lo50 / K1plus, ymax = hi50 / K1plus, fill = blvl), alpha = 0.5) +
       geom_line(aes(y = median / K1plus, colour = blvl), lwd = 1.1) +
       ylim(0, 1) +
-      scale_fill_manual(bylvl_lab, values = rev(color.palette)) +
-      scale_colour_manual(bylvl_lab, values = rev(color.palette)) +
+      scale_fill_manual(bylvl_lab, values = rev(color.palette),labels = blvls) +
+      scale_colour_manual(bylvl_lab, values = rev(color.palette),labels = blvls) +
       xlab(year_lab) +
       ylab(abund_lab) +
       labs(
