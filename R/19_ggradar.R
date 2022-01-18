@@ -36,7 +36,8 @@
 #' ggradar(
 #'   plot.data = plot.data,
 #'   axis.label.size = 4,
-#'   grid.label.size = 4
+#'   grid.label.size = 4,
+#'   palette.vec = c("#99D594","#E6F598", "#FEE08B") 
 #' )
 #' 
 #' @export

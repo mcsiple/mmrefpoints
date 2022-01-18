@@ -11,8 +11,7 @@ ggradar(
   axis.label.size = 8,
   plot.legend = if (nrow(plot.data) > 1) TRUE else FALSE,
   legend.text.size = grid.label.size,
-  palette.vec = c("#D53E4F", "#FC8D59", "#FEE08B", "#E6F598", "#99D594", "#3288BD"),
-  manual.levels = NA
+  palette.vec = c("#D53E4F", "#FC8D59", "#FEE08B", "#E6F598", "#99D594", "#3288BD")
 )
 }
 \arguments{
@@ -29,8 +28,6 @@ ggradar(
 \item{legend.text.size}{numeric value for size of legend text}
 
 \item{palette.vec}{a vector of colors to use for the different scenarios (each row = 1 color)}
-
-\item{manual.levels}{a vector if you want to manually set factor levels}
 }
 \description{
 Radar plot
@@ -62,7 +59,8 @@ plot.data <- data.frame(
 ggradar(
   plot.data = plot.data,
   axis.label.size = 4,
-  grid.label.size = 4
+  grid.label.size = 4,
+  palette.vec = c("#99D594","#E6F598", "#FEE08B") 
 )
 
 }
