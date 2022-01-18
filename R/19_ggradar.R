@@ -8,7 +8,6 @@
 #' @param plot.legend logical; whether or not to plot a legend to the right of the plot
 #' @param legend.text.size numeric value for size of legend text
 #' @param palette.vec a vector of colors to use for the different scenarios (each row = 1 color)
-#' @param manual.levels a vector if you want to manually set factor levels
 #'
 #' @author Ricardo Bion, modified slightly by Margaret Siple
 #' @details Since this code was originally written, ggradar has becomes its own standalone package. For more information and for the most current version of the function, see Ricardo Bion's \href{https://github.com/ricardo-bion/ggradar/}{GitHub}
@@ -47,8 +46,8 @@ ggradar <- function(plot.data,
                     axis.label.size = 8,
                     plot.legend = if (nrow(plot.data) > 1) TRUE else FALSE,
                     legend.text.size = grid.label.size,
-                    palette.vec = c("#D53E4F", "#FC8D59", "#FEE08B", "#E6F598", "#99D594", "#3288BD"),
-                    manual.levels = NA) {
+                    palette.vec = c("#D53E4F", "#FC8D59", "#FEE08B", "#E6F598", "#99D594", "#3288BD")
+                    ) {
 
   # settings (originally these were function options; I have hard coded them here)
   font.radar <- "Helvetica"
@@ -79,17 +78,15 @@ ggradar <- function(plot.data,
   background.circle.transparency <- 0.2
   legend.title <- ""
 
-  plot.data[, 1] <- as.factor(as.character(plot.data[, 1]))
-  if (all(!is.na(manual.levels))) {
-    plot.data[, 1] <- factor(plot.data[, 1], levels = manual.levels)
+  plot.data <- as.data.frame(plot.data)
+  if (!is.factor(plot.data[, 1])) {
+    plot.data[, 1] <- as.factor(as.character(plot.data[, 
+                                                       1]))
   }
   names(plot.data)[1] <- "group"
 
-  var.names <- colnames(plot.data)[-1] #' Short version of variable names
-  # axis.labels [if supplied] is designed to hold 'long version' of variable names
-  # with line-breaks indicated using \n
+  var.names <- colnames(plot.data)[-1]
 
-  # caclulate total plot extent as radius of outer circle x a user-specifiable scaling factor
   plot.extent.x <- (grid.max + abs(centre.y)) * plot.extent.x.sf
   plot.extent.y <- (grid.max + abs(centre.y)) * plot.extent.y.sf
 
@@ -287,6 +284,7 @@ ggradar <- function(plot.data,
   # ... + amend Legend title
   if (plot.legend == TRUE) base <- base + 
     ggplot2::labs(colour = legend.title, size = legend.text.size)
+  
   # ... + circular grid-lines at 'min', 'mid' and 'max' y-axis values
   base <- base + ggplot2::geom_path(
     data = gridline$min$path, ggplot2::aes(x = x, y = y),
@@ -318,6 +316,7 @@ ggradar <- function(plot.data,
                                     size = grid.label.size, 
                                     hjust = 1, 
                                     family = font.radar)
+  
   # ... + centre.y label if required [i.e. value of y at centre of plot circle]
   if (label.centre.y == TRUE) {
     centre.y.label <- data.frame(x = 0, y = 0, text = as.character(centre.y))
@@ -338,7 +337,8 @@ ggradar <- function(plot.data,
     ggplot2::theme(legend.title = ggplot2::element_blank())
   if (plot.legend == TRUE) {
     base <- base + 
-      ggplot2::theme(legend.text = ggplot2::element_text(size = legend.text.size * 3), legend.position = "right") +
+      ggplot2::theme(legend.text = ggplot2::element_text(size = legend.text.size * 3),
+                     legend.position = "right") +
       ggplot2::theme(
         legend.key.height = ggplot2::unit(2, "line"),
         plot.margin = ggplot2::margin(rep(0, times = 4), unit = "cm")
