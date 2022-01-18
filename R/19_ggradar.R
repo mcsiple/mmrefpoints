@@ -18,9 +18,14 @@
 #' @examples
 #' plot.data <- data.frame(
 #'   bycatch = factor(c(
-#'     "Lower end of bycatch range",
+#'     "Higher end of bycatch range",
 #'     "Midpoint of bycatch range",
-#'     "Higher end of bycatch range"
+#'     "Lower end of bycatch range"
+#'   ),
+#'   ,levels = c(
+#'   "Higher end of bycatch range",
+#'   "Midpoint of bycatch range",
+#'   "Lower end of bycatch range"
 #'   )),
 #'   prebuild50 = c(0, 0, 1),
 #'   prebuild100 = c(0, 0, 1),
@@ -34,6 +39,7 @@
 #'   axis.label.size = 4,
 #'   grid.label.size = 4
 #' )
+#' 
 #' @export
 ggradar <- function(plot.data,
                     axis.labels = colnames(plot.data)[-1],
@@ -322,7 +328,7 @@ ggradar <- function(plot.data,
                                       family = font.radar)
   }
 
-  base <- base + ggplot2::theme(legend.key.width = unit(3, "line")) + 
+  base <- base + ggplot2::theme(legend.key.width = ggplot2::unit(3, "line")) + 
     ggplot2::theme(text = ggplot2::element_text(
     size = 20,
     family = font.radar
