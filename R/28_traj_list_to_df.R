@@ -69,8 +69,8 @@
 #'   low.list.const,
 #'   zero.list.const
 #' )
+#' 
 traj_list_to_df <- function(x){
-  # x is a full list of trajectories, a nested list with depletion level nested in bycatch
   z <- list()
   for(i in 1:length(x)){
   y <- lapply(x[[i]], FUN = extract_df)
