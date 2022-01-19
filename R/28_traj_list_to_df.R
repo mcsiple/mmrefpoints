@@ -1,0 +1,82 @@
+#' Turn a nested list of projections into a single dataframe
+#' @description This function is for any case where the user wants to pull the projection outputs out of their nested list format. In the Shiny app, it is used to generate a simple table of raw outputs in case users want to create their own plots. 
+#' @param x A nested list of projections, with depletion levels nested within bycatch levels.
+#'
+#' @return a dataframe containing projection outputs, initial depletion levels, and bycatch levels.
+#' @export
+#'
+#' @examples
+#'  parms <- list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 18,
+#' nages = 25, z = 2.39, lambdaMax = 1.02)
+#' nyears <- 50
+#' initdepl.vec <- c(0.2, 0.5, 0.9)
+#' high.list.const <- lapply(
+#'   X = initdepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantBycatch = list(Catch = 25, CV = 0.3),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.1
+#'     )
+#'   }
+#' )
+#' med.list.const <- lapply(
+#'   X = initdepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantBycatch = list(Catch = 12, CV = 0.3),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.1
+#'     )
+#'   }
+#' )
+#' low.list.const <- lapply(
+#'   X = initdepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantBycatch = list(Catch = 2, CV = 0.3),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.1
+#'     )
+#'   }
+#' )
+#' zero.list.const <- lapply(
+#'   X = initdepl.vec,
+#'   function(x) {
+#'     projections(
+#'       NOut = 50,
+#'       ConstantBycatch = list(Catch = 0, CV = 0),
+#'       InitDepl = x,
+#'       lh.params = parms,
+#'       nyears = nyears,
+#'       obs_CV = 0.1
+#'     )
+#'   }
+#' )
+
+#' traj.list <- list(
+#'   high.list.const,
+#'   med.list.const,
+#'   low.list.const,
+#'   zero.list.const
+#' )
+traj_list_to_df <- function(x){
+  # x is a full list of trajectories, a nested list with depletion level nested in bycatch
+  z <- list()
+  for(i in 1:length(x)){
+  y <- lapply(x[[i]], FUN = extract_df)
+  z[[i]] <- do.call(rbind, y)
+  }
+   aa <- do.call(rbind, z)
+  return(aa)
+}
+
