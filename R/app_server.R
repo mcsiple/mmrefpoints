@@ -687,7 +687,7 @@ app_server <- function( input, output, session ) {
         scale_fill_manual(fill_translated,
                           values = colorscheme[c(3, 1, 2)]
         ) +
-        geom_violin(scale = "width") +
+        geom_violin(scale = "width", lwd = 1) +
         theme_classic(base_size = 16) +
         theme(legend.position = "none") +
         xlab(xlab_translated) +
@@ -781,7 +781,7 @@ app_server <- function( input, output, session ) {
                                 outlier.fill = BycatchLvl)) +
         scale_fill_manual(lvl_name,
                           values = colorscheme[c(3, 1, 2)]) +
-        geom_violin(scale = "width") +
+        geom_violin(scale = "width", lwd = 1) +
         theme_classic(base_size = 16) +
         xlab(xlab) +
         ylab(ylab)
