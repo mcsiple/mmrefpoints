@@ -1290,17 +1290,17 @@ app_server <- function( input, output, session ) {
                                             mmrefpoints::lh$Type))
               ),
               fluidRow(
-                column(3, numericInput("global.S0", "\u0053\u2080",
+                column(4, numericInput("global.S0", "\u0053\u2080",
                                        0.9,
                                        min = 0.01, max = 0.99,
                                        step = 0.01
                 )),
-                column(3, numericInput("global.S1plus", "\u0053\u2081\u208a",
+                column(4, numericInput("global.S1plus", "\u0053\u2081\u208a",
                                        0.9,
                                        min = 0.01, max = 0.99,
                                        step = 0.01
                 )),
-                column(3, numericInput("global.AgeMat", "AgeMat", 8,
+                column(4, numericInput("global.AgeMat", "AgeMat", 8,
                                        min = 2, max = 200
                 ))
               ),
@@ -1417,7 +1417,7 @@ app_server <- function( input, output, session ) {
                            style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
               ),
               p(i18n$t("Scroll down to see more outputs"))
-            ),
+            ), #/params column (left)
             column(
               7,
               plotOutput("projPlot1"),
@@ -1427,7 +1427,7 @@ app_server <- function( input, output, session ) {
               br(),
               br(),
               plotOutput("BycatchIn")
-            )
+            ) #/plots column (right)
           ) # end fluidRow
           , # Performance measures
           h4(i18n$t("Performance")),
