@@ -513,6 +513,11 @@
             "fr": "Générer un rapport"
       },
       {
+            "en": "Download raw projections",
+            "es": "Descargar proyecciones",
+            "fr": "Télécharger les projections"
+      },
+      {
       	"en": "Solve for Bycatch",
       	"es": "Resolver para captura incidental",
             "fr": "Résoudre le problème des prises accessoires"

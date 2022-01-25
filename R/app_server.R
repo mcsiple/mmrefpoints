@@ -470,6 +470,26 @@ app_server <- function( input, output, session ) {
     )
   })
   
+  raw.table <- eventReactive(input$go, {
+    traj_list_to_df(x = switch(input$crad,
+                               "n_yr" = {
+                                 list(
+                                   high.list.const(),
+                                   med.list.const(),
+                                   low.list.const(),
+                                   zero.list.const()
+                                 )
+                               },
+                               "rate2" = {
+                                 list(
+                                   high.list.rate(),
+                                   med.list.rate(),
+                                   low.list.rate(),
+                                   zero.list.rate()
+                                 )
+                               }
+    ))
+ })
   # Observe() values --------------------------------------------------------
   
   
@@ -1103,6 +1123,15 @@ app_server <- function( input, output, session ) {
     }
   ) #/ downloadHandler
   
+
+# DOWNLOAD RAW RESULTS ----------------------------------------------------
+  output$rawouts <- downloadHandler(
+    filename = paste("projoutput-", Sys.Date(), ".csv", sep=""),
+    content = function(file) {
+      write.csv(raw.table(), file)
+    }
+  ) #/ downloadHandler
+  
   
   # DOCUMENTATION -----------------------------------------------------------
   dpath <- reactive(app_sys("Documentation", 
@@ -1502,7 +1531,10 @@ app_server <- function( input, output, session ) {
           p(i18n$t("Would you like to download a report of your inputs and outputs? The button below will write an html file that you can save and share.")),
           br(),
           p(i18n$t("Make sure you have clicked"), em(i18n$t("Run Projections."))),
-          downloadButton(outputId = "report", i18n$t("Generate report"))
+          downloadButton(outputId = "report", 
+                         i18n$t("Generate report")),
+          downloadButton(outputId = "rawouts",
+                         "Download raw projections")
         ), # end PBR tab
         tabPanel(
           i18n$t("Solve for Bycatch"),
