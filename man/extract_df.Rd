@@ -7,7 +7,7 @@
 extract_df(x)
 }
 \arguments{
-\item{x}{Outputs from a call to dynamics(), which are a named list}
+\item{x}{Outputs from a call to projections(), which are a named list}
 }
 \value{
 a dataframe with population trajectories, initial depletion, and bycatch levels that can be printed as a table.
@@ -16,7 +16,14 @@ a dataframe with population trajectories, initial depletion, and bycatch levels 
 #unnest results from dynamics() and turn them into a dataframe that you can bind together
 }
 \examples{
-x <- dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17, InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+x <- projections(
+  NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
+  InitDepl = 0.8,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, nages = 20, z = 2.39, lambdaMax = 1.02
+  ),
+  nyears = 50, obs_CV = 0
+)
 extract_df(x)
-
 }

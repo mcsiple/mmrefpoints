@@ -11,13 +11,18 @@
 #' @param obs_CV observation CV. Default to 1 for simple projections
 #' @return list of outputs from simulations: \code{params} contains parameter values for each trajectory as a matrix; \code{trajectories} contains simulation outputs as a matrix; \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
 #'
-#' @examples 
-#' projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
-#' InitDepl = 0.8,
-#' lh.params = list(S0=0.944,S1plus=0.99,
-#' K1plus=9000,AgeMat=18,nages=20,z= 2.39,lambdaMax=1.02),
-#' nyears = 50, obs_CV = 0)
-#' 
+#' @examples
+#' projections(
+#'   NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
+#'   InitDepl = 0.8,
+#'   lh.params = list(
+#'     S0 = 0.944, S1plus = 0.99,
+#'     K1plus = 9000, AgeMat = 18, 
+#'     nages = 20, z = 2.39, 
+#'     lambdaMax = 1.02
+#'   ),
+#'   nyears = 50, obs_CV = 0
+#' )
 #' @export
 projections <- function(NOut,
                         ConstantBycatch = list(Catch = NA, CV = NA),
@@ -26,7 +31,6 @@ projections <- function(NOut,
                         lh.params,
                         nyears,
                         obs_CV = 0) {
-
   trajectories <- rep(0, times = nyears)
   fishing.rates <- rep(0, times = nyears)
   params <- 0 # S0, S1plus, fmax, K1plus, z # also need: nyears = 50, nages = 15
@@ -41,15 +45,24 @@ projections <- function(NOut,
   lambdaMax <- lh.params$lambdaMax
 
   # Checks for parameter values
-  if(S0 >= 1){warning("Calf/pup survival must be between 0 and 1")}
-  if(S1plus >= 1){warning("Adult survival must be between 0 and 1")}
-  if(AgeMat > nages){warning("Age at maturity must be less than plus group age")}
-  if(!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)){
-    warning("You cannot provide both bycatch as a whole number and as a rate. 
-         Please specify either ConstantBycatch or ConstantRateBycatch.")}
-  if(lambdaMax < 1){warning("LambdaMax should be greater than 1. 
-                         Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")}
-  
+  if (S0 >= 1) {
+    warning("Calf/pup survival must be between 0 and 1")
+  }
+  if (S1plus >= 1) {
+    warning("Adult survival must be between 0 and 1")
+  }
+  if (AgeMat > nages) {
+    warning("Age at maturity must be less than plus group age")
+  }
+  if (!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)) {
+    warning("You cannot provide both bycatch as a whole number and as a rate.
+         Please specify either ConstantBycatch or ConstantRateBycatch.")
+  }
+  if (lambdaMax < 1) {
+    warning("LambdaMax should be greater than 1.
+                         Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")
+  }
+
   set.seed(123)
 
   # Observation error
@@ -108,11 +121,12 @@ projections <- function(NOut,
       }
     }
   } # end of sims
-  
-  if(!is.null(nrow(fishing.rates))){
-    fishing.rates <- fishing.rates[-1, ]} # trim top row of zeroes for cases where it's entered as a rate instead of a absolute # per year
+
+  if (!is.null(nrow(fishing.rates))) {
+    fishing.rates <- fishing.rates[-1, ]
+  } # trim top row of zeroes for cases where it's entered as a rate instead of a absolute # per year
   trajectories <- trajectories[-1, ]
-  
+
   return(list(
     params = params[-1, ],
     trajectories = trajectories,

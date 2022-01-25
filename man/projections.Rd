@@ -36,10 +36,15 @@ list of outputs from simulations: \code{params} contains parameter values for ea
 Generates several projections, stochasticity is in the number of catches from year to year
 }
 \examples{
-projections(NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
-InitDepl = 0.8,
-lh.params = list(S0=0.944,S1plus=0.99,
-K1plus=9000,AgeMat=18,nages=20,z= 2.39,lambdaMax=1.02),
-nyears = 50, obs_CV = 0)
-
+projections(
+  NOut = 3, ConstantRateBycatch = list(Rate = 0.01, CV = 0.3),
+  InitDepl = 0.8,
+  lh.params = list(
+    S0 = 0.944, S1plus = 0.99,
+    K1plus = 9000, AgeMat = 18, 
+    nages = 20, z = 2.39, 
+    lambdaMax = 1.02
+  ),
+  nyears = 50, obs_CV = 0
+)
 }
