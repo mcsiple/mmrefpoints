@@ -1,7 +1,7 @@
 # 00_constants and setup
 
-# 00 constants to load
 
+# Constants ---------------------------------------------------------------
 plot <- FALSE
 nyears <- 100
 nyears.simple <- 100
@@ -9,7 +9,7 @@ plotyears <- 50
 cat <- message
 options(shiny.reactlog = TRUE)
 i18n <- shiny.i18n::Translator$new(translation_json_path = system.file(package = "mmrefpoints","Documentation",
-  "translation_maritza.json"
+  "translation_m.json"
 ))
 
 # Splash text -------------------------------------------------------------
