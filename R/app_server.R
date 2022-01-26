@@ -1,6 +1,6 @@
 #' The application server-side
-#' 
-#' @param input,output,session Internal parameters for {shiny}. 
+#'
+#' @param input,output,session Internal parameters for {shiny}.
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @importFrom dplyr select mutate rename filter rename_with recode_factor funs
@@ -9,106 +9,107 @@
 #' @importFrom magrittr %>%
 #' @importFrom ggplot2 ggplot geom_violin geom_point theme_classic theme xlab ylab scale_fill_manual scale_colour_viridis_c theme_minimal theme geom_hline
 #' @noRd
-app_server <- function( input, output, session ) {
+app_server <- function(input, output, session) {
   # List the first level callModules here
-  
+
   # TRANSLATOR --------------------------------------------------------------
-  
+
   observeEvent(input$selected_language, {
     print(paste("Language change:", input$selected_language))
     shiny.i18n::update_lang(session, input$selected_language)
   })
-  
+
   # HOMEPAGE ----------------------------------------------------------------
   output$splash <- renderUI({
     htmltools::HTML(
       switch(input$selected_language,
-                           "en" = splash_en,
-                           "es" = splash_es,
-                           "fr" = splash_fr
-    ))
+        "en" = splash_en,
+        "es" = splash_es,
+        "fr" = splash_fr
+      )
+    )
   })
-  
+
   output$tn_simple <- renderUI({
     htmltools::HTML(switch(input$selected_language,
-                           "en" = tn_en,
-                           "es" = tn_es,
-                           "fr" = tn_fr
+      "en" = tn_en,
+      "es" = tn_es,
+      "fr" = tn_fr
     ))
   })
-  
+
   output$tn_advanced <- renderUI({
     htmltools::HTML(switch(input$selected_language,
-                           "en" = tn_en_adv,
-                           "es" = tn_es_adv,
-                           "fr" = tn_fr_adv
+      "en" = tn_en_adv,
+      "es" = tn_es_adv,
+      "fr" = tn_fr_adv
     ))
   })
-  
+
   observeEvent(input$jumpToSimple, {
     updateTabsetPanel(session, "inTabset",
-                      selected = "simple"
+      selected = "simple"
     )
   })
-  
+
   observeEvent(input$jumpToAdv, {
     updateTabsetPanel(session, "inTabset",
-                      selected = "advanced"
+      selected = "advanced"
     )
   })
-  
-  
+
+
   # SIMPLE ------------------------------------------------------------------
   # translate radio buttons and dropdown menus
   observe({
     updateSelectInput(session,
-                      inputId = "type_simple",
-                      label = i18n$t("Mammal life history type (choose one):"),
-                      choices = stats::setNames(paste0(mmrefpoints::lh$Code, "_simple"), i18n$t(mmrefpoints::lh$Type))
+      inputId = "type_simple",
+      label = i18n$t("Mammal life history type (choose one):"),
+      choices = stats::setNames(paste0(mmrefpoints::lh$Code, "_simple"), i18n$t(mmrefpoints::lh$Type))
     ) # / update SelectInput
   })
-  
+
   observeEvent(input$type, {
     x <- input$type
     updateNumericInput(session, "global.S0", value = c(lh.table()[paste(x), "S0"]))
     updateNumericInput(session, "global.S1plus", value = c(lh.table()[paste(x), "S1plus"]))
     updateNumericInput(session, "global.AgeMat", value = c(lh.table()[paste(x), "AgeMat"]))
   })
-  
+
   observeEvent(input$popsize_usr_simple, {
     updateSliderInput(session, "constantcatch_simple",
-                      value = c(50, 100),
-                      min = 0,
-                      max = input$popsize_usr_simple
+      value = c(50, 100),
+      min = 0,
+      max = input$popsize_usr_simple
     )
   })
-  
+
   initdepl_simple <- reactive(ifelse(
     input$vdepln_simple == "lo", 0.25,
     ifelse(input$vdepln_simple == "med", 0.5,
-           0.75
+      0.75
     )
   ))
-  
+
   K1plus_simple <- reactive(input$popsize_usr_simple / initdepl_simple()) # new
-  
+
   lh.table_simple <- reactive(mmrefpoints::lh %>% # keep this the same
-                                mutate(K1plus = K1plus_simple()) %>%
-                                mutate(add.as.code = paste(Code, "_simple", sep = "")) %>% # have to rename for shiny...clunky
-                                tibble::column_to_rownames("add.as.code") %>%
-                                select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
-                                as.data.frame())
-  
+    mutate(K1plus = K1plus_simple()) %>%
+    mutate(add.as.code = paste(Code, "_simple", sep = "")) %>% # have to rename for shiny...clunky
+    tibble::column_to_rownames("add.as.code") %>%
+    select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
+    as.data.frame())
+
   # lookup lh type
   lh.params2_simple <- reactive(as.list(lh.table_simple()[paste(input$type_simple), ]))
-  
+
   # Vector of depletion levels so that low, med, high depletion are a vector
   InitDepl.vec_simple <- reactive(c(
     min(1, initdepl_simple() * 1.25),
     initdepl_simple(),
     initdepl_simple() * .75
   ))
-  
+
   # Constant catch (simple scenario)
   high.simple <- reactive(projections(
     NOut = 50,
@@ -191,19 +192,19 @@ app_server <- function( input, output, session ) {
     lh.params = lh.params2_simple(),
     nyears = nyears.simple
   ))
-  
+
   observeEvent(eventExpr = input$bycatchrate_simple[2], {
     # Important: this controls the input for sd of betaval so that sd is restricted to where it is defined. May be clunky for small means:
     val1 <- input$bycatchrate_simple[2]
     updateSliderInput(session, "cvcatchrate_simple",
-                      value = val1,
-                      min = floor(val1),
-                      max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
-                      step = 0.01
+      value = val1,
+      min = floor(val1),
+      max = round((sqrt((1 - val1) * val1)) / val1, digits = 2),
+      step = 0.01
     )
   })
-  
-  
+
+
   output$projPlotSimple <- renderPlot({
     if (input$crad_simple == "n_yr_simple") {
       high.list <- high.simple()
@@ -217,7 +218,7 @@ app_server <- function( input, output, session ) {
       low.list <- low.simple.rate()
       zero.list <- zero.simple.rate()
     }
-    
+
 
     stf <- input$spag_simple
     nspag <- 50
@@ -237,18 +238,20 @@ app_server <- function( input, output, session ) {
       lang = input$selected_language
     )
   })
-  
+
   # ADVANCED ----------------------------------------------------------------
   # translate life history type options
   observe({
     updateSelectInput(session,
-                      inputId = "type",
-                      label = i18n$t("Mammal life history type (choose one):"),
-                      choices = stats::setNames(mmrefpoints::lh$Code, 
-                                                i18n$t(mmrefpoints::lh$Type))
+      inputId = "type",
+      label = i18n$t("Mammal life history type (choose one):"),
+      choices = stats::setNames(
+        mmrefpoints::lh$Code,
+        i18n$t(mmrefpoints::lh$Type)
+      )
     ) # / update SelectInput -- this works for translating options but not for the calculations
   })
-  
+
   observeEvent(input$type, {
     # Update default lambdaMax based on whether a cetacean or a pinniped is selected
     x <- input$type
@@ -261,12 +264,12 @@ app_server <- function( input, output, session ) {
       updateNumericInput(session, "lambdaMax", value = 1.12)
     }
   })
-  
+
   # Depletion, based on radio button selection:
   initdepl_adv <- reactive(ifelse(input$vdepln_adv == "lo", 0.25,
-                                  ifelse(input$vdepln_adv == "med", 0.5,
-                                         0.75
-                                  )
+    ifelse(input$vdepln_adv == "med", 0.5,
+      0.75
+    )
   ))
   # Depletion vector, for later use:
   InitDepl.vec <- reactive(c(
@@ -274,23 +277,23 @@ app_server <- function( input, output, session ) {
     initdepl_adv(),
     initdepl_adv() * .75
   ))
-  
+
   # K1p, based on user depletion and population size:
   K1plus_adv <- reactive(input$popsize_usr / initdepl_adv()) # new
-  
+
   lh.table <- reactive(mmrefpoints::lh %>% # default life history setting
-                         mutate(
-                           K1plus = ifelse(input$crad == "n_yr",
-                                           K1plus_adv(),
-                                           mmrefpoints::lh$K1plus[1]
-                           ),
-                           lambdaMax = input$lambdaMax
-                         ) %>%
-                         tibble::column_to_rownames("Code") %>%
-                         select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
-                         as.data.frame())
-  
-  
+    mutate(
+      K1plus = ifelse(input$crad == "n_yr",
+        K1plus_adv(),
+        mmrefpoints::lh$K1plus[1]
+      ),
+      lambdaMax = input$lambdaMax
+    ) %>%
+    tibble::column_to_rownames("Code") %>%
+    select(S0, S1plus, AgeMat, nages, fmax, z, lambdaMax, K1plus) %>%
+    as.data.frame())
+
+
   lh.paramspre2 <- reactive(list(
     S0 = input$global.S0,
     S1plus = input$global.S1plus,
@@ -301,7 +304,7 @@ app_server <- function( input, output, session ) {
     lambdaMax = input$lambdaMax,
     K1plus = K1plus_adv()
   ))
-  
+
   # Calculate z based on user MNPL selection
   z.usr <- eventReactive(input$go, {
     calc_z(
@@ -309,7 +312,7 @@ app_server <- function( input, output, session ) {
       lh.params_in = lh.paramspre2()
     )
   })
-  
+
   # This is the functioning list of lh params
   lh.params2 <- reactive(list(
     S0 = input$global.S0,
@@ -321,8 +324,8 @@ app_server <- function( input, output, session ) {
     lambdaMax = input$lambdaMax,
     K1plus = K1plus_adv()
   ))
-  
-  
+
+
   # Simulations - eventReactive()  ---------------------------------------------
   high.list.const <- eventReactive(input$go, {
     lapply(
@@ -444,55 +447,55 @@ app_server <- function( input, output, session ) {
       }
     )
   })
-  
+
   performance.table <- eventReactive(input$go, {
     make_ptable(
       traj.list = switch(input$crad,
-                         "n_yr" = {
-                           list(
-                             high.list.const(),
-                             med.list.const(),
-                             low.list.const(),
-                             zero.list.const()
-                           )
-                         },
-                         "rate2" = {
-                           list(
-                             high.list.rate(),
-                             med.list.rate(),
-                             low.list.rate(),
-                             zero.list.rate()
-                           )
-                         }
+        "n_yr" = {
+          list(
+            high.list.const(),
+            med.list.const(),
+            low.list.const(),
+            zero.list.const()
+          )
+        },
+        "rate2" = {
+          list(
+            high.list.rate(),
+            med.list.rate(),
+            low.list.rate(),
+            zero.list.rate()
+          )
+        }
       ),
       depletion = InitDepl.vec(),
       mnpl = input$MNPL.usr
     )
   })
-  
+
   raw.table <- eventReactive(input$go, {
     traj_list_to_df(x = switch(input$crad,
-                               "n_yr" = {
-                                 list(
-                                   high.list.const(),
-                                   med.list.const(),
-                                   low.list.const(),
-                                   zero.list.const()
-                                 )
-                               },
-                               "rate2" = {
-                                 list(
-                                   high.list.rate(),
-                                   med.list.rate(),
-                                   low.list.rate(),
-                                   zero.list.rate()
-                                 )
-                               }
+      "n_yr" = {
+        list(
+          high.list.const(),
+          med.list.const(),
+          low.list.const(),
+          zero.list.const()
+        )
+      },
+      "rate2" = {
+        list(
+          high.list.rate(),
+          med.list.rate(),
+          low.list.rate(),
+          zero.list.rate()
+        )
+      }
     ))
- })
+  })
   # Observe() values --------------------------------------------------------
-  
-  
+
+
   output$BycatchIn <- renderPlot({
     bycatch <- vector()
     if (input$crad == "n_yr") {
@@ -503,7 +506,7 @@ app_server <- function( input, output, session ) {
       bycatch <- input$bycatchrate
       cvb <- input$cvcatchrate
     }
-    
+
     p <- plot_bycatch_guesses(
       lowval = bycatch[1],
       medval = stats::median(bycatch),
@@ -514,53 +517,49 @@ app_server <- function( input, output, session ) {
     )
     plot(p)
   })
-  
+
   output$z.out <- renderText({
     z <- z.usr()
     print(c("Calculated z:", round(z, digits = 2)))
   })
-  
+
   output$MultiDeplNote <- renderText({
     paste("Results will still be based on the abundance and depletion level you indicated above; the values are 75%, 100%, and 125% of that depletion level.")
   })
-  
-  # Projection plots (advanced) ---------------------------------------------
-  
-  output$projPlot1 <- renderPlot({
 
+  # Projection plots (advanced) ---------------------------------------------
+
+  output$projPlot1 <- renderPlot({
     if (input$crad == "n_yr") {
       high.list <- high.list.const()
       med.list <- med.list.const()
       low.list <- low.list.const()
       zero.list <- zero.list.const()
     }
-    
+
     if (input$crad == "rate2") {
       high.list <- high.list.rate()
       med.list <- med.list.rate()
       low.list <- low.list.rate()
       zero.list <- zero.list.rate()
     }
-    
+
     stf <- input$spag
     nspag <- as.numeric(input$nproj)
     spaghetti <- ifelse(stf, nspag, FALSE)
     lh.params <- lh.params2()
-    
+
     if (input$multipledepl) {
       multiplot_proj(
         high.d1 = high.list[[1]], # d1 is the lowest depletion
         med.d1 = med.list[[1]],
         low.d1 = low.list[[1]],
-        
         high.d2 = high.list[[2]],
         med.d2 = med.list[[2]],
         low.d2 = low.list[[2]],
-        
         high.d3 = high.list[[3]],
         med.d3 = med.list[[3]],
         low.d3 = low.list[[3]],
-        
         spaghetti = spaghetti,
         years.to.plot = plotyears,
         color.palette = colorscheme,
@@ -583,7 +582,7 @@ app_server <- function( input, output, session ) {
     }
     # }) # end "isolate" with go button
   })
-  
+
   output$yieldPlot <- renderPlot({
     plot_yield_curve(
       lh.params = lh.params2(),
@@ -592,37 +591,37 @@ app_server <- function( input, output, session ) {
       lang = input$selected_language
     )
   })
-  
-  
-  
-  
+
+
+
+
   # LH table to show in "simple" tab -------------------------------------------
   tableReact <- reactive(mmrefpoints::lh %>%
-                           select(Type, S0, S1plus, AgeMat) %>%
-                           mutate(
-                             S0 = round(S0, digits = 2),
-                             S1plus = round(S1plus, digits = 2)
-                           ) %>%
-                           rename(
-                             "S<sub>0</sub>" = S0,
-                             "S<sub>1+</sub>" = S1plus,
-                             "Age at maturity" = AgeMat
-                           ) %>%
-                           kableExtra::kable(escape = F) %>%
-                           kableExtra::kable_styling("hover", full_width = F) %>%
-                           kableExtra::column_spec(4, width = "3cm"))
-  
+    select(Type, S0, S1plus, AgeMat) %>%
+    mutate(
+      S0 = round(S0, digits = 2),
+      S1plus = round(S1plus, digits = 2)
+    ) %>%
+    rename(
+      "S<sub>0</sub>" = S0,
+      "S<sub>1+</sub>" = S1plus,
+      "Age at maturity" = AgeMat
+    ) %>%
+    kableExtra::kable(escape = F) %>%
+    kableExtra::kable_styling("hover", full_width = F) %>%
+    kableExtra::column_spec(4, width = "3cm"))
+
   output$pinnipedplot <- plotly::renderPlotly({
     plot_pinnipeds(dat = dat, central = central, set_size = 10)
   })
-  
+
   output$Later <- renderText({
     "Under construction"
   })
-  
-  
+
+
   # Violin plot of relative abundance ---------------------------------------
-  
+
   output$relAbund <- renderPlot({
     if (input$crad == "n_yr") {
       high.list <- high.list.const() # elements of high.list are projections at different depletion levels
@@ -636,66 +635,69 @@ app_server <- function( input, output, session ) {
       low.list <- low.list.rate()
       zero.list <- zero.list.rate()
     }
-    
+
     withProgress(message = "Plotting performance", value = 0, {
       Kfig <- high.list[[1]]$params[1, "K1plus"]
       tp.all <- vector()
-      
+
       level_names <- switch(input$selected_language,
-                            "en" = c("Low","Med","High"),
-                            "es" = c("Bajo","Medio","Alto"),
-                            "fr" = c("Inférieure","Médian","Supérieure"))
-      
+        "en" = c("Low", "Med", "High"),
+        "es" = c("Bajo", "Medio", "Alto"),
+        "fr" = c("Inférieure", "Médian", "Supérieure")
+      )
+
       for (i in 1:3) { # Loop though different depletion levels
         combs <- data.frame(BycatchLvl = level_names)
         nsims <- as.numeric(input$nproj)
         tp <- expand(combs, BycatchLvl, sim = 1:nsims, Depl = InitDepl.vec()[i]) %>%
           as.data.frame()
-        
+
         high.vec <- high.list[[i]]$trajectories[, 10] / Kfig
         med.vec <- med.list[[i]]$trajectories[, 10] / Kfig
         low.vec <- low.list[[i]]$trajectories[, 10] / Kfig
         tp$abund10 <- c(high.vec, low.vec, med.vec)
-        
+
         high.vec <- high.list[[i]]$trajectories[, 20] / Kfig
         med.vec <- med.list[[i]]$trajectories[, 20] / Kfig
         low.vec <- low.list[[i]]$trajectories[, 20] / Kfig
         tp$abund20 <- c(high.vec, low.vec, med.vec)
-        
+
         high.vec <- high.list[[i]]$trajectories[, 50] / Kfig
         med.vec <- med.list[[i]]$trajectories[, 50] / Kfig
         low.vec <- low.list[[i]]$trajectories[, 50] / Kfig
         tp$abund50 <- c(high.vec, low.vec, med.vec)
-        
+
         tp.all <- rbind(tp.all, tp)
       }
 
-      df <- tp.all %>% tidyr::pivot_longer(cols = abund10:abund50,
-                                             names_to = c('variable'),
-                                             names_transform = list(variable = as.factor))
-      
+      df <- tp.all %>% tidyr::pivot_longer(
+        cols = abund10:abund50,
+        names_to = c("variable"),
+        names_transform = list(variable = as.factor)
+      )
+
       df <- df %>%
         subset(Depl == initdepl_adv()) %>%
         mutate(variable = fct_recode(variable,
-                                     "10" = "abund10",
-                                     "20" = "abund20",
-                                     "50" = "abund50"
+          "10" = "abund10",
+          "20" = "abund20",
+          "50" = "abund50"
         ))
-      
+
       xlab_translated <- switch(input$selected_language,
-                                "en" = "Years after projections start",
-                                "es" = "Años después del inicio de las proyecciones",
-                                "fr" = "nombre d'années après le début des projections"
+        "en" = "Years after projections start",
+        "es" = "Años después del inicio de las proyecciones",
+        "fr" = "nombre d'années après le début des projections"
       )
       ylab_translated <- switch(input$selected_language,
-                                "en" = "Abundance relative to K",
-                                "es" = "Abundancia relativa a K",
-                                "fr" = "Abondance relative à K"
+        "en" = "Abundance relative to K",
+        "es" = "Abundancia relativa a K",
+        "fr" = "Abondance relative à K"
       )
       fill_translated <- switch(input$selected_language,
-                                "en" = "Bycatch level",
-                                "es" = "Nivel de mortalidad",
-                                "fr" = "Niveau de la gamme de prises"
+        "en" = "Bycatch level",
+        "es" = "Nivel de mortalidad",
+        "fr" = "Niveau de la gamme de prises"
       )
       relK <- df %>%
         ggplot(aes(
@@ -705,20 +707,20 @@ app_server <- function( input, output, session ) {
           outlier.fill = BycatchLvl
         )) +
         scale_fill_manual(fill_translated,
-                          values = colorscheme[c(3, 1, 2)]
+          values = colorscheme[c(3, 1, 2)]
         ) +
         geom_violin(scale = "width", lwd = 1) +
         theme_classic(base_size = 16) +
         theme(legend.position = "none") +
         xlab(xlab_translated) +
         ylab(ylab_translated)
-      
+
       relK
     }) # end "withProgress"
   })
-  
-  
-  
+
+
+
   # Relative to unfished
   output$relUnfished <- renderPlot({
     if (input$crad == "n_yr") {
@@ -733,74 +735,86 @@ app_server <- function( input, output, session ) {
       low.list <- low.list.rate()
       zero.list <- zero.list.rate()
     }
-    
+
     Kfig <- high.list[[1]]$params[1, "K1plus"] #
     tp.all <- vector()
     level_names <- switch(input$selected_language,
-                          "en" = c("Low","Med","High"),
-                          "es" = c("Bajo","Medio","Alto"),
-                          "fr" = c("Inférieure","Médian","Supérieure"))
-    
+      "en" = c("Low", "Med", "High"),
+      "es" = c("Bajo", "Medio", "Alto"),
+      "fr" = c("Inférieure", "Médian", "Supérieure")
+    )
+
     withProgress(message = "Plotting performance", value = 0, {
       for (i in 1:3) {
         incProgress(1 / 3, detail = paste("Plotting bycatch level", i))
         nsims <- input$nproj
         combs <- data.frame(BycatchLvl = level_names)
         tp <- expand(combs,
-                     BycatchLvl,
-                     sim = 1:nsims,
-                     Depl = InitDepl.vec()[i]
+          BycatchLvl,
+          sim = 1:nsims,
+          Depl = InitDepl.vec()[i]
         ) %>%
           as.data.frame()
-        
+
         zero.scen <- zero.list[[i]]$trajectories
         high.vec <- high.list[[i]]$trajectories[, 10] / zero.scen[, 10]
         med.vec <- med.list[[i]]$trajectories[, 10] / zero.scen[, 10]
         low.vec <- low.list[[i]]$trajectories[, 10] / zero.scen[, 10]
         tp$abund10 <- c(high.vec, low.vec, med.vec)
-        
+
         high.vec <- high.list[[i]]$trajectories[, 20] / zero.scen[, 20]
         med.vec <- med.list[[i]]$trajectories[, 20] / zero.scen[, 20]
         low.vec <- low.list[[i]]$trajectories[, 20] / zero.scen[, 20]
         tp$abund20 <- c(high.vec, low.vec, med.vec)
-        
+
         high.vec <- high.list[[i]]$trajectories[, 50] / zero.scen[, 50]
         med.vec <- med.list[[i]]$trajectories[, 50] / zero.scen[, 50]
         low.vec <- low.list[[i]]$trajectories[, 50] / zero.scen[, 50]
-        
+
         tp$abund50 <- c(high.vec, low.vec, med.vec)
         tp.all <- rbind(tp.all, tp)
       }
-      
-      df <- tp.all %>% tidyr::pivot_longer(cols = abund10:abund50,
-                                           names_to = c('variable'),
-                                           names_transform = list(variable = as.factor))
-      
+
+      df <- tp.all %>% tidyr::pivot_longer(
+        cols = abund10:abund50,
+        names_to = c("variable"),
+        names_transform = list(variable = as.factor)
+      )
+
       xlab <- switch(input$selected_language,
-                     "en" = "Years after projections start",
-                     "es" = "Años después del inicio de las proyecciones",
-                     "fr" = "nombre d'années après le début des projections")
+        "en" = "Years after projections start",
+        "es" = "Años después del inicio de las proyecciones",
+        "fr" = "nombre d'années après le début des projections"
+      )
       ylab <- switch(input$selected_language,
-                     "en" = "Abundance relative to a \n no bycatch scenario",
-                     "es" = "Abundancia relativa a \n un escenario sin captura incidental",
-                     "fr" = "Abondance par rapport à \n un scénario sans prises accessoires")
-      lvl_name <- switch (input$selected_language,
-                          "en" = "Bycatch level",
-                          "es" = "Nivel de mortalidad",
-                          "fr" = "Niveau de la gamme de prises")
-      
+        "en" = "Abundance relative to a \n no bycatch scenario",
+        "es" = "Abundancia relativa a \n un escenario sin captura incidental",
+        "fr" = "Abondance par rapport à \n un scénario sans prises accessoires"
+      )
+      lvl_name <- switch(input$selected_language,
+        "en" = "Bycatch level",
+        "es" = "Nivel de mortalidad",
+        "fr" = "Niveau de la gamme de prises"
+      )
+
       df <- df %>%
         subset(Depl == initdepl_adv()) %>% # Only show mid depletion level
         mutate(variable = fct_recode(variable,
-                                     "10" = "abund10",
-                                     "20" = "abund20",
-                                     "50" = "abund50"))
-      relunfished <- ggplot(df, 
-                            aes(x = variable, y = value, 
-                                fill = BycatchLvl,
-                                outlier.fill = BycatchLvl)) +
+          "10" = "abund10",
+          "20" = "abund20",
+          "50" = "abund50"
+        ))
+      relunfished <- ggplot(
+        df,
+        aes(
+          x = variable, y = value,
+          fill = BycatchLvl,
+          outlier.fill = BycatchLvl
+        )
+      ) +
         scale_fill_manual(lvl_name,
-                          values = colorscheme[c(3, 1, 2)]) +
+          values = colorscheme[c(3, 1, 2)]
+        ) +
         geom_violin(scale = "width", lwd = 1) +
         theme_classic(base_size = 16) +
         xlab(xlab) +
@@ -809,23 +823,23 @@ app_server <- function( input, output, session ) {
       #  }) #add when you need a progress bar
     })
   })
-  
-  
+
+
   output$PMtable <- function() {
     textvalues <- colorscheme
     values <- add_trans(textvalues, trans = 100)
-    
+
     pmkey <- switch(input$selected_language,
-                    "en" = pmkey_en,
-                    "es" = pmkey_es,
-                    "fr" = pmkey_fr
+      "en" = pmkey_en,
+      "es" = pmkey_es,
+      "fr" = pmkey_fr
     )
     newranges <- switch(input$selected_language,
-                        "en" = bylevels_en,
-                        "es" = bylevels_es,
-                        "fr" =  bylevels_fr
+      "en" = bylevels_en,
+      "es" = bylevels_es,
+      "fr" =  bylevels_fr
     )
-    
+
     PM <- performance.table() %>%
       pivot_longer(cols = prebuild50:abundrel50) %>%
       pivot_wider(names_from = bycatch) %>%
@@ -833,7 +847,7 @@ app_server <- function( input, output, session ) {
       filter(depletion == initdepl_adv()) %>%
       dplyr::select(-depletion, -zero) %>%
       rename_with(~newranges, c("name", "low", "med", "high"))
-    
+
     kableExtra::kable(PM) %>%
       kableExtra::column_spec(1, width = "10em") %>%
       kableExtra::column_spec(2, color = textvalues[3], width = "7em") %>%
@@ -841,71 +855,73 @@ app_server <- function( input, output, session ) {
       kableExtra::column_spec(4, color = textvalues[1], width = "7em") %>%
       kableExtra::kable_styling("striped", full_width = F, position = "center")
   }
-  
-  output$SolverTable <- function(){
-    x <- as.data.frame(lh.params2()[c("S0","S1plus","AgeMat", "lambdaMax","K1plus","z")])
+
+  output$SolverTable <- function() {
+    x <- as.data.frame(lh.params2()[c("S0", "S1plus", "AgeMat", "lambdaMax", "K1plus", "z")])
     x$z <- round(x$z, digits = 2)
     x$MNPL <- input$MNPL.usr
-    kableExtra::kable(col.names = c('S<sub>0</sub.','S<sub>1+</sub>','Age at maturity','&#955 <sub>max</sub>','K<sub>1+</sub>','z', 'MNPL'),
-                              x, format = "html", # added format just now
-                              escape = FALSE) %>%
-      kableExtra::column_spec(1, width = "10em")  %>%
+    kableExtra::kable(
+      col.names = c("S<sub>0</sub.", "S<sub>1+</sub>", "Age at maturity", "&#955 <sub>max</sub>", "K<sub>1+</sub>", "z", "MNPL"),
+      x, format = "html", # added format just now
+      escape = FALSE
+    ) %>%
+      kableExtra::column_spec(1, width = "10em") %>%
       kableExtra::kable_styling("striped", full_width = F, position = "center")
   }
-  
-  
+
+
   output$PMkite <- renderPlot({
     pt <- performance.table() %>%
       filter(depletion == initdepl_adv())
     nicenames <- data.frame(
       original = colnames(pt)[-c(1, 2)],
       polished = switch(input$selected_language,
-                        "en" = polished_en,
-                        "es" = polished_es,
-                        "fr" = polished_fr
+        "en" = polished_en,
+        "es" = polished_es,
+        "fr" = polished_fr
       )
     )
-    
+
     axis.ind <- match(
       x = colnames(pt)[-c(1, 2)],
       table = nicenames$original
     )
     axis.labels <- nicenames$polished[axis.ind]
-    
+
     rangenames <- switch(input$selected_language,
-                         "en" = rangenames_en,
-                         "es" = rangenames_es,
-                         "fr" = rangenames_fr
+      "en" = rangenames_en,
+      "es" = rangenames_es,
+      "fr" = rangenames_fr
     )
     PM.try2 <- pt %>%
       select(-depletion) %>%
       filter(bycatch != "zero") %>%
       mutate(bycatch = recode_factor(bycatch,
-                                     "low" = rangenames[1],
-                                     "med" = rangenames[2],
-                                     "high" = rangenames[3]
+        "low" = rangenames[1],
+        "med" = rangenames[2],
+        "high" = rangenames[3]
       )) %>%
-      dplyr::mutate_if(is.numeric,function(x)replace(x,which(x>1),1))
-   
-      kiteplot <- ggradar(PM.try2,
-                        axis.labels = axis.labels,
-                        grid.label.size = 3,
-                        axis.label.size = 4,
-                        legend.text.size = 6,
-                        plot.legend = T,
-                        palette.vec = colorscheme[c(3, 1, 2)]
+      dplyr::mutate_if(is.numeric, function(x) replace(x, which(x > 1), 1))
+
+    kiteplot <- ggradar(PM.try2,
+      axis.labels = axis.labels,
+      grid.label.size = 3,
+      axis.label.size = 4,
+      legend.text.size = 6,
+      plot.legend = T,
+      palette.vec = colorscheme[c(3, 1, 2)]
     )
 
     plot(kiteplot)
   })
-  
+
   # Estimating PBR and other parameters -------------------------------------
   Nbest <- reactive(input$popsize_usr)
-  
+
   Ndist <- reactive(0.842 * sqrt(log(1 + input$obs_cv^2))) # 0.842 = -1*qnorm(0.2,0,1)
-  
+
   Nmin <- reactive(Nbest() / exp(Ndist()))
-  
+
   PBR.metrics <- reactive(list(
     depl = initdepl_adv(),
     lh.params = lh.params2(),
@@ -914,15 +930,15 @@ app_server <- function( input, output, session ) {
     Nmin = Nmin(),
     Rmax = input$lambdaMax - 1
   ))
-  
+
   PBRDefinitions <- reactive({
     switch(input$selected_language,
-           "en" = pbrdefs_en,
-           "es" = pbrdefs_es,
-           "fr" = pbrdefs_fr
+      "en" = pbrdefs_en,
+      "es" = pbrdefs_es,
+      "fr" = pbrdefs_fr
     )
   })
-  
+
   output$PBR.table <- function() { # kableExtra table
     PB <- data.frame(
       "." = c("N<sub>BEST</sub>", "N<sub>MIN</sub>", "R<sub>MAX</sub>"),
@@ -939,39 +955,41 @@ app_server <- function( input, output, session ) {
       kableExtra::kable(escape = FALSE) %>%
       kableExtra::kable_styling("striped")
   }
-  
+
   # PBR CALCULATOR ----------------------------------------------------------
-  
+
   output$PBRprint <- renderText({
     P <- input$Nmin.usr * 0.5 * input$Rmax.usr * input$fr.usr
     warningmessage <- switch(input$selected_language,
-                             "en" = "Rmax must be less than 1 and Nmin must be > 0",
-                             "es" = "Rmax debe ser menor que 1 y Nmin debe ser > 0",
-                             "fr" = "Rmax doit être inférieur à 1 et Nmin doit être > 0")
-    if(!is.na(input$Rmax.usr) & 
-       !is.na(input$Nmin.usr) & 
-       input$Rmax.usr < 1 &
-       input$Nmin.usr > 1){
-    paste0("PBR = ", P)
+      "en" = "Rmax must be less than 1 and Nmin must be > 0",
+      "es" = "Rmax debe ser menor que 1 y Nmin debe ser > 0",
+      "fr" = "Rmax doit être inférieur à 1 et Nmin doit être > 0"
+    )
+    if (!is.na(input$Rmax.usr) &
+      !is.na(input$Nmin.usr) &
+      input$Rmax.usr < 1 &
+      input$Nmin.usr > 1) {
+      paste0("PBR = ", P)
+    } else {
+      (paste(warningmessage))
     }
-    else(paste(warningmessage))
   })
-  
-  
+
+
   # SOLVE FOR PERFORMANCE ---------------------------------------------------
   recovery.goal2 <- reactive({
     input$solveButton1
     isolate({
       withProgress(
         message = switch(input$selected_language,
-                         "en" = "Calculation in progress",
-                         "es" = "Cálculo en curso",
-                         "fr" = "Calcul en cours"
+          "en" = "Calculation in progress",
+          "es" = "Cálculo en curso",
+          "fr" = "Calcul en cours"
         ),
         detail = switch(input$selected_language,
-                        "en" = "This may take a while...",
-                        "es" = "Esto puede tardar un rato...",
-                        "fr" = "Cela peut prendre un peu de temps"
+          "en" = "This may take a while...",
+          "es" = "Esto puede tardar un rato...",
+          "fr" = "Cela peut prendre un peu de temps"
         ),
         value = 0,
         {
@@ -990,19 +1008,19 @@ app_server <- function( input, output, session ) {
       )
     })
   })
-  
+
   output$solvePMs <- function() { # kableExtra table
     goal_label <- switch(input$selected_language,
-                         "en" = "Maximum bycatch rate to reach goal",
-                         "es" = "Máxima captura incidental para alcanzar el objetivo",
-                         "fr" = "Taux maximal de prises accessoires pour atteindre l'objectif"
+      "en" = "Maximum bycatch rate to reach goal",
+      "es" = "Máxima captura incidental para alcanzar el objetivo",
+      "fr" = "Taux maximal de prises accessoires pour atteindre l'objectif"
     )
     rg <- recovery.goal2()
     RG <- data.frame(recovery.goal = ifelse(length(rg) > 1, round(rg$f, digits = 3), "--"))
     colnames(RG) <- goal_label
     kableExtra::kable(RG) %>% kableExtra::kable_styling("striped")
   }
-  
+
   output$solvePMsPlot <- renderImage(
     {
       if (length(recovery.goal2()) > 1) {
@@ -1015,16 +1033,16 @@ app_server <- function( input, output, session ) {
           probability = guesses[, 2]
         )
         xlab_translated <- switch(input$selected_language,
-                                  "en" = "Bycatch rate",
-                                  "es" = "Tasa de captura incidental",
-                                  "fr" = "Taux de prises accessoires"
+          "en" = "Bycatch rate",
+          "es" = "Tasa de captura incidental",
+          "fr" = "Taux de prises accessoires"
         )
         ylab_translated <- switch(input$selected_language,
-                                  "en" = "Recovery probability",
-                                  "es" = "Probabilidad de recuperación",
-                                  "fr" = "Probabilité de reconstitution"
+          "en" = "Recovery probability",
+          "es" = "Probabilidad de recuperación",
+          "fr" = "Probabilité de reconstitution"
         )
-        
+
         p <- ggplot(gdf, aes(x = fishing.rate, y = probability)) +
           xlab(xlab_translated) +
           ylab(ylab_translated) +
@@ -1035,13 +1053,13 @@ app_server <- function( input, output, session ) {
           geom_hline(yintercept = input$recover.prob, colour = "lightblue") +
           theme_minimal(base_size = 24) +
           theme(legend.position = "none")
-        
+
         print(isRunning())
         gganimate::anim_save(
           "outfile.gif",
           gganimate::animate(p, renderer = gganimate::magick_renderer(loop = F))
         ) # New
-        
+
         # Return a list containing the filename
         list(
           src = "outfile.gif",
@@ -1051,7 +1069,7 @@ app_server <- function( input, output, session ) {
         )
       } else {
         return(list(
-          src = app_sys("app","www","NoRecovery.png"),
+          src = app_sys("app", "www", "NoRecovery.png"),
           contentType = "image/png",
           alt = "NoRecoveryPossible"
         ))
@@ -1059,10 +1077,10 @@ app_server <- function( input, output, session ) {
     },
     deleteFile = FALSE
   ) # end of renderImage
-  
-  
+
+
   # DOWNLOAD REPORT ---------------------------------------------------------
-  
+
   output$report <- downloadHandler(
     filename = "report.html",
     content = function(file) {
@@ -1070,26 +1088,29 @@ app_server <- function( input, output, session ) {
       # case we don't have write permissions to the current working dir (which
       # can happen when deployed).
       tempReport <- file.path(tempdir(), "report.Rmd")
-      file.copy(from = app_sys("report","report.Rmd"), tempReport, overwrite = TRUE)
-      
+      file.copy(from = app_sys("report", "report.Rmd"), tempReport, overwrite = TRUE)
+
       # Life history params and MNPL
       lh.params <- as.data.frame(lh.params2())
       mnpl <- input$MNPL.usr
-      
+
       # Performance table
       xx <- performance.table()
-      
+
       if (input$crad == "n_yr") {
         catchlevels <- input$constantcatch
       } else {
         catchlevels <- input$bycatchrate
       }
-      
+
       tm <- xx %>%
-        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1], 
-                                  ifelse(bycatch == "high", catchlevels[2], 
-                                         ifelse(bycatch == "zero", 0, 
-                                                stats::median(catchlevels))))) %>%
+        mutate(`Bycatch` = ifelse(bycatch == "low", catchlevels[1],
+          ifelse(bycatch == "high", catchlevels[2],
+            ifelse(bycatch == "zero", 0,
+              stats::median(catchlevels)
+            )
+          )
+        )) %>%
         select(depletion, `Bycatch`, prebuild50, prebuild100, abundrel10, abundrel20, abundrel50) %>%
         rename(
           `Initial depletion (N/K)` = depletion,
@@ -1099,8 +1120,8 @@ app_server <- function( input, output, session ) {
           `Abundance relative to K after 20 years` = abundrel20,
           `Abundance relative to K after 50 years` = abundrel50
         )
-      
-      
+
+
       # PBR part
       Nbest <- input$Nbest.usr
       Nmin <- input$Nmin.usr
@@ -1120,36 +1141,37 @@ app_server <- function( input, output, session ) {
       )
       #
       #
-      
+
       params <- list(lh.params = lh.params, performance = tm, pbr = PB)
-      
+
       # Knit the document, passing in the `params` list, and eval it in a
       # child of the global environment (this isolates the code in the document
       # from the code in this app).
       rmarkdown::render(tempReport,
-                        output_file = file,
-                        params = params,
-                        envir = new.env(parent = globalenv())
+        output_file = file,
+        params = params,
+        envir = new.env(parent = globalenv())
       )
     }
-  ) #/ downloadHandler
-  
+  ) # / downloadHandler
 
-# DOWNLOAD RAW RESULTS ----------------------------------------------------
+
+  # DOWNLOAD RAW RESULTS ----------------------------------------------------
   output$rawouts <- downloadHandler(
-    filename = paste("projoutput-", Sys.Date(), ".csv", sep=""),
+    filename = paste("projoutput-", Sys.Date(), ".csv", sep = ""),
     content = function(file) {
       write.csv(raw.table(), file)
     }
-  ) #/ downloadHandler
-  
-  
+  ) # / downloadHandler
+
+
   # DOCUMENTATION -----------------------------------------------------------
-  dpath <- reactive(app_sys("Documentation", 
+  dpath <- reactive(app_sys(
+    "Documentation",
     paste0("ProjectionModel_", input$selected_language, ".html")
   ))
-  
-  
+
+
   # PAGE CONTENT ------------------------------------------------------------
   output$page_content <- renderUI({
     tagList(
@@ -1172,7 +1194,7 @@ app_server <- function( input, output, session ) {
             )
           ) # /fluidRow
         ),
-        
+
         # Simple projections ------------------------------------------------------------
         tabPanel(
           title = i18n$t("Simple"),
@@ -1196,9 +1218,11 @@ app_server <- function( input, output, session ) {
             column(
               4,
               selectInput("type_simple",
-                          label = i18n$t("Mammal life history type (choose one):"),
-                          stats::setNames(paste0(mmrefpoints::lh$Code, "_simple"),
-                                          mmrefpoints::lh$Type)
+                label = i18n$t("Mammal life history type (choose one):"),
+                stats::setNames(
+                  paste0(mmrefpoints::lh$Code, "_simple"),
+                  mmrefpoints::lh$Type
+                )
               ), # quickly put dataframe elements as options! :)
               radioButtons(
                 inputId = "vdepln_simple",
@@ -1212,7 +1236,6 @@ app_server <- function( input, output, session ) {
                 selected = "med"
               ),
               h4(i18n$t("Specify bycatch")),
-              
               radioButtons(
                 inputId = "crad_simple",
                 label = i18n$t("Project using:"),
@@ -1220,36 +1243,33 @@ app_server <- function( input, output, session ) {
                 choiceValues = c("n_yr_simple", "rate2_simple")
               ), # UPDATE CHOICE
               numericInput("popsize_usr_simple",
-                           label = i18n$t("Current population size:"),
-                           min = 1, max = 1e9,
-                           value = 1000
+                label = i18n$t("Current population size:"),
+                min = 1, max = 1e9,
+                value = 1000
               ),
-              
               conditionalPanel(
                 condition = "input.crad_simple == 'n_yr_simple'",
                 sliderInput("constantcatch_simple",
-                            label = i18n$t("Bycatch mortality range to explore:"),
-                            min = 0, max = 1000,
-                            value = c(0, 100)
+                  label = i18n$t("Bycatch mortality range to explore:"),
+                  min = 0, max = 1000,
+                  value = c(0, 100)
                 ),
                 sliderInput("cvcatch_simple",
-                             label = i18n$t("Bycatch coefficient of variation (CV)"),
-                             min = 0, max = 0.8, value = 0.5
+                  label = i18n$t("Bycatch coefficient of variation (CV)"),
+                  min = 0, max = 0.8, value = 0.5
                 )
               ),
-              
               conditionalPanel(
                 condition = "input.crad_simple == 'rate2_simple'",
                 sliderInput("bycatchrate_simple",
-                            label = i18n$t("Bycatch mortality range to explore:"),
-                            min = 0, max = 0.5, value = c(0.05, 0.5)
+                  label = i18n$t("Bycatch mortality range to explore:"),
+                  min = 0, max = 0.5, value = c(0.05, 0.5)
                 ),
                 sliderInput("cvcatchrate_simple",
-                            label = i18n$t("Bycatch coefficient of variation (CV)"),
-                            min = 0, max = 0.8, value = 0.5
+                  label = i18n$t("Bycatch coefficient of variation (CV)"),
+                  min = 0, max = 0.8, value = 0.5
                 )
               ),
-              
               checkboxInput(
                 "spag_simple",
                 i18n$t("Show individual projections")
@@ -1261,9 +1281,9 @@ app_server <- function( input, output, session ) {
             )
           )
         ), # end simple tab
-        
+
         # Advanced projections ----------------------------------------------------
-        
+
         tabPanel(
           title = i18n$t("Advanced"),
           value = "advanced",
@@ -1296,44 +1316,46 @@ app_server <- function( input, output, session ) {
               5,
               h4(i18n$t("Specify life history and abundance")),
               selectInput("type",
-                          label = i18n$t("Life history type (choose one):"),
-                          c(stats::setNames(paste(mmrefpoints::lh$Code), 
-                                            mmrefpoints::lh$Type))
+                label = i18n$t("Life history type (choose one):"),
+                c(stats::setNames(
+                  paste(mmrefpoints::lh$Code),
+                  mmrefpoints::lh$Type
+                ))
               ),
               fluidRow(
                 column(4, numericInput("global.S0", "\u0053\u2080",
-                                       0.9,
-                                       min = 0.01, max = 0.99,
-                                       step = 0.01
+                  0.9,
+                  min = 0.01, max = 0.99,
+                  step = 0.01
                 )),
                 column(4, numericInput("global.S1plus", "\u0053\u2081\u208a",
-                                       0.9,
-                                       min = 0.01, max = 0.99,
-                                       step = 0.01
+                  0.9,
+                  min = 0.01, max = 0.99,
+                  step = 0.01
                 )),
                 column(4, numericInput("global.AgeMat", "AgeMat", 8,
-                                       min = 2, max = 200
+                  min = 2, max = 200
                 ))
               ),
               numericInput("lambdaMax",
-                           label = i18n$t("Maximum steady rate of population growth (\\( \\lambda_{max} \\))"),
-                           value = 1.04,
-                           min = 0.01, max = 1.5,
-                           step = 0.01
+                label = i18n$t("Maximum steady rate of population growth (\\( \\lambda_{max} \\))"),
+                value = 1.04,
+                min = 0.01, max = 1.5,
+                step = 0.01
               ),
               shinyBS::bsTooltip(
                 id = "lambdaMax",
                 title = i18n$t("This is the maximum steady rate of population increase. The default values are 1.04 for cetaceans and 1.12 for pinnipeds")
               ),
               numericInput("popsize_usr",
-                           label = i18n$t("Current population size:"),
-                           value = 1000,
-                           min = 1, max = 1e9
+                label = i18n$t("Current population size:"),
+                value = 1000,
+                min = 1, max = 1e9
               ),
               sliderInput("obs_cv",
-                          label = i18n$t("Coefficient of variation (CV) of abundance:"),
-                          min = 0, max = 3,
-                          value = 0, step = 0.1
+                label = i18n$t("Coefficient of variation (CV) of abundance:"),
+                min = 0, max = 3,
+                value = 0, step = 0.1
               ),
               shinyBS::bsTooltip(
                 id = "obs_cv",
@@ -1362,50 +1384,47 @@ app_server <- function( input, output, session ) {
               conditionalPanel(
                 condition = "input.crad == 'n_yr'",
                 sliderInput("constantcatch",
-                            label = i18n$t("Bycatch mortality range to explore"),
-                            min = 0, max = 2000,
-                            value = c(0, 100)
+                  label = i18n$t("Bycatch mortality range to explore"),
+                  min = 0, max = 2000,
+                  value = c(0, 100)
                 ),
                 sliderInput("cvcatch",
-                            label = i18n$t("CV of bycatch mortality:"),
-                            min = 0, max = 0.8,
-                            value = 0.5,
-                            step = 0.1
+                  label = i18n$t("CV of bycatch mortality:"),
+                  min = 0, max = 0.8,
+                  value = 0.5,
+                  step = 0.1
                 ),
                 shinyBS::bsTooltip(
                   id = "cvcatch",
                   title = i18n$t("This is the CV of the number of animals caught per year")
                 )
               ),
-              
               conditionalPanel(
                 condition = "input.crad == 'rate2'",
                 sliderInput("bycatchrate",
-                            label = i18n$t("Bycatch mortality range to explore:"),
-                            min = 0, max = 0.5,
-                            value = c(0.05, 0.5)
+                  label = i18n$t("Bycatch mortality range to explore:"),
+                  min = 0, max = 0.5,
+                  value = c(0.05, 0.5)
                 ),
                 sliderInput("cvcatchrate",
-                            label = i18n$t("CV of bycatch mortality rate:"),
-                            min = 0, max = 1,
-                            value = 0.5
+                  label = i18n$t("CV of bycatch mortality rate:"),
+                  min = 0, max = 1,
+                  value = 0.5
                 )
               ),
               shinyBS::bsTooltip(
                 id = "cvcatchrate",
                 title = i18n$t("This is the CV of bycatch mortality from year to year")
               ),
-              
               selectInput("nproj",
-                          label = i18n$t("Number of projections:"),
-                          c(
-                            "10" = 10,
-                            "50" = 50,
-                            "100" = 100
-                          ),
-                          selected = "50"
+                label = i18n$t("Number of projections:"),
+                c(
+                  "10" = 10,
+                  "50" = 50,
+                  "100" = 100
+                ),
+                selected = "50"
               ),
-              
               checkboxInput("spag", i18n$t("Show individual projections")),
               checkboxInput("multipledepl", i18n$t("Show multiple depletion levels")),
               conditionalPanel(
@@ -1423,12 +1442,12 @@ app_server <- function( input, output, session ) {
               textOutput(outputId = "z.out"),
               br(),
               actionButton("go",
-                           label = i18n$t("Run projections"),
-                           icon("cog", lib = "glyphicon", "fa-1x"), # Button to make projections go
-                           style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
+                label = i18n$t("Run projections"),
+                icon("cog", lib = "glyphicon", "fa-1x"), # Button to make projections go
+                style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
               ),
               p(i18n$t("Scroll down to see more outputs"))
-            ), #/params column (left)
+            ), # /params column (left)
             column(
               7,
               plotOutput("projPlot1"),
@@ -1438,7 +1457,7 @@ app_server <- function( input, output, session ) {
               br(),
               br(),
               plotOutput("BycatchIn")
-            ) #/plots column (right)
+            ) # /plots column (right)
           ), # end fluidRow
           # Performance measures
           h4(i18n$t("Performance")),
@@ -1478,7 +1497,7 @@ app_server <- function( input, output, session ) {
             )
           )
         ), # end advanced tab
-        
+
         # PBR calculator ----------------------------------------------------------
         tabPanel(
           i18n$t("PBR & \n PBR calculator"),
@@ -1499,8 +1518,10 @@ app_server <- function( input, output, session ) {
             column(
               6,
               numericInput("Rmax.usr", label = "\\( R_{MAX} \\)", value = NA),
-              numericInput("fr.usr", label = "\\( F_R \\)", value = 0.5, 
-                           step = 0.1, max = 1, min = 0)
+              numericInput("fr.usr",
+                label = "\\( F_R \\)", value = 0.5,
+                step = 0.1, max = 1, min = 0
+              )
             )
           ),
           shinyBS::bsTooltip(
@@ -1513,7 +1534,6 @@ app_server <- function( input, output, session ) {
           ),
           fluidRow(
             style = "border: 2px solid #2c3e50;",
-            
             column(12, align = "center", br(), textOutput("PBRprint"), br())
           ),
           tags$head(tags$style("#PBRprint{color: #2c3e50;
@@ -1542,10 +1562,14 @@ app_server <- function( input, output, session ) {
           p(i18n$t("Would you like to download a report of your inputs and outputs? The button below will write an html file that you can save and share.")),
           br(),
           p(i18n$t("Make sure you have clicked"), em(i18n$t("Run Projections."))),
-          downloadButton(outputId = "report", 
-                         i18n$t("Generate report")),
-          downloadButton(outputId = "rawouts",
-                         "Download raw projections")
+          downloadButton(
+            outputId = "report",
+            i18n$t("Generate report")
+          ),
+          downloadButton(
+            outputId = "rawouts",
+            "Download raw projections"
+          )
         ), # end PBR tab
 
         # Solve for bycatch -------------------------------------------------------
@@ -1557,28 +1581,28 @@ app_server <- function( input, output, session ) {
           tableOutput("SolverTable"),
           p(
             strong(i18n$t("NOTE:")),
-            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), 
+            i18n$t("This will take a while! Make sure you are sure of your goals before clicking"),
             em(i18n$t("Get maximum bycatch rate")),
             i18n$t(". Be patient-- the progress bar may disappear while the plot is rendering.")
           ),
           column(
             6,
             sliderInput("recover.abund",
-                        label = i18n$t("Recovery goal as a proportion of K:"),
-                        min = 0, max = 1, value = 0.5
+              label = i18n$t("Recovery goal as a proportion of K:"),
+              min = 0, max = 1, value = 0.5
             ),
             sliderInput("recover.year",
-                        label = i18n$t("Year by which you want to reach the recovery goal:"),
-                        min = 1, max = 100, value = 50
+              label = i18n$t("Year by which you want to reach the recovery goal:"),
+              min = 1, max = 100, value = 50
             ),
             sliderInput("recover.prob",
-                        label = i18n$t("Desired probability of rebuilding:"),
-                        min = 0.01, max = 1, step = 0.01, value = 0.6
+              label = i18n$t("Desired probability of rebuilding:"),
+              min = 0.01, max = 1, step = 0.01, value = 0.6
             ),
             actionButton("solveButton1",
-                         label = i18n$t("Get maximum bycatch rate"),
-                         icon("cog", lib = "glyphicon", "fa-1x"),
-                         style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
+              label = i18n$t("Get maximum bycatch rate"),
+              icon("cog", lib = "glyphicon", "fa-1x"),
+              style = "color: #fff; background-color: #337ab7; border-color: #2e6da4; text-align: center; vertical-align: middle; padding:6px; font-size:90%"
             )
           ),
           column(
@@ -1592,8 +1616,10 @@ app_server <- function( input, output, session ) {
           h2(i18n$t("Life history parameters for pinnipeds")),
           p(i18n$t("Pinniped life histories are diverse and to our knowledge, the 'best' values for simulation have not been published. These are published life history parameters for pinniped species.")),
           fluidRow(
-            column(12, 
-                   plotly::plotlyOutput("pinnipedplot"))
+            column(
+              12,
+              plotly::plotlyOutput("pinnipedplot")
+            )
           ),
           br(),
           h4(i18n$t("Where do these values come from?")),
