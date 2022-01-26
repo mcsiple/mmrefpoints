@@ -842,6 +842,17 @@ app_server <- function( input, output, session ) {
       kableExtra::kable_styling("striped", full_width = F, position = "center")
   }
   
+  output$SolverTable <- function(){
+    x <- as.data.frame(lh.params2()[c("S0","S1plus","AgeMat", "lambdaMax","K1plus","z")])
+    x$z <- round(x$z, digits = 2)
+    x$MNPL <- input$MNPL.usr
+    kableExtra::kable(col.names = c('S<sub>0</sub.','S<sub>1+</sub>','Age at maturity','&#955 <sub>max</sub>','K<sub>1+</sub>','z', 'MNPL'),
+                              x, format = "html", # added format just now
+                              escape = FALSE) %>%
+      kableExtra::column_spec(1, width = "10em")  %>%
+      kableExtra::kable_styling("striped", full_width = F, position = "center")
+  }
+  
   
   output$PMkite <- renderPlot({
     pt <- performance.table() %>%
@@ -1428,8 +1439,8 @@ app_server <- function( input, output, session ) {
               br(),
               plotOutput("BycatchIn")
             ) #/plots column (right)
-          ) # end fluidRow
-          , # Performance measures
+          ), # end fluidRow
+          # Performance measures
           h4(i18n$t("Performance")),
           p(i18n$t("This table shows median performance from all projections. If you entered multiple depletion levels in the Advanced Projections tab, this table is showing just the intermediate depletion level (the one you entered manually).")),
           fluidRow(column(
@@ -1536,11 +1547,14 @@ app_server <- function( input, output, session ) {
           downloadButton(outputId = "rawouts",
                          "Download raw projections")
         ), # end PBR tab
+
+        # Solve for bycatch -------------------------------------------------------
         tabPanel(
           i18n$t("Solve for Bycatch"),
           h4(i18n$t("Calculate the bycatch rate necessary to achieve a recovery goal")),
           p(i18n$t("If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the maximum bycatch rate that will allow you to achieve your goal.")),
           br(),
+          tableOutput("SolverTable"),
           p(
             strong(i18n$t("NOTE:")),
             i18n$t("This will take a while! Make sure you are sure of your goals before clicking"), 
