@@ -77,7 +77,7 @@ affiliations:
  - name: Marine Ecology and Telemetry Research, 2468 Camp McKenzie Tr NW, Seabeck, WA, 98380, USA
    index: 14
    
-date: 1 November 2021
+date: 26 January 2022
 bibliography: paper.bib
 ---
 
@@ -117,15 +117,12 @@ The authors would like to thank several pilot testers for reviewing a beta versi
 ## Ongoing projects using MMBIET
 At the time of this submission, three papers have cited `mmrefpoints` and/or MMBIET:
 
-Published:
+Hammond, P. S., Francis, T. B., Heinemann, D., Long, K. J., Moore, J. E., Punt, A. E., Reeves, R. R., Sepúlveda, M., Sigurðsson, G. M., Siple, M. C., Víkingsson, G., Wade, P. R., Williams, R., & Zerbini, A. N. (2021). Estimating the Abundance of Marine Mammal Populations. Frontiers in Marine Science, 8, 1316. https://doi.org/10.3389/fmars.2021.735770
 
-Hammond, P. S., Francis, T. B., Heinemann, D., Long, K. J., Moore, J. E., Punt, A. E., Reeves, R. R., Sepúlveda, M., Sigurðsson, G. M., Siple, M. C., Víkingsson, G., Wade, P. R., Williams, R., & Zerbini, A. N. (2021). “Estimating the Abundance of Marine Mammal Populations.” Frontiers in Marine Science, 8, 735770. https://doi.org/10.3389/fmars.2021.735770
+Moore, J. E., Heinemann, D., Francis, T. B., Hammond, P. S., Long, K. J., Punt, A. E., Reeves, R. R., Sepúlveda, M., Sigurðsson, G. M., Siple, M. C., Víkingsson, G. A., Wade, P. R., Williams, R., & Zerbini, A. N. (2021). Estimating Bycatch Mortality for Marine Mammals: Concepts and Best Practices. Frontiers in Marine Science, 8, 1793. https://doi.org/10.3389/fmars.2021.752356
 
-Accepted for publication:
+Wade, P. R., Long, K. J., Francis, T. B., Punt, A. E., Hammond, P. S., Heinemann, D., Moore, J. E., Reeves, R. R., Sepúlveda, M., Sullaway, G., Sigurðsson, G. M., Siple, M. C., Víkingsson, G. A., Williams, R., & Zerbini, A. N. (2021). Best Practices for Assessing and Managing Bycatch of Marine Mammals. Frontiers in Marine Science, 8, 1566. https://doi.org/10.3389/fmars.2021.757330
 
-Moore, J. E., Heinemann, D., Francis, T. B., Hammond, P. S., Long, K. J., Punt, A. E., Reeves, R. R., Sepulveda, M., Sigurðsson, G. M., Siple, M. C., Vikingsson, G., Wade, P. R., Williams, R., & Zerbini, A. N. (n. d.). “Estimating bycatch mortality for marine mammal stock assessment: Concepts and best practices.” *Accepted for publication in Frontiers in Marine Science.*
-
-Wade, P. R., Long, K. J., Francis, T. B., Punt, A. E., Hammond, P. S., Heinemann, D., Moore, J. E., Reeves, R. R., Sepulveda, M., Sullaway, G., Sigurðsson, G. M., Siple, M. C., Vikingsson, G., Williams, R., & Zerbini, A. N. (n. d.). “Best practices for assessing and managing bycatch of marine mammals.” *Accepted for publication in in Frontiers in Marine Science.*
 
 ## Financial support
 Support for this project is provided by the Ocean Modeling Forum and the Lenfest Ocean Program. M. Siple was supported by the Ocean Modeling Forum and a James S. McDonnell Postdoctoral Fellowship.
