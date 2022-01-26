@@ -18,7 +18,7 @@
 #' )
 #' extract_df(x)
 extract_df <- function(x) {
-  y <- data.frame(x$trajectories)
+  y <- data.frame(round(x$trajectories, digits = 0))
   colnames(y) <- paste0("Yr_", 1:ncol(y))
   rownames(y) <- 1:nrow(y)
 
