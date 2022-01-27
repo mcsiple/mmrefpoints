@@ -26,7 +26,10 @@ Parts of this derivation can be found in Breiwick et al. (1984) and Butterworth 
 \emph{Important}: when applying this calculation, use age at maturity ( \code{AgeMat} )
 }
 \examples{
+# This is fmax, the maximum theoretical fecundity
 x <- getfecmax(lambdaMax = 1.04, S0 = 0.944, S1plus = 0.99, AgeMat = 17)
+# This is fec0, the fecundity when there is no bycatch mortality (only M)
 unpr <- npr(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 10000, E = 0)
+print(x)
 print(1 / unpr$npr)
 }
