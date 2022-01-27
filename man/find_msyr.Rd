@@ -11,7 +11,7 @@ find_msyr(E.start, lh.params, fmax)
 
 \item{lh.params}{a list of life history parameters (S0, S1plus, nages, AgeMat, lmabdaMax, K1plus, and z)}
 
-\item{fmax}{Max theoretical fecundity (num)}
+\item{fmax}{Max theoretical fecundity (numeric)}
 }
 \description{
 one of the functions needed for getting MNPL. MSYR is the same as FMSY.
