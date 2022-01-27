@@ -37,7 +37,7 @@ get_diff <- function(logit.E, S0 = S0.w, S1plus = S1plus.w, AgeMat = AgeMat.w, n
   h <- 0.000001
   
   NPROut <- npr(S0 = S0, S1plus = S1plus, nages = nages, AgeMat = AgeMat, E = 0)
-  #browser()
+
   N0 <- NPROut$npr
   P0 <- NPROut$P1r
   
