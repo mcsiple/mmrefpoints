@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/mcsiple/mmrefpoints/issues)
 [![DOI](https://zenodo.org/badge/344858328.svg)](https://zenodo.org/badge/latestdoi/344858328)
 <!-- badges: end -->
 
@@ -121,13 +121,12 @@ To create a single projection for a marine mammal population, use the
 `dynamics()` function:
 
 ``` r
-x <- mmrefpoints::dynamics(S0 = 0.944, S1plus = 0.99, 
-                           K1plus = 9000, AgeMat = 17,
+x <- mmrefpoints::dynamics(lh.params = list(S0 = 0.944, S1plus = 0.99, 
+                           K1plus = 9000, AgeMat = 17, z = 2.39, nages = 25, lambdaMax = 1.04),
                            InitDepl = 0.6, 
                            ConstantCatch = NA, 
                            ConstantF = rep(0.01, times = 100), 
-                           z = 2.39, nyears = 100, 
-                           nages = 25, lambdaMax = 1.04)
+                           nyears = 100)
 plot(1:100, x$TotalPop, type = 'l', xlab = "Year", ylab = "Population size")
 ```
 
