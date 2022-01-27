@@ -12,8 +12,11 @@
 #' @return a numeric value for maximum theoretical fecundity.
 #'
 #' @examples
+#' # This is fmax, the maximum theoretical fecundity
 #' x <- getfecmax(lambdaMax = 1.04, S0 = 0.944, S1plus = 0.99, AgeMat = 17)
+#' # This is fec0, the fecundity when there is no bycatch mortality (only M)
 #' unpr <- npr(S0 = 0.944, S1plus = 0.99, AgeMat = 17, nages = 10000, E = 0)
+#' print(x)
 #' print(1 / unpr$npr)
 #' @export
 getfecmax <- function(S0, lambdaMax, S1plus, AgeMat) {
