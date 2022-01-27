@@ -31,6 +31,9 @@ authors:
   - family-names: Sigurðsson
     given-names: Guðjón Már
     orcid: https://orcid.org/0000-0001-9390-6693
+  - family-names: Víkingsson
+    given-names: Gísli
+    orcid: https://orcid.org/00000-0002-4501-193X
   - family-names: Wade
     given-names: Paul R.
     orcid: https://orcid.org/0000-0003-2428-9323
@@ -42,5 +45,5 @@ authors:
     orcid: https://orcid.org/0000-0002-9776-6605
     
 title: mcsiple/mmrefpoints: Journal submission pre-release
-version: v.0.1.0
+version: v.0.1.1
 date-released: 2021-11-1
