@@ -61,11 +61,14 @@ Symbol
 <th style="text-align:left;">
 Description
 </th>
+<th style="text-align:left;">
+Code
+</th>
 </tr>
 </thead>
 <tbody>
 <tr grouplength="6">
-<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<td colspan="3" style="font-style: italic;border-bottom: 1px solid black;">
 <strong>User-specified parameters</strong>
 </td>
 </tr>
@@ -76,6 +79,9 @@ Description
 <td style="text-align:left;">
 Pup or calf survival
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">S0</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -83,6 +89,9 @@ Pup or calf survival
 </td>
 <td style="text-align:left;">
 Survival of individuals aged 1+
+</td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">S1plus</span>
 </td>
 </tr>
 <tr>
@@ -92,6 +101,9 @@ Survival of individuals aged 1+
 <td style="text-align:left;">
 Plus-group age
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">nages</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -99,6 +111,9 @@ Plus-group age
 </td>
 <td style="text-align:left;">
 Maximum steady rate of increase (population growth rate)
+</td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">lambdaMax</span>
 </td>
 </tr>
 <tr>
@@ -108,6 +123,9 @@ Maximum steady rate of increase (population growth rate)
 <td style="text-align:left;">
 Age at first parturition
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">AgeMat + 1</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -116,9 +134,12 @@ Age at first parturition
 <td style="text-align:left;">
 Bycatch mortality rate in year <span class="math inline">\(y\)</span> (specified by the user or computed from the user-specified total bycatch mortality)
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">ConstantF</span>
+</td>
 </tr>
 <tr grouplength="4">
-<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<td colspan="3" style="font-style: italic;border-bottom: 1px solid black;">
 <strong>Parameters derived from user-specified parameters</strong>
 </td>
 </tr>
@@ -129,6 +150,9 @@ Bycatch mortality rate in year <span class="math inline">\(y\)</span> (specified
 <td style="text-align:left;">
 Fecundity (pregnancy rate) at pre-exploitation equilibrium
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">Fec0</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -136,6 +160,9 @@ Fecundity (pregnancy rate) at pre-exploitation equilibrium
 </td>
 <td style="text-align:left;">
 Maximum theoretical fecundity (pregnancy rate)
+</td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">fmax</span>
 </td>
 </tr>
 <tr>
@@ -145,6 +172,9 @@ Maximum theoretical fecundity (pregnancy rate)
 <td style="text-align:left;">
 Carrying capacity in terms of 1+ component of the population
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">K1plus</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -153,9 +183,12 @@ Carrying capacity in terms of 1+ component of the population
 <td style="text-align:left;">
 Degree of compensation
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">z</span>
+</td>
 </tr>
 <tr grouplength="4">
-<td colspan="2" style="font-style: italic;border-bottom: 1px solid black;">
+<td colspan="3" style="font-style: italic;border-bottom: 1px solid black;">
 <strong>Derived variables</strong>
 </td>
 </tr>
@@ -166,6 +199,9 @@ Degree of compensation
 <td style="text-align:left;">
 Number of mature animals of age <span class="math inline">\(a\)</span> at the start of year <span class="math inline">\(y\)</span>
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">–</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -173,6 +209,9 @@ Number of mature animals of age <span class="math inline">\(a\)</span> at the st
 </td>
 <td style="text-align:left;">
 Number of animals of age <span class="math inline">\(a\)</span> at the start of year <span class="math inline">\(y\)</span>
+</td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">–</span>
 </td>
 </tr>
 <tr>
@@ -182,6 +221,9 @@ Number of animals of age <span class="math inline">\(a\)</span> at the start of 
 <td style="text-align:left;">
 Number of animals aged 1 and older at the start of year <span class="math inline">\(y\)</span>
 </td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">–</span>
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -189,6 +231,9 @@ Number of animals aged 1 and older at the start of year <span class="math inline
 </td>
 <td style="text-align:left;">
 Mortality due to bycatch of animals of age <span class="math inline">\(a\)</span> in year <span class="math inline">\(y\)</span>
+</td>
+<td style="text-align:left;">
+<span style="     font-family:&#39;Monaco&#39;, sans-serif;font-size: 12px;">–</span>
 </td>
 </tr>
 </tbody>

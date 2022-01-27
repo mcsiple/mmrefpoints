@@ -103,16 +103,37 @@ Description=c(#User-specified parameters
               "Number of animals of age $a$ at the start of year $y$",
               "Number of animals aged 1 and older at the start of year $y$",
               "Mortality due to bycatch of animals of age $a$ in year $y$")
+Code <- c(#User-specified parameters
+         "S0",
+         "S1plus",
+         "nages",
+         "lambdaMax",
+         "AgeMat + 1",
+         "ConstantF",
+         # Parameters derived from user-specified parameters
+         "Fec0",
+         "fmax",
+         "K1plus",
+         "z",
+         # Derived variables
+         "--", # need double dash for using in kableExtra
+         "--",
+         "--",
+         "--")
 
 Symbol_definitions <- data.frame(cbind(Symbol,
-                                      Description))
+                                      Description, Code))
+Symbol_definitions$Code <- cell_spec(Symbol_definitions$Code, font_size = 12, extra_css = "font-family:'Monaco', sans-serif;")
+  
 knitr::kable(format="html", #html  - change to pandoc for ms word 
              Symbol_definitions, 
              escape = FALSE) %>% 
             kable_styling('bordered') %>%
             pack_rows('User-specified parameters', 1, 6, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
-            pack_rows('Parameters derived from user-specified parameters', 7, 10, label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
-            pack_rows('Derived variables', 11, 14, label_row_css = "font-style: italic;border-bottom: 1px solid black;")
+            pack_rows('Parameters derived from user-specified parameters', 7, 10, 
+                      label_row_css = "font-style: italic;border-bottom: 1px solid black;") %>%
+            pack_rows('Derived variables', 11, 14, 
+                      label_row_css = "font-style: italic;border-bottom: 1px solid black;")
 ```
 
 ### Performance measures
