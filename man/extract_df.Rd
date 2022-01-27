@@ -2,7 +2,7 @@
 % Please edit documentation in R/28_extract_df.R
 \name{extract_df}
 \alias{extract_df}
-\title{Extract results from `dynamics()` function as a dataframe}
+\title{Extract results from `projections()` function as a dataframe}
 \usage{
 extract_df(x)
 }
@@ -13,7 +13,7 @@ extract_df(x)
 a dataframe with population trajectories, initial depletion, and bycatch levels that can be printed as a table.
 }
 \description{
-#unnest results from dynamics() and turn them into a dataframe that you can bind together
+Unnest results from projections() and turn them into a dataframe that you can bind together
 }
 \examples{
 x <- projections(

@@ -15,22 +15,28 @@ projections(
 )
 }
 \arguments{
-\item{NOut}{number of simulations}
+\item{NOut}{Number of simulations}
 
 \item{ConstantBycatch}{Mean and CV of number of animals killed as bycatch per year (assumed lognormal)}
 
 \item{ConstantRateBycatch}{Mean and CV of bycatch rate (assumed normal)}
 
-\item{InitDepl}{initial depletion. If obs_CV>0, this is the mean depletion.}
+\item{InitDepl}{Initial depletion. If obs_CV>0, this is the mean depletion.}
 
-\item{lh.params}{- life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax}
+\item{lh.params}{Life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax.}
 
-\item{nyears}{number of years to do projections}
+\item{nyears}{Number of years to do projections}
 
-\item{obs_CV}{observation CV. Default to 1 for simple projections}
+\item{obs_CV}{Observation CV. Default to 1 for simple projections}
 }
 \value{
-list of outputs from simulations: \code{params} contains parameter values for each trajectory as a matrix; \code{trajectories} contains simulation outputs as a matrix; \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
+A list of outputs from simulations: \cr\cr
+* \code{params} contains parameter values for each trajectory as a matrix; \cr
+* \code{trajectories} contains simulation outputs as a matrix; \cr
+* \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \cr
+* \code{InitDepl} returns the initial depletion for the projections; \cr
+* \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \cr
+* \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
 }
 \description{
 Generates several projections, stochasticity is in the number of catches from year to year

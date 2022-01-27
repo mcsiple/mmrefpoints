@@ -5,31 +5,41 @@
 #' @details
 #' The population model is a single-sex age-structured model in which the number of calves or pups born each year is density dependent, with the extent of density dependence a function of the number of mature adults \eqn{\tildeN}, the fecundity (pregnancy rate) at pre-exploitation equilibrium \eqn{f_0}, the maximum theoretical fecundity rate fmax, the degree of compensation \eqn{z}, and the abundance of individuals aged 1+ \eqn{N_{y+1}^{1+}} relative to carrying capacity \eqn{K^{1+}}. This function can be used alone but is intended to be used with \code{Projections()} to generate multiple simulations. NOTE: Either \code{ConstantCatch} or \code{ConstantF} can be specified, but not both.
 #'
-#' @param S0 Calf/pup survival, a numeric value between 0 and 1
-#' @param S1plus Survival for animals age 1 year and older, a numeric value between 0 and 1
-#' @param K1plus The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance
-#' @param AgeMat Age at maturity in years (assumed to be age at first parturition - 1).
+#' @param lh.params A list containing life history parameters: \cr\cr
+#' \code{S0} Calf/pup survival, a numeric value between 0 and 1 \cr\cr
+#' \code{S1plus} Survival for animals age 1 year and older, a numeric value between 0 and 1 \cr\cr
+#' \code{K1plus} The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance \cr\cr
+#' \code{AgeMat} Age at maturity in years (assumed to be age at first parturition - 1) \cr\cr
+#' \code{nages} "Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than \code{AgeMat}.\cr\cr
+#' \code{z} The degree of compensation.  The default value is \code{z = 2.39}.\cr\cr
+#' \code{lambdaMax} Maximum steady rate of increase (population growth rate)
 #' @param InitDepl Starting depletion level
 #' @param ConstantCatch Total bycatch each year, expressed as a vector of length \code{nyears}
 #' @param ConstantF vector (length = \code{nyears}) rate of bycatch each year
-#' @param z The degree of compensation.  The default value is \code{z = 2.39}.
 #' @param nyears Number of years to project
-#' @param nages "Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than AgeMat.
-#' @param lambdaMax Maximum steady rate of increase (population growth rate)
 #'
 #' @return A list containing a matrix \code{N} of numbers at age (dimensions \code{nyears} (rows) x \code{nages} (columns)) and one vector \code{TotalPop} (a vector of length \code{nyears}), containing the number of age 1+ individuals in the population.
-
-# Note, nages = Plus Group Age, and Plus Group Age can = AgeMat+2 without losing accuracy (per AEP 11/30/18)
 #'
 #' @examples
 #' # Generate a time series of abundance for a bowhead whale
-#' dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
+#' dynamics(lh.params = list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,nages = 25,z = 2.39, lambdaMax = 1.04),
 #'  InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), 
-#'  z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+#'  nyears = 100)
 #' @export
-dynamics <- function(S0, S1plus, K1plus, AgeMat, InitDepl, 
-                     ConstantCatch = NA, ConstantF = NA, z, 
-                     nyears, nages, lambdaMax) {
+dynamics <- function(lh.params, InitDepl, 
+                     ConstantCatch = NA, ConstantF = NA, 
+                     nyears) {
+  
+  #S0, S1plus, K1plus, AgeMat, nages, z, lambdaMax
+  # Life history params
+  S0 <- lh.params$S0
+  S1plus <- lh.params$S1plus
+  K1plus <- lh.params$K1plus
+  AgeMat <- lh.params$AgeMat
+  nages <- lh.params$nages
+  z <- lh.params$z
+  lambdaMax <- lh.params$lambdaMax
+  
   # Checks
   if (length(ConstantCatch) > 1 & length(ConstantF) > 1) {
     stop("Cannot have both constant F and constant catch- choose one and set the other to NA!")

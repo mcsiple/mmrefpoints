@@ -4,28 +4,17 @@
 \alias{dynamics}
 \title{Generate one marine mammal population trajectory}
 \usage{
-dynamics(
-  S0,
-  S1plus,
-  K1plus,
-  AgeMat,
-  InitDepl,
-  ConstantCatch = NA,
-  ConstantF = NA,
-  z,
-  nyears,
-  nages,
-  lambdaMax
-)
+dynamics(lh.params, InitDepl, ConstantCatch = NA, ConstantF = NA, nyears)
 }
 \arguments{
-\item{S0}{Calf/pup survival, a numeric value between 0 and 1}
-
-\item{S1plus}{Survival for animals age 1 year and older, a numeric value between 0 and 1}
-
-\item{K1plus}{The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance}
-
-\item{AgeMat}{Age at maturity in years (assumed to be age at first parturition - 1).}
+\item{lh.params}{A list containing life history parameters: \cr\cr
+\code{S0} Calf/pup survival, a numeric value between 0 and 1 \cr\cr
+\code{S1plus} Survival for animals age 1 year and older, a numeric value between 0 and 1 \cr\cr
+\code{K1plus} The pre-exploitation population size of individuals aged 1 and older.  If this value is unavailable, it can be approximated by using the initial depletion and the estimate of current abundance \cr\cr
+\code{AgeMat} Age at maturity in years (assumed to be age at first parturition - 1) \cr\cr
+\code{nages} "Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than \code{AgeMat}.\cr\cr
+\code{z} The degree of compensation.  The default value is \code{z = 2.39}.\cr\cr
+\code{lambdaMax} Maximum steady rate of increase (population growth rate)}
 
 \item{InitDepl}{Starting depletion level}
 
@@ -33,13 +22,7 @@ dynamics(
 
 \item{ConstantF}{vector (length = \code{nyears}) rate of bycatch each year}
 
-\item{z}{The degree of compensation.  The default value is \code{z = 2.39}.}
-
 \item{nyears}{Number of years to project}
-
-\item{nages}{"Maximum" age, treated as the plus group age. The plus group age can be set equal to the age at maturity +2 years without losing accuracy. Must be greater than AgeMat.}
-
-\item{lambdaMax}{Maximum steady rate of increase (population growth rate)}
 }
 \value{
 A list containing a matrix \code{N} of numbers at age (dimensions \code{nyears} (rows) x \code{nages} (columns)) and one vector \code{TotalPop} (a vector of length \code{nyears}), containing the number of age 1+ individuals in the population.
@@ -52,7 +35,7 @@ The population model is a single-sex age-structured model in which the number of
 }
 \examples{
 # Generate a time series of abundance for a bowhead whale
-dynamics(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,
+dynamics(lh.params = list(S0 = 0.944, S1plus = 0.99, K1plus = 9000, AgeMat = 17,nages = 25,z = 2.39, lambdaMax = 1.04),
  InitDepl = 0.6, ConstantCatch = NA, ConstantF = rep(0.01, times = 100), 
- z = 2.39, nyears = 100, nages = 25, lambdaMax = 1.04)
+ nyears = 100)
 }

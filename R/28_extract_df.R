@@ -1,6 +1,6 @@
-#' Extract results from `dynamics()` function as a dataframe
+#' Extract results from `projections()` function as a dataframe
 #'
-#' @description #unnest results from dynamics() and turn them into a dataframe that you can bind together
+#' @description Unnest results from projections() and turn them into a dataframe that you can bind together
 #' @param x Outputs from a call to projections(), which are a named list
 #'
 #' @return a dataframe with population trajectories, initial depletion, and bycatch levels that can be printed as a table.

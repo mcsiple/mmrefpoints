@@ -2,14 +2,20 @@
 #'
 #' @description Generates several projections, stochasticity is in the number of catches from year to year
 #' @importFrom stats rlnorm
-#' @param NOut  number of simulations
+#' @param NOut  Number of simulations
 #' @param ConstantBycatch Mean and CV of number of animals killed as bycatch per year (assumed lognormal)
 #' @param ConstantRateBycatch Mean and CV of bycatch rate (assumed normal)
-#' @param InitDepl initial depletion. If obs_CV>0, this is the mean depletion.
-#' @param lh.params - life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax
-#' @param nyears number of years to do projections
-#' @param obs_CV observation CV. Default to 1 for simple projections
-#' @return list of outputs from simulations: \code{params} contains parameter values for each trajectory as a matrix; \code{trajectories} contains simulation outputs as a matrix; \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \code{InitDepl} returns the initial depletion for the projections; \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
+#' @param InitDepl Initial depletion. If obs_CV>0, this is the mean depletion.
+#' @param lh.params Life history parameters as a list. The list must include S0, S1plus, K1plus, AgeMat, nages, z, and lambdaMax.
+#' @param nyears Number of years to do projections
+#' @param obs_CV Observation CV. Default to 1 for simple projections
+#' @return A list of outputs from simulations: \cr\cr
+#' * \code{params} contains parameter values for each trajectory as a matrix; \cr
+#' * \code{trajectories} contains simulation outputs as a matrix; \cr
+#' * \code{fishing.rates} contain the bycatch rates for each year in each simulation as a matrix; \cr
+#' * \code{InitDepl} returns the initial depletion for the projections; \cr
+#' * \code{ConstantBycatch} provides Catch (total individuals killed in bycatch events per year) and CV of Catch (if the user has specified bycatch as a constant number); \cr
+#' * \code{ConstantRateBycatch} contains Bycatch Rate (additional mortality from bycatch each year) and CV of ByCatch rate. Other parameters are the same as in the \code{dynamics()} function.
 #'
 #' @examples
 #' projections(
@@ -33,7 +39,7 @@ projections <- function(NOut,
                         obs_CV = 0) {
   trajectories <- rep(0, times = nyears)
   fishing.rates <- rep(0, times = nyears)
-  params <- 0 # S0, S1plus, fmax, K1plus, z # also need: nyears = 50, nages = 15
+  params <- 0 
 
   # Life history params
   S0 <- lh.params$S0
@@ -45,22 +51,22 @@ projections <- function(NOut,
   lambdaMax <- lh.params$lambdaMax
 
   # Checks for parameter values
-  if (S0 >= 1) {
+  if (lh.params$S0 >= 1) {
     warning("Calf/pup survival must be between 0 and 1")
   }
-  if (S1plus >= 1) {
+  if (lh.params$S1plus >= 1) {
     warning("Adult survival must be between 0 and 1")
   }
-  if (AgeMat > nages) {
+  if (lh.params$AgeMat > nages) {
     warning("Age at maturity must be less than plus group age")
+  }
+  if (lh.params$lambdaMax < 1) {
+    warning("LambdaMax should be greater than 1.
+                         Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")
   }
   if (!is.na(ConstantBycatch$Catch) & !is.na(ConstantRateBycatch$Rate)) {
     warning("You cannot provide both bycatch as a whole number and as a rate.
          Please specify either ConstantBycatch or ConstantRateBycatch.")
-  }
-  if (lambdaMax < 1) {
-    warning("LambdaMax should be greater than 1.
-                         Typical values are lambdaMax = 1.04 for cetaceans and lambdaMax = 1.12 for pinnipeds.")
   }
 
   set.seed(123)
@@ -79,9 +85,9 @@ projections <- function(NOut,
       sdlog.catches <- sqrt(log(ConstantBycatch$CV^2 + 1)) # should be ~cv when sd is low (<0.5)
       catch.vec <- stats::rlnorm(n = nyears, meanlog = log(ConstantBycatch$Catch), sdlog = sdlog.catches)
       traj <- dynamics(
-        S0 = S0, S1plus = S1plus, K1plus = K1plus, AgeMat = AgeMat, InitDepl = InitVal / K1plus,
+        lh.params = lh.params,  InitDepl = InitVal / lh.params$K1plus,
         ConstantCatch = catch.vec,
-        z = z, nyears = nyears, nages = nages, lambdaMax = lambdaMax
+        nyears = nyears
       )$TotalPop # TotalPop is 1+ component
       param.vec <- unlist(lh.params)
       if (NTries < NOut) {
@@ -107,10 +113,10 @@ projections <- function(NOut,
       }
       fishing.rates <- rbind(fishing.rates, f.vec)
 
-      traj <- dynamics(
-        S0 = S0, S1plus = S1plus, K1plus = K1plus, AgeMat = AgeMat, InitDepl = InitVal / K1plus,
+      traj <- dynamics(lh.params = lh.params,
+        InitDepl = InitVal / K1plus,
         ConstantF = f.vec,
-        z = z, nyears = nyears, nages = nages, lambdaMax = lambdaMax
+        nyears = nyears
       )$TotalPop # 1+ component of population
 
       param.vec <- unlist(lh.params)
