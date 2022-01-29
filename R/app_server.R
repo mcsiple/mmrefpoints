@@ -1160,7 +1160,7 @@ app_server <- function(input, output, session) {
   output$rawouts <- downloadHandler(
     filename = paste("projoutput-", Sys.Date(), ".csv", sep = ""),
     content = function(file) {
-      write.csv(raw.table(), file)
+      utils::write.csv(raw.table(), file)
     }
   ) # / downloadHandler
 
