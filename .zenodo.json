@@ -74,14 +74,22 @@
 
     "license": "MIT + file LICENSE",
 
+    "upload_type": "software",
+
+    "publication_date": "2022-01-29",
+
+    "access_right": "open",
+
     "title": "mmrefpoints: Projecting long-term marine mammal abundance with bycatch",
+
+    "description": "An R package that generates marine mammal population projections based on starting abundance, life history, and bycatch rates, based on the BALEEN II population dynamics model.",
 
     "related_identifiers": [
         {
             "scheme": "doi",
             "identifier": "10.5281/zenodo.4758402",
             "relation": "isDocumentedBy",
-            "upload_type": "software"
+            "resource_type": "software"
         }
     ],
 
