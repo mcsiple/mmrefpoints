@@ -66,6 +66,6 @@ test_that("check that traj_list_to_df returns the right number of dims", {
   )
 
   test_df <- traj_list_to_df(traj.list)
-
+  # check output dimensions
   expect_equal(nrow(test_df), length(initdepl.vec) * length(traj.list) * nout)
 })
