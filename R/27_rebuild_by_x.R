@@ -1,14 +1,14 @@
 #' Calculate the bycatch rate needed to reach a performance goal
 #'
-#' @description takes a performance goal (what level you want to rebuild to) and a time window (how long you want that to take) and calculates what the bycatch rate needs to be
+#' @description Takes a performance goal (what level you want to rebuild to) and a time window (how long you want that to take) and calculates what the bycatch rate needs to be
 #'
-#' @param needf.start starting guess for the bycatch mortality rate needed to recover the population
-#' @param init.depl.w initial depletion (a fraction)
+#' @param needf.start Starting guess for the bycatch mortality rate needed to recover the population
+#' @param init.depl.w Initial depletion (a fraction)
 #' @param goal.w Population size goal (number of whales or pinnipeds) to rebuild to, expressed as a whole number
-#' @param desired.prob.w what probability you want (e.g., 0.75 probability that the population will rebuild to X in Y years)
-#' @param when.w the year Y when rebuilding is desired by (number of years into future; current year = 0)
-#' @param lh.params.w a list of life history parameters used by \code{projections()}
-#' @param fixed.cv.catch.w the CV of the bycatch rate - should be fixed
+#' @param desired.prob.w What probability you want (e.g., 0.75 probability that the population will rebuild to X in Y years)
+#' @param when.w The year Y when rebuilding is desired by (number of years into future; current year = 0)
+#' @param lh.params.w A list of life history parameters used by \code{projections()}
+#' @param fixed.cv.catch.w The CV of the bycatch rate - should be fixed
 #'
 #' @return The bycatch rate that will result in the specified rebuilding goal. If Shiny is running, it will return a list containing the bycatch rate \code{f} and a matrix of guesses that \code{optim()} has searched through to find the solution.
 #' @export
