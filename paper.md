@@ -77,7 +77,7 @@ affiliations:
  - name: Marine Ecology and Telemetry Research, 2468 Camp McKenzie Tr NW, Seabeck, WA, 98380, USA
    index: 14
    
-date: 26 January 2022
+date: 2 February 2022
 bibliography: paper.bib
 ---
 

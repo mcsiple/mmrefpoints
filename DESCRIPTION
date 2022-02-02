@@ -1,7 +1,7 @@
 Package: mmrefpoints
 Type: Package
 Title: Project Marine Mammal Populations and Calculate Reference Points
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: c(person(c("Margaret","C."), "Siple", 
   email = "margaret.siple@noaa.gov", 
   role = c("cre","aut"), 
