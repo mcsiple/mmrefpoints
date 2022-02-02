@@ -216,10 +216,10 @@ Marine Laboratories, Hobart, Australia. Available from
 To cite this package or the MMBIET Shiny app, please use the following
 citation:
 
-> Margaret C. Siple, André E. Punt, Tessa B. Francis, Phil S. Hammond,
-> Dennis Heinemann, Kristy J. Long, Jeff Moore, Maritza Sepulveda,
-> Randall R. Reeves, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
-> Wade, Rob Williams, and Alexandre N. Zerbini (t.b.d.). mmrefpoints:
-> Projecting long-term marine mammal abundance with bycatch. R package
-> version 0.1.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
+> Margaret C. Siple, André E. Punt, Tessa B. Francis, Philip S. Hammond,
+> Dennis Heinemann, Kristy J. Long, Jeffrey E. Moore, Randall R. Reeves,
+> Sepúlveda Maritza, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
+> Wade, Rob Williams and Alexandre N. Zerbini (NA). mmrefpoints: Project
+> Marine Mammal Populations and Calculate Reference Points. R package
+> version 0.1.6. url: <https://github.com/mcsiple/mmrefpoints> doi:
 > 10.5281/zenodo.4758402
