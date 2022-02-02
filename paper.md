@@ -107,7 +107,7 @@ The full model description including equations is contained in the “Model desc
 
 ### The MMBIET app is *not* intended for the following:
 
-* Permitting specific management actions regarding bycatch. We refer users to Hammond et al. [-@hammond_estimating_2021], Moore et al. [-@moore_estimating_nodate], and Wade et al. [-@wade_best_nodate] for guidance on developing a management program for marine mammal bycatch including monitoring.
+* Permitting specific management actions regarding bycatch. We refer users to Hammond et al. [-@hammond_estimating_2021], Moore et al. [-@moore_estimating_2021], and Wade et al. [-@wade_best_2021] for guidance on developing a management program for marine mammal bycatch including monitoring.
 * Calculating PBR for marine mammal stocks that already have a stock assessment. If reference points have already been calculated for the stock, those should be used.
 * Fitting population models to data (we direct readers to other tools like [rSPAMM](https://github.com/NorskRegnesentral/rSPAMM) for this type of need)
 
