@@ -1,9 +1,40 @@
 Package: mmrefpoints
 Title: Project Marine Mammal Populations and Calculate Reference Points
-Version: 0.0.0.9000
-Authors@R: person('Margaret', 'Siple', email = 'margaret.siple@noaa.gov', role = c('cre', 'aut'))
+Version: 0.1.6
+Authors@R: c(person(c("Margaret"","C."), "Siple", 
+email = "margaret.siple@noaa.gov", 
+role = c("cre","aut"), 
+comment = c(ORCID = "0000-0002-4260-9856")),
+person(c("André", "E."), "Punt", 
+role = "aut", comment = c(ORCID = "0000-0001-8489-2488")),
+person(c("Tessa", "B."), "Francis", 
+role = "aut", comment = c(ORCID = "0000-0002-3383-5392")),
+person(c("Philip", "S."), "Hammond", 
+role = "aut", comment = c(ORCID = "0000-0002-2381-8302")),
+person("Dennis", "Heinemann", 
+role = "aut", comment = c(ORCID = "0000-0002-1434-2445")),
+person(c("Kristy", "J."), "Long", 
+role = "aut", comment = c(ORCID = "0000-0001-6970-0935")),
+person(c("Jeffrey", "E."), "Moore", 
+role = "aut", comment = c(ORCID = "0000-0003-3715-7442")),
+person(c("Randall", "R."), "Reeves", 
+role = "aut", comment = c(ORCID = "0000-0002-6512-6507")),
+person("Sepúlveda", "Maritza", 
+role = "aut", comment = c(ORCID = "0000-0002-1403-176X")),
+person(c("Guðjón","Már"), "Sigurðsson", 
+role = "aut", comment = c(ORCID = "0000-0001-9390-6693")),
+person("Gísli", "Víkingsson", 
+role = "aut", comment = c(ORCID = "0000-0002-4501-193X")),
+person(c("Paul", "R."), "Wade", 
+role = "aut", comment = c(ORCID = "0000-0003-2428-9323")),
+person("Rob", "Williams", 
+role = "aut", comment = c(ORCID = "0000-0001-7496-453X")),
+person(c("Alexandre", "N."), "Zerbini", 
+role = "aut", comment = c(ORCID = "0000-0002-9776-6605")))
 Description: Tools for projecting marine mammal populations into the future under different bycatch scenarios. It uses an age-structured population model to project numbers at age, based on life history parameters and some reference points entered by the user. Its primary purpose is to allow users to explore the long term impacts of different bycatch rates, based on some basic life history information. It is also built to help users understand and estimate reference points for bycatch such as Potential Biological Removal (PBR).
 License: MIT + file LICENSE
+URL: https://github.com/mcsiple/mmrefpoints
+BugReports: https://github.com/mcsiple/mmrefpoints/issues
 Imports: 
     config,
     shiny,
