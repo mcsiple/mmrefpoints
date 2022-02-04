@@ -81,14 +81,16 @@ This package can be downloaded directly from GitHub:
 ### Community guidelines
 
 We would like this package to be sustainable in the long term and
-welcome contributions. If you encounter a bug, please leave a note on
-the [Issues page](https://github.com/mcsiple/mmrefpoints/issues). You
-can also leave comments there about additional functionality (please add
-the “enhancement” label to your issue).
+welcome contributions. If you are interested in contributing, please
+check out our [Contribution
+Guide](https://github.com/mcsiple/mmrefpoints/blob/master/CONTRIBUTING.md).
 
-If you are interested in contributing, we direct you to the R package
-[contribution advice](http://r-pkgs.had.co.nz/git.html) from Hadley
-Wickham.
+Bugs and enhancements are tracked through GitHub issues. If you have a
+bug to report, there is a [bug report
+template](https://github.com/mcsiple/mmrefpoints/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
+to help maximize the benefit of your report for everyone. The same goes
+for requests for
+[enhancements](https://github.com/mcsiple/mmrefpoints/blob/master/.github/ISSUE_TEMPLATE/feature_request.md).
 
 ## Accessing the MMBIET Shiny app
 
@@ -222,4 +224,10 @@ citation:
 > Wade, Rob Williams and Alexandre N. Zerbini (NA). mmrefpoints: Project
 > Marine Mammal Populations and Calculate Reference Points. R package
 > version 0.1.6. url: <https://github.com/mcsiple/mmrefpoints> doi:
-> 10.5281/zenodo.4758402
+> 10.5281/zenodo.4758401
+
+NOTE that if you want to cite all versions of the software, you can use
+the doi
+[10.5281/zenodo.4758401](https://zenodo.org/record/5949332#.Yf1infXMI-Q).
+When additional releases happen, there will be a doi for each new
+release as well.
