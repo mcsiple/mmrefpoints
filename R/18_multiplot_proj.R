@@ -242,7 +242,7 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
         sim = as.factor
       )
     ) %>%
-      dplyr::arrange(dplyr::desc(name, sim))
+      dplyr::arrange(dplyr::desc(name), dplyr::desc(sim))
     sdf1$depl.level <- InitDepls[1]
 
     sdf2 <- tidyr::pivot_longer(spag.df2,
@@ -252,7 +252,7 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
         sim = as.factor
       )
     ) %>%
-      dplyr::arrange(dplyr::desc(name, sim))
+      dplyr::arrange(dplyr::desc(name),dplyr::desc(sim))
     sdf2$depl.level <- InitDepls[2]
 
     sdf3 <- tidyr::pivot_longer(spag.df3,
@@ -262,7 +262,7 @@ multiplot_proj <- function(high.d1, # d1 is lowest depl, high is highest bycatch
         sim = as.factor
       )
     ) %>%
-      dplyr::arrange(dplyr::desc(name, sim))
+      dplyr::arrange(dplyr::desc(name),dplyr::desc(sim))
     sdf3$depl.level <- InitDepls[3]
 
     megadf <- bind_rows(sdf1, sdf2, sdf3)

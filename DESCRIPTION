@@ -36,7 +36,6 @@ Description: Tools for projecting marine mammal populations into the future unde
 License: MIT + file LICENSE
 URL: https://github.com/mcsiple/mmrefpoints
 BugReports: https://github.com/mcsiple/mmrefpoints/issues
-LazyData: true
 Imports: 
     config,
     shiny,

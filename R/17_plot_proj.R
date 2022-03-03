@@ -175,7 +175,7 @@ plot_proj <- function(high,
     sdf <- tidyr::pivot_longer(spag.df, cols = high:low,
                                 names_transform = list(name = as.factor, 
                                                        sim = as.factor)) %>% 
-            dplyr::arrange(dplyr::desc(name, sim))
+            dplyr::arrange(dplyr::desc(name),dplyr::desc(sim))
 
     dlab1 <- paste("N[0] == ", round(InitDepl, digits = 2), "*K")
 
