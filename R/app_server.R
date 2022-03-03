@@ -857,7 +857,7 @@ app_server <- function(input, output, session) {
       kableExtra::kable_styling("striped", full_width = F, position = "center")
   }
 
-  output$SolverTable <- function() {
+  output$SolverTable1 <- function() {
     x <- as.data.frame(lh.params2()[c("S0", "S1plus", "AgeMat", "lambdaMax", "K1plus", "z")])
     x$z <- round(x$z, digits = 2)
     x$MNPL <- input$MNPL.usr
@@ -870,6 +870,18 @@ app_server <- function(input, output, session) {
       kableExtra::kable_styling("striped", full_width = F, position = "center")
   }
 
+  output$SolverTable2 <- function() {
+    x <- as.data.frame(lh.params2()[c("S0", "S1plus", "AgeMat", "lambdaMax", "K1plus", "z")])
+    x$z <- round(x$z, digits = 2)
+    x$MNPL <- input$MNPL.usr
+    kableExtra::kable(
+      col.names = c("S<sub>0</sub.", "S<sub>1+</sub>", "Age at maturity", "&#955 <sub>max</sub>", "K<sub>1+</sub>", "z", "MNPL"),
+      x, format = "html", # added format just now
+      escape = FALSE
+    ) %>%
+      kableExtra::column_spec(1, width = "10em") %>%
+      kableExtra::kable_styling("striped", full_width = F, position = "center")
+  }
 
   output$PMkite <- renderPlot({
     pt <- performance.table() %>%
@@ -1510,6 +1522,10 @@ app_server <- function(input, output, session) {
           helpText("$$ \\huge N_{MIN} \\cdot \\frac{1}{2}R_{MAX}\\cdot F_R$$"),
           tags$div(HTML(i18n$t("<span class='help-block'>Note: To use this feature you need to have run projections in the Advanced tab. The values you need in order to calculate PBR are available in that tab. While the Advanced tab automatically calculates N<sub>MIN</sub> from the numbers you entered, you can use your own abundance estimates here if you want. Knowing carrying capacity and depletion is not required, only the abundance estimate and the CV of that estimate.</span>"))),
           br(),
+          h4(i18n$t("Life history inputs")),
+          tableOutput("SolverTable1"),
+          br(),
+          h4(i18n$t("PBR inputs")),
           fluidRow(
             column(
               6,
@@ -1579,7 +1595,7 @@ app_server <- function(input, output, session) {
           h4(i18n$t("Calculate the bycatch rate necessary to achieve a recovery goal")),
           p(i18n$t("If you have a specific management goal for your marine mammal population of interest, put in the desired recovery goal and timeline below. This part of the app will calculate an approximate bycatch rate that will allow the population to reach that goal. This page uses information from the 'Advanced Projections' tab to make this calculation. Once the plot appears, the animation will show the bycatch rates that the solver has attempted in its search for the maximum bycatch rate that will allow you to achieve your goal.")),
           br(),
-          tableOutput("SolverTable"),
+          tableOutput("SolverTable2"),
           p(
             strong(i18n$t("NOTE:")),
             i18n$t("This will take a while! Make sure you are sure of your goals before clicking"),
