@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://github.com/mcsiple/mmrefpoints/issues)
-[![DOI](https://zenodo.org/badge/344858328.svg)](https://zenodo.org/badge/latestdoi/344858328)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6336011.svg)](https://doi.org/10.5281/zenodo.6336011)
 
 <!-- badges: end -->
 
