@@ -16,8 +16,9 @@ knitr::opts_chunk$set(
 # mmrefpoints: Projecting long-term marine mammal abundance with bycatch
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/mcsiple/mmrefpoints/issues)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://github.com/mcsiple/mmrefpoints/issues)
 [![DOI](https://zenodo.org/badge/344858328.svg)](https://zenodo.org/badge/latestdoi/344858328)
+
 <!-- badges: end -->
 
 `mmrefpoints` is an R package that generates marine mammal population projections based on starting abundance, life history, and bycatch rates, based on the BALEEN II population dynamics model.
@@ -183,7 +184,7 @@ To cite this package or the MMBIET Shiny app, please use the following citation:
 
 > Margaret C. Siple, André E. Punt, Tessa B. Francis, Philip S. Hammond, Dennis Heinemann, Kristy J. Long, Jeffrey E. Moore,
   Randall R. Reeves, Sepúlveda Maritza, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R. Wade, Rob Williams and Alexandre N.
-  Zerbini (NA). mmrefpoints: Project Marine Mammal Populations and Calculate Reference Points. R package version 0.1.6.
+  Zerbini (NA). mmrefpoints: Project Marine Mammal Populations and Calculate Reference Points. R package version 1.0.0.
   url: <https://github.com/mcsiple/mmrefpoints> doi: 10.5281/zenodo.4758401
   
 NOTE that if you want to cite all versions of the software, you can use the doi [10.5281/zenodo.4758401](https://zenodo.org/record/5949332#.Yf1infXMI-Q). When additional releases happen, there will be a doi for each new release as well. 

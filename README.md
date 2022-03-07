@@ -6,8 +6,9 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://github.com/mcsiple/mmrefpoints/issues)
+stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://github.com/mcsiple/mmrefpoints/issues)
 [![DOI](https://zenodo.org/badge/344858328.svg)](https://zenodo.org/badge/latestdoi/344858328)
+
 <!-- badges: end -->
 
 `mmrefpoints` is an R package that generates marine mammal population
@@ -223,7 +224,7 @@ citation:
 > Sepúlveda Maritza, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
 > Wade, Rob Williams and Alexandre N. Zerbini (NA). mmrefpoints: Project
 > Marine Mammal Populations and Calculate Reference Points. R package
-> version 0.1.6. url: <https://github.com/mcsiple/mmrefpoints> doi:
+> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
 > 10.5281/zenodo.4758401
 
 NOTE that if you want to cite all versions of the software, you can use
