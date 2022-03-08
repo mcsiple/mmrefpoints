@@ -224,7 +224,7 @@ citation:
 > Sepúlveda Maritza, Guðjón Már Sigurðsson, Gísli Víkingsson, Paul R.
 > Wade, Rob Williams and Alexandre N. Zerbini (NA). mmrefpoints: Project
 > Marine Mammal Populations and Calculate Reference Points. R package
-> version 1.0.0. url: <https://github.com/mcsiple/mmrefpoints> doi:
+> version 1.0.1. url: <https://github.com/mcsiple/mmrefpoints> doi:
 > 10.5281/zenodo.4758401
 
 NOTE that if you want to cite all versions of the software, you can use
