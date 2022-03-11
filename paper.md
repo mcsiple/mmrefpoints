@@ -14,7 +14,7 @@ authors:
   - name: Tessa B. Francis
     orcid: 0000-0002-3383-5392
     affiliation: 3
-  - name: Phillip S. Hammond
+  - name: Philip S. Hammond
     orcid: 0000-0002-2381-8302
     affiliation: 4
   - name: Dennis Heinemann

@@ -20,11 +20,11 @@ rates, based on the BALEEN II population dynamics model.
 Margaret C. Siple  
 André E. Punt  
 Tessa B. Francis  
-Phil S. Hammond  
+Philip S. Hammond  
 Dennis Heinemann  
 Kristy J. Long  
 Jeffrey E. Moore  
-Maritza Sepulveda  
+Maritza Sepúlveda  
 Randall R. Reeves  
 Guðjón Már Sigurðsson  
 Gísli Víkingsson  
