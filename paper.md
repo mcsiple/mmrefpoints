@@ -35,10 +35,10 @@ authors:
   - name: Guðjón Már Sigurðsson
     orcid: 0000-0001-9390-6693
     affiliation: 10
-  - name: Gisli Vikingsson
+  - name: Gísli Víkingsson
     orcid: 0000-0002-4501-193X
     affiliation: 10
-  - name: Paul A. Wade
+  - name: Paul R. Wade
     orcid: 0000-0003-2428-9323
     affiliation: 11
   - name: Rob Williams
