@@ -266,6 +266,15 @@ app_server <- function(input, output, session) {
     }
   })
 
+  # Max bycatch, based on pop size:
+  observeEvent(input$popsize_usr, {
+    updateSliderInput(session, "constantcatch",
+                      value = c(50, 100),
+                      min = 0,
+                      max = input$popsize_usr
+    )
+  })
+  
   # Depletion, based on radio button selection:
   initdepl_adv <- reactive(ifelse(input$vdepln_adv == "lo", 0.25,
     ifelse(input$vdepln_adv == "med", 0.5,
